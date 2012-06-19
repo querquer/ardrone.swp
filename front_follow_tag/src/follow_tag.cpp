@@ -42,6 +42,8 @@ Delta azDelta;
 
 float ges = 0.05;
 
+bool end = false;
+
 int kbhit(void);
 
 int kbhit(void) {
@@ -243,6 +245,10 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
     	  ges += -0.1*ges;
     	  ostr << "l pressed" << endl;
           break;
+      case 3:
+    	  ostr << "beenden" << endl;
+    	  end = true;
+    	  break;
       }
       ostr << c;
   }
@@ -278,5 +284,8 @@ int main(int argc, char** argv)
 
   pub.publish(twist);
 
-  ros::spin();
+  while(!end)
+  {
+	  ros::spinOnce();
+  }
 }
