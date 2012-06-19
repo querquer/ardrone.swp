@@ -1,0 +1,19 @@
+<package>
+  <description brief="front_follow_tag">
+
+     front_follow_tag
+
+  </description>
+  <author>Ulrich</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/front_follow_tag</url>
+  <depend package="roscpp"/>
+  <depend package="geometry_msgs"/>
+  <depend package="ardrone_brown"/>
+  <depend package="sensor_msgs"/>
+  <depend package="ar_recog"/>
+
+</package>
+
+
