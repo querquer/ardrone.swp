@@ -9,11 +9,14 @@
 #include "ardrone_brown/Navdata.h"
 
 #include "Delta.h"
+#include "keyboard.h"
 
 #include <time.h>
 #include <stdio.h>
 #include <iostream>
 #include <sstream>
+
+
 
 using namespace std;
 
@@ -42,8 +45,11 @@ Delta azDelta;
 float vx;
 float vy;
 float vz;
+float roty;
 
 int count = 0;
+
+float ges = 0.05;
 
 
 void navdataUpdate(const ardrone_brown::Navdata::ConstPtr& navdata)
@@ -55,10 +61,12 @@ void navdataUpdate(const ardrone_brown::Navdata::ConstPtr& navdata)
     vx = navdata->vx;
     vy = navdata->vy;
     vz = navdata->vz;
+    roty = (navdata->rotY) * (0.017453f);  //grad in rad umrechnen
 }
 
 void handleTag(const ar_recog::Tags::ConstPtr& msg)
 {
+	ostringstream ostr;
   if(msg->tag_count == 0)   //Falls kein Tag erkannt wurde
   {
     if(seen)   //Falls beim letzen Aufruf ein Tag gesehen wurde, speichere die Zeit
@@ -123,17 +131,43 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
 	      biggest = msg->tags[i];
 	  }
 
+	  float dy = 0;
+	  if(abs(biggest.zRot) < 0.2f)
+	  {
+		  float ds = altd * tan( roty );  //Entfernung eingentliche position vom Tag (y) zur ermittelten
+		  float c = (2 * altd) / tan(58); //Sichtfeldgröße
+		  dy = (ds * height) / c;      //Punkte des Tags werden um diese anzahl von Pixeln verschoben
+
+
+		  ostr << "roty     " << roty << endl;
+		  ostr << "Delta s: " << ds << endl;
+		  ostr << "c        " << c << endl;
+		  ostr << "dy       " << dy << endl;
+
+	  }
+
+
 	  float cx = 0;
 	  float cy = 0;
+	  float dcy = 0;
 	  for(int i = 0; i < 7; i+=2)
 	  {
+
 	    cx = cx + biggest.cwCorners[i];
 	    cy = cy + biggest.cwCorners[i+1];
+	    dcy = dcy + biggest.cwCorners[i+1] - dy;
 	  }
+
+
+
+
 	  cx = cx / 4.0 / width;   //cx: 0 Tag ist am oberen Bildrand, 0.5 Tag ist in der Mitte, 1 Tag ist am unteren Bildrand
 	  cy = cy / 4.0 / height;  //cy: 0 Tag ist liks, 0.5 Tag ist in der Mitte, 1 Tag ist rechts
 
 
+	  dcy = dcy / 4.0 / height;
+	  ostr << "cy      :" << cy << endl;
+	  ostr << "dcy     :" << dcy << endl;
 
 	  if(biggest.distance > 1650.0f)
 	  {
@@ -210,8 +244,57 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
 	  twist.linear.y -= 0.7 * (vy / 5000);
   }
 
+  if(kbhit())
+  {
+      char c = getch(); // Muss auf keine Eingabe warten, Taste ist bereits gedrückt
+      switch(c)
+      {
+      case 'w':
+    	  twist.linear.x = 1 * ges;
+    	  ostr << endl <<  "w pressed" << endl;
+          break;
+      case 's':
+    	  twist.linear.x = -1 * ges;
+    	  ostr << "s pressed" << endl;
+          break;
+      case 'a':
+    	  twist.linear.y = 1 * ges;
+    	  ostr << "a pressed" << endl;
+          break;
+      case 'd':
+    	  twist.linear.y = -1 * ges;
+    	  ostr << "d pressed" << endl;
+          break;
+      case 'q':
+    	  twist.angular.z = -1 * ges;
+    	  ostr << "q pressed" << endl;
+          break;
+      case 'e':
+    	  twist.angular.z = 1 * ges;
+    	  ostr << "e pressed" << endl;
+          break;
+      case 'o':
+    	  twist.linear.z = 1 * ges;
+    	  ostr << "o pressed" << endl;
+          break;
+      case 'l':
+    	  twist.linear.z = -1 * ges;
+    	  ostr << "l pressed" << endl;
+          break;
+      case 'u':
+    	  ges += 0.1*ges;
+    	  ostr << "u pressed" << endl;
+          break;
+      case 'j':
+    	  ges += -0.1*ges;
+    	  ostr << "l pressed" << endl;
+          break;
+      }
+      ostr << c;
+  }
+
   pub.publish(twist);
-  ostringstream ostr;
+
   ostr << "\n\nlinear.x: " << twist.linear.x << endl;
   ostr << "linear.y: " << twist.linear.y << endl;
   ostr << "linear.z " << twist.linear.z << endl;
@@ -245,5 +328,8 @@ int main(int argc, char** argv)
 
   pub.publish(twist);
 
-  ros::spin();
+  while(ros::ok())
+  {
+	  ros::spinOnce();
+  }
 }
