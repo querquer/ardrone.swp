@@ -15,12 +15,6 @@
 #include <iostream>
 #include <sstream>
 
-//#include <ncurses.h>
-
-
-
-
-
 #include "keyboard.h"
 
 using namespace std;
