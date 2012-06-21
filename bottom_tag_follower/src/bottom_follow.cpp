@@ -46,10 +46,13 @@ float vx;
 float vy;
 float vz;
 float roty;
+float rotx;
 
 int count = 0;
 
 float ges = 0.05;
+
+bool end = false;
 
 
 void navdataUpdate(const ardrone_brown::Navdata::ConstPtr& navdata)
@@ -61,7 +64,8 @@ void navdataUpdate(const ardrone_brown::Navdata::ConstPtr& navdata)
     vx = navdata->vx;
     vy = navdata->vy;
     vz = navdata->vz;
-    roty = (navdata->rotY) * (0.017453f);  //grad in rad umrechnen
+    roty = (navdata->rotY) * 0.017453f;  //grad in rad umrechnen
+    rotx = (navdata->rotX) * 0.017453f;
 }
 
 void handleTag(const ar_recog::Tags::ConstPtr& msg)
@@ -132,42 +136,52 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
 	  }
 
 	  float dy = 0;
-	  if(abs(biggest.zRot) < 0.2f)
-	  {
-		  float ds = altd * tan( roty );  //Entfernung eingentliche position vom Tag (y) zur ermittelten
-		  float c = (2 * altd) / tan(58); //Sichtfeldgröße
-		  dy = (ds * height) / c;      //Punkte des Tags werden um diese anzahl von Pixeln verschoben
 
+	  float ds = altd * tan( roty );  //Entfernung eingentliche position vom Tag (y) zur ermittelten
+	  float c = (2 * altd) / tan(58); //Sichtfeldgröße
+	  dy = (ds * height) / c;      //Punkte des Tags werden um diese anzahl von Pixeln verschoben
 
-		  ostr << "roty     " << roty << endl;
-		  ostr << "Delta s: " << ds << endl;
-		  ostr << "c        " << c << endl;
-		  ostr << "dy       " << dy << endl;
+	  float dsx = altd * tan( rotx );
+	  float dx = (dsx * width) / c;
 
-	  }
+	  dx /= 3;
+	  dy *= 0.5;
+
+	  ostr << "roty     " << roty << endl;
+	  ostr << "Delta s: " << ds << endl;
+	  ostr << "c        " << c << endl;
+	  ostr << "dy       " << dy << endl;
+	  ostr << "delt s:  " << dsx << endl;
+	  ostr << "dx       " << dx << endl;
 
 
 	  float cx = 0;
 	  float cy = 0;
-	  float dcy = 0;
 	  for(int i = 0; i < 7; i+=2)
 	  {
 
 	    cx = cx + biggest.cwCorners[i];
 	    cy = cy + biggest.cwCorners[i+1];
-	    dcy = dcy + biggest.cwCorners[i+1] - dy;
 	  }
 
+	//  dcy += dy;
+	 // cy += dy;
 
 
 
-	  cx = cx / 4.0 / width;   //cx: 0 Tag ist am oberen Bildrand, 0.5 Tag ist in der Mitte, 1 Tag ist am unteren Bildrand
-	  cy = cy / 4.0 / height;  //cy: 0 Tag ist liks, 0.5 Tag ist in der Mitte, 1 Tag ist rechts
+	  //cx = cx / 4.0 / width;   //cx: 0 Tag ist am oberen Bildrand, 0.5 Tag ist in der Mitte, 1 Tag ist am unteren Bildrand
+	  //cy = cy / 4.0 / height;  //cy: 0 Tag ist liks, 0.5 Tag ist in der Mitte, 1 Tag ist rechts
 
+	  cy = cy /4.0;
+	  cy += dy;
+	  cy = cy / height;
 
-	  dcy = dcy / 4.0 / height;
+	  cx = cx / 4.0;
+	  cx -= dx;
+	  cx = cx / width;
+
 	  ostr << "cy      :" << cy << endl;
-	  ostr << "dcy     :" << dcy << endl;
+	  ostr << "cx     :" << cx << endl;
 
 	  if(biggest.distance > 1650.0f)
 	  {
@@ -244,7 +258,7 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
 	  twist.linear.y -= 0.7 * (vy / 5000);
   }
 
-  if(kbhit())
+  /*if(kbhit())
   {
       char c = getch(); // Muss auf keine Eingabe warten, Taste ist bereits gedrückt
       switch(c)
@@ -289,9 +303,13 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
     	  ges += -0.1*ges;
     	  ostr << "l pressed" << endl;
           break;
+      case 3:
+    	  ostr << "beenden" << endl;
+    	  end = true;
+    	  break;
       }
       ostr << c;
-  }
+  }*/
 
   pub.publish(twist);
 
@@ -328,7 +346,7 @@ int main(int argc, char** argv)
 
   pub.publish(twist);
 
-  while(ros::ok())
+  while(!end && ros::ok())
   {
 	  ros::spinOnce();
   }
