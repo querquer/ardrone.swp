@@ -29,5 +29,5 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
 
-rosbuild_add_executable(follow_tag_bottom src/follow_tag_bottom.cpp)
-rosbuild_add_executable(bottom_follow src/bottom_follow.cpp)
+#rosbuild_add_executable(follow_tag_bottom src/follow_tag_bottom.cpp)
+rosbuild_add_executable(bottom_follow src/bottom_follow.cpp src/Math.cpp src/Global.cpp src/Keybord.cpp src/Delta.cpp)
