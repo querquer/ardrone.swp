@@ -8,64 +8,64 @@
 #include "ar_recog/Tag.h"
 #include "ardrone_brown/Navdata.h"
 
-#include "Delta.h"
-
 #include <time.h>
 #include <stdio.h>
 #include <iostream>
 #include <sstream>
 
-#include "keyboard.h"
+#include "Delta.h"
+#include "Math.h"
+#include "Global.h"
+#include "Keybord.h"
 
 using namespace std;
 
-
-geometry_msgs::Twist twist;
-
-
-ros::Publisher pub;
-int altd = -1;
-
-time_t lastSeen;
-float lastDir;
-
-Delta lxDelta;
-Delta lyDelta;
-Delta lzDelta;
-
-Delta azDelta;
-
-float ges = 0.05;
-
-bool end = false;
-
-
-
 void navdataUpdate(const ardrone_brown::Navdata::ConstPtr& navdata)
 {
-	altd = navdata->altd;
+	Cglobal::instance().altd = navdata->altd;
+	Cglobal::instance().vx = navdata->vx;
+	Cglobal::instance().vy = navdata->vy;
+	Cglobal::instance().vz = navdata->vz;
+	Cglobal::instance().roty = (navdata->rotY) * 0.017453f;  //grad in rad umrechnen
+	Cglobal::instance().rotx = (navdata->rotX) * 0.017453f;
 }
 void handleTag(const ar_recog::Tags::ConstPtr& msg)
 {
-	float cyd;
-  if(msg->tag_count == 0)
+  if(msg->tag_count == 0)   //Falls kein Tag erkannt wurde
   {
-    twist.linear.x = lxDelta.get_velocity(0);
-    twist.linear.y = lyDelta.get_velocity(0);
-    twist.linear.z = lzDelta.get_velocity(0);
-    if(time(NULL) - lastSeen > 0.5)
-      twist.angular.z = 0.5 * lastDir;
+	if(Cglobal::instance().seen)   //Falls beim letzen Aufruf ein Tag gesehen wurde, speichere die Zeit
+		Cglobal::instance().sinceNotSeen = time(NULL);
+	//if(time(NULL) - Cglobal::instance().sinceNotSeen < 1)  //Falls ein Tag in der letzen Sekunde gesehen wurde, versuche in die letzte gesehene Richtung zu fliegen
+	if(time(NULL) - Cglobal::instance().sinceNotSeen < 2)     //n.n.t
+	{
+	  if(Cglobal::instance().vor)
+		  Cglobal::instance().twist.linear.x = Cglobal::instance().lxDelta.get_velocity(0.1);
+	  if(Cglobal::instance().zurueck)
+		  Cglobal::instance().twist.linear.x = Cglobal::instance().lxDelta.get_velocity(-0.1);
+	  if(Cglobal::instance().links)
+		  Cglobal::instance().twist.linear.y = Cglobal::instance().lyDelta.get_velocity(0.1);
+	  if(Cglobal::instance().rechts)
+		  Cglobal::instance().twist.linear.y = Cglobal::instance().lyDelta.get_velocity(-0.1);
+	  if(Cglobal::instance().hoch)
+		  Cglobal::instance().twist.linear.y = Cglobal::instance().lzDelta.get_velocity(0.1);
+	  if(Cglobal::instance().runter)
+		  Cglobal::instance().twist.linear.y = Cglobal::instance().lzDelta.get_velocity(-0.1);
+	}
+	else //Versuche ruhig in Luft zu stehen
+	{
+	  	Cglobal::instance().twist.linear.x = 0;
+	  	Cglobal::instance().twist.linear.z = 0;
+	  	Cglobal::instance().twist.linear.y = 0;
+
+	    if(time(NULL) - Cglobal::instance().lastSeen > 0.5)
+	    	Cglobal::instance().twist.angular.z = 0.5 * Cglobal::instance().lastDir;
+	}
+	Cglobal::instance().seen = false;
   }
-  else
+  else //Falls mindestens ein Tag gesehen wurde
   {
-  lastSeen = time(NULL);
-
-  //int width = msg->image_width;
-  //int height = msg->image_height;
-  int width = 320;
-  int height = 240;
-
-
+  Cglobal::instance().seen = true;
+  Cglobal::instance().lastSeen = time(NULL);
   ar_recog::Tag biggest = msg->tags[0];
 
   for(int i = 0; i < msg->tag_count; ++i)
@@ -76,31 +76,24 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
 
   float cx = 0;
   float cy = 0;
-  for(int i = 0; i < 7; i+=2)
-  {
-    cx = cx + biggest.cwCorners[i];
-    cy = cy + biggest.cwCorners[i+1];
-  }
-  cx = cx / 4.0 / width;
-  cy = cy / 4.0 / height;
-
+  Cmath::center(biggest,cx,cy);
 
   float stopping_dist = 600.0;
   float dist = (biggest.distance -stopping_dist) / stopping_dist;
-  float dist_vel = lxDelta.get_velocity(dist);
+  float dist_vel = Cglobal::instance().lxDelta.get_velocity(dist);
 
   if(abs(dist) < 0.25)
-    twist.linear.x = dist_vel * 0.25; //if we are close enough to the stopping distance, just try to stop
+	  Cglobal::instance().twist.linear.x = dist_vel * 0.25; //if we are close enough to the stopping distance, just try to stop
   else
-	twist.linear.x = dist * 0.25; //otherwise try to move within stopping_dist
+	  Cglobal::instance().twist.linear.x = dist * 0.25; //otherwise try to move within stopping_dist
 
-  twist.linear.x = max(-0.05, min(0.05, twist.linear.x));
+  Cglobal::instance().twist.linear.x = max(-0.05, min(0.05, Cglobal::instance().twist.linear.x));
 
   //try to face perpendicular to the tag
-  float yRot_velocity = azDelta.get_velocity(biggest.yRot);
-  twist.angular.z = yRot_velocity * 0.5;
+  float yRot_velocity = Cglobal::instance().azDelta.get_velocity(biggest.yRot);
+  Cglobal::instance().twist.angular.z = yRot_velocity * 0.5;
 
-  twist.angular.z = max(-0.5, min(0.5, twist.angular.z));
+  Cglobal::instance().twist.angular.z = max(-0.5, min(0.5, Cglobal::instance().twist.angular.z));
   //if (abs(biggest.yRot) < 0.2)
 	//twist.linear.y = yRot_velocity * 0.25; //if we are mostly facing perpendicular, just try to stay still
   //else
@@ -109,92 +102,45 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
 
 
   //rotate to face the tag
-  twist.linear.y = (-(cx - 0.5)/0.5) * 0.2;
-  twist.linear.y = lyDelta.get_velocity(twist.linear.y);
-  twist.linear.y = max(-0.05, min(0.05, twist.linear.y));
+  Cglobal::instance().twist.linear.y = (-(cx - 0.5)/0.5) * 0.2;
+  Cglobal::instance().twist.linear.y = Cglobal::instance().lyDelta.get_velocity(Cglobal::instance().twist.linear.y);
+  Cglobal::instance().twist.linear.y = max(-0.05, min(0.05, Cglobal::instance().twist.linear.y));
 
-  cyd = (-(cy - 0.5) / 0.5);
-
-  if (twist.angular.z < 0)
-	lastDir = -1;
+  if (Cglobal::instance().twist.angular.z < 0)
+	  Cglobal::instance().lastDir = -1;
   else
-	lastDir = 1;
+	  Cglobal::instance().lastDir = 1;
 
 
-  twist.linear.z = lzDelta.get_velocity((-(cy - 0.5) / 0.5));
-  if(twist.linear.z > 0.5)
-	twist.linear.z = 0.1;
-  else if(twist.linear.z < -0.4)
-	twist.linear.z = -0.1;
+  Cglobal::instance().twist.linear.z = Cglobal::instance().lzDelta.get_velocity((-(cy - 0.5) / 0.5));
+  if(Cglobal::instance().twist.linear.z > 0.5)
+	  Cglobal::instance().twist.linear.z = 0.1;
+  else if(Cglobal::instance().twist.linear.z < -0.4)
+	  Cglobal::instance().twist.linear.z = -0.1;
   else
-	twist.linear.z = 0;
-  //twist.linear.z = max(-0.1, min(0.1, twist.linear.z));
+	  Cglobal::instance().twist.linear.z = 0;
+  Cglobal::instance().twist.linear.z = max(-0.1, min(0.3, Cglobal::instance().twist.linear.z));
 
-  if((altd > 1300 && twist.linear.z > 0)  || (altd < 500 && twist.linear.z < 0))
-    twist.linear.z = 0;
+  if((Cglobal::instance().altd > 1300 && Cglobal::instance().twist.linear.z > 0)  || (Cglobal::instance().altd < 500 && Cglobal::instance().twist.linear.z < 0))
+	  Cglobal::instance().twist.linear.z = 0;
   }
   ostringstream ostr;
 
-  if(kbhit())
-  {
-      char c = getch(); // Muss auf keine Eingabe warten, Taste ist bereits gedrückt
-      switch(c)
-      {
-      case 'w':
-    	  twist.linear.x = 1 * ges;
-    	  ostr << endl <<  "w pressed" << endl;
-          break;
-      case 's':
-    	  twist.linear.x = -1 * ges;
-    	  ostr << "s pressed" << endl;
-          break;
-      case 'a':
-    	  twist.linear.y = 1 * ges;
-    	  ostr << "a pressed" << endl;
-          break;
-      case 'd':
-    	  twist.linear.y = -1 * ges;
-    	  ostr << "d pressed" << endl;
-          break;
-      case 'q':
-    	  twist.angular.z = -1 * ges;
-    	  ostr << "q pressed" << endl;
-          break;
-      case 'e':
-    	  twist.angular.z = 1 * ges;
-    	  ostr << "e pressed" << endl;
-          break;
-      case 'o':
-    	  twist.linear.z = 1 * ges;
-    	  ostr << "o pressed" << endl;
-          break;
-      case 'l':
-    	  twist.linear.z = -1 * ges;
-    	  ostr << "l pressed" << endl;
-          break;
-      case 'u':
-    	  ges += 0.1*ges;
-    	  ostr << "u pressed" << endl;
-          break;
-      case 'j':
-    	  ges += -0.1*ges;
-    	  ostr << "l pressed" << endl;
-          break;
-      case 3:
-    	  ostr << "beenden" << endl;
-    	  end = true;
-    	  break;
-      }
-      ostr << c;
-  }
+  read();
 
-  pub.publish(twist);
-  ostr << "ges: " << ges << endl;
-  ostr << "linear.x: " << twist.linear.x << endl;
-  ostr << "linear.y: " << twist.linear.y << endl;
-  ostr << "Y bew:    " << cyd << endl;
-  ostr << "linear.z: " << twist.linear.z << endl;
-  ostr << "angular.z: " << twist.angular.z << endl << endl;
+  Cglobal::instance().vor = Cglobal::instance().twist.linear.x > 0;
+  Cglobal::instance().zurueck = Cglobal::instance().twist.linear.x < 0;
+  Cglobal::instance().links = Cglobal::instance().twist.linear.y > 0;
+  Cglobal::instance().rechts = Cglobal::instance().twist.linear.y < 0;
+  Cglobal::instance().hoch = Cglobal::instance().twist.linear.z > 0;
+  Cglobal::instance().runter = Cglobal::instance().twist.linear.z < 0;
+
+  Cglobal::instance().pub.publish(Cglobal::instance().twist);
+  ostr << "ges: " << Cglobal::instance().ges << endl;
+  ostr << "linear.x: " << Cglobal::instance().twist.linear.x << endl;
+  ostr << "linear.y: " << Cglobal::instance().twist.linear.y << endl;
+  ostr << "linear.z: " << Cglobal::instance().twist.linear.z << endl;
+  ostr << "angular.z: " << Cglobal::instance().twist.angular.z << endl << endl;
   if(msg->tag_count > 0)
     ostr << "Erkannt!!\nDistance: " << msg->tags[0].distance << endl;
   ROS_INFO(ostr.str().c_str());
@@ -204,23 +150,18 @@ int main(int argc, char** argv)
 {
   ros::init(argc, argv, "follow_tag");
 
-  lastSeen = 0;
-  lastDir = -1;
-  twist.linear.x = 0;
-  twist.linear.y = 0;
-  twist.linear.z = 0;
-  twist.angular.z = 0;
+  Cglobal::instance().sinceNotSeen = time(NULL);
 
   ros::NodeHandle node_handle;
-  pub = node_handle.advertise<geometry_msgs::Twist>("cmd_vel", 1000); 
+  Cglobal::instance().pub = node_handle.advertise<geometry_msgs::Twist>("cmd_vel", 1000);
   ros::Subscriber sub = node_handle.subscribe("tags",1000, handleTag);
 
   ros::Subscriber navdata = node_handle.subscribe("/ardrone/navdata", 1000, navdataUpdate);
 
-  pub.publish(twist);
-
-  while(!end && ros::ok())
+  while(!Cglobal::instance().end && ros::ok())
   {
 	  ros::spinOnce();
   }
+
+  Cglobal::destroy();
 }

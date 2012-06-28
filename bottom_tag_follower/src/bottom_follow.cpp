@@ -57,10 +57,10 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
     }
     else //Versuche ruhig in Luft zu stehen
     {
-    	Cglobal::instance().twist.linear.x = 0;
-    	Cglobal::instance().twist.linear.z = 0;
-    	Cglobal::instance().twist.linear.y = 0;
-    	Cglobal::instance().twist.angular.z = 0;
+    	Cglobal::instance().twist.linear.x = Cglobal::instance().lxDelta.get_velocity(0);
+    	Cglobal::instance().twist.linear.z = Cglobal::instance().lzDelta.get_velocity(0);
+    	Cglobal::instance().twist.linear.y = Cglobal::instance().lyDelta.get_velocity(0);
+    	Cglobal::instance().twist.angular.z = Cglobal::instance().azDelta.get_velocity(0);
     }
     Cglobal::instance().seen = false;
   }
@@ -167,18 +167,11 @@ int main(int argc, char** argv)
 
   Cglobal::instance().sinceNotSeen = time(NULL);
 
-  Cglobal::instance().twist.linear.x = 0;
-  Cglobal::instance().twist.linear.y = 0;
-  Cglobal::instance().twist.linear.z = 0;
-  Cglobal::instance().twist.angular.z = 0;
-
   ros::NodeHandle node_handle;
   Cglobal::instance().pub = node_handle.advertise<geometry_msgs::Twist>("cmd_vel", 1000);
   ros::Subscriber sub = node_handle.subscribe("tags",1000, handleTag);
 
   ros::Subscriber navdata = node_handle.subscribe("/ardrone/navdata", 1000, navdataUpdate);
-
-  Cglobal::instance().pub.publish(Cglobal::instance().twist);
 
   while(!Cglobal::instance().end && ros::ok())
   {
