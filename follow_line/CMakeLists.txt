@@ -36,14 +36,17 @@ include_directories(${SDK} ${SDK}/Soft/Common ${SDK}/Soft/Lib ${SDK}/VP_SDK ${SD
 
 #rosbuild_add_executable(camera src/camera.cpp)
 #rosbuild_add_executable(camera2 src/camera2.cpp)
-rosbuild_add_executable(start src/start.cpp)
+#rosbuild_add_executable(start src/start.cpp)
 #rosbuild_add_executable(navdata src/navdata.cpp)
 #rosbuild_add_executable(follow_line src/follow_line.cpp)
 #rosbuild_add_executable(follow_tag src/follow_tag.cpp)
 #rosbuild_add_executable(LogNavdata src/LogNavdata.cpp)
 #rosbuild_add_executable(LogTags src/LogTags.cpp)
-rosbuild_add_executable(Log src/Log.cpp)
+#rosbuild_add_executable(Log src/Log.cpp)
 #rosbuild_add_executable(follow_line2 src/follow_line2.cpp)
-rosbuild_add_executable(follow_tag_bottom src/follow_tag_bottom.cpp)
+#rosbuild_add_executable(follow_tag_bottom src/follow_tag_bottom.cpp)
 #rosbuild_add_executable(takeoff src/takeoff.cpp)
-rosbuild_add_executable(bottom_follow src/bottom_follow.cpp)
+#rosbuild_add_executable(bottom_follow src/bottom_follow.cpp)
+
+rosbuild_add_executable(follow_line2 src/follow_line2.cpp src/Math.cpp src/Global.cpp src/Keybord.cpp src/Delta.cpp)
+

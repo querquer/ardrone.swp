@@ -9,12 +9,16 @@
 #include "ardrone_brown/Navdata.h"
 
 #include "follow_line/LinePos.h"
-#include "Delta.h"
 
 #include <time.h>
 #include <stdio.h>
 #include <iostream>
 #include <sstream>
+
+#include "Delta.h"
+#include "Math.h"
+#include "Global.h"
+#include "Keybord.h"
 
 using namespace std;
 
@@ -34,28 +38,26 @@ Delta azDelta;
 
 void navdataUpdate(const ardrone_brown::Navdata::ConstPtr& navdata)
 {
-  altd = navdata->altd;
+	Cglobal::instance().altd = navdata->altd;
+	Cglobal::instance().vx = navdata->vx;
+	Cglobal::instance().vy = navdata->vy;
+	Cglobal::instance().vz = navdata->vz;
+	Cglobal::instance().roty = (navdata->rotY) * 0.017453f;  //grad in rad umrechnen
+	Cglobal::instance().rotx = (navdata->rotX) * 0.017453f;
 }
 void handleLine(const follow_line::LinePos::ConstPtr& msg)
 {
+	ostringstream ostr;
   if(msg->x == width/2 && msg->y == height/2)
   {
     //keine Linie wird erkannt
-    twist.linear.x = 0;
-    twist.linear.y = 0;
-    twist.linear.z = 0;
-    twist.angular.z = 0;
-
-    ostringstream ostr;
-    ostr << "linear.x: " << twist.linear.x << endl;
-    ostr << "linear.y: " << twist.linear.y << endl << endl;
-    ostr << "linear.z " << twist.linear.z << endl;
-    ostr << "angular.z " << twist.angular.z << endl;
-    ostr << "altd: " << altd << endl;
-    ROS_INFO(ostr.str().c_str());
-    pub.publish(twist);
-    return;
+	Cglobal::instance().twist.linear.x = 0;
+	Cglobal::instance().twist.linear.y = 0;
+	Cglobal::instance().twist.linear.z = 0;
+	Cglobal::instance().twist.angular.z = 0;
   }
+  else
+  {
   //twist.angular.z = msg->angle / 9000;
 
   float z = 0;
@@ -66,45 +68,42 @@ void handleLine(const follow_line::LinePos::ConstPtr& msg)
   else if(abs(msg->angle) > 500)
     z = msg->angle > 0 ? 0.1 : -0.1;
 
-  twist.angular.z = azDelta.get_velocity(z);
+  Cglobal::instance().twist.angular.z = Cglobal::instance().azDelta.get_velocity(z);
 
   //Fliege immer nach vorne, wenn Linie erkannt wurde
-  twist.linear.x = lxDelta.get_velocity(0.05);
+  Cglobal::instance().twist.linear.x = Cglobal::instance().lxDelta.get_velocity(0.05);
 
-  if(msg->x > width/2 + 5)
-   twist.linear.y = lyDelta.get_velocity(0.1);
-  else if(msg->y < height/2 - 5)
-   twist.linear.y = lyDelta.get_velocity(-0.1);
+  if(msg->x > Cglobal::instance().width/2 + 5)
+	  Cglobal::instance().twist.linear.y = Cglobal::instance().lyDelta.get_velocity(0.1);
+  else if(msg->y < Cglobal::instance().height/2 - 5)
+	  Cglobal::instance().twist.linear.y = Cglobal::instance().lyDelta.get_velocity(-0.1);
   else
-   twist.linear.y = lyDelta.get_velocity(0);
+	  Cglobal::instance().twist.linear.y = Cglobal::instance().lyDelta.get_velocity(0);
 
   if(altd > 900)
-   twist.linear.z = lzDelta.get_velocity(-0.2);
+	  Cglobal::instance().twist.linear.z = Cglobal::instance().lzDelta.get_velocity(-0.2);
   else if(altd < 800)
-   twist.linear.z = lzDelta.get_velocity(0.2);
+	  Cglobal::instance().twist.linear.z = Cglobal::instance().lzDelta.get_velocity(0.2);
   else
-   twist.linear.z = lzDelta.get_velocity(0);
+	  Cglobal::instance().twist.linear.z = Cglobal::instance().lzDelta.get_velocity(0);
 
-  ostringstream ostr;
-  ostr << "linear.x: " << twist.linear.x << endl;
-  ostr << "linear.y: " << twist.linear.y << endl << endl;
-  ostr << "linear.z " << twist.linear.z << endl;
-  ostr << "angular.z " << twist.angular.z << endl;
-  ostr << "altd: " << altd << endl;
-  ostr << "x:    " << msg->x << endl;
-  ostr << "y:    " << msg->y << endl;
+  ostr << "x: " << msg->x << endl;
+  ostr << "y: " << msg->y << endl;
+  }
+
+  ostr << "linear.x: " << Cglobal::instance().twist.linear.x << endl;
+  ostr << "linear.y: " << Cglobal::instance().twist.linear.y << endl << endl;
+  ostr << "linear.z " << Cglobal::instance().twist.linear.z << endl;
+  ostr << "angular.z " << Cglobal::instance().twist.angular.z << endl;
+  ostr << "altd: " << Cglobal::instance().altd << endl;
   ROS_INFO(ostr.str().c_str());
-    pub.publish(twist);
+  Cglobal::instance().pub.publish(Cglobal::instance().twist);
+
 }
 
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "follow_line2");
-
-  twist.linear.x = 0;
-  twist.linear.y = 0;
-  twist.linear.z = 0;
-  twist.angular.z = 0;
 
   ros::NodeHandle node_handle;
   pub = node_handle.advertise<geometry_msgs::Twist>("cmd_vel", 1000); 
@@ -112,7 +111,10 @@ int main(int argc, char** argv)
 
   ros::Subscriber navdata = node_handle.subscribe("/ardrone/navdata", 1000, navdataUpdate);
 
-  pub.publish(twist);
+  while(!Cglobal::instance().end && ros::ok())
+  {
+	  ros::spinOnce();
+  }
 
-  ros::spin();
+  Cglobal::destroy();
 }
