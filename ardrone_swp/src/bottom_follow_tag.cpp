@@ -119,9 +119,12 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
 	  Cglobal::instance().twist.linear.y -= 0.7 * (Cglobal::instance().vy / 5000);
   }
 
-  //read();  //Falls Tastatureingaben zum Steuern möglich sein sollen
+
+  read();  //Falls Tastatureingaben zum Steuern möglich sein sollen
+
 
   Cglobal::instance().pub.publish(Cglobal::instance().twist);
+
 
   ostr << "\n\nlinear.x: " << Cglobal::instance().twist.linear.x << endl;
   ostr << "linear.y: " << Cglobal::instance().twist.linear.y << endl;
@@ -130,8 +133,11 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
   ostr << "altd: " << Cglobal::instance().altd << endl;
   if(msg->tag_count > 0)
     ostr << "Distance: " << msg->tags[0].distance << endl;
+
   ROS_INFO(ostr.str().c_str());
 }
+
+
 
 int main(int argc, char** argv)
 {

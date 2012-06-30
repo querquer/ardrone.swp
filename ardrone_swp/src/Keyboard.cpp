@@ -1,8 +1,16 @@
-#include "Keybord.h"
+#include "Keyboard.h"
 #include "Global.h"
 
+#include <stdlib.h>
+#include <string.h>
+#include <sys/select.h>
 #include <termios.h>
-#include <unistd.h>
+
+#include <sstream>
+
+using namespace std;
+
+struct termios orig_termios;
 
 /* @brief zum Steuern der Drone mit der Tastatur
  *
@@ -19,6 +27,7 @@
  */
 void read()
 {
+	set_conio_terminal_mode();
 	if(kbhit())
 	{
 	  char c = getch(); // Muss auf keine Eingabe warten, Taste ist bereits gedrückt
@@ -59,36 +68,43 @@ void read()
 		  break;
 	  }
 	}
+	reset_terminal_mode();
 }
 
 
-int kbhit(void) {
-   struct termios term, oterm;
-   int fd = 0;
-   int c = 0;
-   tcgetattr(fd, &oterm);
-   memcpy(&term, &oterm, sizeof(term));
-   term.c_lflag = term.c_lflag & (!ICANON);
-   term.c_cc[VMIN] = 0;
-   term.c_cc[VTIME] = 1;
-   tcsetattr(fd, TCSANOW, &term);
-   c = getchar();
-   tcsetattr(fd, TCSANOW, &oterm);
-   if (c != -1)
-   ungetc(c, stdin);
-   return ((c != -1) ? 1 : 0);
+void reset_terminal_mode()
+{
+    tcsetattr(0, TCSANOW, &orig_termios);
+}
+
+void set_conio_terminal_mode()
+{
+    struct termios new_termios;
+
+    tcgetattr(0, &orig_termios);
+    memcpy(&new_termios, &orig_termios, sizeof(new_termios));
+
+    atexit(reset_terminal_mode);
+    cfmakeraw(&new_termios);
+    tcsetattr(0, TCSANOW, &new_termios);
+}
+
+int kbhit()
+{
+    struct timeval tv = { 0L, 0L };
+    fd_set fds;
+    FD_ZERO(&fds);
+    FD_SET(0, &fds);
+    return select(1, &fds, NULL, NULL, &tv);
 }
 
 int getch()
 {
-   static int ch = -1, fd = 0;
-   struct termios neu, alt;
-   fd = fileno(stdin);
-   tcgetattr(fd, &alt);
-   neu = alt;
-   neu.c_lflag &= ~(ICANON|ECHO);
-   tcsetattr(fd, TCSANOW, &neu);
-   ch = getchar();
-   tcsetattr(fd, TCSANOW, &alt);
-   return ch;
+    int r;
+    unsigned char c;
+    if ((r = read(0, &c, sizeof(c))) < 0) {
+        return r;
+    } else {
+        return c;
+    }
 }
