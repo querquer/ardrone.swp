@@ -29,19 +29,25 @@ void handleLine(const ardrone_swp::LinePos::ConstPtr& msg)
   Cglobal::instance().twist.angular.z = Cglobal::instance().azDelta.get_velocity(z);
 
   //Fliege immer nach vorne, wenn Linie erkannt wurde
-  Cglobal::instance().twist.linear.x = Cglobal::instance().lxDelta.get_velocity(0.05);
+  Cglobal::instance().twist.linear.x = Cglobal::instance().lxDelta.get_velocity(0.03);
 
-  if(msg->x > Cglobal::instance().widthB/2 + 5)
+
+  /*
+   *
+   */
+  Cglobal::instance().twist.linear.y = Cglobal::instance().lyDelta.get_velocity(((Cglobal::instance().widthB / 2) - msg->x) / (Cglobal::instance().widthB * 5));
+
+  /*if(msg->x > Cglobal::instance().widthB/2 + 5)
 	  Cglobal::instance().twist.linear.y = Cglobal::instance().lyDelta.get_velocity(0.1);
   else if(msg->y < Cglobal::instance().heightB/2 - 5)
 	  Cglobal::instance().twist.linear.y = Cglobal::instance().lyDelta.get_velocity(-0.1);
   else
-	  Cglobal::instance().twist.linear.y = Cglobal::instance().lyDelta.get_velocity(0);
+	  Cglobal::instance().twist.linear.y = Cglobal::instance().lyDelta.get_velocity(0);*/
 
-  if(Cglobal::instance().altd > 900)
-	  Cglobal::instance().twist.linear.z = Cglobal::instance().lzDelta.get_velocity(-0.2);
+  if(Cglobal::instance().altd > 950)
+	  Cglobal::instance().twist.linear.z = Cglobal::instance().lzDelta.get_velocity(-0.1);
   else if(Cglobal::instance().altd < 800)
-	  Cglobal::instance().twist.linear.z = Cglobal::instance().lzDelta.get_velocity(0.2);
+	  Cglobal::instance().twist.linear.z = Cglobal::instance().lzDelta.get_velocity(0.3);
   else
 	  Cglobal::instance().twist.linear.z = Cglobal::instance().lzDelta.get_velocity(0);
 
