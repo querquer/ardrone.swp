@@ -99,7 +99,7 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
   }
   ostringstream ostr;
 
-  read();
+  Keyboard::control();
 
   Cglobal::instance().vor = Cglobal::instance().twist.linear.x > 0;
   Cglobal::instance().zurueck = Cglobal::instance().twist.linear.x < 0;

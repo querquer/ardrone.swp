@@ -109,7 +109,7 @@ int main(int argc, char** argv)
     if(!n && argv[i][0] == 'n')
     {
       ostringstream ost;
-      ost << "ros_workspace/follow_line/Log/LogNavdata/";
+      ost << "ros_workspace/ardrone_swp/Log/LogNavdata/";
       ost << ctime(&t);
       ost << ".txt";
       logNavdata.open(ost.str().c_str());
@@ -119,7 +119,7 @@ int main(int argc, char** argv)
     else if(!tag && argv[i][0] == 't')
     {
       ostringstream ost;
-      ost << "ros_workspace/follow_line/Log/LogTags/";
+      ost << "ros_workspace/ardrone_swp/Log/LogTags/";
       ost << ctime(&t);
       ost << ".txt";
       logTags.open(ost.str().c_str());
@@ -129,7 +129,7 @@ int main(int argc, char** argv)
     else if(!w && argv[i][0] == 'w')
     {
       ostringstream ost;
-      ost << "ros_workspace/follow_line/Log/LogTwist/";
+      ost << "ros_workspace/ardrone_swp/Log/LogTwist/";
       ost << ctime(&t);
       ost << ".txt";
       logTwist.open(ost.str().c_str());

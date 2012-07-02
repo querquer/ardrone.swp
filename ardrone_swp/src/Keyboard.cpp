@@ -10,6 +10,10 @@
 
 using namespace std;
 
+
+namespace Keyboard
+{
+
 struct termios orig_termios;
 
 /* @brief zum Steuern der Drone mit der Tastatur
@@ -25,7 +29,7 @@ struct termios orig_termios;
  * j: um 10% langsamer werden
  *
  */
-void read()
+void control()
 {
 	set_conio_terminal_mode();
 	if(kbhit())
@@ -108,3 +112,6 @@ int getch()
         return c;
     }
 }
+
+
+} //namespace Keyboard

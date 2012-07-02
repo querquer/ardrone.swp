@@ -120,7 +120,7 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
   }
 
 
-  read();  //Falls Tastatureingaben zum Steuern möglich sein sollen
+  Keyboard::control();  //Falls Tastatureingaben zum Steuern möglich sein sollen
 
 
   Cglobal::instance().pub.publish(Cglobal::instance().twist);

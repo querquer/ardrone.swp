@@ -8,12 +8,16 @@ namespace
 	void center(const ar_recog::Tag& tag, float& cx, float& cy, float dx, float dy, float width, float height);
 }
 
+
+namespace Math
+{
+
 /* @brief Berechnung der Anzahl der Pixel, um die das Tag aufgrund der Rotation verschoben wurde
  *
  * Problem: Sichtfeld ist noch nicht korrekt berechnet(derzeit für x und y Richtung gleich)
  *
  */
-void Math::pixelDiffBottom(float& x, float& y)
+void pixelDiffBottom(float& x, float& y)
 {
 
 	  /*float ds = altd * tan( roty );  //Entfernung eingentliche position vom Tag (y) zur ermittelten
@@ -38,7 +42,7 @@ void Math::pixelDiffBottom(float& x, float& y)
 	x = 0.5 * tan(Cglobal::instance().rotx) * 1.6 * Cglobal::instance().widthB;
 }
 
-void Math::pixelDiffFront(float& x, float& y)
+void pixelDiffFront(float& x, float& y)
 {
 
 	y = 0.5 * tan(Cglobal::instance().roty) * 0.948965 * Cglobal::instance().heightF;  //tan(43.5)~= 0.948965
@@ -50,14 +54,14 @@ void Math::pixelDiffFront(float& x, float& y)
 	cy: 0 Tag ist am oberen Bildrand, 0.5 Tag ist in der Mitte(Höhe), 1 Tag ist am unteren Bildrand
 	cx: 0 Tag ist am linken Bildrand, 0.5 Tag ist in der Mitte(Breite), 1 Tag ist am rechten Bildrend
 */
-void Math::centerBottom(const ar_recog::Tag& tag, float& cx, float& cy)
+void centerBottom(const ar_recog::Tag& tag, float& cx, float& cy)
 {
 	float dx, dy;
 	pixelDiffBottom(dx,dy);
 	center(tag, cx, cy, dx, dy, Cglobal::instance().widthB, Cglobal::instance().heightB);
 }
 
-void Math::centerFront(const ar_recog::Tag& tag, float& cx, float& cy)
+void centerFront(const ar_recog::Tag& tag, float& cx, float& cy)
 {
 	float dx, dy;
 	pixelDiffFront(dx,dy);
@@ -68,7 +72,7 @@ void Math::centerFront(const ar_recog::Tag& tag, float& cx, float& cy)
  *
  * speichert die Navdata-Informationen
  */
-void Math::navdataUpdate(const ardrone_brown::Navdata::ConstPtr& navdata)
+void navdataUpdate(const ardrone_brown::Navdata::ConstPtr& navdata)
 {
 	Cglobal::instance().altd = navdata->altd;
 	Cglobal::instance().vx = navdata->vx;
@@ -77,6 +81,8 @@ void Math::navdataUpdate(const ardrone_brown::Navdata::ConstPtr& navdata)
 	Cglobal::instance().roty = (navdata->rotY) * 0.017453f;  //grad in rad umrechnen
 	Cglobal::instance().rotx = (navdata->rotX) * 0.017453f;
 }
+
+} //namespace Math
 
 namespace
 {
@@ -99,3 +105,6 @@ namespace
 		cx = cx / width;
 	}
 }
+
+
+
