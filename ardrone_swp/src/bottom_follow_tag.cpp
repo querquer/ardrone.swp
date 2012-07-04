@@ -2,7 +2,14 @@
 
 using namespace std;
 
-/* @brief subscriber handler für die Nachricht tags
+/**
+ * @file bottom_follow_tag.cpp
+ * @brief Applikation zur Tagvervolgung mit der unteren Kamera
+ */
+
+
+
+/** @brief subscriber handler für die Nachricht tags
  */
 void handleTag(const ar_recog::Tags::ConstPtr& msg)
 {

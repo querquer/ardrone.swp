@@ -3,6 +3,11 @@
 
 using namespace std;
 
+/**
+ * @file follow_line.cpp
+ * @brief Applikation zur Linienverfolgung mit der unteren Kamera
+ */
+
 void handleLine(const ardrone_swp::LinePos::ConstPtr& msg)
 {
 	ostringstream ostr;

@@ -1,0 +1,202 @@
+\hypertarget{namespace_math}{
+\section{Math-\/Namensbereichsreferenz}
+\label{namespace_math}\index{Math@{Math}}
+}
+\subsection*{Funktionen}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{namespace_math_a25b9284eb485b732c952786b63343aaa}{pixelDiffBottom} (float \&x, float \&y)
+\begin{DoxyCompactList}\small\item\em Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben wurde. \end{DoxyCompactList}\item 
+void \hyperlink{namespace_math_a3fbe7036db847d74ed5f2c21635d02d9}{pixelDiffFront} (float \&x, float \&y)
+\item 
+void \hyperlink{namespace_math_ab4c584467f0cc5d8af22a69482630866}{centerBottom} (const ar\_\-recog::Tag \&tag, float \&cx, float \&cy)
+\begin{DoxyCompactList}\small\item\em Berechnung aus den Eckpunkten wo sich das Tag bezüglich des Bildes befindet. \end{DoxyCompactList}\item 
+void \hyperlink{namespace_math_a43f025fac1ade5dbf88f7c393ca85644}{centerFront} (const ar\_\-recog::Tag \&tag, float \&cx, float \&cy)
+\item 
+void \hyperlink{namespace_math_ad3b65f0aedda56076f681f2b987d0e5c}{navdataUpdate} (const ardrone\_\-brown::Navdata::ConstPtr \&navdata)
+\begin{DoxyCompactList}\small\item\em subscriber handler für die Nachricht /ardrone/navdata \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Dokumentation der Funktionen}
+\hypertarget{namespace_math_ab4c584467f0cc5d8af22a69482630866}{
+\index{Math@{Math}!centerBottom@{centerBottom}}
+\index{centerBottom@{centerBottom}!Math@{Math}}
+\subsubsection[{centerBottom}]{\setlength{\rightskip}{0pt plus 5cm}void Math::centerBottom (
+\begin{DoxyParamCaption}
+\item[{const ar\_\-recog::Tag \&}]{tag, }
+\item[{float \&}]{cx, }
+\item[{float \&}]{cy}
+\end{DoxyParamCaption}
+)}}
+\label{namespace_math_ab4c584467f0cc5d8af22a69482630866}
+
+
+Berechnung aus den Eckpunkten wo sich das Tag bezüglich des Bildes befindet. 
+
+cy: 0 Tag ist am oberen Bildrand, 0.5 Tag ist in der Mitte(Höhe), 1 Tag ist am unteren Bildrand cx: 0 Tag ist am linken Bildrand, 0.5 Tag ist in der Mitte(Breite), 1 Tag ist am rechten Bildrend 
+
+Hier ist ein Graph der zeigt, was diese Funktion aufruft:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{namespace_math_ab4c584467f0cc5d8af22a69482630866_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=356pt]{namespace_math_ab4c584467f0cc5d8af22a69482630866_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{namespace_math_a43f025fac1ade5dbf88f7c393ca85644}{
+\index{Math@{Math}!centerFront@{centerFront}}
+\index{centerFront@{centerFront}!Math@{Math}}
+\subsubsection[{centerFront}]{\setlength{\rightskip}{0pt plus 5cm}void Math::centerFront (
+\begin{DoxyParamCaption}
+\item[{const ar\_\-recog::Tag \&}]{tag, }
+\item[{float \&}]{cx, }
+\item[{float \&}]{cy}
+\end{DoxyParamCaption}
+)}}
+\label{namespace_math_a43f025fac1ade5dbf88f7c393ca85644}
+
+
+Hier ist ein Graph der zeigt, was diese Funktion aufruft:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{namespace_math_a43f025fac1ade5dbf88f7c393ca85644_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{namespace_math_a43f025fac1ade5dbf88f7c393ca85644_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{namespace_math_ad3b65f0aedda56076f681f2b987d0e5c}{
+\index{Math@{Math}!navdataUpdate@{navdataUpdate}}
+\index{navdataUpdate@{navdataUpdate}!Math@{Math}}
+\subsubsection[{navdataUpdate}]{\setlength{\rightskip}{0pt plus 5cm}void Math::navdataUpdate (
+\begin{DoxyParamCaption}
+\item[{const ardrone\_\-brown::Navdata::ConstPtr \&}]{navdata}
+\end{DoxyParamCaption}
+)}}
+\label{namespace_math_ad3b65f0aedda56076f681f2b987d0e5c}
+
+
+subscriber handler für die Nachricht /ardrone/navdata 
+
+speichert die Navdata-\/Informationen 
+
+Hier ist ein Graph der zeigt, was diese Funktion aufruft:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{namespace_math_ad3b65f0aedda56076f681f2b987d0e5c_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{namespace_math_ad3b65f0aedda56076f681f2b987d0e5c_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{namespace_math_a25b9284eb485b732c952786b63343aaa}{
+\index{Math@{Math}!pixelDiffBottom@{pixelDiffBottom}}
+\index{pixelDiffBottom@{pixelDiffBottom}!Math@{Math}}
+\subsubsection[{pixelDiffBottom}]{\setlength{\rightskip}{0pt plus 5cm}void Math::pixelDiffBottom (
+\begin{DoxyParamCaption}
+\item[{float \&}]{x, }
+\item[{float \&}]{y}
+\end{DoxyParamCaption}
+)}}
+\label{namespace_math_a25b9284eb485b732c952786b63343aaa}
+
+
+Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben wurde. 
+
+Problem: Sichtfeld ist noch nicht korrekt berechnet(derzeit für x und y Richtung gleich)
+
+
+\begin{DoxyParams}{Parameter}
+{\em x} & Verschiebung in x Richung \\
+\hline
+{\em y} & Verschiebung in y Richung\\
+\hline
+\end{DoxyParams}
+ 
+
+Hier ist ein Graph der zeigt, was diese Funktion aufruft:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{namespace_math_a25b9284eb485b732c952786b63343aaa_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{namespace_math_a25b9284eb485b732c952786b63343aaa_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{namespace_math_a3fbe7036db847d74ed5f2c21635d02d9}{
+\index{Math@{Math}!pixelDiffFront@{pixelDiffFront}}
+\index{pixelDiffFront@{pixelDiffFront}!Math@{Math}}
+\subsubsection[{pixelDiffFront}]{\setlength{\rightskip}{0pt plus 5cm}void Math::pixelDiffFront (
+\begin{DoxyParamCaption}
+\item[{float \&}]{x, }
+\item[{float \&}]{y}
+\end{DoxyParamCaption}
+)}}
+\label{namespace_math_a3fbe7036db847d74ed5f2c21635d02d9}
+
+
+Hier ist ein Graph der zeigt, was diese Funktion aufruft:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{namespace_math_a3fbe7036db847d74ed5f2c21635d02d9_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{namespace_math_a3fbe7036db847d74ed5f2c21635d02d9_icgraph}
+\end{center}
+\end{figure}
+
+

@@ -1,0 +1,351 @@
+\hypertarget{class_cglobal}{
+\section{Cglobal Klassenreferenz}
+\label{class_cglobal}\index{Cglobal@{Cglobal}}
+}
+
+
+{\ttfamily \#include $<$Global.h$>$}
+
+
+
+Zusammengehörigkeiten von Cglobal:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=600pt]{class_cglobal__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Öffentliche, statische Methoden}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_cglobal}{Cglobal} \& \hyperlink{class_cglobal_a0e96a5f7f00ef5a151da708a17340f08}{instance} ()
+\item 
+static void \hyperlink{class_cglobal_aa1d07161425d12bc42dd100140407e59}{destroy} ()
+\end{DoxyCompactItemize}
+\subsection*{Öffentliche Attribute}
+\begin{DoxyCompactItemize}
+\item 
+geometry\_\-msgs::Twist \hyperlink{class_cglobal_acdd49b2fad30faf04785664c422f5ef7}{twist}
+\begin{DoxyCompactList}\small\item\em Zur Ansteuerung der Drone. \end{DoxyCompactList}\item 
+ros::Publisher \hyperlink{class_cglobal_af3a06302b3bd19de728064359241c1a1}{pub}
+\begin{DoxyCompactList}\small\item\em publisher zum publishen des Twist Objekts \end{DoxyCompactList}\item 
+int \hyperlink{class_cglobal_a0e2d4712edf675715bd4bcc554dbcf42}{altd}
+\begin{DoxyCompactList}\small\item\em Höhe. \end{DoxyCompactList}\item 
+bool \hyperlink{class_cglobal_ac0b3c90a19b5395a404bb9e5aee44e1c}{vor}
+\begin{DoxyCompactList}\small\item\em will die Drone nach vorne fliegen? \end{DoxyCompactList}\item 
+bool \hyperlink{class_cglobal_a1b0b85d52fea92c819e421db042b704d}{zurueck}
+\item 
+bool \hyperlink{class_cglobal_a10e812f9c1b4e7b7544b959d1b5f120b}{links}
+\item 
+bool \hyperlink{class_cglobal_a718da04af5940be1ad811f61b85f57d6}{rechts}
+\item 
+bool \hyperlink{class_cglobal_a57b8d93cd26f7c778c719ad21bc5528b}{hoch}
+\item 
+bool \hyperlink{class_cglobal_a3198b29c259c188b0938b4fb5731409b}{runter}
+\item 
+time\_\-t \hyperlink{class_cglobal_a1d338ed39494adfbee95a883369e5f4a}{lastSeen}
+\item 
+time\_\-t \hyperlink{class_cglobal_abb1e0f2a241a8d9131098cf823b45f64}{sinceNotSeen}
+\item 
+float \hyperlink{class_cglobal_a3ab9e8044e12c2927366e5402b5e3c09}{lastDir}
+\item 
+bool \hyperlink{class_cglobal_afe6f01a7ff64a3de6d0c8612f36511fd}{seen}
+\item 
+\hyperlink{class_delta}{Delta} \hyperlink{class_cglobal_ae826fb1d5b65ba58163f25517431e505}{lxDelta}
+\item 
+\hyperlink{class_delta}{Delta} \hyperlink{class_cglobal_a42b74fa677f900102efb348d7189ca3c}{lyDelta}
+\item 
+\hyperlink{class_delta}{Delta} \hyperlink{class_cglobal_aaff1f24cae62247123759d5142d5f69a}{lzDelta}
+\item 
+\hyperlink{class_delta}{Delta} \hyperlink{class_cglobal_a4a7fa181ec17c448e6f7ef4d7213789b}{azDelta}
+\item 
+float \hyperlink{class_cglobal_abafbed62176301706747c04ef3046aae}{vx}
+\item 
+float \hyperlink{class_cglobal_a0967372a0ede7b8b9a24957df663b7b3}{vy}
+\item 
+float \hyperlink{class_cglobal_af9ef9759f83ae67b7e220570a7738ef5}{vz}
+\item 
+float \hyperlink{class_cglobal_a5c1fac565d3813e798bd6aeb1c6fc8aa}{roty}
+\item 
+float \hyperlink{class_cglobal_ad295728f5113d9a47527cf14262dea0e}{rotx}
+\item 
+float \hyperlink{class_cglobal_a478c0d94a8f8a7675d3e88e85742c81a}{ges}
+\item 
+bool \hyperlink{class_cglobal_a24fbb5c4b0ddab650375d08ba677b3f1}{end}
+\item 
+int \hyperlink{class_cglobal_a3adbbe83dbdab17a3506572de5444d14}{widthB}
+\item 
+int \hyperlink{class_cglobal_ae1a1fde7d947c2c7d32bc7f76599b054}{heightB}
+\item 
+int \hyperlink{class_cglobal_add77c33bb751ff75fc5e6bc0409d4540}{widthF}
+\item 
+int \hyperlink{class_cglobal_ac4dace71dbed15b75354e5ff327af75f}{heightF}
+\end{DoxyCompactItemize}
+\subsection*{Private Methoden}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_cglobal_a9847b00476a6f18dbd936472e1a9efbf}{Cglobal} ()
+\item 
+\hyperlink{class_cglobal_a16a55c21346fe1cd9b9511ee05fd485e}{$\sim$Cglobal} ()
+\end{DoxyCompactItemize}
+\subsection*{Statische private Attribute}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_cglobal}{Cglobal} $\ast$ \hyperlink{class_cglobal_afb7ab45601acda975c029de5db73b3ea}{m\_\-instance} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Beschreibung der Konstruktoren und Destruktoren}
+\hypertarget{class_cglobal_a9847b00476a6f18dbd936472e1a9efbf}{
+\index{Cglobal@{Cglobal}!Cglobal@{Cglobal}}
+\index{Cglobal@{Cglobal}!Cglobal@{Cglobal}}
+\subsubsection[{Cglobal}]{\setlength{\rightskip}{0pt plus 5cm}Cglobal::Cglobal (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_cglobal_a9847b00476a6f18dbd936472e1a9efbf}
+
+
+Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{class_cglobal_a9847b00476a6f18dbd936472e1a9efbf_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{class_cglobal_a16a55c21346fe1cd9b9511ee05fd485e}{
+\index{Cglobal@{Cglobal}!$\sim$Cglobal@{$\sim$Cglobal}}
+\index{$\sim$Cglobal@{$\sim$Cglobal}!Cglobal@{Cglobal}}
+\subsubsection[{$\sim$Cglobal}]{\setlength{\rightskip}{0pt plus 5cm}Cglobal::$\sim$Cglobal (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, private\mbox{]}}}}
+\label{class_cglobal_a16a55c21346fe1cd9b9511ee05fd485e}
+
+
+\subsection{Dokumentation der Elementfunktionen}
+\hypertarget{class_cglobal_aa1d07161425d12bc42dd100140407e59}{
+\index{Cglobal@{Cglobal}!destroy@{destroy}}
+\index{destroy@{destroy}!Cglobal@{Cglobal}}
+\subsubsection[{destroy}]{\setlength{\rightskip}{0pt plus 5cm}void Cglobal::destroy (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_aa1d07161425d12bc42dd100140407e59}
+
+
+Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{class_cglobal_aa1d07161425d12bc42dd100140407e59_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{class_cglobal_a0e96a5f7f00ef5a151da708a17340f08}{
+\index{Cglobal@{Cglobal}!instance@{instance}}
+\index{instance@{instance}!Cglobal@{Cglobal}}
+\subsubsection[{instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cglobal} \& Cglobal::instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_a0e96a5f7f00ef5a151da708a17340f08}
+
+
+Hier ist ein Graph der zeigt, was diese Funktion aufruft:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{class_cglobal_a0e96a5f7f00ef5a151da708a17340f08_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{class_cglobal_a0e96a5f7f00ef5a151da708a17340f08_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Dokumentation der Datenelemente}
+\hypertarget{class_cglobal_a0e2d4712edf675715bd4bcc554dbcf42}{
+\index{Cglobal@{Cglobal}!altd@{altd}}
+\index{altd@{altd}!Cglobal@{Cglobal}}
+\subsubsection[{altd}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Cglobal::altd}}}
+\label{class_cglobal_a0e2d4712edf675715bd4bcc554dbcf42}
+
+
+Höhe. 
+
+\hypertarget{class_cglobal_a4a7fa181ec17c448e6f7ef4d7213789b}{
+\index{Cglobal@{Cglobal}!azDelta@{azDelta}}
+\index{azDelta@{azDelta}!Cglobal@{Cglobal}}
+\subsubsection[{azDelta}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Delta} {\bf Cglobal::azDelta}}}
+\label{class_cglobal_a4a7fa181ec17c448e6f7ef4d7213789b}
+\hypertarget{class_cglobal_a24fbb5c4b0ddab650375d08ba677b3f1}{
+\index{Cglobal@{Cglobal}!end@{end}}
+\index{end@{end}!Cglobal@{Cglobal}}
+\subsubsection[{end}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Cglobal::end}}}
+\label{class_cglobal_a24fbb5c4b0ddab650375d08ba677b3f1}
+\hypertarget{class_cglobal_a478c0d94a8f8a7675d3e88e85742c81a}{
+\index{Cglobal@{Cglobal}!ges@{ges}}
+\index{ges@{ges}!Cglobal@{Cglobal}}
+\subsubsection[{ges}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Cglobal::ges}}}
+\label{class_cglobal_a478c0d94a8f8a7675d3e88e85742c81a}
+\hypertarget{class_cglobal_ae1a1fde7d947c2c7d32bc7f76599b054}{
+\index{Cglobal@{Cglobal}!heightB@{heightB}}
+\index{heightB@{heightB}!Cglobal@{Cglobal}}
+\subsubsection[{heightB}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Cglobal::heightB}}}
+\label{class_cglobal_ae1a1fde7d947c2c7d32bc7f76599b054}
+\hypertarget{class_cglobal_ac4dace71dbed15b75354e5ff327af75f}{
+\index{Cglobal@{Cglobal}!heightF@{heightF}}
+\index{heightF@{heightF}!Cglobal@{Cglobal}}
+\subsubsection[{heightF}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Cglobal::heightF}}}
+\label{class_cglobal_ac4dace71dbed15b75354e5ff327af75f}
+\hypertarget{class_cglobal_a57b8d93cd26f7c778c719ad21bc5528b}{
+\index{Cglobal@{Cglobal}!hoch@{hoch}}
+\index{hoch@{hoch}!Cglobal@{Cglobal}}
+\subsubsection[{hoch}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Cglobal::hoch}}}
+\label{class_cglobal_a57b8d93cd26f7c778c719ad21bc5528b}
+\hypertarget{class_cglobal_a3ab9e8044e12c2927366e5402b5e3c09}{
+\index{Cglobal@{Cglobal}!lastDir@{lastDir}}
+\index{lastDir@{lastDir}!Cglobal@{Cglobal}}
+\subsubsection[{lastDir}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Cglobal::lastDir}}}
+\label{class_cglobal_a3ab9e8044e12c2927366e5402b5e3c09}
+\hypertarget{class_cglobal_a1d338ed39494adfbee95a883369e5f4a}{
+\index{Cglobal@{Cglobal}!lastSeen@{lastSeen}}
+\index{lastSeen@{lastSeen}!Cglobal@{Cglobal}}
+\subsubsection[{lastSeen}]{\setlength{\rightskip}{0pt plus 5cm}time\_\-t {\bf Cglobal::lastSeen}}}
+\label{class_cglobal_a1d338ed39494adfbee95a883369e5f4a}
+\hypertarget{class_cglobal_a10e812f9c1b4e7b7544b959d1b5f120b}{
+\index{Cglobal@{Cglobal}!links@{links}}
+\index{links@{links}!Cglobal@{Cglobal}}
+\subsubsection[{links}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Cglobal::links}}}
+\label{class_cglobal_a10e812f9c1b4e7b7544b959d1b5f120b}
+\hypertarget{class_cglobal_ae826fb1d5b65ba58163f25517431e505}{
+\index{Cglobal@{Cglobal}!lxDelta@{lxDelta}}
+\index{lxDelta@{lxDelta}!Cglobal@{Cglobal}}
+\subsubsection[{lxDelta}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Delta} {\bf Cglobal::lxDelta}}}
+\label{class_cglobal_ae826fb1d5b65ba58163f25517431e505}
+\hypertarget{class_cglobal_a42b74fa677f900102efb348d7189ca3c}{
+\index{Cglobal@{Cglobal}!lyDelta@{lyDelta}}
+\index{lyDelta@{lyDelta}!Cglobal@{Cglobal}}
+\subsubsection[{lyDelta}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Delta} {\bf Cglobal::lyDelta}}}
+\label{class_cglobal_a42b74fa677f900102efb348d7189ca3c}
+\hypertarget{class_cglobal_aaff1f24cae62247123759d5142d5f69a}{
+\index{Cglobal@{Cglobal}!lzDelta@{lzDelta}}
+\index{lzDelta@{lzDelta}!Cglobal@{Cglobal}}
+\subsubsection[{lzDelta}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Delta} {\bf Cglobal::lzDelta}}}
+\label{class_cglobal_aaff1f24cae62247123759d5142d5f69a}
+\hypertarget{class_cglobal_afb7ab45601acda975c029de5db73b3ea}{
+\index{Cglobal@{Cglobal}!m\_\-instance@{m\_\-instance}}
+\index{m\_\-instance@{m\_\-instance}!Cglobal@{Cglobal}}
+\subsubsection[{m\_\-instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cglobal} $\ast$ {\bf Cglobal::m\_\-instance} = 0\hspace{0.3cm}{\ttfamily  \mbox{[}static, private\mbox{]}}}}
+\label{class_cglobal_afb7ab45601acda975c029de5db73b3ea}
+\hypertarget{class_cglobal_af3a06302b3bd19de728064359241c1a1}{
+\index{Cglobal@{Cglobal}!pub@{pub}}
+\index{pub@{pub}!Cglobal@{Cglobal}}
+\subsubsection[{pub}]{\setlength{\rightskip}{0pt plus 5cm}ros::Publisher {\bf Cglobal::pub}}}
+\label{class_cglobal_af3a06302b3bd19de728064359241c1a1}
+
+
+publisher zum publishen des Twist Objekts 
+
+\hypertarget{class_cglobal_a718da04af5940be1ad811f61b85f57d6}{
+\index{Cglobal@{Cglobal}!rechts@{rechts}}
+\index{rechts@{rechts}!Cglobal@{Cglobal}}
+\subsubsection[{rechts}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Cglobal::rechts}}}
+\label{class_cglobal_a718da04af5940be1ad811f61b85f57d6}
+\hypertarget{class_cglobal_ad295728f5113d9a47527cf14262dea0e}{
+\index{Cglobal@{Cglobal}!rotx@{rotx}}
+\index{rotx@{rotx}!Cglobal@{Cglobal}}
+\subsubsection[{rotx}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Cglobal::rotx}}}
+\label{class_cglobal_ad295728f5113d9a47527cf14262dea0e}
+\hypertarget{class_cglobal_a5c1fac565d3813e798bd6aeb1c6fc8aa}{
+\index{Cglobal@{Cglobal}!roty@{roty}}
+\index{roty@{roty}!Cglobal@{Cglobal}}
+\subsubsection[{roty}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Cglobal::roty}}}
+\label{class_cglobal_a5c1fac565d3813e798bd6aeb1c6fc8aa}
+\hypertarget{class_cglobal_a3198b29c259c188b0938b4fb5731409b}{
+\index{Cglobal@{Cglobal}!runter@{runter}}
+\index{runter@{runter}!Cglobal@{Cglobal}}
+\subsubsection[{runter}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Cglobal::runter}}}
+\label{class_cglobal_a3198b29c259c188b0938b4fb5731409b}
+\hypertarget{class_cglobal_afe6f01a7ff64a3de6d0c8612f36511fd}{
+\index{Cglobal@{Cglobal}!seen@{seen}}
+\index{seen@{seen}!Cglobal@{Cglobal}}
+\subsubsection[{seen}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Cglobal::seen}}}
+\label{class_cglobal_afe6f01a7ff64a3de6d0c8612f36511fd}
+\hypertarget{class_cglobal_abb1e0f2a241a8d9131098cf823b45f64}{
+\index{Cglobal@{Cglobal}!sinceNotSeen@{sinceNotSeen}}
+\index{sinceNotSeen@{sinceNotSeen}!Cglobal@{Cglobal}}
+\subsubsection[{sinceNotSeen}]{\setlength{\rightskip}{0pt plus 5cm}time\_\-t {\bf Cglobal::sinceNotSeen}}}
+\label{class_cglobal_abb1e0f2a241a8d9131098cf823b45f64}
+\hypertarget{class_cglobal_acdd49b2fad30faf04785664c422f5ef7}{
+\index{Cglobal@{Cglobal}!twist@{twist}}
+\index{twist@{twist}!Cglobal@{Cglobal}}
+\subsubsection[{twist}]{\setlength{\rightskip}{0pt plus 5cm}geometry\_\-msgs::Twist {\bf Cglobal::twist}}}
+\label{class_cglobal_acdd49b2fad30faf04785664c422f5ef7}
+
+
+Zur Ansteuerung der Drone. 
+
+\hypertarget{class_cglobal_ac0b3c90a19b5395a404bb9e5aee44e1c}{
+\index{Cglobal@{Cglobal}!vor@{vor}}
+\index{vor@{vor}!Cglobal@{Cglobal}}
+\subsubsection[{vor}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Cglobal::vor}}}
+\label{class_cglobal_ac0b3c90a19b5395a404bb9e5aee44e1c}
+
+
+will die Drone nach vorne fliegen? 
+
+\hypertarget{class_cglobal_abafbed62176301706747c04ef3046aae}{
+\index{Cglobal@{Cglobal}!vx@{vx}}
+\index{vx@{vx}!Cglobal@{Cglobal}}
+\subsubsection[{vx}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Cglobal::vx}}}
+\label{class_cglobal_abafbed62176301706747c04ef3046aae}
+\hypertarget{class_cglobal_a0967372a0ede7b8b9a24957df663b7b3}{
+\index{Cglobal@{Cglobal}!vy@{vy}}
+\index{vy@{vy}!Cglobal@{Cglobal}}
+\subsubsection[{vy}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Cglobal::vy}}}
+\label{class_cglobal_a0967372a0ede7b8b9a24957df663b7b3}
+\hypertarget{class_cglobal_af9ef9759f83ae67b7e220570a7738ef5}{
+\index{Cglobal@{Cglobal}!vz@{vz}}
+\index{vz@{vz}!Cglobal@{Cglobal}}
+\subsubsection[{vz}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Cglobal::vz}}}
+\label{class_cglobal_af9ef9759f83ae67b7e220570a7738ef5}
+\hypertarget{class_cglobal_a3adbbe83dbdab17a3506572de5444d14}{
+\index{Cglobal@{Cglobal}!widthB@{widthB}}
+\index{widthB@{widthB}!Cglobal@{Cglobal}}
+\subsubsection[{widthB}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Cglobal::widthB}}}
+\label{class_cglobal_a3adbbe83dbdab17a3506572de5444d14}
+\hypertarget{class_cglobal_add77c33bb751ff75fc5e6bc0409d4540}{
+\index{Cglobal@{Cglobal}!widthF@{widthF}}
+\index{widthF@{widthF}!Cglobal@{Cglobal}}
+\subsubsection[{widthF}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Cglobal::widthF}}}
+\label{class_cglobal_add77c33bb751ff75fc5e6bc0409d4540}
+\hypertarget{class_cglobal_a1b0b85d52fea92c819e421db042b704d}{
+\index{Cglobal@{Cglobal}!zurueck@{zurueck}}
+\index{zurueck@{zurueck}!Cglobal@{Cglobal}}
+\subsubsection[{zurueck}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Cglobal::zurueck}}}
+\label{class_cglobal_a1b0b85d52fea92c819e421db042b704d}
+
+
+Die Dokumentation für diese Klasse wurde erzeugt aufgrund der Dateien:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{_global_8h}{Global.h}\item 
+src/\hyperlink{_global_8cpp}{Global.cpp}\end{DoxyCompactItemize}

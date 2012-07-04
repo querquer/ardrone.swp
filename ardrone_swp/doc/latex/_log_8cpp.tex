@@ -1,0 +1,132 @@
+\hypertarget{_log_8cpp}{
+\section{src/Log.cpp-\/Dateireferenz}
+\label{_log_8cpp}\index{src/Log.cpp@{src/Log.cpp}}
+}
+{\ttfamily \#include \char`\"{}ardrone\_\-brown/Navdata.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}ros/ros.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}ar\_\-recog/Tags.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}ar\_\-recog/Tag.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}geometry\_\-msgs/Twist.h\char`\"{}}\par
+{\ttfamily \#include $<$time.h$>$}\par
+{\ttfamily \#include $<$stdio.h$>$}\par
+{\ttfamily \#include $<$iostream$>$}\par
+{\ttfamily \#include $<$sstream$>$}\par
+{\ttfamily \#include $<$fstream$>$}\par
+Include-\/Abhängigkeitsdiagramm für Log.cpp:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{_log_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Funktionen}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{_log_8cpp_a2379f8efc865258905edbf90e8678f69}{handleTag} (const ar\_\-recog::Tags::ConstPtr \&msg)
+\item 
+void \hyperlink{_log_8cpp_a39bd57f05a0879f1d9df4e82bfbfa30e}{navdataUpdate} (const ardrone\_\-brown::Navdata::ConstPtr \&navdata)
+\item 
+void \hyperlink{_log_8cpp_a2fa433d675a4836a65893acd6d27f0f5}{handleTwist} (const geometry\_\-msgs::TwistConstPtr \&msg)
+\item 
+int \hyperlink{_log_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\subsection*{Variablen}
+\begin{DoxyCompactItemize}
+\item 
+ofstream \hyperlink{_log_8cpp_a23aa93e4ff6c46053ab418dc360e4f1a}{logNavdata}
+\item 
+ofstream \hyperlink{_log_8cpp_a3dac8915f5e71afcc09a40bae7c7d802}{logTags}
+\item 
+ofstream \hyperlink{_log_8cpp_a10bb79822b487dbc4db2b1b64a8ea80a}{logTwist}
+\end{DoxyCompactItemize}
+
+
+\subsection{Dokumentation der Funktionen}
+\hypertarget{_log_8cpp_a2379f8efc865258905edbf90e8678f69}{
+\index{Log.cpp@{Log.cpp}!handleTag@{handleTag}}
+\index{handleTag@{handleTag}!Log.cpp@{Log.cpp}}
+\subsubsection[{handleTag}]{\setlength{\rightskip}{0pt plus 5cm}void handleTag (
+\begin{DoxyParamCaption}
+\item[{const ar\_\-recog::Tags::ConstPtr \&}]{msg}
+\end{DoxyParamCaption}
+)}}
+\label{_log_8cpp_a2379f8efc865258905edbf90e8678f69}
+\hypertarget{_log_8cpp_a2fa433d675a4836a65893acd6d27f0f5}{
+\index{Log.cpp@{Log.cpp}!handleTwist@{handleTwist}}
+\index{handleTwist@{handleTwist}!Log.cpp@{Log.cpp}}
+\subsubsection[{handleTwist}]{\setlength{\rightskip}{0pt plus 5cm}void handleTwist (
+\begin{DoxyParamCaption}
+\item[{const geometry\_\-msgs::TwistConstPtr \&}]{msg}
+\end{DoxyParamCaption}
+)}}
+\label{_log_8cpp_a2fa433d675a4836a65893acd6d27f0f5}
+
+
+Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{_log_8cpp_a2fa433d675a4836a65893acd6d27f0f5_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{_log_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{
+\index{Log.cpp@{Log.cpp}!main@{main}}
+\index{main@{main}!Log.cpp@{Log.cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}
+\label{_log_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+
+
+Hier ist ein Graph der zeigt, was diese Funktion aufruft:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{_log_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{_log_8cpp_a39bd57f05a0879f1d9df4e82bfbfa30e}{
+\index{Log.cpp@{Log.cpp}!navdataUpdate@{navdataUpdate}}
+\index{navdataUpdate@{navdataUpdate}!Log.cpp@{Log.cpp}}
+\subsubsection[{navdataUpdate}]{\setlength{\rightskip}{0pt plus 5cm}void navdataUpdate (
+\begin{DoxyParamCaption}
+\item[{const ardrone\_\-brown::Navdata::ConstPtr \&}]{navdata}
+\end{DoxyParamCaption}
+)}}
+\label{_log_8cpp_a39bd57f05a0879f1d9df4e82bfbfa30e}
+
+
+Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{_log_8cpp_a39bd57f05a0879f1d9df4e82bfbfa30e_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Variablen-\/Dokumentation}
+\hypertarget{_log_8cpp_a23aa93e4ff6c46053ab418dc360e4f1a}{
+\index{Log.cpp@{Log.cpp}!logNavdata@{logNavdata}}
+\index{logNavdata@{logNavdata}!Log.cpp@{Log.cpp}}
+\subsubsection[{logNavdata}]{\setlength{\rightskip}{0pt plus 5cm}ofstream {\bf logNavdata}}}
+\label{_log_8cpp_a23aa93e4ff6c46053ab418dc360e4f1a}
+\hypertarget{_log_8cpp_a3dac8915f5e71afcc09a40bae7c7d802}{
+\index{Log.cpp@{Log.cpp}!logTags@{logTags}}
+\index{logTags@{logTags}!Log.cpp@{Log.cpp}}
+\subsubsection[{logTags}]{\setlength{\rightskip}{0pt plus 5cm}ofstream {\bf logTags}}}
+\label{_log_8cpp_a3dac8915f5e71afcc09a40bae7c7d802}
+\hypertarget{_log_8cpp_a10bb79822b487dbc4db2b1b64a8ea80a}{
+\index{Log.cpp@{Log.cpp}!logTwist@{logTwist}}
+\index{logTwist@{logTwist}!Log.cpp@{Log.cpp}}
+\subsubsection[{logTwist}]{\setlength{\rightskip}{0pt plus 5cm}ofstream {\bf logTwist}}}
+\label{_log_8cpp_a10bb79822b487dbc4db2b1b64a8ea80a}

@@ -1,0 +1,11 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$_delta_8cpp.html" title="src/Delta.cpp" alt="" coords="152,83,251,112"/>
+<area shape="rect" id="node5" href="$_global_8h.html" title="include/Global.h" alt="" coords="275,83,389,112"/>
+<area shape="rect" id="node13" href="$std__includes_8h.html" title="include/std_includes.h" alt="" coords="405,160,555,189"/>
+<area shape="rect" id="node7" href="$_global_8cpp.html" title="src/Global.cpp" alt="" coords="5,160,112,189"/>
+<area shape="rect" id="node9" href="$_keyboard_8cpp.html" title="src/Keyboard.cpp" alt="" coords="136,160,259,189"/>
+<area shape="rect" id="node11" href="$_math_8cpp.html" title="src/Math.cpp" alt="" coords="283,160,381,189"/>
+<area shape="rect" id="node15" href="$bottom__follow__tag_8cpp.html" title="Applikation zur Tagvervolgung mit der unteren Kamera." alt="" coords="217,237,391,267"/>
+<area shape="rect" id="node17" href="$follow__line_8cpp.html" title="Applikation zur Linienverfolgung mit der unteren Kamera." alt="" coords="415,237,545,267"/>
+<area shape="rect" id="node19" href="$front__follow__tag_8cpp.html" title="Applikation zur Tagvervolgung mit der vorderen Kamera." alt="" coords="569,237,729,267"/>
+</map>

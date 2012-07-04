@@ -1,0 +1,16 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="subscriber handler für die Nachricht tags" alt="" coords="119,212,201,241"/>
+<area shape="rect" id="node31" href="$_log_8cpp.html#a2fa433d675a4836a65893acd6d27f0f5" title="handleTwist" alt="" coords="115,265,205,295"/>
+<area shape="rect" id="node33" href="$_log_8cpp.html#a39bd57f05a0879f1d9df4e82bfbfa30e" title="navdataUpdate" alt="" coords="105,319,215,348"/>
+<area shape="rect" id="node5" href="$namespace_math.html#ab4c584467f0cc5d8af22a69482630866" title="Berechnung aus den Eckpunkten wo sich das Tag bezüglich des Bildes befindet." alt="" coords="265,84,401,113"/>
+<area shape="rect" id="node9" href="$class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="816,136,939,165"/>
+<area shape="rect" id="node16" href="$namespace_keyboard.html#abfb3168172d115a6516147c6d42f58db" title="zum Steuern der Drone mit der Tastatur" alt="" coords="272,264,395,293"/>
+<area shape="rect" id="node28" href="$class_delta.html#a16d1cf25743928796d7cf1e5c7882c17" title="Delta::get_velocity" alt="" coords="268,317,399,347"/>
+<area shape="rect" id="node7" href="$namespaceanonymous__namespace_02_math_8cpp_03.html#af32b12f59241277b0b94ca38ca1d5a4b" title="anonymous_namespace\{Math::cpp\}::center" alt="" coords="452,5,724,35"/>
+<area shape="rect" id="node13" href="$namespace_math.html#a25b9284eb485b732c952786b63343aaa" title="Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben ..." alt="" coords="513,109,663,139"/>
+<area shape="rect" id="node11" href="$class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="1031,136,1148,165"/>
+<area shape="rect" id="node18" href="$namespace_keyboard.html#a433fc58fb356fe62305e8419dd7b33d6" title="Keyboard::getch" alt="" coords="529,264,647,293"/>
+<area shape="rect" id="node21" href="$namespace_keyboard.html#a8c142c603571175e17a83a9b99d00d63" title="Keyboard::kbhit" alt="" coords="532,317,644,347"/>
+<area shape="rect" id="node23" href="$namespace_keyboard.html#aef945e5d33422ac6abbb326b5203eb5b" title="Keyboard::reset_terminal_mode" alt="" coords="775,395,980,424"/>
+<area shape="rect" id="node25" href="$namespace_keyboard.html#a6cc4fc3f7daf5630d0570f9d9d21d19c" title="Keyboard::set_conio_terminal_mode" alt="" coords="472,421,704,451"/>
+</map>

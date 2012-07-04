@@ -2,7 +2,6 @@
 #include "Global.h"
 #include "ardrone_brown/Navdata.h"
 
-
 namespace
 {
 	void center(const ar_recog::Tag& tag, float& cx, float& cy, float dx, float dy, float width, float height);
@@ -12,10 +11,16 @@ namespace
 namespace Math
 {
 
-/* @brief Berechnung der Anzahl der Pixel, um die das Tag aufgrund der Rotation verschoben wurde
+/** @brief Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben wurde
  *
  * Problem: Sichtfeld ist noch nicht korrekt berechnet(derzeit für x und y Richtung gleich)
  *
+ *
+ * @param	x	Verschiebung in x Richung
+ * @param	y	Verschiebung in y Richung
+ *
+ *
+ * <img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/betta.jpg" alt="Schema">
  */
 void pixelDiffBottom(float& x, float& y)
 {
@@ -49,7 +54,7 @@ void pixelDiffFront(float& x, float& y)
 	x = 0.5 * tan(Cglobal::instance().rotx) * 0.948965 * Cglobal::instance().widthF;
 }
 
-/* @brief Berechnung aus den Eckpunkten wo sich das Tag bezüglich des Bildes befindet
+/** @brief Berechnung aus den Eckpunkten wo sich das Tag bezüglich des Bildes befindet
 
 	cy: 0 Tag ist am oberen Bildrand, 0.5 Tag ist in der Mitte(Höhe), 1 Tag ist am unteren Bildrand
 	cx: 0 Tag ist am linken Bildrand, 0.5 Tag ist in der Mitte(Breite), 1 Tag ist am rechten Bildrend
@@ -68,7 +73,7 @@ void centerFront(const ar_recog::Tag& tag, float& cx, float& cy)
 	center(tag, cx, cy, dx, dy, Cglobal::instance().widthF, Cglobal::instance().heightF);
 }
 
-/* @brief subscriber handler für die Nachricht /ardrone/navdata
+/** @brief subscriber handler für die Nachricht /ardrone/navdata
  *
  * speichert die Navdata-Informationen
  */

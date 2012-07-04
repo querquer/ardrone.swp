@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_cglobal.html#aa1d07161425d12bc42dd100140407e59" title="Cglobal::destroy" alt="" coords="119,5,236,35"/>
+<area shape="rect" id="node5" href="$follow__line_8cpp.html#a35a859d19785b808898bf535d4997d2f" title="handleLine" alt="" coords="136,59,219,88"/>
+<area shape="rect" id="node9" href="$class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="303,112,425,141"/>
+<area shape="rect" id="node14" href="$namespace_math.html#ad3b65f0aedda56076f681f2b987d0e5c" title="subscriber handler für die Nachricht /ardrone/navdata" alt="" coords="104,163,251,192"/>
+<area shape="rect" id="node7" href="$class_delta.html#a16d1cf25743928796d7cf1e5c7882c17" title="Delta::get_velocity" alt="" coords="299,59,429,88"/>
+<area shape="rect" id="node11" href="$class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="479,112,596,141"/>
+</map>

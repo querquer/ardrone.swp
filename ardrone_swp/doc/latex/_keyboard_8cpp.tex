@@ -1,0 +1,41 @@
+\hypertarget{_keyboard_8cpp}{
+\section{src/Keyboard.cpp-\/Dateireferenz}
+\label{_keyboard_8cpp}\index{src/Keyboard.cpp@{src/Keyboard.cpp}}
+}
+{\ttfamily \#include \char`\"{}Keyboard.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}Global.h\char`\"{}}\par
+{\ttfamily \#include $<$stdlib.h$>$}\par
+{\ttfamily \#include $<$string.h$>$}\par
+{\ttfamily \#include $<$sys/select.h$>$}\par
+{\ttfamily \#include $<$termios.h$>$}\par
+{\ttfamily \#include $<$sstream$>$}\par
+Include-\/Abhängigkeitsdiagramm für Keyboard.cpp:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{_keyboard_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Namensbereiche}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespace_keyboard}{Keyboard}
+\end{DoxyCompactItemize}
+\subsection*{Funktionen}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{namespace_keyboard_abfb3168172d115a6516147c6d42f58db}{Keyboard::control} ()
+\begin{DoxyCompactList}\small\item\em zum Steuern der Drone mit der Tastatur \end{DoxyCompactList}\item 
+void \hyperlink{namespace_keyboard_aef945e5d33422ac6abbb326b5203eb5b}{Keyboard::reset\_\-terminal\_\-mode} ()
+\item 
+void \hyperlink{namespace_keyboard_a6cc4fc3f7daf5630d0570f9d9d21d19c}{Keyboard::set\_\-conio\_\-terminal\_\-mode} ()
+\item 
+int \hyperlink{namespace_keyboard_a8c142c603571175e17a83a9b99d00d63}{Keyboard::kbhit} ()
+\item 
+int \hyperlink{namespace_keyboard_a433fc58fb356fe62305e8419dd7b33d6}{Keyboard::getch} ()
+\end{DoxyCompactItemize}
+\subsection*{Variablen}
+\begin{DoxyCompactItemize}
+\item 
+struct termios \hyperlink{namespace_keyboard_a8b623d5192e406c97c4e265dbe4c5f38}{Keyboard::orig\_\-termios}
+\end{DoxyCompactItemize}

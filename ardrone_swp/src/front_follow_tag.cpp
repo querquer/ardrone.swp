@@ -2,6 +2,11 @@
 
 using namespace std;
 
+/**
+ * @file front_follow_tag.cpp
+ * @brief Applikation zur Tagvervolgung mit der vorderen Kamera
+ */
+
 void handleTag(const ar_recog::Tags::ConstPtr& msg)
 {
   if(msg->tag_count == 0)   //Falls kein Tag erkannt wurde

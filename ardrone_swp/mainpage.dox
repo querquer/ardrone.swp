@@ -2,7 +2,7 @@
 \mainpage
 \htmlinclude manifest.html
 
-\b ardrone_swp is ... 
+\b ardrone_swp enthält Applikationen zur Linienvervolgung und zur Tagverfolgung mittels vorderer und unterer Kamera
 
 <!-- 
 Provide an overview of your package.

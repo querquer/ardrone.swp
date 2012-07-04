@@ -10,13 +10,12 @@
 
 using namespace std;
 
-
 namespace Keyboard
 {
 
 struct termios orig_termios;
 
-/* @brief zum Steuern der Drone mit der Tastatur
+/** @brief zum Steuern der Drone mit der Tastatur
  *
  * muss periodisch aufgerufen werden
  *
