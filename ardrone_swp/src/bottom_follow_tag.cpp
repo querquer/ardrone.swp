@@ -144,8 +144,6 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
   ROS_INFO(ostr.str().c_str());
 }
 
-
-
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "follow_tag_bottom");
