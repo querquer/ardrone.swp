@@ -5,6 +5,7 @@
 namespace
 {
 	void center(const ar_recog::Tag& tag, float& cx, float& cy, float dx, float dy, float width, float height);
+	float grad2rad(float a);
 }
 
 
@@ -43,9 +44,27 @@ void pixelDiffBottom(float& x, float& y)
 	  ostr << "dx       " << dx << endl;
 	  */
 
-	y = 0.5 * tan(Cglobal::instance().roty) * 1.6 * Cglobal::instance().heightB;  //tan(58)~= 1.6
-	x = 0.5 * tan(Cglobal::instance().rotx) * 1.6 * Cglobal::instance().widthB;
+
+
+
+	/*float r = ((tan(0.558496f + Cglobal::instance().roty) + tan(0.558496f - Cglobal::instance().roty)) * Cglobal::instance().altd) / 2;
+	float width = 2 * r * sin(arctan(1.33333f));
+	float height = 0.75f * w;
+
+	y = 0.5 * tan(Cglobal::instance().roty) * 1.6 * height;  //tan(58)~= 1.6
+	x = 0.5 * tan(Cglobal::instance().rotx) * 1.6 * width;*/
+
+	y = (200.0f * tan(Cglobal::instance().roty)) / ((tan(0.558496f + Cglobal::instance().roty) + tan(0.558496f - Cglobal::instance().roty)));
+	x = (200.0f * tan(Cglobal::instance().rotx)) / ((tan(0.558496f + Cglobal::instance().roty) + tan(0.558496f - Cglobal::instance().roty)));
+
+	y *= 1.333f;
+	x *= 1.333f;
+
+	//x = 100.0f * tan(Cglobal::instance().roty) * 1.6f;
+	//y = 100.0f * tan(Cglobal::instance().rotx) * 1.6f;
 }
+
+
 
 void pixelDiffFront(float& x, float& y)
 {
@@ -83,8 +102,10 @@ void navdataUpdate(const ardrone_brown::Navdata::ConstPtr& navdata)
 	Cglobal::instance().vx = navdata->vx;
 	Cglobal::instance().vy = navdata->vy;
 	Cglobal::instance().vz = navdata->vz;
-	Cglobal::instance().roty = (navdata->rotY) * 0.017453f;  //grad in rad umrechnen
-	Cglobal::instance().rotx = (navdata->rotX) * 0.017453f;
+	float x = navdata->rotX;
+	float y = navdata->rotY;
+	Cglobal::instance().roty = grad2rad(y);  //grad in rad umrechnen
+	Cglobal::instance().rotx = grad2rad(x);
 }
 
 } //namespace Math
@@ -108,6 +129,10 @@ namespace
 		//cx -= dx;
 		cx += dx;
 		cx = cx / width;
+	}
+	float grad2rad(float a)
+	{
+		return a *= 0.017453f;
 	}
 }
 

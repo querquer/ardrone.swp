@@ -1,5 +1,5 @@
 #include "Global.h"
-
+#include <time.h>
 
 Cglobal* Cglobal::m_instance = 0;
 
@@ -14,18 +14,20 @@ Cglobal::Cglobal()
 , runter(false)
 , ges(0.05)
 , end(false)
-, widthB(160)
-, heightB(120)
-, widthF(320)
-, heightF(240)
 , seen(false)
 , vx(0.0f)
 , vy(0.0f)
 , vz(0.0f)
 , rotx(0.0f)
 , roty(0.0f)
-, lastSeen(0)
+, sinceNotSeen(time(NULL))
 , lastDir(-1)
+, exsum(0.0f)
+, eysum(0.0f)
+, ezsum(0.0f)
+, exold(0.0f)
+, eyold(0.0f)
+, ezold(0.0f)
 {
 
 }

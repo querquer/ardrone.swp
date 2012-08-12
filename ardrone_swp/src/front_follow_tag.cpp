@@ -35,7 +35,7 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
 	  	Cglobal::instance().twist.linear.z = 0;
 	  	Cglobal::instance().twist.linear.y = 0;
 
-	    if(time(NULL) - Cglobal::instance().lastSeen > 0.5)
+	    if(time(NULL) - Cglobal::instance().sinceNotSeen > 0.5)  //Falls länger als 0.5s kein Tag zu sehen war, drehe langsamer
 	    	Cglobal::instance().twist.angular.z = 0.5 * Cglobal::instance().lastDir;
 	}
 	Cglobal::instance().seen = false;
@@ -43,7 +43,6 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
   else //Falls mindestens ein Tag gesehen wurde
   {
   Cglobal::instance().seen = true;
-  Cglobal::instance().lastSeen = time(NULL);
   ar_recog::Tag biggest = msg->tags[0];
 
   for(int i = 0; i < msg->tag_count; ++i)
@@ -127,8 +126,6 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "follow_tag");
-
-  Cglobal::instance().sinceNotSeen = time(NULL);
 
   ros::NodeHandle node_handle;
   Cglobal::instance().pub = node_handle.advertise<geometry_msgs::Twist>("cmd_vel", 1000);

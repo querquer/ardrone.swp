@@ -86,7 +86,7 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
          rotZ = rotZ + 3;*/
 
 	  //twist.angular.z = azDelta.get_velocity(-biggest.zRot * ( 0.66667 ));  // Drehe dich in Abhängigkeit von der z Rotation des Tags
-	  Cglobal::instance().twist.angular.z = Cglobal::instance().azDelta.get_velocity(max(-1.5, min(1.5, biggest.zRot)) * ( 0.666667 ));
+	  Cglobal::instance().twist.angular.z = Cglobal::instance().azDelta.get_velocity(-(max(-1.5, min(1.5, biggest.zRot)) * ( 0.666667 )));
   }
 
   //Fliege nicht höher als 1,7m und nicht niedriger als 0,3m
@@ -99,6 +99,82 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
   Cglobal::instance().zurueck = Cglobal::instance().twist.linear.x < 0;
   Cglobal::instance().links = Cglobal::instance().twist.linear.y > 0;
   Cglobal::instance().rechts = Cglobal::instance().twist.linear.y < 0;
+
+
+  /*
+   * hier PID-Regler:
+   * -Sollwert: twist.linear
+   * -Istwert: vx,vy,vz
+   *
+   * twist wert = 1 -> vx soll 5000 sein
+   *
+   */
+
+// P-Anteil:
+  float mmPs2twistx = 1/5000;  //weil Drone in  x Richtung max 5m/s fliegt
+  float mmPs2twisty = 1/5000;  //Ob der Wert korrekt ist weiß ich nicht, wie schnell kann die Drone zur Seite fliegen?
+                               //Können wir ausprobieren: in start.cpp linear.y auf 1 setzen und auf navdata ansehen
+  float mmPs2twistz = 1/5000;  //Ob der Wert korrekt ist weiß ich nicht, wie schnell kann die Drone nach oben/unten fliegen fliegen?
+                               //Können wir ausprobieren: in start.cpp linear.z auf 1 setzen und auf navdata ansehen
+  /*
+   * x-Richtung
+   */
+
+  float ex = Cglobal::instance().twist.linear.x - mmPs2twistx * Cglobal::instance().vx;   //Fehler in x Richtung
+
+  float Kpx = 0.5;  //Den wert müssen wir ausprobieren
+
+  Cglobal::instance().twist.linear.x += Kpx * ex;
+
+  /*
+   * y-Richtung
+   */
+  float ey = Cglobal::instance().twist.linear.y - mmPs2twisty * Cglobal::instance().vy;   //Fehler in y Richtung
+
+  float Kpy = 0.5;  //Den wert müssen wir ausprobieren
+
+  Cglobal::instance().twist.linear.y += Kpy * ey;
+
+  /*
+   * z-Richtung
+   */
+  float ez = Cglobal::instance().twist.linear.z - mmPs2twistz * Cglobal::instance().vz;   //Fehler in y Richtung
+
+  float Kpz = 0.5;  //Den wert müssen wir ausprobieren
+
+  Cglobal::instance().twist.linear.z += Kpz * ez;
+
+// I-Anteil:
+
+  Cglobal::instance().exsum += ex;
+  Cglobal::instance().eysum += ey;
+  Cglobal::instance().ezsum += ez;
+  float Kix = 0.5f;   //Diese werte müssen noch angepasst werden und kommen dann noch in Cglobal als static Variable rein
+  float Kiy = 0.5f;
+  float Kiz = 0.5f;
+
+  float Ta = 0.001;   //Dieser Wert muss auch noch angepasst werden: Er hängt von der Abtastzeit ab, damit wenn schnell gerechnet wird, der Wert nicht zu groß wird
+                      // Also müssen wir testen wie schnell arrecog immer eine Massage raushaut
+
+  Cglobal::instance().twist.linear.x += Kix * Ta * Cglobal::instance().exsum;
+  Cglobal::instance().twist.linear.y += Kiy * Ta * Cglobal::instance().eysum;
+  Cglobal::instance().twist.linear.z += Kiz * Ta * Cglobal::instance().ezsum;
+
+// D-Anteil:
+
+  float Kdx = 0.5f;   //Diese werte müssen noch angepasst werden und kommen dann noch in Cglobal als static Variable rein
+  float Kdy = 0.5f;
+  float Kdz = 0.5f;
+  Cglobal::instance().twist.linear.x += Kdx * (ex - Cglobal::instance().exold) / Ta;
+  Cglobal::instance().twist.linear.y += Kdy * (ey - Cglobal::instance().eyold) / Ta;
+  Cglobal::instance().twist.linear.z += Kdz * (ez - Cglobal::instance().ezold) / Ta;
+
+  Cglobal::instance().exold = ex;
+  Cglobal::instance().eyold = ey;
+  Cglobal::instance().ezold = ez;
+
+
+  /*
 
   //Falls die Drone in die falsche Richtung flieg, verstärke die Bewegung
   if((Cglobal::instance().vx > 0 && Cglobal::instance().twist.linear.x < 0)
@@ -126,13 +202,17 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
 	  Cglobal::instance().twist.linear.y -= 0.7 * (Cglobal::instance().vy / 5000);
   }
 
+  */
 
-  Keyboard::control();  //Falls Tastatureingaben zum Steuern möglich sein sollen
+
+  //Keyboard::control();  //Falls Tastatureingaben zum Steuern möglich sein sollen
 
 
   Cglobal::instance().pub.publish(Cglobal::instance().twist);
 
 
+  ostr << "\nrotx:   " << Cglobal::instance().rotx << endl;
+  ostr << "\nroty:   " << Cglobal::instance().roty << endl;
   ostr << "\n\nlinear.x: " << Cglobal::instance().twist.linear.x << endl;
   ostr << "linear.y: " << Cglobal::instance().twist.linear.y << endl;
   ostr << "linear.z " << Cglobal::instance().twist.linear.z << endl;
@@ -147,8 +227,6 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "follow_tag_bottom");
-
-  Cglobal::instance().sinceNotSeen = time(NULL);
 
   ros::NodeHandle node_handle;
   Cglobal::instance().pub = node_handle.advertise<geometry_msgs::Twist>("cmd_vel", 1000);

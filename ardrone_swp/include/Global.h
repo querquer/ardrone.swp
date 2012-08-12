@@ -38,8 +38,7 @@ private:
       bool hoch;
       bool runter;
 
-      time_t lastSeen;
-      time_t sinceNotSeen;
+      time_t sinceNotSeen; ///< Zeit seit dem das Tag das letzte mal gesehen wurde
 
       float lastDir;
 
@@ -60,10 +59,18 @@ private:
 
       bool end;
 
-      int widthB;
-      int heightB;
-      int widthF;
-      int heightF;
+      static const int widthB = 160;
+      static const int heightB = 120;
+      static const int widthF = 320;
+      static const int heightF = 240;
+
+      float exsum;
+      float eysum;
+      float ezsum;
+
+      float exold;
+      float eyold;
+      float ezold;
 };
 
 
