@@ -2,6 +2,7 @@
 #include "Global.h"
 #include "ardrone_brown/Navdata.h"
 
+
 namespace
 {
 	void center(const ar_recog::Tag& tag, float& cx, float& cy, float dx, float dy, float width, float height);
@@ -55,7 +56,7 @@ void pixelDiffBottom(float& x, float& y)
 	x = 0.5 * tan(Cglobal::instance().rotx) * 1.6 * width;*/
 
 	y = (200.0f * tan(Cglobal::instance().roty)) / ((tan(0.558496f + Cglobal::instance().roty) + tan(0.558496f - Cglobal::instance().roty)));
-	x = (200.0f * tan(Cglobal::instance().rotx)) / ((tan(0.558496f + Cglobal::instance().roty) + tan(0.558496f - Cglobal::instance().roty)));
+	x = (200.0f * tan(Cglobal::instance().rotx)) / ((tan(0.558496f + Cglobal::instance().rotx) + tan(0.558496f - Cglobal::instance().rotx)));
 
 	y *= 1.333f;
 	x *= 1.333f;
@@ -66,11 +67,13 @@ void pixelDiffBottom(float& x, float& y)
 
 
 
-void pixelDiffFront(float& x, float& y)
+void pixelDiffFront(const ar_recog::Tag& tag, float& x, float& y)
 {
 
 	y = 0.5 * tan(Cglobal::instance().roty) * 0.948965 * Cglobal::instance().heightF;  //tan(43.5)~= 0.948965
-	x = 0.5 * tan(Cglobal::instance().rotx) * 0.948965 * Cglobal::instance().widthF;
+	y *= 2.3f;
+	//x = 0.5 * tan(Cglobal::instance().rotx) * 0.948965 * Cglobal::instance().widthF;
+	x = 0;
 }
 
 /** @brief Berechnung aus den Eckpunkten wo sich das Tag bezüglich des Bildes befindet
@@ -88,7 +91,7 @@ void centerBottom(const ar_recog::Tag& tag, float& cx, float& cy)
 void centerFront(const ar_recog::Tag& tag, float& cx, float& cy)
 {
 	float dx, dy;
-	pixelDiffFront(dx,dy);
+	pixelDiffFront(tag, dx,dy);
 	center(tag, cx, cy, dx, dy, Cglobal::instance().widthF, Cglobal::instance().heightF);
 }
 
@@ -106,6 +109,8 @@ void navdataUpdate(const ardrone_brown::Navdata::ConstPtr& navdata)
 	float y = navdata->rotY;
 	Cglobal::instance().roty = grad2rad(y);  //grad in rad umrechnen
 	Cglobal::instance().rotx = grad2rad(x);
+
+	gettimeofday(&Cglobal::instance().sinceNoNavdataUpdate, NULL);
 }
 
 } //namespace Math
@@ -126,9 +131,10 @@ namespace
 		cy = cy / height;
 
 		cx = cx / 4.0;
-		//cx -= dx;
-		cx += dx;
+		cx -= dx;
+		//cx += dx; falsch!!!
 		cx = cx / width;
+		cx -= 0.05;
 	}
 	float grad2rad(float a)
 	{

@@ -10,15 +10,32 @@
 #include <sstream>
 #include <fstream>
 
+#include <sys/time.h>
+
+
 using namespace std;
 
 ofstream logNavdata;
 ofstream logTags;
 ofstream logTwist;
 
+struct timeval start;
+struct timeval time1;
+int count1 = 0;
+
 void handleTag(const ar_recog::Tags::ConstPtr& msg)
 {
-  time_t t;
+	++count1;
+	//logTags << count1 << " " << time1.tv_usec;
+	if(count1 >= 100)
+	{
+		gettimeofday(&time1, NULL);
+		logTags << (time1.tv_sec - start.tv_sec) * 1000 + (time1.tv_usec - start.tv_usec) / 1000 << endl;
+		count1 = 0;
+		gettimeofday(&start, NULL);
+	}
+
+  /*time_t t;
   time(&t);
   logTags << ctime(&t) << endl;
   logTags << "Anzahl der Tags: " << msg->tag_count << endl;
@@ -59,7 +76,7 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
       logTags << "cy: " << cy << endl;
     }
     logTags << endl;
-  }
+  }*/
 }
 
 void navdataUpdate(const ardrone_brown::Navdata::ConstPtr& navdata)
@@ -67,14 +84,14 @@ void navdataUpdate(const ardrone_brown::Navdata::ConstPtr& navdata)
   time_t t;
   time(&t);
   logNavdata << ctime(&t) << endl;
-  logNavdata << "Batterie: " << navdata->batteryPercent << endl;
+/*  logNavdata << "Batterie: " << navdata->batteryPercent << endl;
   logNavdata << "RotX: " << navdata->rotX << endl;
   logNavdata << "RotY: " << navdata->rotY << endl;
   logNavdata << "RotZ: " << navdata->rotZ << endl;
-  logNavdata << "Höhe: " << navdata->altd << endl;
+  logNavdata << "Höhe: " << navdata->altd << endl;*/
   logNavdata << "vx: " << navdata->vx << endl;
   logNavdata << "vy: " << navdata->vy << endl;
-  logNavdata << "vx: " << navdata->vz << endl;
+  logNavdata << "vz: " << navdata->vz << endl;
   logNavdata << "Zeit seit Start: " << navdata->tm << endl << endl;
 }
 
@@ -98,42 +115,56 @@ int main(int argc, char** argv)
 {
   ros::init(argc, argv, "LogNavdata");
 
+  gettimeofday(&start, NULL);
+
   ros::NodeHandle node_handle;
   bool n = false; //navdata
   bool tag = false; //tags
   bool w = false; //twist
   time_t t;
   time(&t);
+  ros::Subscriber navdataSub;
+  ros::Subscriber tagsSub;
+  ros::Subscriber twistSub;
   for(int i = 0; i < argc; ++i)
   {
     if(!n && argv[i][0] == 'n')
     {
       ostringstream ost;
-      ost << "ros_workspace/ardrone_swp/Log/LogNavdata/";
+      /*for(int k = 0; !(argv[0][k] == 'b' && argv[0][k+1] == 'i' && argv[0][k+2] == 'n') && argv[0][k] != '\0'; ++k)
+      {
+    	  ost << argv[i][k];
+      }
+      ost << "Log/LogNavdata/";*/
+
+      ost << "/home/ulrich/ros_workspace/ardrone_swp/Log/LogNavdata/";
+
       ost << ctime(&t);
       ost << ".txt";
+      ofstream of(ost.str().c_str());
+      //ROS_INFO(ost.str().c_str());
       logNavdata.open(ost.str().c_str());
-      ros::Subscriber navdataSub = node_handle.subscribe("/ardrone/navdata", 1000, navdataUpdate);
+      navdataSub = node_handle.subscribe("/ardrone/navdata", 1000, navdataUpdate);
       n = true;
     }
     else if(!tag && argv[i][0] == 't')
     {
       ostringstream ost;
-      ost << "ros_workspace/ardrone_swp/Log/LogTags/";
+      ost << "/home/ulrich/ros_workspace/ardrone_swp/Log/LogTags/";
       ost << ctime(&t);
       ost << ".txt";
       logTags.open(ost.str().c_str());
-      ros::Subscriber tagsSub = node_handle.subscribe("tags",1000, handleTag);
+      tagsSub = node_handle.subscribe("tags",1000, handleTag);
       tag = true;
     }
     else if(!w && argv[i][0] == 'w')
     {
       ostringstream ost;
-      ost << "ros_workspace/ardrone_swp/Log/LogTwist/";
+      ost << "../Log/LogTwist/";
       ost << ctime(&t);
       ost << ".txt";
       logTwist.open(ost.str().c_str());
-      ros::Subscriber twistSub = node_handle.subscribe("/cmd_vel", 1, handleTwist);
+      twistSub = node_handle.subscribe("/cmd_vel", 1, handleTwist);
       w = true;
     }
   }  

@@ -1,14 +1,18 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
+#include "std_includes.h"
+
 #include <boost/noncopyable.hpp>
 
-#include "ros/ros.h"
+/*#include "ros/ros.h"
 #include "geometry_msgs/Twist.h"
 
 #include "Delta.h"
 
 #include <time.h>
+
+#include <sys/time.h>*/
 
 /* @brief Klasse, die in Form eines Singletons alle globalen Variablen enthält
  *
@@ -27,6 +31,8 @@ private:
    public:
       geometry_msgs::Twist twist; ///< Zur Ansteuerung der Drone
 
+      geometry_msgs::Twist twist_old;
+
       ros::Publisher pub;   ///< publisher zum publishen des Twist Objekts
 
       int altd; ///< Höhe
@@ -39,6 +45,8 @@ private:
       bool runter;
 
       time_t sinceNotSeen; ///< Zeit seit dem das Tag das letzte mal gesehen wurde
+
+      struct timeval sinceNoNavdataUpdate;
 
       float lastDir;
 
@@ -71,6 +79,11 @@ private:
       float exold;
       float eyold;
       float ezold;
+
+      float dxold;
+      float dyold;
+
+      std::ofstream of;
 };
 
 
