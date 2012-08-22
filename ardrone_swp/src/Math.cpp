@@ -86,6 +86,7 @@ void centerBottom(const ar_recog::Tag& tag, float& cx, float& cy)
 	float dx, dy;
 	pixelDiffBottom(dx,dy);
 	center(tag, cx, cy, dx, dy, Cglobal::instance().widthB, Cglobal::instance().heightB);
+	cx -= 0.05f;
 }
 
 void centerFront(const ar_recog::Tag& tag, float& cx, float& cy)
@@ -134,7 +135,6 @@ namespace
 		cx -= dx;
 		//cx += dx; falsch!!!
 		cx = cx / width;
-		cx -= 0.05;
 	}
 	float grad2rad(float a)
 	{

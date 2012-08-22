@@ -47,22 +47,25 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg) {
 		ostr << "cx     :" << cx << endl;
 		ostr << "dist    :" << biggest.distance << endl;
 		ostr << "Tag: yRot: " << biggest.yRot << endl;
+		if(biggest.yRot < 0)
+			ostr << "-----------------------------------" << endl << "----------------------------" << endl;
 
-		float stopping_dist = 2200.0;
+		float stopping_dist = 1700.0;
 
 		float dist = (biggest.distance - stopping_dist) / stopping_dist;
 
-		if(abs(biggest.distance - stopping_dist) < 200)
-			dist = 0;
 
 		float dist_vel = Cglobal::instance().lxDelta.get_velocity(dist);
 
 		if (abs(dist) < 0.25)
-			Cglobal::instance().twist.linear.x = dist_vel * 0.25; //if we are close enough to the stopping distance, just try to stop
+			Cglobal::instance().twist.linear.x = dist_vel * 0.2; //if we are close enough to the stopping distance, just try to stop
 		else
 			Cglobal::instance().twist.linear.x = dist * 0.25; //otherwise try to move within stopping_dist
 
-		Cglobal::instance().twist.linear.x = max(-0.05, min(0.05, Cglobal::instance().twist.linear.x));
+		if(abs(biggest.distance - stopping_dist) < 200)
+			Cglobal::instance().twist.linear.x = 0;
+
+		Cglobal::instance().twist.linear.x = max(-0.08, min(0.08, Cglobal::instance().twist.linear.x));
 
 		//try to face perpendicular to the tag
 		//float yRot_velocity = Cglobal::instance().azDelta.get_velocity(biggest.yRot);
@@ -75,7 +78,7 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg) {
 		{
 			Cglobal::instance().twist.angular.z = -0.3;
 		}
-		if(abs(biggest.yRot) < 0.2)
+		if(abs(biggest.yRot) < 0.4)
 			Cglobal::instance().twist.angular.z = 0;
 
 		Cglobal::instance().twist.angular.z = max(-0.5, min(0.5, Cglobal::instance().twist.angular.z));
@@ -85,14 +88,19 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg) {
 		//twist.linear.y = biggest.yRot * 0.125; //otherwise, rotate towards being in front of the tag
 
 		//rotate to face the tag
-		Cglobal::instance().twist.linear.y = (-(cx - 0.5) / 0.5) * 0.4;
+		Cglobal::instance().twist.linear.y = (-(cx - 0.5) / 0.5) * 0.5;
 		//Cglobal::instance().twist.linear.y = Cglobal::instance().lyDelta.get_velocity(Cglobal::instance().twist.linear.y);
-		Cglobal::instance().twist.linear.y = max(-0.05, min(0.05, Cglobal::instance().twist.linear.y));
+		Cglobal::instance().twist.linear.y = max(-0.08, min(0.08, Cglobal::instance().twist.linear.y));
 
 
-		if(abs(biggest.yRot) > 0.2)
+		if(abs(biggest.yRot) > 0.4)
 		{
 			Cglobal::instance().twist.linear.y *= 1.5f;
+		}
+		if((cx < 0.3 && Cglobal::instance().twist.angular.z < 0)
+				|| (cx > 0.7 && Cglobal::instance().twist.angular.z > 0))
+		{
+			Cglobal::instance().twist.angular.z = 0;
 		}
 		/*if(abs(biggest.yRot) > 0.4)
 		{
@@ -109,18 +117,23 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg) {
 		else
 			Cglobal::instance().lastDir = 1;
 
-		/*Cglobal::instance().twist.linear.z = Cglobal::instance().lzDelta.get_velocity((-(cy - 0.5) / 0.5));
-		if (Cglobal::instance().twist.linear.z > 0.5)
+		Cglobal::instance().twist.linear.z = (-(cy - 0.5) / 0.5);
+		/*if (Cglobal::instance().twist.linear.z > 0.5)
 			Cglobal::instance().twist.linear.z = 0.1;
 		else if (Cglobal::instance().twist.linear.z < -0.4)
 			Cglobal::instance().twist.linear.z = -0.1;
 		else
+			Cglobal::instance().twist.linear.z = 0;*/
+		if(cy > 0.3 && cy < 0.7)
 			Cglobal::instance().twist.linear.z = 0;
-		Cglobal::instance().twist.linear.z = max(-0.1,	min(0.3, Cglobal::instance().twist.linear.z));*/
+		//Cglobal::instance().twist.linear.z = max(-0.1,	min(0.3, Cglobal::instance().twist.linear.z));
 
-		if ((Cglobal::instance().altd > 1300 && Cglobal::instance().twist.linear.z > 0) || (Cglobal::instance().altd < 500 && Cglobal::instance().twist.linear.z < 0))
-			Cglobal::instance().twist.linear.z = 0;
+
 	}
+
+
+	if ((Cglobal::instance().altd > 1700 && Cglobal::instance().twist.linear.z > 0) || (Cglobal::instance().altd < 500 && Cglobal::instance().twist.linear.z < 0))
+		Cglobal::instance().twist.linear.z = 0;
 
 	Cglobal::instance().twist_old = Cglobal::instance().twist;
 
@@ -146,13 +159,13 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg) {
 
 	float ex = Cglobal::instance().twist.linear.x - mmPs2twistx * Cglobal::instance().vx; //Fehler in x Richtung
 
-	float Kpx = 2.5f;
+	float Kpx = 1.5f;
 
 	Cglobal::instance().twist.linear.x += Kpx * ex;
 
 	float ey = Cglobal::instance().twist.linear.y - mmPs2twisty * Cglobal::instance().vy; //Fehler in y Richtung
 
-	float Kpy = 1.5f;
+	float Kpy = 2.5f;
 
 	Cglobal::instance().twist.linear.y += Kpy * ey;
 
