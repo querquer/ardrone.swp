@@ -7,7 +7,9 @@ using namespace std;
  * @file follow_line.cpp
  * @brief Applikation zur Linienverfolgung mit der unteren Kamera
  */
-
+bool begin = true;
+struct timeval start;
+struct timeval ac_time;
 void handleLine(const ardrone_swp::LinePos::ConstPtr& msg)
 {
 	ostringstream ostr;
@@ -16,7 +18,8 @@ void handleLine(const ardrone_swp::LinePos::ConstPtr& msg)
 		if (Cglobal::instance().seen) //Falls beim letzen Aufruf ein Tag gesehen wurde, speichere die Zeit
 			Cglobal::instance().sinceNotSeen = time(NULL);
 		//if(time(NULL) - Cglobal::instance().sinceNotSeen < 1)  //Falls ein Tag in der letzen Sekunde gesehen wurde, versuche in die letzte gesehene Richtung zu fliegen
-		if (time(NULL) - Cglobal::instance().sinceNotSeen < 3) //n.n.t
+		if(false)
+		//if (time(NULL) - Cglobal::instance().sinceNotSeen < 2) //n.n.t
 		{
 			Cglobal::instance().twist = Cglobal::instance().twist_old;
 		}
@@ -33,29 +36,55 @@ void handleLine(const ardrone_swp::LinePos::ConstPtr& msg)
 	{
 		Cglobal::instance().seen = true;
 
-		float angle = 1500.0f;
+		float angle = 900.0f;  //ab diesem Winkel nur drehen
 
 		if(abs(msg->angle) < angle)
-			Cglobal::instance().twist.linear.x = 0.05;
+		{
+			Cglobal::instance().twist.linear.x = 0.03;
+			//Cglobal::instance().twist.angular.z = 0;
+			Cglobal::instance().twist.angular.z = -(msg->angle / 4000.0f);
+			Cglobal::instance().twist.linear.y = -(msg->x - 80.0f) / (80.0f * 11.0f);  //falls der Winkel zu hoch ist, wird ein x wert ausgegeben, der zu sehr von 80 entfernt ist
+		}
 		else
 		{
-			if(msg->angle > 0)
-				Cglobal::instance().twist.angular.z = -0.2;
-			else
-				Cglobal::instance().twist.angular.z = 0.2;
-		}
-		Cglobal::instance().twist.linear.y = (msg->x - 80.0f) / 80.0f;
+			Cglobal::instance().twist.linear.x = 0;
+			Cglobal::instance().twist.linear.y = 0;
 
-		if (Cglobal::instance().altd > 950)
-			Cglobal::instance().twist.linear.z = -0.1;
-		else if (Cglobal::instance().altd < 800)
-			Cglobal::instance().twist.linear.z = 0.3;
-		else
-			Cglobal::instance().twist.linear.z = 0;
+			if(msg->angle > 0)
+				Cglobal::instance().twist.angular.z = -0.6;
+			else
+				Cglobal::instance().twist.angular.z = 0.6;
+			if(abs(Cglobal::instance().vx) > 100 || abs(Cglobal::instance().vy) > 100)
+				Cglobal::instance().twist.angular.z = 0;
+		}
 
 		ostr << "x: " << msg->x << endl;
 		ostr << "y: " << msg->y << endl;
+		ostr << "angle: " << msg->angle << endl;
 	}
+
+
+	if (Cglobal::instance().altd > 950)
+		Cglobal::instance().twist.linear.z = -0.1;
+	else if (Cglobal::instance().altd < 800)
+		Cglobal::instance().twist.linear.z = 0.3;
+	else
+		Cglobal::instance().twist.linear.z = 0;
+
+	if(Cglobal::instance().altd < 800 && begin)
+	{
+		Cglobal::instance().twist.linear.x = 0;
+		Cglobal::instance().twist.linear.y = 0;
+		Cglobal::instance().twist.angular.z = 0;
+		Cglobal::instance().twist.linear.z = 0.5;
+	}
+	else
+	{
+		if(begin)
+			gettimeofday(&start, NULL);
+		begin = false;
+	}
+
 	//Fliege nicht höher als 1,7m und nicht niedriger als 0,3m
 	if ((Cglobal::instance().altd > 1700
 			&& Cglobal::instance().twist.linear.z > 0)
@@ -79,20 +108,21 @@ void handleLine(const ardrone_swp::LinePos::ConstPtr& msg)
 	 * twist wert = 1 -> vx soll 5000 sein
 	 *
 	 */
-
+	Math::line_regulation();
+/*
 // P-Anteil:
-	float mmPs2twistx = 0.0002f; //weil Drone in  x Richtung max 5m/s fliegt
-	float mmPs2twisty = 0.0002f;
+	float mmPs2twistx = 0.00015f; //weil Drone in  x Richtung max 5m/s fliegt
+	float mmPs2twisty = 0.00025f;
 
 	float ex = Cglobal::instance().twist.linear.x - mmPs2twistx * Cglobal::instance().vx; //Fehler in x Richtung
 
-	float Kpx = 2.5f;
+	float Kpx = 1.2f;
 
 	Cglobal::instance().twist.linear.x += Kpx * ex;
 
 	float ey = Cglobal::instance().twist.linear.y - mmPs2twisty * Cglobal::instance().vy; //Fehler in y Richtung
 
-	float Kpy = 1.5f;
+	float Kpy = 1.0f;
 
 	Cglobal::instance().twist.linear.y += Kpy * ey;
 
@@ -100,8 +130,9 @@ void handleLine(const ardrone_swp::LinePos::ConstPtr& msg)
 	ostr << "P: y:  " << Kpy * ey << endl;
 
 	float Ta = 0.05555555;
+	*/
 // D-Anteil:
-	float Kdx = 0.05f; //Diese werte müssen noch angepasst werden und kommen dann noch in Cglobal als static Variable rein
+	/*float Kdx = 0.05f; //Diese werte müssen noch angepasst werden und kommen dann noch in Cglobal als static Variable rein
 	float Kdy = 0.05f;
 	Cglobal::instance().twist.linear.x += Kdx * (ex - Cglobal::instance().exold) / Ta;
 	Cglobal::instance().twist.linear.y += Kdy * (ey - Cglobal::instance().eyold) / Ta;
@@ -110,16 +141,23 @@ void handleLine(const ardrone_swp::LinePos::ConstPtr& msg)
 	ostr << "D: y:  " << Kdy * (ey - Cglobal::instance().eyold) / Ta << endl;
 
 	Cglobal::instance().exold = ex;
-	Cglobal::instance().eyold = ey;
+	Cglobal::instance().eyold = ey;*/
 
+	Cglobal::instance().pub.publish(Cglobal::instance().twist);
 
 	ostr << "linear.x: " << Cglobal::instance().twist.linear.x << endl;
 	ostr << "linear.y: " << Cglobal::instance().twist.linear.y << endl << endl;
 	ostr << "linear.z " << Cglobal::instance().twist.linear.z << endl;
 	ostr << "angular.z " << Cglobal::instance().twist.angular.z << endl;
 	ostr << "altd: " << Cglobal::instance().altd << endl;
+
+	gettimeofday(&ac_time, NULL);
+	ostr << "Zeit: " << ac_time.tv_sec - start.tv_sec << endl;
+	ostr << endl << "-----------------------------------------------------------------" << endl;
+
 	ROS_INFO(ostr.str().c_str());
-	Cglobal::instance().pub.publish(Cglobal::instance().twist);
+	Cglobal::instance().of << ostr.str();
+
 
 }
 
@@ -133,6 +171,8 @@ int main(int argc, char** argv) {
 
 	ros::Subscriber navdata = node_handle.subscribe("/ardrone/navdata", 1000,
 			Math::navdataUpdate);
+
+	gettimeofday(&start, NULL);
 
 	while (!Cglobal::instance().end && ros::ok()) {
 		ros::spinOnce();

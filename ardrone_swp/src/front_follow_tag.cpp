@@ -152,7 +152,8 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg) {
 	 * twist wert = 1 -> vx soll 5000 sein
 	 *
 	 */
-
+	Math::front_regulation();
+/*
 // P-Anteil:
 	float mmPs2twistx = 0.0002f; //weil Drone in  x Richtung max 5m/s fliegt
 	float mmPs2twisty = 0.0002f;
@@ -184,6 +185,7 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg) {
 
 	Cglobal::instance().exold = ex;
 	Cglobal::instance().eyold = ey;
+*/
 
 	Cglobal::instance().pub.publish(Cglobal::instance().twist);
 

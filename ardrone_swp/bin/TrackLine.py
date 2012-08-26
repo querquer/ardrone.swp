@@ -323,11 +323,27 @@ def callback(data):
     global forrun
     global old_target
     global count
-
+    bridge = CvBridge()
+    try:
+      cv_image = bridge.imgmsg_to_cv(data, "bgr8")
+    except CvBridgeError, e:
+      print e
+    frame = cv_image
+    frame_size=cv.GetSize (frame)
+    #frame_size[0] = 320
+    #frame_size[1] = 240
+    #frame_size = [320, 240]
+    gray_frame = cv.CreateImage( frame_size, cv.IPL_DEPTH_8U, 1 )
+    canny_result = cv.CreateImage( frame_size, cv.IPL_DEPTH_8U, 1 );
+    cv.CreateTrackbar("canny_init", 'camera', get_canny_init(), 1000, on_init_change)
+    cv.CreateTrackbar("canny_link", 'camera', get_canny_link(), 1000, on_link_change)
+    forrun=frame_size[1]/2
+    old_target=[frame_size[0]/2,forrun]
+    los()
     #rospy.loginfo("count: %s", count)
-    if count != 0:
+    """if count != 0:
        count += 1
-       if count == 8:
+       if count == 2:
           count = 0
        #return
     else:
@@ -348,7 +364,7 @@ def callback(data):
 	    forrun=frame_size[1]/2
 	    old_target=[frame_size[0]/2,forrun]
 	    los()
-            count += 1
+            count += 1"""
 
 def main(args):
 	global canny_init
@@ -407,7 +423,7 @@ def main(args):
 
 	#canny_init
 	canny_init = 300
-	canny_link=770
+	canny_link=100
 	frame_on=False
 	canny_on=False
 	init_on=True

@@ -6,12 +6,6 @@ Cglobal* Cglobal::m_instance = 0;
 
 Cglobal::Cglobal()
 : altd(-1)
-, vor(false)
-, zurueck(false)
-, links(false)
-, rechts(false)
-, hoch(false)
-, runter(false)
 , ges(0.05)
 , end(false)
 , seen(false)

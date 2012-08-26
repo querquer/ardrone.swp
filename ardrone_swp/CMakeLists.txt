@@ -33,7 +33,7 @@ rosbuild_add_executable(bottom_follow_tag src/bottom_follow_tag.cpp src/Math.cpp
 
 rosbuild_add_executable(front_follow_tag src/front_follow_tag.cpp src/Math.cpp src/Global.cpp src/Keyboard.cpp src/Delta.cpp)
 
-#rosbuild_add_executable(follow_line src/follow_line.cpp src/Math.cpp src/Global.cpp src/Keyboard.cpp src/Delta.cpp)
+rosbuild_add_executable(follow_line src/follow_line.cpp src/Math.cpp src/Global.cpp src/Keyboard.cpp src/Delta.cpp)
 
 #rosbuild_add_executable(Log src/Log.cpp)
 

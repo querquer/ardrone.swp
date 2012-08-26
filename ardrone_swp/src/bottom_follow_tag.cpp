@@ -102,12 +102,6 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
 					&& Cglobal::instance().twist.linear.z < 0))
 		Cglobal::instance().twist.linear.z = 0;
 
-	//speichern in welche Richtung geflogen werden soll (wichtig, falls das Tag verloren geht)
-	Cglobal::instance().vor = Cglobal::instance().twist.linear.x > 0;
-	Cglobal::instance().zurueck = Cglobal::instance().twist.linear.x < 0;
-	Cglobal::instance().links = Cglobal::instance().twist.linear.y > 0;
-	Cglobal::instance().rechts = Cglobal::instance().twist.linear.y < 0;
-
 	Cglobal::instance().twist_old = Cglobal::instance().twist;
 
 	ostr << "vx   " << Cglobal::instance().vx << endl;
@@ -124,7 +118,8 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
 	 * twist wert = 1 -> vx soll 5000 sein
 	 *
 	 */
-
+	Math::bottom_regulation();
+/*
 // P-Anteil:
 	float mmPs2twistx = 0.0002f; //weil Drone in  x Richtung max 5m/s fliegt
 	float mmPs2twisty = 0.0002f;
@@ -156,6 +151,8 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
 
 	Cglobal::instance().exold = ex;
 	Cglobal::instance().eyold = ey;
+
+*/
 
 	Cglobal::instance().pub.publish(Cglobal::instance().twist);
 
