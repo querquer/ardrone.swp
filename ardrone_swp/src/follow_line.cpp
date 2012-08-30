@@ -36,14 +36,32 @@ void handleLine(const ardrone_swp::LinePos::ConstPtr& msg)
 	{
 		Cglobal::instance().seen = true;
 
+
 		float angle = 900.0f;  //ab diesem Winkel nur drehen
 
 		if(abs(msg->angle) < angle)
 		{
-			Cglobal::instance().twist.linear.x = 0.03;
-			//Cglobal::instance().twist.angular.z = 0;
+			Cglobal::instance().twist.linear.x = 0.02;
 			Cglobal::instance().twist.angular.z = -(msg->angle / 4000.0f);
-			Cglobal::instance().twist.linear.y = -(msg->x - 80.0f) / (80.0f * 11.0f);  //falls der Winkel zu hoch ist, wird ein x wert ausgegeben, der zu sehr von 80 entfernt ist
+			//Cglobal::instance().twist.angular.z = 0;
+			Cglobal::instance().twist.linear.y = -(msg->x - 80.0f) / (80.0f * 10.0f); //falls der Winkel zu hoch ist, wird ein x wert ausgegeben, der zu sehr von 80 entfernt ist
+/*
+			//Cglobal::instance().twist.angular.z = 0;
+			//Cglobal::instance().twist.linear.y = -(msg->x - 80.0f) / (80.0f * 9.0f);
+			if (abs(msg->x - 80) < 30)
+			{
+				Cglobal::instance().twist.linear.x = 0.03;
+				//Cglobal::instance().twist.angular.z = 0;
+				Cglobal::instance().twist.angular.z = -(msg->angle / 4000.0f);
+				Cglobal::instance().twist.linear.y = -(msg->x - 80.0f) / (80.0f * 9.0f); //falls der Winkel zu hoch ist, wird ein x wert ausgegeben, der zu sehr von 80 entfernt ist
+			}
+			else
+			{
+				Cglobal::instance().twist.linear.x = 0;
+				//Cglobal::instance().twist.angular.z = 0;
+				//Cglobal::instance().twist.linear.y = -(msg->x - 80.0f) / (80.0f * 9.0f);
+			}
+			*/
 		}
 		else
 		{
@@ -54,7 +72,7 @@ void handleLine(const ardrone_swp::LinePos::ConstPtr& msg)
 				Cglobal::instance().twist.angular.z = -0.6;
 			else
 				Cglobal::instance().twist.angular.z = 0.6;
-			if(abs(Cglobal::instance().vx) > 100 || abs(Cglobal::instance().vy) > 100)
+			if(abs(Cglobal::instance().vx) > 150 || abs(Cglobal::instance().vy) > 150)
 				Cglobal::instance().twist.angular.z = 0;
 		}
 
@@ -64,14 +82,14 @@ void handleLine(const ardrone_swp::LinePos::ConstPtr& msg)
 	}
 
 
-	if (Cglobal::instance().altd > 950)
+	if (Cglobal::instance().altd > 1050)
 		Cglobal::instance().twist.linear.z = -0.1;
-	else if (Cglobal::instance().altd < 800)
+	else if (Cglobal::instance().altd < 900)
 		Cglobal::instance().twist.linear.z = 0.3;
 	else
 		Cglobal::instance().twist.linear.z = 0;
 
-	if(Cglobal::instance().altd < 800 && begin)
+	if(Cglobal::instance().altd < 900 && begin)
 	{
 		Cglobal::instance().twist.linear.x = 0;
 		Cglobal::instance().twist.linear.y = 0;
@@ -108,8 +126,8 @@ void handleLine(const ardrone_swp::LinePos::ConstPtr& msg)
 	 * twist wert = 1 -> vx soll 5000 sein
 	 *
 	 */
-	Math::line_regulation();
-/*
+	//Math::line_regulation();
+
 // P-Anteil:
 	float mmPs2twistx = 0.00015f; //weil Drone in  x Richtung max 5m/s fliegt
 	float mmPs2twisty = 0.00025f;
@@ -130,7 +148,7 @@ void handleLine(const ardrone_swp::LinePos::ConstPtr& msg)
 	ostr << "P: y:  " << Kpy * ey << endl;
 
 	float Ta = 0.05555555;
-	*/
+
 // D-Anteil:
 	/*float Kdx = 0.05f; //Diese werte müssen noch angepasst werden und kommen dann noch in Cglobal als static Variable rein
 	float Kdy = 0.05f;

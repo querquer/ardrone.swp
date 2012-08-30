@@ -84,7 +84,7 @@ private:
   	  static const float f_Kpx = 1.5f;
   	  static const float f_Kpy = 2.5f;
 
-  	  static const float l_Kpx = 1.2f;
+  	  static const float l_Kpx = 1.7f;
   	  static const float l_Kpy = 1.0f;
 
   	  static const float Ta = 0.05555555f; ///< 1/18, weil 18 Aufrufe pro Sekunde
