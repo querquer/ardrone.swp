@@ -21,5 +21,5 @@ float Delta::get_velocity(float new_value)
 	old_time = new_time;
 	old_value = new_value;
 
-	return old_value;
+	return old_vel;
 }

@@ -2,22 +2,71 @@
 \section{Math-\/Namensbereichsreferenz}
 \label{namespace_math}\index{Math@{Math}}
 }
+
+
+enthält Funktionen für das Berechen wo sich ein Tag bezüglich des Bildes befindet und die Regelung  
+
+
 \subsection*{Funktionen}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{namespace_math_a25b9284eb485b732c952786b63343aaa}{pixelDiffBottom} (float \&x, float \&y)
-\begin{DoxyCompactList}\small\item\em Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben wurde. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Berechnung der Anzahl der Pixel für die Bodenkamera, um die das Tag aufgrund der Rotation verschoben wurde. \end{DoxyCompactList}\item 
 void \hyperlink{namespace_math_a3fbe7036db847d74ed5f2c21635d02d9}{pixelDiffFront} (float \&x, float \&y)
-\item 
+\begin{DoxyCompactList}\small\item\em Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben wurde. \end{DoxyCompactList}\item 
 void \hyperlink{namespace_math_ab4c584467f0cc5d8af22a69482630866}{centerBottom} (const ar\_\-recog::Tag \&tag, float \&cx, float \&cy)
-\begin{DoxyCompactList}\small\item\em Berechnung aus den Eckpunkten wo sich das Tag bezüglich des Bildes befindet. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Berechnung für die Bodenkamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet. \end{DoxyCompactList}\item 
 void \hyperlink{namespace_math_a43f025fac1ade5dbf88f7c393ca85644}{centerFront} (const ar\_\-recog::Tag \&tag, float \&cx, float \&cy)
-\item 
+\begin{DoxyCompactList}\small\item\em Berechnung für die Front kamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet. \end{DoxyCompactList}\item 
 void \hyperlink{namespace_math_ad3b65f0aedda56076f681f2b987d0e5c}{navdataUpdate} (const ardrone\_\-brown::Navdata::ConstPtr \&navdata)
-\begin{DoxyCompactList}\small\item\em subscriber handler für die Nachricht /ardrone/navdata \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em subscriber handler für die Nachricht /ardrone/navdata \end{DoxyCompactList}\item 
+void \hyperlink{namespace_math_a688eccf4d1e0776ee10e6293254e2e13}{bottom\_\-regulation} ()
+\begin{DoxyCompactList}\small\item\em PD-\/Regelung für bottom\_\-follow\_\-tag. \end{DoxyCompactList}\item 
+void \hyperlink{namespace_math_a7be3473d626056767311b94db1860cb0}{front\_\-regulation} ()
+\begin{DoxyCompactList}\small\item\em PD-\/Regelung für front\_\-follow\_\-tag. \end{DoxyCompactList}\item 
+void \hyperlink{namespace_math_aa47b7ddd3093cb42132bd80ccb309dea}{line\_\-regulation} ()
+\begin{DoxyCompactList}\small\item\em P-\/Regelung für follow\_\-tag. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Ausführliche Beschreibung}
+enthält Funktionen für das Berechen wo sich ein Tag bezüglich des Bildes befindet und die Regelung 
 
 \subsection{Dokumentation der Funktionen}
+\hypertarget{namespace_math_a688eccf4d1e0776ee10e6293254e2e13}{
+\index{Math@{Math}!bottom\_\-regulation@{bottom\_\-regulation}}
+\index{bottom\_\-regulation@{bottom\_\-regulation}!Math@{Math}}
+\subsubsection[{bottom\_\-regulation}]{\setlength{\rightskip}{0pt plus 5cm}void Math::bottom\_\-regulation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{namespace_math_a688eccf4d1e0776ee10e6293254e2e13}
+
+
+PD-\/Regelung für bottom\_\-follow\_\-tag. 
+
+
+
+Hier ist ein Graph der zeigt, was diese Funktion aufruft:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{namespace_math_a688eccf4d1e0776ee10e6293254e2e13_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=374pt]{namespace_math_a688eccf4d1e0776ee10e6293254e2e13_icgraph}
+\end{center}
+\end{figure}
+
+
 \hypertarget{namespace_math_ab4c584467f0cc5d8af22a69482630866}{
 \index{Math@{Math}!centerBottom@{centerBottom}}
 \index{centerBottom@{centerBottom}!Math@{Math}}
@@ -31,9 +80,23 @@ void \hyperlink{namespace_math_ad3b65f0aedda56076f681f2b987d0e5c}{navdataUpdate}
 \label{namespace_math_ab4c584467f0cc5d8af22a69482630866}
 
 
-Berechnung aus den Eckpunkten wo sich das Tag bezüglich des Bildes befindet. 
+Berechnung für die Bodenkamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet. 
 
-cy: 0 Tag ist am oberen Bildrand, 0.5 Tag ist in der Mitte(Höhe), 1 Tag ist am unteren Bildrand cx: 0 Tag ist am linken Bildrand, 0.5 Tag ist in der Mitte(Breite), 1 Tag ist am rechten Bildrend 
+cy:
+
+0: Tag ist am oberen Bildrand,
+
+0.5: Tag ist in der Mitte(Höhe),
+
+1: Tag ist am unteren Bildrand
+
+cx:
+
+0: Tag ist am linken Bildrand,
+
+0.5: Tag ist in der Mitte(Breite),
+
+1: Tag ist am rechten Bildrend 
 
 Hier ist ein Graph der zeigt, was diese Funktion aufruft:\nopagebreak
 \begin{figure}[H]
@@ -68,6 +131,24 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
 \label{namespace_math_a43f025fac1ade5dbf88f7c393ca85644}
 
 
+Berechnung für die Front kamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet. 
+
+cy:
+
+0: Tag ist am oberen Bildrand,
+
+0.5: Tag ist in der Mitte(Höhe),
+
+1: Tag ist am unteren Bildrand
+
+cx:
+
+0: Tag ist am linken Bildrand,
+
+0.5: Tag ist in der Mitte(Breite),
+
+1: Tag ist am rechten Bildrend 
+
 Hier ist ein Graph der zeigt, was diese Funktion aufruft:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -84,6 +165,76 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
 \begin{center}
 \leavevmode
 \includegraphics[width=272pt]{namespace_math_a43f025fac1ade5dbf88f7c393ca85644_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{namespace_math_a7be3473d626056767311b94db1860cb0}{
+\index{Math@{Math}!front\_\-regulation@{front\_\-regulation}}
+\index{front\_\-regulation@{front\_\-regulation}!Math@{Math}}
+\subsubsection[{front\_\-regulation}]{\setlength{\rightskip}{0pt plus 5cm}void Math::front\_\-regulation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{namespace_math_a7be3473d626056767311b94db1860cb0}
+
+
+PD-\/Regelung für front\_\-follow\_\-tag. 
+
+
+
+Hier ist ein Graph der zeigt, was diese Funktion aufruft:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{namespace_math_a7be3473d626056767311b94db1860cb0_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{namespace_math_a7be3473d626056767311b94db1860cb0_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{namespace_math_aa47b7ddd3093cb42132bd80ccb309dea}{
+\index{Math@{Math}!line\_\-regulation@{line\_\-regulation}}
+\index{line\_\-regulation@{line\_\-regulation}!Math@{Math}}
+\subsubsection[{line\_\-regulation}]{\setlength{\rightskip}{0pt plus 5cm}void Math::line\_\-regulation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{namespace_math_aa47b7ddd3093cb42132bd80ccb309dea}
+
+
+P-\/Regelung für follow\_\-tag. 
+
+
+
+Hier ist ein Graph der zeigt, was diese Funktion aufruft:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{namespace_math_aa47b7ddd3093cb42132bd80ccb309dea_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=362pt]{namespace_math_aa47b7ddd3093cb42132bd80ccb309dea_icgraph}
 \end{center}
 \end{figure}
 
@@ -135,9 +286,7 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
 \label{namespace_math_a25b9284eb485b732c952786b63343aaa}
 
 
-Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben wurde. 
-
-Problem: Sichtfeld ist noch nicht korrekt berechnet(derzeit für x und y Richtung gleich)
+Berechnung der Anzahl der Pixel für die Bodenkamera, um die das Tag aufgrund der Rotation verschoben wurde. 
 
 
 \begin{DoxyParams}{Parameter}
@@ -179,6 +328,17 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
 )}}
 \label{namespace_math_a3fbe7036db847d74ed5f2c21635d02d9}
 
+
+Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben wurde. 
+
+
+\begin{DoxyParams}{Parameter}
+{\em x} & Verschiebung in x Richung \\
+\hline
+{\em y} & Verschiebung in y Richung\\
+\hline
+\end{DoxyParams}
+ 
 
 Hier ist ein Graph der zeigt, was diese Funktion aufruft:\nopagebreak
 \begin{figure}[H]

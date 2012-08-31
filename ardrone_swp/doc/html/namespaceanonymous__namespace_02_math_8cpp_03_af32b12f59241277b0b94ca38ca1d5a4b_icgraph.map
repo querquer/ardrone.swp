@@ -1,7 +1,7 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$namespace_math.html#ab4c584467f0cc5d8af22a69482630866" title="Berechnung aus den Eckpunkten wo sich das Tag bezüglich des Bildes befindet." alt="" coords="329,5,465,35"/>
-<area shape="rect" id="node9" href="$namespace_math.html#a43f025fac1ade5dbf88f7c393ca85644" title="Math::centerFront" alt="" coords="335,59,460,88"/>
-<area shape="rect" id="node5" href="$bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="subscriber handler für die Nachricht tags" alt="" coords="515,5,597,35"/>
+<area shape="rect" id="node3" href="$namespace_math.html#ab4c584467f0cc5d8af22a69482630866" title="Berechnung für die Bodenkamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet..." alt="" coords="329,5,465,35"/>
+<area shape="rect" id="node9" href="$namespace_math.html#a43f025fac1ade5dbf88f7c393ca85644" title="Berechnung für die Front kamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet..." alt="" coords="335,59,460,88"/>
+<area shape="rect" id="node5" href="$bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handler für die Nachricht tags hier werden die Bewegungsdaten gesetzt und gepublished" alt="" coords="515,5,597,35"/>
 <area shape="rect" id="node7" href="$bottom__follow__tag_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="645,5,696,35"/>
-<area shape="rect" id="node11" href="$front__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handleTag" alt="" coords="515,59,597,88"/>
+<area shape="rect" id="node11" href="$front__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handler für die Nachricht tags hier werden die Bewegungsdaten gesetzt und gepublished" alt="" coords="515,59,597,88"/>
 </map>

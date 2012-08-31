@@ -67,77 +67,92 @@ var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
 <div class="title">Global.h</div>  </div>
 </div>
 <div class="contents">
-<a href="_global_8h.html">gehe zur Dokumentation dieser Datei</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef GLOBAL_H</span>
-<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define GLOBAL_H</span>
-<a name="l00003"></a>00003 <span class="preprocessor"></span>
-<a name="l00004"></a>00004 <span class="preprocessor">#include &lt;boost/noncopyable.hpp&gt;</span>
-<a name="l00005"></a>00005 
-<a name="l00006"></a>00006 <span class="preprocessor">#include &quot;ros/ros.h&quot;</span>
-<a name="l00007"></a>00007 <span class="preprocessor">#include &quot;geometry_msgs/Twist.h&quot;</span>
-<a name="l00008"></a>00008 
-<a name="l00009"></a>00009 <span class="preprocessor">#include &quot;<a class="code" href="_delta_8h.html">Delta.h</a>&quot;</span>
+<a href="_global_8h.html">gehe zur Dokumentation dieser Datei</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00005"></a>00005 <span class="preprocessor">#ifndef GLOBAL_H</span>
+<a name="l00006"></a>00006 <span class="preprocessor"></span><span class="preprocessor">#define GLOBAL_H</span>
+<a name="l00007"></a>00007 <span class="preprocessor"></span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;<a class="code" href="std__includes_8h.html" title="included die Header, die standartmäßig benötigt werden">std_includes.h</a>&quot;</span>
+<a name="l00009"></a>00009 
 <a name="l00010"></a>00010 
-<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;time.h&gt;</span>
-<a name="l00012"></a>00012 
-<a name="l00013"></a>00013 <span class="comment">/* @brief Klasse, die in Form eines Singletons alle globalen Variablen enthält</span>
-<a name="l00014"></a>00014 <span class="comment"> *</span>
-<a name="l00015"></a>00015 <span class="comment"> */</span>
-<a name="l00016"></a><a class="code" href="class_cglobal.html">00016</a> <span class="keyword">class </span><a class="code" href="class_cglobal.html">Cglobal</a> : boost::noncopyable
-<a name="l00017"></a>00017 {
-<a name="l00018"></a>00018 <span class="keyword">private</span>:
-<a name="l00019"></a><a class="code" href="class_cglobal.html#afb7ab45601acda975c029de5db73b3ea">00019</a>       <span class="keyword">static</span> <a class="code" href="class_cglobal.html">Cglobal</a>* <a class="code" href="class_cglobal.html#afb7ab45601acda975c029de5db73b3ea">m_instance</a>;
-<a name="l00020"></a>00020 
-<a name="l00021"></a>00021       <a class="code" href="class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf">Cglobal</a>();
-<a name="l00022"></a><a class="code" href="class_cglobal.html#a16a55c21346fe1cd9b9511ee05fd485e">00022</a>       <a class="code" href="class_cglobal.html#a16a55c21346fe1cd9b9511ee05fd485e">~Cglobal</a>() {}
-<a name="l00023"></a>00023    <span class="keyword">public</span>:
-<a name="l00024"></a>00024       <span class="keyword">static</span> <a class="code" href="class_cglobal.html">Cglobal</a>&amp; <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">instance</a>();
-<a name="l00025"></a>00025       <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_cglobal.html#aa1d07161425d12bc42dd100140407e59">destroy</a>();
-<a name="l00026"></a>00026 
-<a name="l00027"></a>00027    <span class="keyword">public</span>:
-<a name="l00028"></a><a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7">00028</a>       geometry_msgs::Twist <a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Zur Ansteuerung der Drone.">twist</a>; 
-<a name="l00029"></a>00029 
-<a name="l00030"></a><a class="code" href="class_cglobal.html#af3a06302b3bd19de728064359241c1a1">00030</a>       ros::Publisher <a class="code" href="class_cglobal.html#af3a06302b3bd19de728064359241c1a1" title="publisher zum publishen des Twist Objekts">pub</a>;   
-<a name="l00031"></a>00031 
-<a name="l00032"></a><a class="code" href="class_cglobal.html#a0e2d4712edf675715bd4bcc554dbcf42">00032</a>       <span class="keywordtype">int</span> <a class="code" href="class_cglobal.html#a0e2d4712edf675715bd4bcc554dbcf42" title="Höhe.">altd</a>; 
-<a name="l00033"></a>00033 
-<a name="l00034"></a><a class="code" href="class_cglobal.html#ac0b3c90a19b5395a404bb9e5aee44e1c">00034</a>       <span class="keywordtype">bool</span> <a class="code" href="class_cglobal.html#ac0b3c90a19b5395a404bb9e5aee44e1c" title="will die Drone nach vorne fliegen?">vor</a>;  
-<a name="l00035"></a><a class="code" href="class_cglobal.html#a1b0b85d52fea92c819e421db042b704d">00035</a>       <span class="keywordtype">bool</span> <a class="code" href="class_cglobal.html#a1b0b85d52fea92c819e421db042b704d">zurueck</a>;
-<a name="l00036"></a><a class="code" href="class_cglobal.html#a10e812f9c1b4e7b7544b959d1b5f120b">00036</a>       <span class="keywordtype">bool</span> <a class="code" href="class_cglobal.html#a10e812f9c1b4e7b7544b959d1b5f120b">links</a>;
-<a name="l00037"></a><a class="code" href="class_cglobal.html#a718da04af5940be1ad811f61b85f57d6">00037</a>       <span class="keywordtype">bool</span> <a class="code" href="class_cglobal.html#a718da04af5940be1ad811f61b85f57d6">rechts</a>;
-<a name="l00038"></a><a class="code" href="class_cglobal.html#a57b8d93cd26f7c778c719ad21bc5528b">00038</a>       <span class="keywordtype">bool</span> <a class="code" href="class_cglobal.html#a57b8d93cd26f7c778c719ad21bc5528b">hoch</a>;
-<a name="l00039"></a><a class="code" href="class_cglobal.html#a3198b29c259c188b0938b4fb5731409b">00039</a>       <span class="keywordtype">bool</span> <a class="code" href="class_cglobal.html#a3198b29c259c188b0938b4fb5731409b">runter</a>;
+<a name="l00015"></a><a class="code" href="class_cglobal.html">00015</a> <span class="keyword">class </span><a class="code" href="class_cglobal.html" title="Klasse, die in Form eines Singletons alle globalen Variablen enthält.">Cglobal</a>
+<a name="l00016"></a>00016 {
+<a name="l00017"></a>00017 <span class="keyword">private</span>:
+<a name="l00018"></a><a class="code" href="class_cglobal.html#afb7ab45601acda975c029de5db73b3ea">00018</a>       <span class="keyword">static</span> <a class="code" href="class_cglobal.html" title="Klasse, die in Form eines Singletons alle globalen Variablen enthält.">Cglobal</a>* <a class="code" href="class_cglobal.html#afb7ab45601acda975c029de5db73b3ea">m_instance</a>;
+<a name="l00019"></a>00019 
+<a name="l00020"></a>00020       <a class="code" href="class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf">Cglobal</a>();
+<a name="l00021"></a><a class="code" href="class_cglobal.html#a16a55c21346fe1cd9b9511ee05fd485e">00021</a>       <a class="code" href="class_cglobal.html#a16a55c21346fe1cd9b9511ee05fd485e">~Cglobal</a>() {}
+<a name="l00022"></a><a class="code" href="class_cglobal.html#a5a91823b196c10cba84cc6526308e76f">00022</a>       <a class="code" href="class_cglobal.html#a5a91823b196c10cba84cc6526308e76f">Cglobal</a>(<span class="keyword">const</span> <a class="code" href="class_cglobal.html" title="Klasse, die in Form eines Singletons alle globalen Variablen enthält.">Cglobal</a>&amp;) {}                            <span class="comment">// nicht kopierbar</span>
+<a name="l00023"></a><a class="code" href="class_cglobal.html#acc7503a161a449d009877f1d14ba71c4">00023</a>       <a class="code" href="class_cglobal.html" title="Klasse, die in Form eines Singletons alle globalen Variablen enthält.">Cglobal</a>&amp; <a class="code" href="class_cglobal.html#acc7503a161a449d009877f1d14ba71c4">operator=</a>(<span class="keyword">const</span> <a class="code" href="class_cglobal.html" title="Klasse, die in Form eines Singletons alle globalen Variablen enthält.">Cglobal</a>&amp;) { <span class="keywordflow">return</span> *<span class="keyword">this</span>; }  <span class="comment">// nicht zuweisbar</span>
+<a name="l00024"></a>00024    <span class="keyword">public</span>:
+<a name="l00025"></a>00025       <span class="keyword">static</span> <a class="code" href="class_cglobal.html" title="Klasse, die in Form eines Singletons alle globalen Variablen enthält.">Cglobal</a>&amp; <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">instance</a>();
+<a name="l00026"></a>00026       <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_cglobal.html#aa1d07161425d12bc42dd100140407e59">destroy</a>();
+<a name="l00027"></a>00027 
+<a name="l00028"></a>00028    <span class="keyword">public</span>:
+<a name="l00029"></a><a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7">00029</a>       geometry_msgs::Twist <a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält.">twist</a>; 
+<a name="l00030"></a>00030 
+<a name="l00031"></a><a class="code" href="class_cglobal.html#ae99f21083838b00781e4461e3e7accb9">00031</a>       geometry_msgs::Twist <a class="code" href="class_cglobal.html#ae99f21083838b00781e4461e3e7accb9" title="enthält den Twist-Wert(ohne Regelung), der gesetzt wurde, als das Tag bzw. die Linie zuletzt gesehen ...">twist_old</a>;  
+<a name="l00032"></a>00032 
+<a name="l00033"></a><a class="code" href="class_cglobal.html#af3a06302b3bd19de728064359241c1a1">00033</a>       ros::Publisher <a class="code" href="class_cglobal.html#af3a06302b3bd19de728064359241c1a1" title="Publisher zum publishen des Twist Objekts.">pub</a>;   
+<a name="l00034"></a>00034 
+<a name="l00035"></a><a class="code" href="class_cglobal.html#a0e2d4712edf675715bd4bcc554dbcf42">00035</a>       <span class="keywordtype">int</span> <a class="code" href="class_cglobal.html#a0e2d4712edf675715bd4bcc554dbcf42" title="aktuelle Höhe">altd</a>; 
+<a name="l00036"></a>00036 
+<a name="l00037"></a><a class="code" href="class_cglobal.html#abb1e0f2a241a8d9131098cf823b45f64">00037</a>       time_t <a class="code" href="class_cglobal.html#abb1e0f2a241a8d9131098cf823b45f64" title="Zeit seit der das Tag das letzte mal gesehen wurde.">sinceNotSeen</a>; 
+<a name="l00038"></a>00038 
+<a name="l00039"></a><a class="code" href="class_cglobal.html#a9a9df79aad0bb5db8880a83d2fb407e2">00039</a>       <span class="keyword">struct </span>timeval <a class="code" href="class_cglobal.html#a9a9df79aad0bb5db8880a83d2fb407e2" title="Zeit seit der das letzte Mal neue Navigationsdaten gesendet wurden.">sinceNoNavdataUpdate</a>; 
 <a name="l00040"></a>00040 
-<a name="l00041"></a><a class="code" href="class_cglobal.html#a1d338ed39494adfbee95a883369e5f4a">00041</a>       time_t <a class="code" href="class_cglobal.html#a1d338ed39494adfbee95a883369e5f4a">lastSeen</a>;
-<a name="l00042"></a><a class="code" href="class_cglobal.html#abb1e0f2a241a8d9131098cf823b45f64">00042</a>       time_t <a class="code" href="class_cglobal.html#abb1e0f2a241a8d9131098cf823b45f64">sinceNotSeen</a>;
-<a name="l00043"></a>00043 
-<a name="l00044"></a><a class="code" href="class_cglobal.html#a3ab9e8044e12c2927366e5402b5e3c09">00044</a>       <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#a3ab9e8044e12c2927366e5402b5e3c09">lastDir</a>;
-<a name="l00045"></a>00045 
-<a name="l00046"></a><a class="code" href="class_cglobal.html#afe6f01a7ff64a3de6d0c8612f36511fd">00046</a>       <span class="keywordtype">bool</span> <a class="code" href="class_cglobal.html#afe6f01a7ff64a3de6d0c8612f36511fd">seen</a>;
-<a name="l00047"></a>00047 
-<a name="l00048"></a><a class="code" href="class_cglobal.html#ae826fb1d5b65ba58163f25517431e505">00048</a>       <a class="code" href="class_delta.html">Delta</a> <a class="code" href="class_cglobal.html#ae826fb1d5b65ba58163f25517431e505">lxDelta</a>;
-<a name="l00049"></a><a class="code" href="class_cglobal.html#a42b74fa677f900102efb348d7189ca3c">00049</a>       <a class="code" href="class_delta.html">Delta</a> <a class="code" href="class_cglobal.html#a42b74fa677f900102efb348d7189ca3c">lyDelta</a>;
-<a name="l00050"></a><a class="code" href="class_cglobal.html#aaff1f24cae62247123759d5142d5f69a">00050</a>       <a class="code" href="class_delta.html">Delta</a> <a class="code" href="class_cglobal.html#aaff1f24cae62247123759d5142d5f69a">lzDelta</a>;
-<a name="l00051"></a><a class="code" href="class_cglobal.html#a4a7fa181ec17c448e6f7ef4d7213789b">00051</a>       <a class="code" href="class_delta.html">Delta</a> <a class="code" href="class_cglobal.html#a4a7fa181ec17c448e6f7ef4d7213789b">azDelta</a>;
+<a name="l00041"></a><a class="code" href="class_cglobal.html#afe6f01a7ff64a3de6d0c8612f36511fd">00041</a>       <span class="keywordtype">bool</span> <a class="code" href="class_cglobal.html#afe6f01a7ff64a3de6d0c8612f36511fd" title="enthält ob das Tag bzw. die Linie beim letzten Aufruf des Handlers gesehen wurde">seen</a>; 
+<a name="l00042"></a>00042 
+<a name="l00043"></a><a class="code" href="class_cglobal.html#a2b9c1321be7adaacc3bed175e49fb02b">00043</a>       <span class="keywordtype">bool</span> <a class="code" href="class_cglobal.html#a2b9c1321be7adaacc3bed175e49fb02b" title="in follow_line wird, bevor der Linie gefolgt wird, nach oben geflogen, bis 0,9m erreicht wurden...">begin</a>; 
+<a name="l00044"></a>00044 
+<a name="l00045"></a><a class="code" href="class_cglobal.html#abafbed62176301706747c04ef3046aae">00045</a>       <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#abafbed62176301706747c04ef3046aae" title="aktuelle Geschwindigkeit in x-Richtung">vx</a>; 
+<a name="l00046"></a><a class="code" href="class_cglobal.html#a0967372a0ede7b8b9a24957df663b7b3">00046</a>       <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#a0967372a0ede7b8b9a24957df663b7b3" title="aktuelle Geschwindigkeit in y-Richtung">vy</a>; 
+<a name="l00047"></a><a class="code" href="class_cglobal.html#af9ef9759f83ae67b7e220570a7738ef5">00047</a>       <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#af9ef9759f83ae67b7e220570a7738ef5" title="aktuelle Geschwindigkeit in z-Richtung">vz</a>; 
+<a name="l00048"></a><a class="code" href="class_cglobal.html#a5c1fac565d3813e798bd6aeb1c6fc8aa">00048</a>       <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#a5c1fac565d3813e798bd6aeb1c6fc8aa" title="aktuelle aktuelle Rotation um die y-Achse">roty</a>; 
+<a name="l00049"></a><a class="code" href="class_cglobal.html#ad295728f5113d9a47527cf14262dea0e">00049</a>       <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#ad295728f5113d9a47527cf14262dea0e" title="aktuelle aktuelle Rotation um die x-Achse">rotx</a>; 
+<a name="l00050"></a>00050 
+<a name="l00051"></a><a class="code" href="class_cglobal.html#a478c0d94a8f8a7675d3e88e85742c81a">00051</a>       <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#a478c0d94a8f8a7675d3e88e85742c81a" title="enthält wie stark auf Tastendrücke in Keyboard::control() eragiert werden soll">ges</a>; 
 <a name="l00052"></a>00052 
-<a name="l00053"></a><a class="code" href="class_cglobal.html#abafbed62176301706747c04ef3046aae">00053</a>       <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#abafbed62176301706747c04ef3046aae">vx</a>;
-<a name="l00054"></a><a class="code" href="class_cglobal.html#a0967372a0ede7b8b9a24957df663b7b3">00054</a>       <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#a0967372a0ede7b8b9a24957df663b7b3">vy</a>;
-<a name="l00055"></a><a class="code" href="class_cglobal.html#af9ef9759f83ae67b7e220570a7738ef5">00055</a>       <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#af9ef9759f83ae67b7e220570a7738ef5">vz</a>;
-<a name="l00056"></a><a class="code" href="class_cglobal.html#a5c1fac565d3813e798bd6aeb1c6fc8aa">00056</a>       <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#a5c1fac565d3813e798bd6aeb1c6fc8aa">roty</a>;
-<a name="l00057"></a><a class="code" href="class_cglobal.html#ad295728f5113d9a47527cf14262dea0e">00057</a>       <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#ad295728f5113d9a47527cf14262dea0e">rotx</a>;
-<a name="l00058"></a>00058 
-<a name="l00059"></a><a class="code" href="class_cglobal.html#a478c0d94a8f8a7675d3e88e85742c81a">00059</a>       <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#a478c0d94a8f8a7675d3e88e85742c81a">ges</a>;
+<a name="l00053"></a><a class="code" href="class_cglobal.html#a24fbb5c4b0ddab650375d08ba677b3f1">00053</a>       <span class="keywordtype">bool</span> <a class="code" href="class_cglobal.html#a24fbb5c4b0ddab650375d08ba677b3f1" title="Gibt an ob in Keyboard::control() ctrl+c gedrückt wurde, falls true wird das Programm beendet...">end</a>; 
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055       <span class="comment">//Bildgrößen</span>
+<a name="l00056"></a><a class="code" href="class_cglobal.html#a931ff0dc06e16b267d22dd21570d686b">00056</a>       <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_cglobal.html#a931ff0dc06e16b267d22dd21570d686b" title="Bildbreite der unteren Kamera.">widthB</a> = 160;  
+<a name="l00057"></a><a class="code" href="class_cglobal.html#ade7cccb8bca50ca0e4740a4cecfb7498">00057</a>       <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_cglobal.html#ade7cccb8bca50ca0e4740a4cecfb7498" title="Bildhöhe der unteren Kamera.">heightB</a> = 120; 
+<a name="l00058"></a><a class="code" href="class_cglobal.html#a95cebf066839488c61b4bc2f7fbf61c1">00058</a>       <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_cglobal.html#a95cebf066839488c61b4bc2f7fbf61c1" title="Bildbreite der Front-Kamera.">widthF</a> = 320; 
+<a name="l00059"></a><a class="code" href="class_cglobal.html#a601f81a0ed28e4e0ca387134ba76738e">00059</a>       <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_cglobal.html#a601f81a0ed28e4e0ca387134ba76738e" title="Bildhöhe der Front-Kamera.">heightF</a> = 240; 
 <a name="l00060"></a>00060 
-<a name="l00061"></a><a class="code" href="class_cglobal.html#a24fbb5c4b0ddab650375d08ba677b3f1">00061</a>       <span class="keywordtype">bool</span> <a class="code" href="class_cglobal.html#a24fbb5c4b0ddab650375d08ba677b3f1">end</a>;
-<a name="l00062"></a>00062 
-<a name="l00063"></a><a class="code" href="class_cglobal.html#a3adbbe83dbdab17a3506572de5444d14">00063</a>       <span class="keywordtype">int</span> <a class="code" href="class_cglobal.html#a3adbbe83dbdab17a3506572de5444d14">widthB</a>;
-<a name="l00064"></a><a class="code" href="class_cglobal.html#ae1a1fde7d947c2c7d32bc7f76599b054">00064</a>       <span class="keywordtype">int</span> <a class="code" href="class_cglobal.html#ae1a1fde7d947c2c7d32bc7f76599b054">heightB</a>;
-<a name="l00065"></a><a class="code" href="class_cglobal.html#add77c33bb751ff75fc5e6bc0409d4540">00065</a>       <span class="keywordtype">int</span> <a class="code" href="class_cglobal.html#add77c33bb751ff75fc5e6bc0409d4540">widthF</a>;
-<a name="l00066"></a><a class="code" href="class_cglobal.html#ac4dace71dbed15b75354e5ff327af75f">00066</a>       <span class="keywordtype">int</span> <a class="code" href="class_cglobal.html#ac4dace71dbed15b75354e5ff327af75f">heightF</a>;
-<a name="l00067"></a>00067 };
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062       <span class="comment">//Regelungsparameter</span>
+<a name="l00063"></a><a class="code" href="class_cglobal.html#ab0b5362dfd6addba8455bd753aa18e37">00063</a>       <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#ab0b5362dfd6addba8455bd753aa18e37" title="Umrechnungsfaktor von mm/s in twist.linear.x (bei bottom_follow_tag): 0.0002, weil Drone in x Richtun...">b_mmPs2twistx</a> = 0.0002f; 
+<a name="l00064"></a><a class="code" href="class_cglobal.html#aa70b2a6e29e8c452aab53cefaf77a01e">00064</a>      <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#aa70b2a6e29e8c452aab53cefaf77a01e" title="Umrechnungsfaktor von mm/s in twist.linear.y (bei bottom_follow_tag)">b_mmPs2twisty</a> = 0.0002f; 
+<a name="l00065"></a>00065 
+<a name="l00066"></a><a class="code" href="class_cglobal.html#a4f723543ed33fd4a3130199a6a49f8de">00066</a>       <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#a4f723543ed33fd4a3130199a6a49f8de" title="Umrechnungsfaktor von mm/s in twist.linear.x (bei front_follow_tag)">f_mmPs2twistx</a> = 0.0002f; 
+<a name="l00067"></a><a class="code" href="class_cglobal.html#abeca26e674667f54df37cec645067854">00067</a>      <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#abeca26e674667f54df37cec645067854" title="Umrechnungsfaktor von mm/s in twist.linear.y (bei front_follow_tag)">f_mmPs2twisty</a> = 0.0002f; 
 <a name="l00068"></a>00068 
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071 <span class="preprocessor">#endif //GLOBAL_H</span>
+<a name="l00069"></a><a class="code" href="class_cglobal.html#a7440e55e4a63e1c926c582a36a4d6bd7">00069</a>       <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#a7440e55e4a63e1c926c582a36a4d6bd7" title="Umrechnungsfaktor von mm/s in twist.linear.x (bei follow_line): geringer als bei den anderen beiden A...">l_mmPs2twistx</a> = 0.00015f; 
+<a name="l00070"></a><a class="code" href="class_cglobal.html#af8f19427d5da8e6c88098b61e8676786">00070</a>      <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#af8f19427d5da8e6c88098b61e8676786" title="Umrechnungsfaktor von mm/s in twist.linear.y (bei follow_line): höher als bei den anderen beiden Appl...">l_mmPs2twisty</a> = 0.00025f; 
+<a name="l00071"></a>00071 
+<a name="l00072"></a><a class="code" href="class_cglobal.html#ac4453024370993d15408d4a3235e95e8">00072</a>      <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#ac4453024370993d15408d4a3235e95e8" title="Faktor für den Proportionalanteil in x-Richtung (bei bottom_follow_tag)">b_Kpx</a> = 2.5f; 
+<a name="l00073"></a><a class="code" href="class_cglobal.html#aecfc05f716f9c1445fd10ad436972a9d">00073</a>      <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#aecfc05f716f9c1445fd10ad436972a9d" title="Faktor für den Proportionalanteil in y-Richtung (bei bottom_follow_tag)">b_Kpy</a> = 1.5f; 
+<a name="l00074"></a>00074 
+<a name="l00075"></a><a class="code" href="class_cglobal.html#ae94b927d5fee8ac20eb04add78006959">00075</a>      <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#ae94b927d5fee8ac20eb04add78006959" title="Faktor für den Proportionalanteil in x-Richtung (bei front_follow_tag)">f_Kpx</a> = 1.5f; 
+<a name="l00076"></a><a class="code" href="class_cglobal.html#a06a9f451633a82b68760360037b53f64">00076</a>      <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#a06a9f451633a82b68760360037b53f64" title="Faktor für den Proportionalanteil in y-Richtung (bei front_follow_tag)">f_Kpy</a> = 2.5f; 
+<a name="l00077"></a>00077 
+<a name="l00078"></a><a class="code" href="class_cglobal.html#a6c5a5a9fb3c2da5264622c738b326245">00078</a>      <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#a6c5a5a9fb3c2da5264622c738b326245" title="Faktor für den Proportionalanteil in x-Richtung (bei follow_line)">l_Kpx</a> = 1.2f; 
+<a name="l00079"></a><a class="code" href="class_cglobal.html#a458383235afe73b333a22a5edcc3eed6">00079</a>      <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#a458383235afe73b333a22a5edcc3eed6" title="Faktor für den Proportionalanteil in y-Richtung (bei follow_line)">l_Kpy</a> = 1.0f; 
+<a name="l00080"></a>00080 
+<a name="l00081"></a><a class="code" href="class_cglobal.html#a7a599bd2c2f4400e3b7f8f98e1f293fe">00081</a>      <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#a7a599bd2c2f4400e3b7f8f98e1f293fe" title="1/18 = 0.0555... , wegen 18 Aufrufen pro Sekunde(ar_recog published 18 mal pro Sekunde)">Ta</a> = 0.05555555f; 
+<a name="l00082"></a>00082 
+<a name="l00083"></a><a class="code" href="class_cglobal.html#a78bc2eecbfcfe436e141e9e06b7d6f10">00083</a>      <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#a78bc2eecbfcfe436e141e9e06b7d6f10" title="Faktor für den Differentialanteil in x-Richtung (bei bottom_follow_tag)">b_Kdx</a> = 0.05f; 
+<a name="l00084"></a><a class="code" href="class_cglobal.html#a96f46cc71bfa56cf87b9a0e974b8271c">00084</a>      <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#a96f46cc71bfa56cf87b9a0e974b8271c" title="Faktor für den Differentialanteil in y-Richtung (bei bottom_follow_tag)">b_Kdy</a> = 0.05f; 
+<a name="l00085"></a>00085 
+<a name="l00086"></a><a class="code" href="class_cglobal.html#a898e02a3650a5e6445aca8411ed79194">00086</a>      <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#a898e02a3650a5e6445aca8411ed79194" title="Faktor für den Differentialanteil in x-Richtung (bei front_follow_tag)">f_Kdx</a> = 0.05f; 
+<a name="l00087"></a><a class="code" href="class_cglobal.html#a8ff8f3e1711db988e5a936af1d5f2d42">00087</a>      <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#a8ff8f3e1711db988e5a936af1d5f2d42" title="Faktor für den Differentialanteil in y-Richtung (bei front_follow_tag)">f_Kdy</a> = 0.05f; 
+<a name="l00088"></a>00088 
+<a name="l00089"></a><a class="code" href="class_cglobal.html#ae7af3539af53f18897359057206803d3">00089</a>       <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#ae7af3539af53f18897359057206803d3" title="Fehler beim letzten Aufruf in x-Richtung.">exold</a>; 
+<a name="l00090"></a><a class="code" href="class_cglobal.html#a5ea9466dbc474b2f9b469395ae8d688c">00090</a>       <span class="keywordtype">float</span> <a class="code" href="class_cglobal.html#a5ea9466dbc474b2f9b469395ae8d688c" title="Fehler beim letzten Aufruf in y-Richtung.">eyold</a>; 
+<a name="l00091"></a>00091 };
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093 <span class="preprocessor">#endif //GLOBAL_H</span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
@@ -154,7 +169,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Erzeugt am Wed Jul 4 2012 15:25:31 für ardrone_swp von&#160;
+<hr class="footer"/><address class="footer"><small>Erzeugt am Fri Aug 31 2012 15:45:20 für ardrone_swp von&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

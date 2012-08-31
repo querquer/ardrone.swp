@@ -1,5 +1,5 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$namespace_math.html#ab4c584467f0cc5d8af22a69482630866" title="Berechnung aus den Eckpunkten wo sich das Tag bezüglich des Bildes befindet." alt="" coords="204,5,340,35"/>
-<area shape="rect" id="node5" href="$bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="subscriber handler für die Nachricht tags" alt="" coords="389,5,472,35"/>
+<area shape="rect" id="node3" href="$namespace_math.html#ab4c584467f0cc5d8af22a69482630866" title="Berechnung für die Bodenkamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet..." alt="" coords="204,5,340,35"/>
+<area shape="rect" id="node5" href="$bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handler für die Nachricht tags hier werden die Bewegungsdaten gesetzt und gepublished" alt="" coords="389,5,472,35"/>
 <area shape="rect" id="node7" href="$bottom__follow__tag_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="520,5,571,35"/>
 </map>

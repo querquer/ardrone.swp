@@ -1,14 +1,17 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="173,188,296,218"/>
-<area shape="rect" id="node5" href="$namespace_math.html#ab4c584467f0cc5d8af22a69482630866" title="Berechnung aus den Eckpunkten wo sich das Tag bezüglich des Bildes befindet." alt="" coords="543,86,679,115"/>
-<area shape="rect" id="node7" href="$bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="subscriber handler für die Nachricht tags" alt="" coords="760,138,843,167"/>
-<area shape="rect" id="node9" href="$bottom__follow__tag_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="923,138,973,167"/>
-<area shape="rect" id="node11" href="$namespace_math.html#a43f025fac1ade5dbf88f7c393ca85644" title="Math::centerFront" alt="" coords="548,267,673,296"/>
-<area shape="rect" id="node15" href="$namespace_keyboard.html#abfb3168172d115a6516147c6d42f58db" title="zum Steuern der Drone mit der Tastatur" alt="" coords="549,190,672,219"/>
-<area shape="rect" id="node18" href="$follow__line_8cpp.html#a35a859d19785b808898bf535d4997d2f" title="handleLine" alt="" coords="377,344,460,374"/>
-<area shape="rect" id="node24" href="$namespace_math.html#ad3b65f0aedda56076f681f2b987d0e5c" title="subscriber handler für die Nachricht /ardrone/navdata" alt="" coords="728,34,875,63"/>
-<area shape="rect" id="node27" href="$namespace_math.html#a25b9284eb485b732c952786b63343aaa" title="Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben ..." alt="" coords="344,86,493,115"/>
-<area shape="rect" id="node30" href="$namespace_math.html#a3fbe7036db847d74ed5f2c21635d02d9" title="Math::pixelDiffFront" alt="" coords="351,291,487,320"/>
-<area shape="rect" id="node13" href="$front__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handleTag" alt="" coords="760,267,843,296"/>
-<area shape="rect" id="node20" href="$follow__line_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="585,344,636,374"/>
+<area shape="rect" id="node3" href="$class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="173,308,296,338"/>
+<area shape="rect" id="node5" href="$namespace_math.html#a688eccf4d1e0776ee10e6293254e2e13" title="PD&#45;Regelung für bottom_follow_tag." alt="" coords="541,436,704,466"/>
+<area shape="rect" id="node7" href="$bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handler für die Nachricht tags hier werden die Bewegungsdaten gesetzt und gepublished" alt="" coords="784,462,867,491"/>
+<area shape="rect" id="node9" href="$bottom__follow__tag_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="947,76,997,106"/>
+<area shape="rect" id="node11" href="$namespace_math.html#ab4c584467f0cc5d8af22a69482630866" title="Berechnung für die Bodenkamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet..." alt="" coords="555,540,691,570"/>
+<area shape="rect" id="node14" href="$namespace_math.html#a43f025fac1ade5dbf88f7c393ca85644" title="Berechnung für die Front kamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet..." alt="" coords="560,180,685,210"/>
+<area shape="rect" id="node18" href="$namespace_keyboard.html#abfb3168172d115a6516147c6d42f58db" title="zum Steuern der Drone mit der Tastatur" alt="" coords="357,282,480,311"/>
+<area shape="rect" id="node20" href="$namespace_math.html#a7be3473d626056767311b94db1860cb0" title="PD&#45;Regelung für front_follow_tag." alt="" coords="549,127,696,156"/>
+<area shape="rect" id="node23" href="$follow__line_8cpp.html#a35a859d19785b808898bf535d4997d2f" title="handler für die Nachricht LinePos hier werden die Bewegungsdaten gesetzt und gepublished" alt="" coords="581,359,664,388"/>
+<area shape="rect" id="node28" href="$namespace_math.html#aa47b7ddd3093cb42132bd80ccb309dea" title="P&#45;Regelung für follow_tag." alt="" coords="348,335,489,364"/>
+<area shape="rect" id="node32" href="$namespace_math.html#ad3b65f0aedda56076f681f2b987d0e5c" title="subscriber handler für die Nachricht /ardrone/navdata" alt="" coords="752,76,899,106"/>
+<area shape="rect" id="node35" href="$namespace_math.html#a25b9284eb485b732c952786b63343aaa" title="Berechnung der Anzahl der Pixel für die Bodenkamera, um die das Tag aufgrund der Rotation verschoben ..." alt="" coords="344,591,493,620"/>
+<area shape="rect" id="node38" href="$namespace_math.html#a3fbe7036db847d74ed5f2c21635d02d9" title="Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben ..." alt="" coords="351,228,487,258"/>
+<area shape="rect" id="node16" href="$front__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handler für die Nachricht tags hier werden die Bewegungsdaten gesetzt und gepublished" alt="" coords="784,155,867,184"/>
+<area shape="rect" id="node25" href="$follow__line_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="800,359,851,388"/>
 </map>

@@ -1,26 +1,28 @@
+/**
+ * @file bottom_follow_tag.cpp
+ * @brief Applikation zur Tagvervolgung mit der unteren Kamera
+ *
+ * TODO : Ausführliche Beschreibung
+ */
+
 #include "std_includes.h"
 
 using namespace std;
 
-/**
- * @file bottom_follow_tag.cpp
- * @brief Applikation zur Tagvervolgung mit der unteren Kamera
- */
 
-/** @brief subscriber handler für die Nachricht tags
+/** @brief handler für die Nachricht tags
+ * hier werden die Bewegungsdaten gesetzt und gepublished
+ *
+ * TODO : Ausführliche Beschreibung
  */
 void handleTag(const ar_recog::Tags::ConstPtr& msg)
 {
-	ostringstream ostr;
 	if (msg->tag_count == 0) //Falls kein Tag erkannt wurde
 	{
-		Cglobal::instance().exsum = 0;
-		Cglobal::instance().eysum = 0;
-
 		if (Cglobal::instance().seen) //Falls beim letzen Aufruf ein Tag gesehen wurde, speichere die Zeit
 			Cglobal::instance().sinceNotSeen = time(NULL);
-		//if(time(NULL) - Cglobal::instance().sinceNotSeen < 1)  //Falls ein Tag in der letzen Sekunde gesehen wurde, versuche in die letzte gesehene Richtung zu fliegen
-		if (time(NULL) - Cglobal::instance().sinceNotSeen < 3) //n.n.t
+		//Falls ein Tag in den letzen 3 Sekunde gesehen wurde, versuche in die letzte gesehene Richtung zu fliegen
+		if (time(NULL) - Cglobal::instance().sinceNotSeen < 3)
 		{
 			Cglobal::instance().twist = Cglobal::instance().twist_old;
 		}
@@ -39,24 +41,14 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
 		ar_recog::Tag biggest = msg->tags[0];
 
 		for (unsigned int i = 0; i < msg->tag_count; ++i) //Suche das größte Tag
-		{
 			if (msg->tags[i].diameter > biggest.diameter)
 				biggest = msg->tags[i];
-		}
 
 		float cx = 0;
 		float cy = 0;
-		/*
-		 * Bestimme die Mittelpunkte
-		 */
-		Math::centerBottom(biggest, cx, cy);
+		Math::centerBottom(biggest, cx, cy); //Bestimme die Mittelpunkte
 
-		ostr << "cy      :" << cy << endl;
-		ostr << "cx     :" << cx << endl;
-
-		/*
-		 etwa bei einer Höhe von 1,3 m schweben
-		 */
+		// etwa bei einer Höhe von 1,3 m schweben
 		if (biggest.distance > 1350.0f)
 		{
 			Cglobal::instance().twist.linear.z = -0.1;
@@ -66,20 +58,17 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
 		else
 			Cglobal::instance().twist.linear.z = 0;
 
-		/*
-		 * Geschwindigkeit in x un y Richtung steigt linear mit der Entfernung zum Mittelpunkt
+		/* Geschwindigkeit in x und y Richtung steigt linear mit der Entfernung zum Mittelpunkt
 		 * 0.08 ist das Maximum
+		 * (cx - 0.5), weil 0.5 die Mitte ist
+		 * durch 4 wird geteilt, um die Bewegung langsamer zu machen(dieser Wert wurde ausprobiert, mit 4 wurden die besten Ergebnisse erziehlt)
 		 */
 		Cglobal::instance().twist.linear.y = max(-0.08, min(0.08, -(cx - 0.5) / 4));
 		Cglobal::instance().twist.linear.x = max(-0.08, min(0.08, -(cy - 0.5) / 4));
 
-		/*float rotZ = biggest.zRot;    //versuche längs zum Tag zu sein, dabei entweder vorne oder hinten(was näher dran ist)
-		 if(rotZ > 1.5)
-		 rotZ = rotZ - 3;
-		 if(rotZ < -1.5)
-		 rotZ = rotZ + 3;*/
-
-		//twist.angular.z = azDelta.get_velocity(-biggest.zRot * ( 0.66667 ));  // Drehe dich in Abhängigkeit von der z Rotation des Tags
+		/* Drehe dich in Abhängigkeit von der z Rotation des Tags
+		 * ab 45°(zRot = 1.5): maximale Drehgeschwindigkeit
+		 */
 		Cglobal::instance().twist.angular.z = -(max(-1.5, min(1.5, biggest.zRot)) * (0.666667));
 	}
 
@@ -88,87 +77,30 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
 	if (timenow.tv_sec - Cglobal::instance().sinceNoNavdataUpdate.tv_sec > 1
 			|| (timenow.tv_sec - Cglobal::instance().sinceNoNavdataUpdate.tv_sec == 0 && timenow.tv_usec - Cglobal::instance().sinceNoNavdataUpdate.tv_usec > 500000))
 	{
-		ostr << "keine neuen navdata" << endl;
+		//Falls eine halbe Sekunde oder länger keine neuen Navigationsdaten gesendet wurden, versuche ruhig zu stehen
 		Cglobal::instance().twist.linear.x = 0;
 		Cglobal::instance().twist.linear.z = 0;
 		Cglobal::instance().twist.linear.y = 0;
 		Cglobal::instance().twist.angular.z = 0;
+		//Speichere die Bewegungsdaten, falls beim nächsten Mal kein Tag erkannt wird
+		Cglobal::instance().twist_old = Cglobal::instance().twist;
+		Cglobal::instance().pub.publish(Cglobal::instance().twist);  //Bewegungsdaten publishen
+		return;
 	}
 
 	//Fliege nicht höher als 1,7m und nicht niedriger als 0,3m
-	if ((Cglobal::instance().altd > 1700
-			&& Cglobal::instance().twist.linear.z > 0)
-			|| (Cglobal::instance().altd < 300
-					&& Cglobal::instance().twist.linear.z < 0))
+	if ((Cglobal::instance().altd > 1700 && Cglobal::instance().twist.linear.z > 0)
+			|| (Cglobal::instance().altd < 300 && Cglobal::instance().twist.linear.z < 0))
 		Cglobal::instance().twist.linear.z = 0;
 
+	//Speichere die Bewegungsdaten, falls beim nächsten Mal kein Tag erkannt wird
 	Cglobal::instance().twist_old = Cglobal::instance().twist;
 
-	ostr << "vx   " << Cglobal::instance().vx << endl;
-	ostr << "vy   " << Cglobal::instance().vy << endl;
-	ostr << "t.l.x   " << Cglobal::instance().twist.linear.x << endl;
-	ostr << "t.l.y   " << Cglobal::instance().twist.linear.y << endl;
+	Math::bottom_regulation(); //Regelung
 
+	//Keyboard::control(); Falls es möglich sein soll mit der Tastatur zu steuern, Kommentar wegnehmen
 
-	/*
-	 * hier PID-Regler:
-	 * -Sollwert: twist.linear
-	 * -Istwert: vx,vy,vz
-	 *
-	 * twist wert = 1 -> vx soll 5000 sein
-	 *
-	 */
-	Math::bottom_regulation();
-/*
-// P-Anteil:
-	float mmPs2twistx = 0.0002f; //weil Drone in  x Richtung max 5m/s fliegt
-	float mmPs2twisty = 0.0002f;
-
-	float ex = Cglobal::instance().twist.linear.x - mmPs2twistx * Cglobal::instance().vx; //Fehler in x Richtung
-
-	float Kpx = 2.5f;
-
-	Cglobal::instance().twist.linear.x += Kpx * ex;
-
-	float ey = Cglobal::instance().twist.linear.y - mmPs2twisty * Cglobal::instance().vy; //Fehler in y Richtung
-
-	float Kpy = 1.5f;
-
-	Cglobal::instance().twist.linear.y += Kpy * ey;
-
-	ostr << "P: x:  " << Kpx * ex << endl;
-	ostr << "P: y:  " << Kpy * ey << endl;
-
-	float Ta = 0.05555555;
-// D-Anteil:
-	float Kdx = 0.05f; //Diese werte müssen noch angepasst werden und kommen dann noch in Cglobal als static Variable rein
-	float Kdy = 0.05f;
-	Cglobal::instance().twist.linear.x += Kdx * (ex - Cglobal::instance().exold) / Ta;
-	Cglobal::instance().twist.linear.y += Kdy * (ey - Cglobal::instance().eyold) / Ta;
-
-	ostr << "D: x:  " << Kdx * (ex - Cglobal::instance().exold) / Ta << endl;
-	ostr << "D: y:  " << Kdy * (ey - Cglobal::instance().eyold) / Ta << endl;
-
-	Cglobal::instance().exold = ex;
-	Cglobal::instance().eyold = ey;
-
-*/
-
-	Cglobal::instance().pub.publish(Cglobal::instance().twist);
-
-	ostr << "\nrotx:   " << Cglobal::instance().rotx << endl;
-	ostr << "\nroty:   " << Cglobal::instance().roty << endl;
-	ostr << "\n\nlinear.x: " << Cglobal::instance().twist.linear.x << endl;
-	ostr << "linear.y: " << Cglobal::instance().twist.linear.y << endl;
-	ostr << "linear.z " << Cglobal::instance().twist.linear.z << endl;
-	ostr << "angular.z " << Cglobal::instance().twist.angular.z << endl;
-	ostr << "altd: " << Cglobal::instance().altd << endl;
-	if (msg->tag_count > 0)
-		ostr << "Distance: " << msg->tags[0].distance << endl;
-	ostr << endl << "-----------------------------------------------------------------" << endl;
-
-	ROS_INFO(ostr.str().c_str());
-	Cglobal::instance().of << ostr.str();
+	Cglobal::instance().pub.publish(Cglobal::instance().twist);  //Bewegungsdaten publishen
 }
 
 int main(int argc, char** argv)
@@ -179,8 +111,7 @@ int main(int argc, char** argv)
 	Cglobal::instance().pub = node_handle.advertise < geometry_msgs::Twist > ("cmd_vel", 1000);
 	ros::Subscriber sub = node_handle.subscribe("tags", 1000, handleTag);
 
-	ros::Subscriber navdata = node_handle.subscribe("/ardrone/navdata", 1000,
-			Math::navdataUpdate);
+	ros::Subscriber navdata = node_handle.subscribe("/ardrone/navdata", 1000, Math::navdataUpdate);
 
 	while (!Cglobal::instance().end && ros::ok())
 	{

@@ -4,6 +4,11 @@
 }
 
 
+Klasse, zur Berechnung der Geschwindigkeit (wird nicht mehr verwendet)  
+
+
+
+
 {\ttfamily \#include $<$Delta.h$>$}
 
 \subsection*{Öffentliche Methoden}
@@ -17,12 +22,17 @@ float \hyperlink{class_delta_a16d1cf25743928796d7cf1e5c7882c17}{get\_\-velocity}
 \begin{DoxyCompactItemize}
 \item 
 float \hyperlink{class_delta_a1724264763801016d7d1c0d5f4817a96}{old\_\-value}
-\item 
+\begin{DoxyCompactList}\small\item\em enthält den letzen übergebenen Wert \end{DoxyCompactList}\item 
 time\_\-t \hyperlink{class_delta_aec1a12c9785ec159f541663926eda55d}{old\_\-time}
-\item 
+\begin{DoxyCompactList}\small\item\em enthält die Zeit, seitdem letzten Aufruf von float \hyperlink{class_delta_a16d1cf25743928796d7cf1e5c7882c17}{Delta::get\_\-velocity(float new\_\-value)} \end{DoxyCompactList}\item 
 float \hyperlink{class_delta_a479029e6db0f2738547961f0d72bec78}{old\_\-vel}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em enthält den letzten zurückgegebenen Wert \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Ausführliche Beschreibung}
+Klasse, zur Berechnung der Geschwindigkeit (wird nicht mehr verwendet) 
+
+Übergeben wird der Weg(bzw. Distanzwert), Berechnung erfolgt nach Weg/Zeit 
 
 \subsection{Beschreibung der Konstruktoren und Destruktoren}
 \hypertarget{class_delta_a20c7bcc600ccfdf7a678872fa4d1a7a7}{
@@ -48,33 +58,34 @@ float \hyperlink{class_delta_a479029e6db0f2738547961f0d72bec78}{old\_\-vel}
 \label{class_delta_a16d1cf25743928796d7cf1e5c7882c17}
 
 
-Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=352pt]{class_delta_a16d1cf25743928796d7cf1e5c7882c17_icgraph}
-\end{center}
-\end{figure}
-
-
-
-
 \subsection{Dokumentation der Datenelemente}
 \hypertarget{class_delta_aec1a12c9785ec159f541663926eda55d}{
 \index{Delta@{Delta}!old\_\-time@{old\_\-time}}
 \index{old\_\-time@{old\_\-time}!Delta@{Delta}}
 \subsubsection[{old\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}time\_\-t {\bf Delta::old\_\-time}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
 \label{class_delta_aec1a12c9785ec159f541663926eda55d}
+
+
+enthält die Zeit, seitdem letzten Aufruf von float \hyperlink{class_delta_a16d1cf25743928796d7cf1e5c7882c17}{Delta::get\_\-velocity(float new\_\-value)} 
+
 \hypertarget{class_delta_a1724264763801016d7d1c0d5f4817a96}{
 \index{Delta@{Delta}!old\_\-value@{old\_\-value}}
 \index{old\_\-value@{old\_\-value}!Delta@{Delta}}
 \subsubsection[{old\_\-value}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Delta::old\_\-value}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
 \label{class_delta_a1724264763801016d7d1c0d5f4817a96}
+
+
+enthält den letzen übergebenen Wert 
+
 \hypertarget{class_delta_a479029e6db0f2738547961f0d72bec78}{
 \index{Delta@{Delta}!old\_\-vel@{old\_\-vel}}
 \index{old\_\-vel@{old\_\-vel}!Delta@{Delta}}
 \subsubsection[{old\_\-vel}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Delta::old\_\-vel}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
 \label{class_delta_a479029e6db0f2738547961f0d72bec78}
+
+
+enthält den letzten zurückgegebenen Wert 
+
 
 
 Die Dokumentation für diese Klasse wurde erzeugt aufgrund der Dateien:\begin{DoxyCompactItemize}

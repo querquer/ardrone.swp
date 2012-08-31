@@ -15,16 +15,9 @@ Cglobal::Cglobal()
 , rotx(0.0f)
 , roty(0.0f)
 , sinceNotSeen(time(NULL))
-, lastDir(-1)
-, exsum(0.0f)
-, eysum(0.0f)
-, ezsum(0.0f)
 , exold(0.0f)
 , eyold(0.0f)
-, ezold(0.0f)
-, dxold(0.0f)
-, dyold(0.0f)
-, of("/home/ulrich/ros_workspace/ardrone_swp/Log.txt")
+, begin(true)
 {
 	gettimeofday(&sinceNoNavdataUpdate, NULL);
 }

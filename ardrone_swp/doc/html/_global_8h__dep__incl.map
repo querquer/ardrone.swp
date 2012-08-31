@@ -2,7 +2,7 @@
 <area shape="rect" id="node3" href="$_global_8cpp.html" title="src/Global.cpp" alt="" coords="5,83,112,112"/>
 <area shape="rect" id="node5" href="$_keyboard_8cpp.html" title="src/Keyboard.cpp" alt="" coords="136,83,259,112"/>
 <area shape="rect" id="node7" href="$_math_8cpp.html" title="src/Math.cpp" alt="" coords="283,83,381,112"/>
-<area shape="rect" id="node9" href="$std__includes_8h.html" title="include/std_includes.h" alt="" coords="405,83,555,112"/>
+<area shape="rect" id="node9" href="$std__includes_8h.html" title="included die Header, die standartmäßig benötigt werden" alt="" coords="405,83,555,112"/>
 <area shape="rect" id="node11" href="$bottom__follow__tag_8cpp.html" title="Applikation zur Tagvervolgung mit der unteren Kamera." alt="" coords="217,160,391,189"/>
 <area shape="rect" id="node13" href="$follow__line_8cpp.html" title="Applikation zur Linienverfolgung mit der unteren Kamera." alt="" coords="415,160,545,189"/>
 <area shape="rect" id="node15" href="$front__follow__tag_8cpp.html" title="Applikation zur Tagvervolgung mit der vorderen Kamera." alt="" coords="569,160,729,189"/>

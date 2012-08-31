@@ -1,4 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$namespace_math.html#a43f025fac1ade5dbf88f7c393ca85644" title="Math::centerFront" alt="" coords="192,5,317,35"/>
-<area shape="rect" id="node5" href="$front__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handleTag" alt="" coords="365,5,448,35"/>
+<area shape="rect" id="node3" href="$namespace_math.html#a43f025fac1ade5dbf88f7c393ca85644" title="Berechnung für die Front kamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet..." alt="" coords="192,5,317,35"/>
+<area shape="rect" id="node5" href="$front__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handler für die Nachricht tags hier werden die Bewegungsdaten gesetzt und gepublished" alt="" coords="365,5,448,35"/>
 </map>

@@ -1,7 +1,7 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$namespace_keyboard.html#a433fc58fb356fe62305e8419dd7b33d6" title="Keyboard::getch" alt="" coords="237,5,355,35"/>
+<area shape="rect" id="node3" href="$namespace_keyboard.html#a433fc58fb356fe62305e8419dd7b33d6" title="gibt zurück, welche Taste gedrückt wurde" alt="" coords="237,5,355,35"/>
 <area shape="rect" id="node5" href="$class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="235,59,357,88"/>
-<area shape="rect" id="node9" href="$namespace_keyboard.html#a8c142c603571175e17a83a9b99d00d63" title="Keyboard::kbhit" alt="" coords="240,112,352,141"/>
+<area shape="rect" id="node9" href="$namespace_keyboard.html#a8c142c603571175e17a83a9b99d00d63" title="gibt zurück, ob eine Taste gedrückt wurde" alt="" coords="240,112,352,141"/>
 <area shape="rect" id="node11" href="$namespace_keyboard.html#aef945e5d33422ac6abbb326b5203eb5b" title="Keyboard::reset_terminal_mode" alt="" coords="463,189,668,219"/>
 <area shape="rect" id="node13" href="$namespace_keyboard.html#a6cc4fc3f7daf5630d0570f9d9d21d19c" title="Keyboard::set_conio_terminal_mode" alt="" coords="180,216,412,245"/>
 <area shape="rect" id="node7" href="$class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="507,59,624,88"/>

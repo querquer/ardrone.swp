@@ -64,19 +64,68 @@ var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
 <div class="title">Math-Namensbereichsreferenz</div>  </div>
 </div>
 <div class="contents">
+
+<p>enthält Funktionen für das Berechen wo sich ein Tag bezüglich des Bildes befindet und die Regelung  
+<a href="#details">Mehr ...</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Funktionen</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a25b9284eb485b732c952786b63343aaa">pixelDiffBottom</a> (float &amp;x, float &amp;y)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben wurde.  <a href="#a25b9284eb485b732c952786b63343aaa"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Berechnung der Anzahl der Pixel für die Bodenkamera, um die das Tag aufgrund der Rotation verschoben wurde.  <a href="#a25b9284eb485b732c952786b63343aaa"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a3fbe7036db847d74ed5f2c21635d02d9">pixelDiffFront</a> (float &amp;x, float &amp;y)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben wurde.  <a href="#a3fbe7036db847d74ed5f2c21635d02d9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#ab4c584467f0cc5d8af22a69482630866">centerBottom</a> (const ar_recog::Tag &amp;tag, float &amp;cx, float &amp;cy)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Berechnung aus den Eckpunkten wo sich das Tag bezüglich des Bildes befindet.  <a href="#ab4c584467f0cc5d8af22a69482630866"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Berechnung für die Bodenkamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet.  <a href="#ab4c584467f0cc5d8af22a69482630866"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a43f025fac1ade5dbf88f7c393ca85644">centerFront</a> (const ar_recog::Tag &amp;tag, float &amp;cx, float &amp;cy)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Berechnung für die Front kamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet.  <a href="#a43f025fac1ade5dbf88f7c393ca85644"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#ad3b65f0aedda56076f681f2b987d0e5c">navdataUpdate</a> (const ardrone_brown::Navdata::ConstPtr &amp;navdata)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">subscriber handler für die Nachricht /ardrone/navdata  <a href="#ad3b65f0aedda56076f681f2b987d0e5c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a688eccf4d1e0776ee10e6293254e2e13">bottom_regulation</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">PD-Regelung für bottom_follow_tag.  <a href="#a688eccf4d1e0776ee10e6293254e2e13"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a7be3473d626056767311b94db1860cb0">front_regulation</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">PD-Regelung für front_follow_tag.  <a href="#a7be3473d626056767311b94db1860cb0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#aa47b7ddd3093cb42132bd80ccb309dea">line_regulation</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">P-Regelung für follow_tag.  <a href="#aa47b7ddd3093cb42132bd80ccb309dea"></a><br/></td></tr>
 </table>
-<hr/><h2>Dokumentation der Funktionen</h2>
+<hr/><a name="details" id="details"></a><h2>Ausführliche Beschreibung</h2>
+<div class="textblock"><p>enthält Funktionen für das Berechen wo sich ein Tag bezüglich des Bildes befindet und die Regelung </p>
+</div><hr/><h2>Dokumentation der Funktionen</h2>
+<a class="anchor" id="a688eccf4d1e0776ee10e6293254e2e13"></a><!-- doxytag: member="Math::bottom_regulation" ref="a688eccf4d1e0776ee10e6293254e2e13" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Math::bottom_regulation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>PD-Regelung für bottom_follow_tag. </p>
+
+<p><div class="dynheader">
+Hier ist ein Graph der zeigt, was diese Funktion aufruft:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_math_a688eccf4d1e0776ee10e6293254e2e13_cgraph.png" border="0" usemap="#namespace_math_a688eccf4d1e0776ee10e6293254e2e13_cgraph" alt=""/></div>
+<map name="namespace_math_a688eccf4d1e0776ee10e6293254e2e13_cgraph" id="namespace_math_a688eccf4d1e0776ee10e6293254e2e13_cgraph">
+<area shape="rect" id="node3" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="216,5,339,35"/><area shape="rect" id="node5" href="class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="388,5,505,35"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_math_a688eccf4d1e0776ee10e6293254e2e13_icgraph.png" border="0" usemap="#namespace_math_a688eccf4d1e0776ee10e6293254e2e13_icgraph" alt=""/></div>
+<map name="namespace_math_a688eccf4d1e0776ee10e6293254e2e13_icgraph" id="namespace_math_a688eccf4d1e0776ee10e6293254e2e13_icgraph">
+<area shape="rect" id="node3" href="bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handler für die Nachricht tags hier werden die Bewegungsdaten gesetzt und gepublished" alt="" coords="216,5,299,35"/><area shape="rect" id="node5" href="bottom__follow__tag_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="347,5,397,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
 <a class="anchor" id="ab4c584467f0cc5d8af22a69482630866"></a><!-- doxytag: member="Math::centerBottom" ref="ab4c584467f0cc5d8af22a69482630866" args="(const ar_recog::Tag &amp;tag, float &amp;cx, float &amp;cy)" -->
 <div class="memitem">
 <div class="memproto">
@@ -108,15 +157,22 @@ Funktionen</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Berechnung aus den Eckpunkten wo sich das Tag bezüglich des Bildes befindet. </p>
-<p>cy: 0 Tag ist am oberen Bildrand, 0.5 Tag ist in der Mitte(Höhe), 1 Tag ist am unteren Bildrand cx: 0 Tag ist am linken Bildrand, 0.5 Tag ist in der Mitte(Breite), 1 Tag ist am rechten Bildrend </p>
+<p>Berechnung für die Bodenkamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet. </p>
+<p>cy:</p>
+<p>0: Tag ist am oberen Bildrand,</p>
+<p>0.5: Tag ist in der Mitte(Höhe),</p>
+<p>1: Tag ist am unteren Bildrand</p>
+<p>cx:</p>
+<p>0: Tag ist am linken Bildrand,</p>
+<p>0.5: Tag ist in der Mitte(Breite),</p>
+<p>1: Tag ist am rechten Bildrend </p>
 
 <p><div class="dynheader">
 Hier ist ein Graph der zeigt, was diese Funktion aufruft:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespace_math_ab4c584467f0cc5d8af22a69482630866_cgraph.png" border="0" usemap="#namespace_math_ab4c584467f0cc5d8af22a69482630866_cgraph" alt=""/></div>
 <map name="namespace_math_ab4c584467f0cc5d8af22a69482630866_cgraph" id="namespace_math_ab4c584467f0cc5d8af22a69482630866_cgraph">
-<area shape="rect" id="node3" href="namespaceanonymous__namespace_02_math_8cpp_03.html#af32b12f59241277b0b94ca38ca1d5a4b" title="anonymous_namespace\{Math::cpp\}::center" alt="" coords="193,5,465,35"/><area shape="rect" id="node5" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="515,84,637,113"/><area shape="rect" id="node9" href="namespace_math.html#a25b9284eb485b732c952786b63343aaa" title="Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben ..." alt="" coords="255,109,404,139"/><area shape="rect" id="node7" href="class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="687,84,804,113"/></map>
+<area shape="rect" id="node3" href="namespaceanonymous__namespace_02_math_8cpp_03.html#af32b12f59241277b0b94ca38ca1d5a4b" title="anonymous_namespace\{Math::cpp\}::center" alt="" coords="193,5,465,35"/><area shape="rect" id="node5" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="515,84,637,113"/><area shape="rect" id="node9" href="namespace_math.html#a25b9284eb485b732c952786b63343aaa" title="Berechnung der Anzahl der Pixel für die Bodenkamera, um die das Tag aufgrund der Rotation verschoben ..." alt="" coords="255,109,404,139"/><area shape="rect" id="node7" href="class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="687,84,804,113"/></map>
 </div>
 </p>
 
@@ -125,7 +181,7 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespace_math_ab4c584467f0cc5d8af22a69482630866_icgraph.png" border="0" usemap="#namespace_math_ab4c584467f0cc5d8af22a69482630866_icgraph" alt=""/></div>
 <map name="namespace_math_ab4c584467f0cc5d8af22a69482630866_icgraph" id="namespace_math_ab4c584467f0cc5d8af22a69482630866_icgraph">
-<area shape="rect" id="node3" href="bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="subscriber handler für die Nachricht tags" alt="" coords="192,5,275,35"/><area shape="rect" id="node5" href="bottom__follow__tag_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="323,5,373,35"/></map>
+<area shape="rect" id="node3" href="bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handler für die Nachricht tags hier werden die Bewegungsdaten gesetzt und gepublished" alt="" coords="192,5,275,35"/><area shape="rect" id="node5" href="bottom__follow__tag_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="323,5,373,35"/></map>
 </div>
 </p>
 
@@ -162,12 +218,22 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
 </div>
 <div class="memdoc">
 
+<p>Berechnung für die Front kamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet. </p>
+<p>cy:</p>
+<p>0: Tag ist am oberen Bildrand,</p>
+<p>0.5: Tag ist in der Mitte(Höhe),</p>
+<p>1: Tag ist am unteren Bildrand</p>
+<p>cx:</p>
+<p>0: Tag ist am linken Bildrand,</p>
+<p>0.5: Tag ist in der Mitte(Breite),</p>
+<p>1: Tag ist am rechten Bildrend </p>
+
 <p><div class="dynheader">
 Hier ist ein Graph der zeigt, was diese Funktion aufruft:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespace_math_a43f025fac1ade5dbf88f7c393ca85644_cgraph.png" border="0" usemap="#namespace_math_a43f025fac1ade5dbf88f7c393ca85644_cgraph" alt=""/></div>
 <map name="namespace_math_a43f025fac1ade5dbf88f7c393ca85644_cgraph" id="namespace_math_a43f025fac1ade5dbf88f7c393ca85644_cgraph">
-<area shape="rect" id="node3" href="namespaceanonymous__namespace_02_math_8cpp_03.html#af32b12f59241277b0b94ca38ca1d5a4b" title="anonymous_namespace\{Math::cpp\}::center" alt="" coords="180,5,452,35"/><area shape="rect" id="node5" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="501,84,624,113"/><area shape="rect" id="node9" href="namespace_math.html#a3fbe7036db847d74ed5f2c21635d02d9" title="Math::pixelDiffFront" alt="" coords="248,109,384,139"/><area shape="rect" id="node7" href="class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="673,84,791,113"/></map>
+<area shape="rect" id="node3" href="namespaceanonymous__namespace_02_math_8cpp_03.html#af32b12f59241277b0b94ca38ca1d5a4b" title="anonymous_namespace\{Math::cpp\}::center" alt="" coords="180,5,452,35"/><area shape="rect" id="node5" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="501,84,624,113"/><area shape="rect" id="node9" href="namespace_math.html#a3fbe7036db847d74ed5f2c21635d02d9" title="Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben ..." alt="" coords="248,109,384,139"/><area shape="rect" id="node7" href="class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="673,84,791,113"/></map>
 </div>
 </p>
 
@@ -176,7 +242,79 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespace_math_a43f025fac1ade5dbf88f7c393ca85644_icgraph.png" border="0" usemap="#namespace_math_a43f025fac1ade5dbf88f7c393ca85644_icgraph" alt=""/></div>
 <map name="namespace_math_a43f025fac1ade5dbf88f7c393ca85644_icgraph" id="namespace_math_a43f025fac1ade5dbf88f7c393ca85644_icgraph">
-<area shape="rect" id="node3" href="front__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handleTag" alt="" coords="179,5,261,35"/></map>
+<area shape="rect" id="node3" href="front__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handler für die Nachricht tags hier werden die Bewegungsdaten gesetzt und gepublished" alt="" coords="179,5,261,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a7be3473d626056767311b94db1860cb0"></a><!-- doxytag: member="Math::front_regulation" ref="a7be3473d626056767311b94db1860cb0" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Math::front_regulation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>PD-Regelung für front_follow_tag. </p>
+
+<p><div class="dynheader">
+Hier ist ein Graph der zeigt, was diese Funktion aufruft:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_math_a7be3473d626056767311b94db1860cb0_cgraph.png" border="0" usemap="#namespace_math_a7be3473d626056767311b94db1860cb0_cgraph" alt=""/></div>
+<map name="namespace_math_a7be3473d626056767311b94db1860cb0_cgraph" id="namespace_math_a7be3473d626056767311b94db1860cb0_cgraph">
+<area shape="rect" id="node3" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="203,5,325,35"/><area shape="rect" id="node5" href="class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="375,5,492,35"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_math_a7be3473d626056767311b94db1860cb0_icgraph.png" border="0" usemap="#namespace_math_a7be3473d626056767311b94db1860cb0_icgraph" alt=""/></div>
+<map name="namespace_math_a7be3473d626056767311b94db1860cb0_icgraph" id="namespace_math_a7be3473d626056767311b94db1860cb0_icgraph">
+<area shape="rect" id="node3" href="front__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handler für die Nachricht tags hier werden die Bewegungsdaten gesetzt und gepublished" alt="" coords="203,5,285,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aa47b7ddd3093cb42132bd80ccb309dea"></a><!-- doxytag: member="Math::line_regulation" ref="aa47b7ddd3093cb42132bd80ccb309dea" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Math::line_regulation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>P-Regelung für follow_tag. </p>
+
+<p><div class="dynheader">
+Hier ist ein Graph der zeigt, was diese Funktion aufruft:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_math_aa47b7ddd3093cb42132bd80ccb309dea_cgraph.png" border="0" usemap="#namespace_math_aa47b7ddd3093cb42132bd80ccb309dea_cgraph" alt=""/></div>
+<map name="namespace_math_aa47b7ddd3093cb42132bd80ccb309dea_cgraph" id="namespace_math_aa47b7ddd3093cb42132bd80ccb309dea_cgraph">
+<area shape="rect" id="node3" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="197,5,320,35"/><area shape="rect" id="node5" href="class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="369,5,487,35"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespace_math_aa47b7ddd3093cb42132bd80ccb309dea_icgraph.png" border="0" usemap="#namespace_math_aa47b7ddd3093cb42132bd80ccb309dea_icgraph" alt=""/></div>
+<map name="namespace_math_aa47b7ddd3093cb42132bd80ccb309dea_icgraph" id="namespace_math_aa47b7ddd3093cb42132bd80ccb309dea_icgraph">
+<area shape="rect" id="node3" href="follow__line_8cpp.html#a35a859d19785b808898bf535d4997d2f" title="handler für die Nachricht LinePos hier werden die Bewegungsdaten gesetzt und gepublished" alt="" coords="199,5,281,35"/><area shape="rect" id="node5" href="follow__line_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="331,5,381,35"/></map>
 </div>
 </p>
 
@@ -205,7 +343,7 @@ Hier ist ein Graph der zeigt, was diese Funktion aufruft:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespace_math_ad3b65f0aedda56076f681f2b987d0e5c_cgraph.png" border="0" usemap="#namespace_math_ad3b65f0aedda56076f681f2b987d0e5c_cgraph" alt=""/></div>
 <map name="namespace_math_ad3b65f0aedda56076f681f2b987d0e5c_cgraph" id="namespace_math_ad3b65f0aedda56076f681f2b987d0e5c_cgraph">
-<area shape="rect" id="node3" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="200,5,323,35"/><area shape="rect" id="node5" href="class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="372,5,489,35"/></map>
+<area shape="rect" id="node3" href="namespaceanonymous__namespace_02_math_8cpp_03.html#a074767790950ebb401fc652e576442f1" title="anonymous_namespace\{Math::cpp\}::grad2rad" alt="" coords="201,5,487,35"/><area shape="rect" id="node5" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="283,59,405,88"/><area shape="rect" id="node7" href="class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="537,59,655,88"/></map>
 </div>
 </p>
 
@@ -245,8 +383,7 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
 </div>
 <div class="memdoc">
 
-<p>Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben wurde. </p>
-<p>Problem: Sichtfeld ist noch nicht korrekt berechnet(derzeit für x und y Richtung gleich)</p>
+<p>Berechnung der Anzahl der Pixel für die Bodenkamera, um die das Tag aufgrund der Rotation verschoben wurde. </p>
 <dl><dt><b>Parameter:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">x</td><td>Verschiebung in x Richung </td></tr>
@@ -272,7 +409,7 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespace_math_a25b9284eb485b732c952786b63343aaa_icgraph.png" border="0" usemap="#namespace_math_a25b9284eb485b732c952786b63343aaa_icgraph" alt=""/></div>
 <map name="namespace_math_a25b9284eb485b732c952786b63343aaa_icgraph" id="namespace_math_a25b9284eb485b732c952786b63343aaa_icgraph">
-<area shape="rect" id="node3" href="namespace_math.html#ab4c584467f0cc5d8af22a69482630866" title="Berechnung aus den Eckpunkten wo sich das Tag bezüglich des Bildes befindet." alt="" coords="204,5,340,35"/><area shape="rect" id="node5" href="bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="subscriber handler für die Nachricht tags" alt="" coords="389,5,472,35"/><area shape="rect" id="node7" href="bottom__follow__tag_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="520,5,571,35"/></map>
+<area shape="rect" id="node3" href="namespace_math.html#ab4c584467f0cc5d8af22a69482630866" title="Berechnung für die Bodenkamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet..." alt="" coords="204,5,340,35"/><area shape="rect" id="node5" href="bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handler für die Nachricht tags hier werden die Bewegungsdaten gesetzt und gepublished" alt="" coords="389,5,472,35"/><area shape="rect" id="node7" href="bottom__follow__tag_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="520,5,571,35"/></map>
 </div>
 </p>
 
@@ -303,6 +440,18 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
 </div>
 <div class="memdoc">
 
+<p>Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben wurde. </p>
+<dl><dt><b>Parameter:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Verschiebung in x Richung </td></tr>
+    <tr><td class="paramname">y</td><td>Verschiebung in y Richung</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="image">
+<img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/betta.jpg" alt="betta.jpg" alt="Schema"/>
+</div>
+ 
 <p><div class="dynheader">
 Hier ist ein Graph der zeigt, was diese Funktion aufruft:</div>
 <div class="dyncontent">
@@ -317,7 +466,7 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespace_math_a3fbe7036db847d74ed5f2c21635d02d9_icgraph.png" border="0" usemap="#namespace_math_a3fbe7036db847d74ed5f2c21635d02d9_icgraph" alt=""/></div>
 <map name="namespace_math_a3fbe7036db847d74ed5f2c21635d02d9_icgraph" id="namespace_math_a3fbe7036db847d74ed5f2c21635d02d9_icgraph">
-<area shape="rect" id="node3" href="namespace_math.html#a43f025fac1ade5dbf88f7c393ca85644" title="Math::centerFront" alt="" coords="192,5,317,35"/><area shape="rect" id="node5" href="front__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handleTag" alt="" coords="365,5,448,35"/></map>
+<area shape="rect" id="node3" href="namespace_math.html#a43f025fac1ade5dbf88f7c393ca85644" title="Berechnung für die Front kamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet..." alt="" coords="192,5,317,35"/><area shape="rect" id="node5" href="front__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handler für die Nachricht tags hier werden die Bewegungsdaten gesetzt und gepublished" alt="" coords="365,5,448,35"/></map>
 </div>
 </p>
 
@@ -338,7 +487,7 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Erzeugt am Wed Jul 4 2012 15:25:31 für ardrone_swp von&#160;
+<hr class="footer"/><address class="footer"><small>Erzeugt am Fri Aug 31 2012 15:45:20 für ardrone_swp von&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

@@ -1,3 +1,7 @@
+/**
+ * @file std_includes.h
+ * @brief included die Header, die standartmäßig benötigt werden
+ */
 #ifndef STD_INCLUDES_H
 #define STD_INCLUDES_H
 
@@ -17,7 +21,6 @@
 #include "ar_recog/Tag.h"
 #include "ardrone_brown/Navdata.h"
 
-#include "Delta.h"
 #include "Math.h"
 #include "Global.h"
 #include "Keyboard.h"

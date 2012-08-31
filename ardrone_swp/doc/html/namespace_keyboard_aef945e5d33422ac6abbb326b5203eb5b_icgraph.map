@@ -1,6 +1,4 @@
 <map id="G" name="G">
 <area shape="rect" id="node3" href="$namespace_keyboard.html#abfb3168172d115a6516147c6d42f58db" title="zum Steuern der Drone mit der Tastatur" alt="" coords="545,5,668,35"/>
-<area shape="rect" id="node9" href="$namespace_keyboard.html#a6cc4fc3f7daf5630d0570f9d9d21d19c" title="Keyboard::set_conio_terminal_mode" alt="" coords="263,31,495,60"/>
-<area shape="rect" id="node5" href="$bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="subscriber handler für die Nachricht tags" alt="" coords="717,5,800,35"/>
-<area shape="rect" id="node7" href="$bottom__follow__tag_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="848,5,899,35"/>
+<area shape="rect" id="node5" href="$namespace_keyboard.html#a6cc4fc3f7daf5630d0570f9d9d21d19c" title="Keyboard::set_conio_terminal_mode" alt="" coords="263,31,495,60"/>
 </map>

@@ -2,11 +2,12 @@
 \section{include/Global.h-\/Dateireferenz}
 \label{_global_8h}\index{include/Global.h@{include/Global.h}}
 }
-{\ttfamily \#include $<$boost/noncopyable.hpp$>$}\par
-{\ttfamily \#include \char`\"{}ros/ros.h\char`\"{}}\par
-{\ttfamily \#include \char`\"{}geometry\_\-msgs/Twist.h\char`\"{}}\par
-{\ttfamily \#include \char`\"{}Delta.h\char`\"{}}\par
-{\ttfamily \#include $<$time.h$>$}\par
+
+
+Singleton: enthält alle Globalen Variablen.  
+
+
+{\ttfamily \#include \char`\"{}std\_\-includes.h\char`\"{}}\par
 Include-\/Abhängigkeitsdiagramm für Global.h:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -25,4 +26,8 @@ Dieser Graph zeigt, welche Datei direkt oder indirekt diese Datei enthält:\nopa
 \begin{DoxyCompactItemize}
 \item 
 class \hyperlink{class_cglobal}{Cglobal}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Klasse, die in Form eines Singletons alle globalen Variablen enthält. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Ausführliche Beschreibung}
+Singleton: enthält alle Globalen Variablen. 

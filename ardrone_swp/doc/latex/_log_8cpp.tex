@@ -2,6 +2,11 @@
 \section{src/Log.cpp-\/Dateireferenz}
 \label{_log_8cpp}\index{src/Log.cpp@{src/Log.cpp}}
 }
+
+
+Applikation zum Loggen der Navdata, Twist, Tags.  
+
+
 {\ttfamily \#include \char`\"{}ardrone\_\-brown/Navdata.h\char`\"{}}\par
 {\ttfamily \#include \char`\"{}ros/ros.h\char`\"{}}\par
 {\ttfamily \#include \char`\"{}ar\_\-recog/Tags.h\char`\"{}}\par
@@ -12,6 +17,8 @@
 {\ttfamily \#include $<$iostream$>$}\par
 {\ttfamily \#include $<$sstream$>$}\par
 {\ttfamily \#include $<$fstream$>$}\par
+{\ttfamily \#include $<$sys/time.h$>$}\par
+{\ttfamily \#include $<$boost/filesystem.hpp$>$}\par
 Include-\/Abhängigkeitsdiagramm für Log.cpp:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -23,11 +30,11 @@ Include-\/Abhängigkeitsdiagramm für Log.cpp:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{_log_8cpp_a2379f8efc865258905edbf90e8678f69}{handleTag} (const ar\_\-recog::Tags::ConstPtr \&msg)
-\item 
+\begin{DoxyCompactList}\small\item\em schreibt die Tag-\/Informationen in die entsprechende Datei \end{DoxyCompactList}\item 
 void \hyperlink{_log_8cpp_a39bd57f05a0879f1d9df4e82bfbfa30e}{navdataUpdate} (const ardrone\_\-brown::Navdata::ConstPtr \&navdata)
-\item 
+\begin{DoxyCompactList}\small\item\em schreibt die Navdata-\/Informationen in die entsprechende Datei \end{DoxyCompactList}\item 
 void \hyperlink{_log_8cpp_a2fa433d675a4836a65893acd6d27f0f5}{handleTwist} (const geometry\_\-msgs::TwistConstPtr \&msg)
-\item 
+\begin{DoxyCompactList}\small\item\em schreibt die Twist-\/Informationen in die entsprechende Datei \end{DoxyCompactList}\item 
 int \hyperlink{_log_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
 \end{DoxyCompactItemize}
 \subsection*{Variablen}
@@ -41,6 +48,23 @@ ofstream \hyperlink{_log_8cpp_a10bb79822b487dbc4db2b1b64a8ea80a}{logTwist}
 \end{DoxyCompactItemize}
 
 
+\subsection{Ausführliche Beschreibung}
+Applikation zum Loggen der Navdata, Twist, Tags. Option, die beim Aufruf übergeben werden können:
+
+n : Navdata loggen
+
+t : Tags loggen
+
+w : gesentete Twist-\/Objekte loggen
+
+Beispielsaufruf: rosrun ardrone\_\-swp Log n w t
+
+-\/$>$loggt Navtada, Tags und Twist-\/Objekte
+
+wird in die Ornder: ardrone\_\-swp/Log/ mit den Unterorndern LogNavdata, LogTags, LogTwist geschrieben
+
+Die Dateinahmen sind das aktuelle Datum 
+
 \subsection{Dokumentation der Funktionen}
 \hypertarget{_log_8cpp_a2379f8efc865258905edbf90e8678f69}{
 \index{Log.cpp@{Log.cpp}!handleTag@{handleTag}}
@@ -51,6 +75,10 @@ ofstream \hyperlink{_log_8cpp_a10bb79822b487dbc4db2b1b64a8ea80a}{logTwist}
 \end{DoxyParamCaption}
 )}}
 \label{_log_8cpp_a2379f8efc865258905edbf90e8678f69}
+
+
+schreibt die Tag-\/Informationen in die entsprechende Datei 
+
 \hypertarget{_log_8cpp_a2fa433d675a4836a65893acd6d27f0f5}{
 \index{Log.cpp@{Log.cpp}!handleTwist@{handleTwist}}
 \index{handleTwist@{handleTwist}!Log.cpp@{Log.cpp}}
@@ -60,6 +88,10 @@ ofstream \hyperlink{_log_8cpp_a10bb79822b487dbc4db2b1b64a8ea80a}{logTwist}
 \end{DoxyParamCaption}
 )}}
 \label{_log_8cpp_a2fa433d675a4836a65893acd6d27f0f5}
+
+
+schreibt die Twist-\/Informationen in die entsprechende Datei 
+
 
 
 Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
@@ -83,8 +115,7 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
 \label{_log_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
 
 
-Hier ist ein Graph der zeigt, was diese Funktion aufruft:
-\nopagebreak
+Hier ist ein Graph der zeigt, was diese Funktion aufruft:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -102,6 +133,10 @@ Hier ist ein Graph der zeigt, was diese Funktion aufruft:
 \end{DoxyParamCaption}
 )}}
 \label{_log_8cpp_a39bd57f05a0879f1d9df4e82bfbfa30e}
+
+
+schreibt die Navdata-\/Informationen in die entsprechende Datei 
+
 
 
 Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak

@@ -1,7 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$_keyboard_8cpp.html" title="src/Keyboard.cpp" alt="" coords="47,83,169,112"/>
-<area shape="rect" id="node5" href="$std__includes_8h.html" title="include/std_includes.h" alt="" coords="193,83,343,112"/>
-<area shape="rect" id="node7" href="$bottom__follow__tag_8cpp.html" title="Applikation zur Tagvervolgung mit der unteren Kamera." alt="" coords="5,160,179,189"/>
-<area shape="rect" id="node9" href="$follow__line_8cpp.html" title="Applikation zur Linienverfolgung mit der unteren Kamera." alt="" coords="203,160,333,189"/>
-<area shape="rect" id="node11" href="$front__follow__tag_8cpp.html" title="Applikation zur Tagvervolgung mit der vorderen Kamera." alt="" coords="357,160,517,189"/>
+<area shape="rect" id="node3" href="$_keyboard_8cpp.html" title="src/Keyboard.cpp" alt="" coords="175,237,298,267"/>
+<area shape="rect" id="node5" href="$std__includes_8h.html" title="included die Header, die standartmäßig benötigt werden" alt="" coords="301,83,450,112"/>
+<area shape="rect" id="node7" href="$bottom__follow__tag_8cpp.html" title="Applikation zur Tagvervolgung mit der unteren Kamera." alt="" coords="29,160,202,189"/>
+<area shape="rect" id="node9" href="$follow__line_8cpp.html" title="Applikation zur Linienverfolgung mit der unteren Kamera." alt="" coords="226,160,357,189"/>
+<area shape="rect" id="node11" href="$front__follow__tag_8cpp.html" title="Applikation zur Tagvervolgung mit der vorderen Kamera." alt="" coords="381,160,541,189"/>
+<area shape="rect" id="node13" href="$_global_8h.html" title="Singleton: enthält alle Globalen Variablen." alt="" coords="565,160,679,189"/>
+<area shape="rect" id="node15" href="$_global_8cpp.html" title="src/Global.cpp" alt="" coords="505,237,611,267"/>
+<area shape="rect" id="node18" href="$_math_8cpp.html" title="src/Math.cpp" alt="" coords="635,237,734,267"/>
 </map>

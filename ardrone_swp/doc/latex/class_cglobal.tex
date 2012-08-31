@@ -4,6 +4,11 @@
 }
 
 
+Klasse, die in Form eines Singletons alle globalen Variablen enthält.  
+
+
+
+
 {\ttfamily \#include $<$Global.h$>$}
 
 
@@ -26,67 +31,94 @@ static void \hyperlink{class_cglobal_aa1d07161425d12bc42dd100140407e59}{destroy}
 \begin{DoxyCompactItemize}
 \item 
 geometry\_\-msgs::Twist \hyperlink{class_cglobal_acdd49b2fad30faf04785664c422f5ef7}{twist}
-\begin{DoxyCompactList}\small\item\em Zur Ansteuerung der Drone. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Twist-\/Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält. \end{DoxyCompactList}\item 
+geometry\_\-msgs::Twist \hyperlink{class_cglobal_ae99f21083838b00781e4461e3e7accb9}{twist\_\-old}
+\begin{DoxyCompactList}\small\item\em enthält den Twist-\/Wert(ohne Regelung), der gesetzt wurde, als das Tag bzw. die Linie zuletzt gesehen wurde \end{DoxyCompactList}\item 
 ros::Publisher \hyperlink{class_cglobal_af3a06302b3bd19de728064359241c1a1}{pub}
-\begin{DoxyCompactList}\small\item\em publisher zum publishen des Twist Objekts \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Publisher zum publishen des Twist Objekts. \end{DoxyCompactList}\item 
 int \hyperlink{class_cglobal_a0e2d4712edf675715bd4bcc554dbcf42}{altd}
-\begin{DoxyCompactList}\small\item\em Höhe. \end{DoxyCompactList}\item 
-bool \hyperlink{class_cglobal_ac0b3c90a19b5395a404bb9e5aee44e1c}{vor}
-\begin{DoxyCompactList}\small\item\em will die Drone nach vorne fliegen? \end{DoxyCompactList}\item 
-bool \hyperlink{class_cglobal_a1b0b85d52fea92c819e421db042b704d}{zurueck}
-\item 
-bool \hyperlink{class_cglobal_a10e812f9c1b4e7b7544b959d1b5f120b}{links}
-\item 
-bool \hyperlink{class_cglobal_a718da04af5940be1ad811f61b85f57d6}{rechts}
-\item 
-bool \hyperlink{class_cglobal_a57b8d93cd26f7c778c719ad21bc5528b}{hoch}
-\item 
-bool \hyperlink{class_cglobal_a3198b29c259c188b0938b4fb5731409b}{runter}
-\item 
-time\_\-t \hyperlink{class_cglobal_a1d338ed39494adfbee95a883369e5f4a}{lastSeen}
-\item 
+\begin{DoxyCompactList}\small\item\em aktuelle Höhe \end{DoxyCompactList}\item 
 time\_\-t \hyperlink{class_cglobal_abb1e0f2a241a8d9131098cf823b45f64}{sinceNotSeen}
-\item 
-float \hyperlink{class_cglobal_a3ab9e8044e12c2927366e5402b5e3c09}{lastDir}
-\item 
+\begin{DoxyCompactList}\small\item\em Zeit seit der das Tag das letzte mal gesehen wurde. \end{DoxyCompactList}\item 
+struct timeval \hyperlink{class_cglobal_a9a9df79aad0bb5db8880a83d2fb407e2}{sinceNoNavdataUpdate}
+\begin{DoxyCompactList}\small\item\em Zeit seit der das letzte Mal neue Navigationsdaten gesendet wurden. \end{DoxyCompactList}\item 
 bool \hyperlink{class_cglobal_afe6f01a7ff64a3de6d0c8612f36511fd}{seen}
-\item 
-\hyperlink{class_delta}{Delta} \hyperlink{class_cglobal_ae826fb1d5b65ba58163f25517431e505}{lxDelta}
-\item 
-\hyperlink{class_delta}{Delta} \hyperlink{class_cglobal_a42b74fa677f900102efb348d7189ca3c}{lyDelta}
-\item 
-\hyperlink{class_delta}{Delta} \hyperlink{class_cglobal_aaff1f24cae62247123759d5142d5f69a}{lzDelta}
-\item 
-\hyperlink{class_delta}{Delta} \hyperlink{class_cglobal_a4a7fa181ec17c448e6f7ef4d7213789b}{azDelta}
-\item 
+\begin{DoxyCompactList}\small\item\em enthält ob das Tag bzw. die Linie beim letzten Aufruf des Handlers gesehen wurde \end{DoxyCompactList}\item 
+bool \hyperlink{class_cglobal_a2b9c1321be7adaacc3bed175e49fb02b}{begin}
+\begin{DoxyCompactList}\small\item\em in follow\_\-line wird, bevor der Linie gefolgt wird, nach oben geflogen, bis 0,9m erreicht wurden. begin gibt an ob die Drohne dabei noch am hochfliegen ist \end{DoxyCompactList}\item 
 float \hyperlink{class_cglobal_abafbed62176301706747c04ef3046aae}{vx}
-\item 
+\begin{DoxyCompactList}\small\item\em aktuelle Geschwindigkeit in x-\/Richtung \end{DoxyCompactList}\item 
 float \hyperlink{class_cglobal_a0967372a0ede7b8b9a24957df663b7b3}{vy}
-\item 
+\begin{DoxyCompactList}\small\item\em aktuelle Geschwindigkeit in y-\/Richtung \end{DoxyCompactList}\item 
 float \hyperlink{class_cglobal_af9ef9759f83ae67b7e220570a7738ef5}{vz}
-\item 
+\begin{DoxyCompactList}\small\item\em aktuelle Geschwindigkeit in z-\/Richtung \end{DoxyCompactList}\item 
 float \hyperlink{class_cglobal_a5c1fac565d3813e798bd6aeb1c6fc8aa}{roty}
-\item 
+\begin{DoxyCompactList}\small\item\em aktuelle aktuelle Rotation um die y-\/Achse \end{DoxyCompactList}\item 
 float \hyperlink{class_cglobal_ad295728f5113d9a47527cf14262dea0e}{rotx}
-\item 
+\begin{DoxyCompactList}\small\item\em aktuelle aktuelle Rotation um die x-\/Achse \end{DoxyCompactList}\item 
 float \hyperlink{class_cglobal_a478c0d94a8f8a7675d3e88e85742c81a}{ges}
-\item 
+\begin{DoxyCompactList}\small\item\em enthält wie stark auf Tastendrücke in \hyperlink{namespace_keyboard_abfb3168172d115a6516147c6d42f58db}{Keyboard::control()} eragiert werden soll \end{DoxyCompactList}\item 
 bool \hyperlink{class_cglobal_a24fbb5c4b0ddab650375d08ba677b3f1}{end}
+\begin{DoxyCompactList}\small\item\em Gibt an ob in \hyperlink{namespace_keyboard_abfb3168172d115a6516147c6d42f58db}{Keyboard::control()} ctrl+c gedrückt wurde, falls true wird das Programm beendet. \end{DoxyCompactList}\item 
+float \hyperlink{class_cglobal_ae7af3539af53f18897359057206803d3}{exold}
+\begin{DoxyCompactList}\small\item\em Fehler beim letzten Aufruf in x-\/Richtung. \end{DoxyCompactList}\item 
+float \hyperlink{class_cglobal_a5ea9466dbc474b2f9b469395ae8d688c}{eyold}
+\begin{DoxyCompactList}\small\item\em Fehler beim letzten Aufruf in y-\/Richtung. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Statische öffentliche Attribute}
+\begin{DoxyCompactItemize}
 \item 
-int \hyperlink{class_cglobal_a3adbbe83dbdab17a3506572de5444d14}{widthB}
-\item 
-int \hyperlink{class_cglobal_ae1a1fde7d947c2c7d32bc7f76599b054}{heightB}
-\item 
-int \hyperlink{class_cglobal_add77c33bb751ff75fc5e6bc0409d4540}{widthF}
-\item 
-int \hyperlink{class_cglobal_ac4dace71dbed15b75354e5ff327af75f}{heightF}
-\end{DoxyCompactItemize}
+static const int \hyperlink{class_cglobal_a931ff0dc06e16b267d22dd21570d686b}{widthB} = 160
+\begin{DoxyCompactList}\small\item\em Bildbreite der unteren Kamera. \end{DoxyCompactList}\item 
+static const int \hyperlink{class_cglobal_ade7cccb8bca50ca0e4740a4cecfb7498}{heightB} = 120
+\begin{DoxyCompactList}\small\item\em Bildhöhe der unteren Kamera. \end{DoxyCompactList}\item 
+static const int \hyperlink{class_cglobal_a95cebf066839488c61b4bc2f7fbf61c1}{widthF} = 320
+\begin{DoxyCompactList}\small\item\em Bildbreite der Front-\/Kamera. \end{DoxyCompactList}\item 
+static const int \hyperlink{class_cglobal_a601f81a0ed28e4e0ca387134ba76738e}{heightF} = 240
+\begin{DoxyCompactList}\small\item\em Bildhöhe der Front-\/Kamera. \end{DoxyCompactList}\item 
+static const float \hyperlink{class_cglobal_ab0b5362dfd6addba8455bd753aa18e37}{b\_\-mmPs2twistx} = 0.0002f
+\begin{DoxyCompactList}\small\item\em Umrechnungsfaktor von mm/s in twist.linear.x (bei bottom\_\-follow\_\-tag): 0.0002, weil Drone in x Richtung max 5m/s fliegt und der twist-\/Wert zwischen 0 und 1 liegt. \end{DoxyCompactList}\item 
+static const float \hyperlink{class_cglobal_aa70b2a6e29e8c452aab53cefaf77a01e}{b\_\-mmPs2twisty} = 0.0002f
+\begin{DoxyCompactList}\small\item\em Umrechnungsfaktor von mm/s in twist.linear.y (bei bottom\_\-follow\_\-tag) \end{DoxyCompactList}\item 
+static const float \hyperlink{class_cglobal_a4f723543ed33fd4a3130199a6a49f8de}{f\_\-mmPs2twistx} = 0.0002f
+\begin{DoxyCompactList}\small\item\em Umrechnungsfaktor von mm/s in twist.linear.x (bei front\_\-follow\_\-tag) \end{DoxyCompactList}\item 
+static const float \hyperlink{class_cglobal_abeca26e674667f54df37cec645067854}{f\_\-mmPs2twisty} = 0.0002f
+\begin{DoxyCompactList}\small\item\em Umrechnungsfaktor von mm/s in twist.linear.y (bei front\_\-follow\_\-tag) \end{DoxyCompactList}\item 
+static const float \hyperlink{class_cglobal_a7440e55e4a63e1c926c582a36a4d6bd7}{l\_\-mmPs2twistx} = 0.00015f
+\begin{DoxyCompactList}\small\item\em Umrechnungsfaktor von mm/s in twist.linear.x (bei follow\_\-line): geringer als bei den anderen beiden Applikationen, damit die Regelung nicht so empfindlich reagiert(bei einem höheren Wert ist die Drone beim Versuch still zu stehen teilweise nach hinten geflogen) \end{DoxyCompactList}\item 
+static const float \hyperlink{class_cglobal_af8f19427d5da8e6c88098b61e8676786}{l\_\-mmPs2twisty} = 0.00025f
+\begin{DoxyCompactList}\small\item\em Umrechnungsfaktor von mm/s in twist.linear.y (bei follow\_\-line): höher als bei den anderen beiden Applikationen, damit die Regelung früher reagiert. \end{DoxyCompactList}\item 
+static const float \hyperlink{class_cglobal_ac4453024370993d15408d4a3235e95e8}{b\_\-Kpx} = 2.5f
+\begin{DoxyCompactList}\small\item\em Faktor für den Proportionalanteil in x-\/Richtung (bei bottom\_\-follow\_\-tag) \end{DoxyCompactList}\item 
+static const float \hyperlink{class_cglobal_aecfc05f716f9c1445fd10ad436972a9d}{b\_\-Kpy} = 1.5f
+\begin{DoxyCompactList}\small\item\em Faktor für den Proportionalanteil in y-\/Richtung (bei bottom\_\-follow\_\-tag) \end{DoxyCompactList}\item 
+static const float \hyperlink{class_cglobal_ae94b927d5fee8ac20eb04add78006959}{f\_\-Kpx} = 1.5f
+\begin{DoxyCompactList}\small\item\em Faktor für den Proportionalanteil in x-\/Richtung (bei front\_\-follow\_\-tag) \end{DoxyCompactList}\item 
+static const float \hyperlink{class_cglobal_a06a9f451633a82b68760360037b53f64}{f\_\-Kpy} = 2.5f
+\begin{DoxyCompactList}\small\item\em Faktor für den Proportionalanteil in y-\/Richtung (bei front\_\-follow\_\-tag) \end{DoxyCompactList}\item 
+static const float \hyperlink{class_cglobal_a6c5a5a9fb3c2da5264622c738b326245}{l\_\-Kpx} = 1.2f
+\begin{DoxyCompactList}\small\item\em Faktor für den Proportionalanteil in x-\/Richtung (bei follow\_\-line) \end{DoxyCompactList}\item 
+static const float \hyperlink{class_cglobal_a458383235afe73b333a22a5edcc3eed6}{l\_\-Kpy} = 1.0f
+\begin{DoxyCompactList}\small\item\em Faktor für den Proportionalanteil in y-\/Richtung (bei follow\_\-line) \end{DoxyCompactList}\item 
+static const float \hyperlink{class_cglobal_a7a599bd2c2f4400e3b7f8f98e1f293fe}{Ta} = 0.05555555f
+\begin{DoxyCompactList}\small\item\em 1/18 = 0.0555... , wegen 18 Aufrufen pro Sekunde(ar\_\-recog published 18 mal pro Sekunde) \end{DoxyCompactList}\item 
+static const float \hyperlink{class_cglobal_a78bc2eecbfcfe436e141e9e06b7d6f10}{b\_\-Kdx} = 0.05f
+\begin{DoxyCompactList}\small\item\em Faktor für den Differentialanteil in x-\/Richtung (bei bottom\_\-follow\_\-tag) \end{DoxyCompactList}\item 
+static const float \hyperlink{class_cglobal_a96f46cc71bfa56cf87b9a0e974b8271c}{b\_\-Kdy} = 0.05f
+\begin{DoxyCompactList}\small\item\em Faktor für den Differentialanteil in y-\/Richtung (bei bottom\_\-follow\_\-tag) \end{DoxyCompactList}\item 
+static const float \hyperlink{class_cglobal_a898e02a3650a5e6445aca8411ed79194}{f\_\-Kdx} = 0.05f
+\begin{DoxyCompactList}\small\item\em Faktor für den Differentialanteil in x-\/Richtung (bei front\_\-follow\_\-tag) \end{DoxyCompactList}\item 
+static const float \hyperlink{class_cglobal_a8ff8f3e1711db988e5a936af1d5f2d42}{f\_\-Kdy} = 0.05f
+\begin{DoxyCompactList}\small\item\em Faktor für den Differentialanteil in y-\/Richtung (bei front\_\-follow\_\-tag) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Methoden}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{class_cglobal_a9847b00476a6f18dbd936472e1a9efbf}{Cglobal} ()
 \item 
 \hyperlink{class_cglobal_a16a55c21346fe1cd9b9511ee05fd485e}{$\sim$Cglobal} ()
+\item 
+\hyperlink{class_cglobal_a5a91823b196c10cba84cc6526308e76f}{Cglobal} (const \hyperlink{class_cglobal}{Cglobal} \&)
+\item 
+\hyperlink{class_cglobal}{Cglobal} \& \hyperlink{class_cglobal_acc7503a161a449d009877f1d14ba71c4}{operator=} (const \hyperlink{class_cglobal}{Cglobal} \&)
 \end{DoxyCompactItemize}
 \subsection*{Statische private Attribute}
 \begin{DoxyCompactItemize}
@@ -94,6 +126,9 @@ int \hyperlink{class_cglobal_ac4dace71dbed15b75354e5ff327af75f}{heightF}
 static \hyperlink{class_cglobal}{Cglobal} $\ast$ \hyperlink{class_cglobal_afb7ab45601acda975c029de5db73b3ea}{m\_\-instance} = 0
 \end{DoxyCompactItemize}
 
+
+\subsection{Ausführliche Beschreibung}
+Klasse, die in Form eines Singletons alle globalen Variablen enthält. 
 
 \subsection{Beschreibung der Konstruktoren und Destruktoren}
 \hypertarget{class_cglobal_a9847b00476a6f18dbd936472e1a9efbf}{
@@ -125,6 +160,15 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}inline, private\mbox{]}}}}
 \label{class_cglobal_a16a55c21346fe1cd9b9511ee05fd485e}
+\hypertarget{class_cglobal_a5a91823b196c10cba84cc6526308e76f}{
+\index{Cglobal@{Cglobal}!Cglobal@{Cglobal}}
+\index{Cglobal@{Cglobal}!Cglobal@{Cglobal}}
+\subsubsection[{Cglobal}]{\setlength{\rightskip}{0pt plus 5cm}Cglobal::Cglobal (
+\begin{DoxyParamCaption}
+\item[{const {\bf Cglobal} \&}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, private\mbox{]}}}}
+\label{class_cglobal_a5a91823b196c10cba84cc6526308e76f}
 
 
 \subsection{Dokumentation der Elementfunktionen}
@@ -179,6 +223,15 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
 \end{figure}
 
 
+\hypertarget{class_cglobal_acc7503a161a449d009877f1d14ba71c4}{
+\index{Cglobal@{Cglobal}!operator=@{operator=}}
+\index{operator=@{operator=}!Cglobal@{Cglobal}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cglobal}\& Cglobal::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Cglobal} \&}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, private\mbox{]}}}}
+\label{class_cglobal_acc7503a161a449d009877f1d14ba71c4}
 
 
 \subsection{Dokumentation der Datenelemente}
@@ -189,68 +242,215 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
 \label{class_cglobal_a0e2d4712edf675715bd4bcc554dbcf42}
 
 
-Höhe. 
+aktuelle Höhe 
 
-\hypertarget{class_cglobal_a4a7fa181ec17c448e6f7ef4d7213789b}{
-\index{Cglobal@{Cglobal}!azDelta@{azDelta}}
-\index{azDelta@{azDelta}!Cglobal@{Cglobal}}
-\subsubsection[{azDelta}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Delta} {\bf Cglobal::azDelta}}}
-\label{class_cglobal_a4a7fa181ec17c448e6f7ef4d7213789b}
+\hypertarget{class_cglobal_a78bc2eecbfcfe436e141e9e06b7d6f10}{
+\index{Cglobal@{Cglobal}!b\_\-Kdx@{b\_\-Kdx}}
+\index{b\_\-Kdx@{b\_\-Kdx}!Cglobal@{Cglobal}}
+\subsubsection[{b\_\-Kdx}]{\setlength{\rightskip}{0pt plus 5cm}const float {\bf Cglobal::b\_\-Kdx} = 0.05f\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_a78bc2eecbfcfe436e141e9e06b7d6f10}
+
+
+Faktor für den Differentialanteil in x-\/Richtung (bei bottom\_\-follow\_\-tag) 
+
+\hypertarget{class_cglobal_a96f46cc71bfa56cf87b9a0e974b8271c}{
+\index{Cglobal@{Cglobal}!b\_\-Kdy@{b\_\-Kdy}}
+\index{b\_\-Kdy@{b\_\-Kdy}!Cglobal@{Cglobal}}
+\subsubsection[{b\_\-Kdy}]{\setlength{\rightskip}{0pt plus 5cm}const float {\bf Cglobal::b\_\-Kdy} = 0.05f\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_a96f46cc71bfa56cf87b9a0e974b8271c}
+
+
+Faktor für den Differentialanteil in y-\/Richtung (bei bottom\_\-follow\_\-tag) 
+
+\hypertarget{class_cglobal_ac4453024370993d15408d4a3235e95e8}{
+\index{Cglobal@{Cglobal}!b\_\-Kpx@{b\_\-Kpx}}
+\index{b\_\-Kpx@{b\_\-Kpx}!Cglobal@{Cglobal}}
+\subsubsection[{b\_\-Kpx}]{\setlength{\rightskip}{0pt plus 5cm}const float {\bf Cglobal::b\_\-Kpx} = 2.5f\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_ac4453024370993d15408d4a3235e95e8}
+
+
+Faktor für den Proportionalanteil in x-\/Richtung (bei bottom\_\-follow\_\-tag) 
+
+\hypertarget{class_cglobal_aecfc05f716f9c1445fd10ad436972a9d}{
+\index{Cglobal@{Cglobal}!b\_\-Kpy@{b\_\-Kpy}}
+\index{b\_\-Kpy@{b\_\-Kpy}!Cglobal@{Cglobal}}
+\subsubsection[{b\_\-Kpy}]{\setlength{\rightskip}{0pt plus 5cm}const float {\bf Cglobal::b\_\-Kpy} = 1.5f\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_aecfc05f716f9c1445fd10ad436972a9d}
+
+
+Faktor für den Proportionalanteil in y-\/Richtung (bei bottom\_\-follow\_\-tag) 
+
+\hypertarget{class_cglobal_ab0b5362dfd6addba8455bd753aa18e37}{
+\index{Cglobal@{Cglobal}!b\_\-mmPs2twistx@{b\_\-mmPs2twistx}}
+\index{b\_\-mmPs2twistx@{b\_\-mmPs2twistx}!Cglobal@{Cglobal}}
+\subsubsection[{b\_\-mmPs2twistx}]{\setlength{\rightskip}{0pt plus 5cm}const float {\bf Cglobal::b\_\-mmPs2twistx} = 0.0002f\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_ab0b5362dfd6addba8455bd753aa18e37}
+
+
+Umrechnungsfaktor von mm/s in twist.linear.x (bei bottom\_\-follow\_\-tag): 0.0002, weil Drone in x Richtung max 5m/s fliegt und der twist-\/Wert zwischen 0 und 1 liegt. 
+
+\hypertarget{class_cglobal_aa70b2a6e29e8c452aab53cefaf77a01e}{
+\index{Cglobal@{Cglobal}!b\_\-mmPs2twisty@{b\_\-mmPs2twisty}}
+\index{b\_\-mmPs2twisty@{b\_\-mmPs2twisty}!Cglobal@{Cglobal}}
+\subsubsection[{b\_\-mmPs2twisty}]{\setlength{\rightskip}{0pt plus 5cm}const float {\bf Cglobal::b\_\-mmPs2twisty} = 0.0002f\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_aa70b2a6e29e8c452aab53cefaf77a01e}
+
+
+Umrechnungsfaktor von mm/s in twist.linear.y (bei bottom\_\-follow\_\-tag) 
+
+\hypertarget{class_cglobal_a2b9c1321be7adaacc3bed175e49fb02b}{
+\index{Cglobal@{Cglobal}!begin@{begin}}
+\index{begin@{begin}!Cglobal@{Cglobal}}
+\subsubsection[{begin}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Cglobal::begin}}}
+\label{class_cglobal_a2b9c1321be7adaacc3bed175e49fb02b}
+
+
+in follow\_\-line wird, bevor der Linie gefolgt wird, nach oben geflogen, bis 0,9m erreicht wurden. begin gibt an ob die Drohne dabei noch am hochfliegen ist 
+
 \hypertarget{class_cglobal_a24fbb5c4b0ddab650375d08ba677b3f1}{
 \index{Cglobal@{Cglobal}!end@{end}}
 \index{end@{end}!Cglobal@{Cglobal}}
 \subsubsection[{end}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Cglobal::end}}}
 \label{class_cglobal_a24fbb5c4b0ddab650375d08ba677b3f1}
+
+
+Gibt an ob in \hyperlink{namespace_keyboard_abfb3168172d115a6516147c6d42f58db}{Keyboard::control()} ctrl+c gedrückt wurde, falls true wird das Programm beendet. 
+
+\hypertarget{class_cglobal_ae7af3539af53f18897359057206803d3}{
+\index{Cglobal@{Cglobal}!exold@{exold}}
+\index{exold@{exold}!Cglobal@{Cglobal}}
+\subsubsection[{exold}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Cglobal::exold}}}
+\label{class_cglobal_ae7af3539af53f18897359057206803d3}
+
+
+Fehler beim letzten Aufruf in x-\/Richtung. 
+
+\hypertarget{class_cglobal_a5ea9466dbc474b2f9b469395ae8d688c}{
+\index{Cglobal@{Cglobal}!eyold@{eyold}}
+\index{eyold@{eyold}!Cglobal@{Cglobal}}
+\subsubsection[{eyold}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Cglobal::eyold}}}
+\label{class_cglobal_a5ea9466dbc474b2f9b469395ae8d688c}
+
+
+Fehler beim letzten Aufruf in y-\/Richtung. 
+
+\hypertarget{class_cglobal_a898e02a3650a5e6445aca8411ed79194}{
+\index{Cglobal@{Cglobal}!f\_\-Kdx@{f\_\-Kdx}}
+\index{f\_\-Kdx@{f\_\-Kdx}!Cglobal@{Cglobal}}
+\subsubsection[{f\_\-Kdx}]{\setlength{\rightskip}{0pt plus 5cm}const float {\bf Cglobal::f\_\-Kdx} = 0.05f\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_a898e02a3650a5e6445aca8411ed79194}
+
+
+Faktor für den Differentialanteil in x-\/Richtung (bei front\_\-follow\_\-tag) 
+
+\hypertarget{class_cglobal_a8ff8f3e1711db988e5a936af1d5f2d42}{
+\index{Cglobal@{Cglobal}!f\_\-Kdy@{f\_\-Kdy}}
+\index{f\_\-Kdy@{f\_\-Kdy}!Cglobal@{Cglobal}}
+\subsubsection[{f\_\-Kdy}]{\setlength{\rightskip}{0pt plus 5cm}const float {\bf Cglobal::f\_\-Kdy} = 0.05f\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_a8ff8f3e1711db988e5a936af1d5f2d42}
+
+
+Faktor für den Differentialanteil in y-\/Richtung (bei front\_\-follow\_\-tag) 
+
+\hypertarget{class_cglobal_ae94b927d5fee8ac20eb04add78006959}{
+\index{Cglobal@{Cglobal}!f\_\-Kpx@{f\_\-Kpx}}
+\index{f\_\-Kpx@{f\_\-Kpx}!Cglobal@{Cglobal}}
+\subsubsection[{f\_\-Kpx}]{\setlength{\rightskip}{0pt plus 5cm}const float {\bf Cglobal::f\_\-Kpx} = 1.5f\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_ae94b927d5fee8ac20eb04add78006959}
+
+
+Faktor für den Proportionalanteil in x-\/Richtung (bei front\_\-follow\_\-tag) 
+
+\hypertarget{class_cglobal_a06a9f451633a82b68760360037b53f64}{
+\index{Cglobal@{Cglobal}!f\_\-Kpy@{f\_\-Kpy}}
+\index{f\_\-Kpy@{f\_\-Kpy}!Cglobal@{Cglobal}}
+\subsubsection[{f\_\-Kpy}]{\setlength{\rightskip}{0pt plus 5cm}const float {\bf Cglobal::f\_\-Kpy} = 2.5f\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_a06a9f451633a82b68760360037b53f64}
+
+
+Faktor für den Proportionalanteil in y-\/Richtung (bei front\_\-follow\_\-tag) 
+
+\hypertarget{class_cglobal_a4f723543ed33fd4a3130199a6a49f8de}{
+\index{Cglobal@{Cglobal}!f\_\-mmPs2twistx@{f\_\-mmPs2twistx}}
+\index{f\_\-mmPs2twistx@{f\_\-mmPs2twistx}!Cglobal@{Cglobal}}
+\subsubsection[{f\_\-mmPs2twistx}]{\setlength{\rightskip}{0pt plus 5cm}const float {\bf Cglobal::f\_\-mmPs2twistx} = 0.0002f\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_a4f723543ed33fd4a3130199a6a49f8de}
+
+
+Umrechnungsfaktor von mm/s in twist.linear.x (bei front\_\-follow\_\-tag) 
+
+\hypertarget{class_cglobal_abeca26e674667f54df37cec645067854}{
+\index{Cglobal@{Cglobal}!f\_\-mmPs2twisty@{f\_\-mmPs2twisty}}
+\index{f\_\-mmPs2twisty@{f\_\-mmPs2twisty}!Cglobal@{Cglobal}}
+\subsubsection[{f\_\-mmPs2twisty}]{\setlength{\rightskip}{0pt plus 5cm}const float {\bf Cglobal::f\_\-mmPs2twisty} = 0.0002f\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_abeca26e674667f54df37cec645067854}
+
+
+Umrechnungsfaktor von mm/s in twist.linear.y (bei front\_\-follow\_\-tag) 
+
 \hypertarget{class_cglobal_a478c0d94a8f8a7675d3e88e85742c81a}{
 \index{Cglobal@{Cglobal}!ges@{ges}}
 \index{ges@{ges}!Cglobal@{Cglobal}}
 \subsubsection[{ges}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Cglobal::ges}}}
 \label{class_cglobal_a478c0d94a8f8a7675d3e88e85742c81a}
-\hypertarget{class_cglobal_ae1a1fde7d947c2c7d32bc7f76599b054}{
+
+
+enthält wie stark auf Tastendrücke in \hyperlink{namespace_keyboard_abfb3168172d115a6516147c6d42f58db}{Keyboard::control()} eragiert werden soll 
+
+\hypertarget{class_cglobal_ade7cccb8bca50ca0e4740a4cecfb7498}{
 \index{Cglobal@{Cglobal}!heightB@{heightB}}
 \index{heightB@{heightB}!Cglobal@{Cglobal}}
-\subsubsection[{heightB}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Cglobal::heightB}}}
-\label{class_cglobal_ae1a1fde7d947c2c7d32bc7f76599b054}
-\hypertarget{class_cglobal_ac4dace71dbed15b75354e5ff327af75f}{
+\subsubsection[{heightB}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf Cglobal::heightB} = 120\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_ade7cccb8bca50ca0e4740a4cecfb7498}
+
+
+Bildhöhe der unteren Kamera. 
+
+\hypertarget{class_cglobal_a601f81a0ed28e4e0ca387134ba76738e}{
 \index{Cglobal@{Cglobal}!heightF@{heightF}}
 \index{heightF@{heightF}!Cglobal@{Cglobal}}
-\subsubsection[{heightF}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Cglobal::heightF}}}
-\label{class_cglobal_ac4dace71dbed15b75354e5ff327af75f}
-\hypertarget{class_cglobal_a57b8d93cd26f7c778c719ad21bc5528b}{
-\index{Cglobal@{Cglobal}!hoch@{hoch}}
-\index{hoch@{hoch}!Cglobal@{Cglobal}}
-\subsubsection[{hoch}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Cglobal::hoch}}}
-\label{class_cglobal_a57b8d93cd26f7c778c719ad21bc5528b}
-\hypertarget{class_cglobal_a3ab9e8044e12c2927366e5402b5e3c09}{
-\index{Cglobal@{Cglobal}!lastDir@{lastDir}}
-\index{lastDir@{lastDir}!Cglobal@{Cglobal}}
-\subsubsection[{lastDir}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Cglobal::lastDir}}}
-\label{class_cglobal_a3ab9e8044e12c2927366e5402b5e3c09}
-\hypertarget{class_cglobal_a1d338ed39494adfbee95a883369e5f4a}{
-\index{Cglobal@{Cglobal}!lastSeen@{lastSeen}}
-\index{lastSeen@{lastSeen}!Cglobal@{Cglobal}}
-\subsubsection[{lastSeen}]{\setlength{\rightskip}{0pt plus 5cm}time\_\-t {\bf Cglobal::lastSeen}}}
-\label{class_cglobal_a1d338ed39494adfbee95a883369e5f4a}
-\hypertarget{class_cglobal_a10e812f9c1b4e7b7544b959d1b5f120b}{
-\index{Cglobal@{Cglobal}!links@{links}}
-\index{links@{links}!Cglobal@{Cglobal}}
-\subsubsection[{links}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Cglobal::links}}}
-\label{class_cglobal_a10e812f9c1b4e7b7544b959d1b5f120b}
-\hypertarget{class_cglobal_ae826fb1d5b65ba58163f25517431e505}{
-\index{Cglobal@{Cglobal}!lxDelta@{lxDelta}}
-\index{lxDelta@{lxDelta}!Cglobal@{Cglobal}}
-\subsubsection[{lxDelta}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Delta} {\bf Cglobal::lxDelta}}}
-\label{class_cglobal_ae826fb1d5b65ba58163f25517431e505}
-\hypertarget{class_cglobal_a42b74fa677f900102efb348d7189ca3c}{
-\index{Cglobal@{Cglobal}!lyDelta@{lyDelta}}
-\index{lyDelta@{lyDelta}!Cglobal@{Cglobal}}
-\subsubsection[{lyDelta}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Delta} {\bf Cglobal::lyDelta}}}
-\label{class_cglobal_a42b74fa677f900102efb348d7189ca3c}
-\hypertarget{class_cglobal_aaff1f24cae62247123759d5142d5f69a}{
-\index{Cglobal@{Cglobal}!lzDelta@{lzDelta}}
-\index{lzDelta@{lzDelta}!Cglobal@{Cglobal}}
-\subsubsection[{lzDelta}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Delta} {\bf Cglobal::lzDelta}}}
-\label{class_cglobal_aaff1f24cae62247123759d5142d5f69a}
+\subsubsection[{heightF}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf Cglobal::heightF} = 240\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_a601f81a0ed28e4e0ca387134ba76738e}
+
+
+Bildhöhe der Front-\/Kamera. 
+
+\hypertarget{class_cglobal_a6c5a5a9fb3c2da5264622c738b326245}{
+\index{Cglobal@{Cglobal}!l\_\-Kpx@{l\_\-Kpx}}
+\index{l\_\-Kpx@{l\_\-Kpx}!Cglobal@{Cglobal}}
+\subsubsection[{l\_\-Kpx}]{\setlength{\rightskip}{0pt plus 5cm}const float {\bf Cglobal::l\_\-Kpx} = 1.2f\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_a6c5a5a9fb3c2da5264622c738b326245}
+
+
+Faktor für den Proportionalanteil in x-\/Richtung (bei follow\_\-line) 
+
+\hypertarget{class_cglobal_a458383235afe73b333a22a5edcc3eed6}{
+\index{Cglobal@{Cglobal}!l\_\-Kpy@{l\_\-Kpy}}
+\index{l\_\-Kpy@{l\_\-Kpy}!Cglobal@{Cglobal}}
+\subsubsection[{l\_\-Kpy}]{\setlength{\rightskip}{0pt plus 5cm}const float {\bf Cglobal::l\_\-Kpy} = 1.0f\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_a458383235afe73b333a22a5edcc3eed6}
+
+
+Faktor für den Proportionalanteil in y-\/Richtung (bei follow\_\-line) 
+
+\hypertarget{class_cglobal_a7440e55e4a63e1c926c582a36a4d6bd7}{
+\index{Cglobal@{Cglobal}!l\_\-mmPs2twistx@{l\_\-mmPs2twistx}}
+\index{l\_\-mmPs2twistx@{l\_\-mmPs2twistx}!Cglobal@{Cglobal}}
+\subsubsection[{l\_\-mmPs2twistx}]{\setlength{\rightskip}{0pt plus 5cm}const float {\bf Cglobal::l\_\-mmPs2twistx} = 0.00015f\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_a7440e55e4a63e1c926c582a36a4d6bd7}
+
+
+Umrechnungsfaktor von mm/s in twist.linear.x (bei follow\_\-line): geringer als bei den anderen beiden Applikationen, damit die Regelung nicht so empfindlich reagiert(bei einem höheren Wert ist die Drone beim Versuch still zu stehen teilweise nach hinten geflogen) 
+
+\hypertarget{class_cglobal_af8f19427d5da8e6c88098b61e8676786}{
+\index{Cglobal@{Cglobal}!l\_\-mmPs2twisty@{l\_\-mmPs2twisty}}
+\index{l\_\-mmPs2twisty@{l\_\-mmPs2twisty}!Cglobal@{Cglobal}}
+\subsubsection[{l\_\-mmPs2twisty}]{\setlength{\rightskip}{0pt plus 5cm}const float {\bf Cglobal::l\_\-mmPs2twisty} = 0.00025f\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_af8f19427d5da8e6c88098b61e8676786}
+
+
+Umrechnungsfaktor von mm/s in twist.linear.y (bei follow\_\-line): höher als bei den anderen beiden Applikationen, damit die Regelung früher reagiert. 
+
 \hypertarget{class_cglobal_afb7ab45601acda975c029de5db73b3ea}{
 \index{Cglobal@{Cglobal}!m\_\-instance@{m\_\-instance}}
 \index{m\_\-instance@{m\_\-instance}!Cglobal@{Cglobal}}
@@ -263,38 +463,62 @@ Höhe.
 \label{class_cglobal_af3a06302b3bd19de728064359241c1a1}
 
 
-publisher zum publishen des Twist Objekts 
+Publisher zum publishen des Twist Objekts. 
 
-\hypertarget{class_cglobal_a718da04af5940be1ad811f61b85f57d6}{
-\index{Cglobal@{Cglobal}!rechts@{rechts}}
-\index{rechts@{rechts}!Cglobal@{Cglobal}}
-\subsubsection[{rechts}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Cglobal::rechts}}}
-\label{class_cglobal_a718da04af5940be1ad811f61b85f57d6}
 \hypertarget{class_cglobal_ad295728f5113d9a47527cf14262dea0e}{
 \index{Cglobal@{Cglobal}!rotx@{rotx}}
 \index{rotx@{rotx}!Cglobal@{Cglobal}}
 \subsubsection[{rotx}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Cglobal::rotx}}}
 \label{class_cglobal_ad295728f5113d9a47527cf14262dea0e}
+
+
+aktuelle aktuelle Rotation um die x-\/Achse 
+
 \hypertarget{class_cglobal_a5c1fac565d3813e798bd6aeb1c6fc8aa}{
 \index{Cglobal@{Cglobal}!roty@{roty}}
 \index{roty@{roty}!Cglobal@{Cglobal}}
 \subsubsection[{roty}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Cglobal::roty}}}
 \label{class_cglobal_a5c1fac565d3813e798bd6aeb1c6fc8aa}
-\hypertarget{class_cglobal_a3198b29c259c188b0938b4fb5731409b}{
-\index{Cglobal@{Cglobal}!runter@{runter}}
-\index{runter@{runter}!Cglobal@{Cglobal}}
-\subsubsection[{runter}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Cglobal::runter}}}
-\label{class_cglobal_a3198b29c259c188b0938b4fb5731409b}
+
+
+aktuelle aktuelle Rotation um die y-\/Achse 
+
 \hypertarget{class_cglobal_afe6f01a7ff64a3de6d0c8612f36511fd}{
 \index{Cglobal@{Cglobal}!seen@{seen}}
 \index{seen@{seen}!Cglobal@{Cglobal}}
 \subsubsection[{seen}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Cglobal::seen}}}
 \label{class_cglobal_afe6f01a7ff64a3de6d0c8612f36511fd}
+
+
+enthält ob das Tag bzw. die Linie beim letzten Aufruf des Handlers gesehen wurde 
+
+\hypertarget{class_cglobal_a9a9df79aad0bb5db8880a83d2fb407e2}{
+\index{Cglobal@{Cglobal}!sinceNoNavdataUpdate@{sinceNoNavdataUpdate}}
+\index{sinceNoNavdataUpdate@{sinceNoNavdataUpdate}!Cglobal@{Cglobal}}
+\subsubsection[{sinceNoNavdataUpdate}]{\setlength{\rightskip}{0pt plus 5cm}struct timeval {\bf Cglobal::sinceNoNavdataUpdate}}}
+\label{class_cglobal_a9a9df79aad0bb5db8880a83d2fb407e2}
+
+
+Zeit seit der das letzte Mal neue Navigationsdaten gesendet wurden. 
+
 \hypertarget{class_cglobal_abb1e0f2a241a8d9131098cf823b45f64}{
 \index{Cglobal@{Cglobal}!sinceNotSeen@{sinceNotSeen}}
 \index{sinceNotSeen@{sinceNotSeen}!Cglobal@{Cglobal}}
 \subsubsection[{sinceNotSeen}]{\setlength{\rightskip}{0pt plus 5cm}time\_\-t {\bf Cglobal::sinceNotSeen}}}
 \label{class_cglobal_abb1e0f2a241a8d9131098cf823b45f64}
+
+
+Zeit seit der das Tag das letzte mal gesehen wurde. 
+
+\hypertarget{class_cglobal_a7a599bd2c2f4400e3b7f8f98e1f293fe}{
+\index{Cglobal@{Cglobal}!Ta@{Ta}}
+\index{Ta@{Ta}!Cglobal@{Cglobal}}
+\subsubsection[{Ta}]{\setlength{\rightskip}{0pt plus 5cm}const float {\bf Cglobal::Ta} = 0.05555555f\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_a7a599bd2c2f4400e3b7f8f98e1f293fe}
+
+
+1/18 = 0.0555... , wegen 18 Aufrufen pro Sekunde(ar\_\-recog published 18 mal pro Sekunde) 
+
 \hypertarget{class_cglobal_acdd49b2fad30faf04785664c422f5ef7}{
 \index{Cglobal@{Cglobal}!twist@{twist}}
 \index{twist@{twist}!Cglobal@{Cglobal}}
@@ -302,47 +526,62 @@ publisher zum publishen des Twist Objekts
 \label{class_cglobal_acdd49b2fad30faf04785664c422f5ef7}
 
 
-Zur Ansteuerung der Drone. 
+Twist-\/Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält. 
 
-\hypertarget{class_cglobal_ac0b3c90a19b5395a404bb9e5aee44e1c}{
-\index{Cglobal@{Cglobal}!vor@{vor}}
-\index{vor@{vor}!Cglobal@{Cglobal}}
-\subsubsection[{vor}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Cglobal::vor}}}
-\label{class_cglobal_ac0b3c90a19b5395a404bb9e5aee44e1c}
+\hypertarget{class_cglobal_ae99f21083838b00781e4461e3e7accb9}{
+\index{Cglobal@{Cglobal}!twist\_\-old@{twist\_\-old}}
+\index{twist\_\-old@{twist\_\-old}!Cglobal@{Cglobal}}
+\subsubsection[{twist\_\-old}]{\setlength{\rightskip}{0pt plus 5cm}geometry\_\-msgs::Twist {\bf Cglobal::twist\_\-old}}}
+\label{class_cglobal_ae99f21083838b00781e4461e3e7accb9}
 
 
-will die Drone nach vorne fliegen? 
+enthält den Twist-\/Wert(ohne Regelung), der gesetzt wurde, als das Tag bzw. die Linie zuletzt gesehen wurde 
 
 \hypertarget{class_cglobal_abafbed62176301706747c04ef3046aae}{
 \index{Cglobal@{Cglobal}!vx@{vx}}
 \index{vx@{vx}!Cglobal@{Cglobal}}
 \subsubsection[{vx}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Cglobal::vx}}}
 \label{class_cglobal_abafbed62176301706747c04ef3046aae}
+
+
+aktuelle Geschwindigkeit in x-\/Richtung 
+
 \hypertarget{class_cglobal_a0967372a0ede7b8b9a24957df663b7b3}{
 \index{Cglobal@{Cglobal}!vy@{vy}}
 \index{vy@{vy}!Cglobal@{Cglobal}}
 \subsubsection[{vy}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Cglobal::vy}}}
 \label{class_cglobal_a0967372a0ede7b8b9a24957df663b7b3}
+
+
+aktuelle Geschwindigkeit in y-\/Richtung 
+
 \hypertarget{class_cglobal_af9ef9759f83ae67b7e220570a7738ef5}{
 \index{Cglobal@{Cglobal}!vz@{vz}}
 \index{vz@{vz}!Cglobal@{Cglobal}}
 \subsubsection[{vz}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Cglobal::vz}}}
 \label{class_cglobal_af9ef9759f83ae67b7e220570a7738ef5}
-\hypertarget{class_cglobal_a3adbbe83dbdab17a3506572de5444d14}{
+
+
+aktuelle Geschwindigkeit in z-\/Richtung 
+
+\hypertarget{class_cglobal_a931ff0dc06e16b267d22dd21570d686b}{
 \index{Cglobal@{Cglobal}!widthB@{widthB}}
 \index{widthB@{widthB}!Cglobal@{Cglobal}}
-\subsubsection[{widthB}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Cglobal::widthB}}}
-\label{class_cglobal_a3adbbe83dbdab17a3506572de5444d14}
-\hypertarget{class_cglobal_add77c33bb751ff75fc5e6bc0409d4540}{
+\subsubsection[{widthB}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf Cglobal::widthB} = 160\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_a931ff0dc06e16b267d22dd21570d686b}
+
+
+Bildbreite der unteren Kamera. 
+
+\hypertarget{class_cglobal_a95cebf066839488c61b4bc2f7fbf61c1}{
 \index{Cglobal@{Cglobal}!widthF@{widthF}}
 \index{widthF@{widthF}!Cglobal@{Cglobal}}
-\subsubsection[{widthF}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Cglobal::widthF}}}
-\label{class_cglobal_add77c33bb751ff75fc5e6bc0409d4540}
-\hypertarget{class_cglobal_a1b0b85d52fea92c819e421db042b704d}{
-\index{Cglobal@{Cglobal}!zurueck@{zurueck}}
-\index{zurueck@{zurueck}!Cglobal@{Cglobal}}
-\subsubsection[{zurueck}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Cglobal::zurueck}}}
-\label{class_cglobal_a1b0b85d52fea92c819e421db042b704d}
+\subsubsection[{widthF}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf Cglobal::widthF} = 320\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{class_cglobal_a95cebf066839488c61b4bc2f7fbf61c1}
+
+
+Bildbreite der Front-\/Kamera. 
+
 
 
 Die Dokumentation für diese Klasse wurde erzeugt aufgrund der Dateien:\begin{DoxyCompactItemize}

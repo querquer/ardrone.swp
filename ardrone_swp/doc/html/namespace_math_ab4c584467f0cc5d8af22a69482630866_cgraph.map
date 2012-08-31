@@ -1,6 +1,6 @@
 <map id="G" name="G">
 <area shape="rect" id="node3" href="$namespaceanonymous__namespace_02_math_8cpp_03.html#af32b12f59241277b0b94ca38ca1d5a4b" title="anonymous_namespace\{Math::cpp\}::center" alt="" coords="193,5,465,35"/>
 <area shape="rect" id="node5" href="$class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="515,84,637,113"/>
-<area shape="rect" id="node9" href="$namespace_math.html#a25b9284eb485b732c952786b63343aaa" title="Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben ..." alt="" coords="255,109,404,139"/>
+<area shape="rect" id="node9" href="$namespace_math.html#a25b9284eb485b732c952786b63343aaa" title="Berechnung der Anzahl der Pixel für die Bodenkamera, um die das Tag aufgrund der Rotation verschoben ..." alt="" coords="255,109,404,139"/>
 <area shape="rect" id="node7" href="$class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="687,84,804,113"/>
 </map>

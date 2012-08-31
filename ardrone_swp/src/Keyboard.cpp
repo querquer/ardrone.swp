@@ -19,12 +19,20 @@ struct termios orig_termios;
  *
  * muss periodisch aufgerufen werden
  *
+ *
+ *
  * w,s,a,d : vorne, hinten, links, rechts
+ *
  * q: nach links drehen
+ *
  * e: nach rechts drehen
+ *
  * o: nach oben fliegen
+ *
  * l: nach unten fliegen
+ *
  * u: um 10% schneller werden
+ *
  * j: um 10% langsamer werden
  *
  */
@@ -92,6 +100,8 @@ void set_conio_terminal_mode()
     tcsetattr(0, TCSANOW, &new_termios);
 }
 
+/** @brief gibt zurück, ob eine Taste gedrückt wurde
+ */
 int kbhit()
 {
     struct timeval tv = { 0L, 0L };
@@ -100,7 +110,8 @@ int kbhit()
     FD_SET(0, &fds);
     return select(1, &fds, NULL, NULL, &tv);
 }
-
+/** @brief gibt zurück, welche Taste gedrückt wurde
+ */
 int getch()
 {
     int r;

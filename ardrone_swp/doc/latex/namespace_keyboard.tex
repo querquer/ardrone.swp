@@ -2,6 +2,11 @@
 \section{Keyboard-\/Namensbereichsreferenz}
 \label{namespace_keyboard}\index{Keyboard@{Keyboard}}
 }
+
+
+enthält \hyperlink{namespace_keyboard_abfb3168172d115a6516147c6d42f58db}{Keyboard::control()} zum steuern der Drone mit der Tastatur  
+
+
 \subsection*{Funktionen}
 \begin{DoxyCompactItemize}
 \item 
@@ -12,15 +17,18 @@ void \hyperlink{namespace_keyboard_aef945e5d33422ac6abbb326b5203eb5b}{reset\_\-t
 void \hyperlink{namespace_keyboard_a6cc4fc3f7daf5630d0570f9d9d21d19c}{set\_\-conio\_\-terminal\_\-mode} ()
 \item 
 int \hyperlink{namespace_keyboard_a8c142c603571175e17a83a9b99d00d63}{kbhit} ()
-\item 
+\begin{DoxyCompactList}\small\item\em gibt zurück, ob eine Taste gedrückt wurde \end{DoxyCompactList}\item 
 int \hyperlink{namespace_keyboard_a433fc58fb356fe62305e8419dd7b33d6}{getch} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em gibt zurück, welche Taste gedrückt wurde \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variablen}
 \begin{DoxyCompactItemize}
 \item 
 struct termios \hyperlink{namespace_keyboard_a8b623d5192e406c97c4e265dbe4c5f38}{orig\_\-termios}
 \end{DoxyCompactItemize}
 
+
+\subsection{Ausführliche Beschreibung}
+enthält \hyperlink{namespace_keyboard_abfb3168172d115a6516147c6d42f58db}{Keyboard::control()} zum steuern der Drone mit der Tastatur 
 
 \subsection{Dokumentation der Funktionen}
 \hypertarget{namespace_keyboard_abfb3168172d115a6516147c6d42f58db}{
@@ -38,24 +46,25 @@ zum Steuern der Drone mit der Tastatur
 
 muss periodisch aufgerufen werden
 
-w,s,a,d : vorne, hinten, links, rechts q: nach links drehen e: nach rechts drehen o: nach oben fliegen l: nach unten fliegen u: um 10\% schneller werden j: um 10\% langsamer werden 
+w,s,a,d : vorne, hinten, links, rechts
+
+q: nach links drehen
+
+e: nach rechts drehen
+
+o: nach oben fliegen
+
+l: nach unten fliegen
+
+u: um 10\% schneller werden
+
+j: um 10\% langsamer werden 
 
 Hier ist ein Graph der zeigt, was diese Funktion aufruft:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=400pt]{namespace_keyboard_abfb3168172d115a6516147c6d42f58db_cgraph}
-\end{center}
-\end{figure}
-
-
-
-
-Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=346pt]{namespace_keyboard_abfb3168172d115a6516147c6d42f58db_icgraph}
 \end{center}
 \end{figure}
 
@@ -71,11 +80,15 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
 \label{namespace_keyboard_a433fc58fb356fe62305e8419dd7b33d6}
 
 
+gibt zurück, welche Taste gedrückt wurde 
+
+
+
 Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=400pt]{namespace_keyboard_a433fc58fb356fe62305e8419dd7b33d6_icgraph}
+\includegraphics[width=298pt]{namespace_keyboard_a433fc58fb356fe62305e8419dd7b33d6_icgraph}
 \end{center}
 \end{figure}
 
@@ -91,11 +104,15 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
 \label{namespace_keyboard_a8c142c603571175e17a83a9b99d00d63}
 
 
+gibt zurück, ob eine Taste gedrückt wurde 
+
+
+
 Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=400pt]{namespace_keyboard_a8c142c603571175e17a83a9b99d00d63_icgraph}
+\includegraphics[width=296pt]{namespace_keyboard_a8c142c603571175e17a83a9b99d00d63_icgraph}
 \end{center}
 \end{figure}
 
@@ -146,7 +163,7 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=400pt]{namespace_keyboard_a6cc4fc3f7daf5630d0570f9d9d21d19c_icgraph}
+\includegraphics[width=386pt]{namespace_keyboard_a6cc4fc3f7daf5630d0570f9d9d21d19c_icgraph}
 \end{center}
 \end{figure}
 

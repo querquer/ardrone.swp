@@ -1,7 +1,14 @@
+/**
+ * @file Keyboard.h
+ * @brief enthält Keyboard::control() zum steuern der Drone mit der Tastatur
+ */
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
 
-
+/**
+ * @namespace Keyboard
+ * @brief enthält Keyboard::control() zum steuern der Drone mit der Tastatur
+ */
 namespace Keyboard
 {
 	void control();

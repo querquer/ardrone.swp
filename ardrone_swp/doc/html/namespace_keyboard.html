@@ -65,6 +65,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
 <div class="title">Keyboard-Namensbereichsreferenz</div>  </div>
 </div>
 <div class="contents">
+
+<p>enthält <a class="el" href="namespace_keyboard.html#abfb3168172d115a6516147c6d42f58db" title="zum Steuern der Drone mit der Tastatur">Keyboard::control()</a> zum steuern der Drone mit der Tastatur  
+<a href="#details">Mehr ...</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Funktionen</h2></td></tr>
@@ -73,12 +76,16 @@ Funktionen</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_keyboard.html#aef945e5d33422ac6abbb326b5203eb5b">reset_terminal_mode</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_keyboard.html#a6cc4fc3f7daf5630d0570f9d9d21d19c">set_conio_terminal_mode</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_keyboard.html#a8c142c603571175e17a83a9b99d00d63">kbhit</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gibt zurück, ob eine Taste gedrückt wurde  <a href="#a8c142c603571175e17a83a9b99d00d63"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_keyboard.html#a433fc58fb356fe62305e8419dd7b33d6">getch</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">gibt zurück, welche Taste gedrückt wurde  <a href="#a433fc58fb356fe62305e8419dd7b33d6"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variablen</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct termios&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_keyboard.html#a8b623d5192e406c97c4e265dbe4c5f38">orig_termios</a></td></tr>
 </table>
-<hr/><h2>Dokumentation der Funktionen</h2>
+<hr/><a name="details" id="details"></a><h2>Ausführliche Beschreibung</h2>
+<div class="textblock"><p>enthält <a class="el" href="namespace_keyboard.html#abfb3168172d115a6516147c6d42f58db" title="zum Steuern der Drone mit der Tastatur">Keyboard::control()</a> zum steuern der Drone mit der Tastatur </p>
+</div><hr/><h2>Dokumentation der Funktionen</h2>
 <a class="anchor" id="abfb3168172d115a6516147c6d42f58db"></a><!-- doxytag: member="Keyboard::control" ref="abfb3168172d115a6516147c6d42f58db" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -95,23 +102,20 @@ Variablen</h2></td></tr>
 
 <p>zum Steuern der Drone mit der Tastatur </p>
 <p>muss periodisch aufgerufen werden</p>
-<p>w,s,a,d : vorne, hinten, links, rechts q: nach links drehen e: nach rechts drehen o: nach oben fliegen l: nach unten fliegen u: um 10% schneller werden j: um 10% langsamer werden </p>
+<p>w,s,a,d : vorne, hinten, links, rechts</p>
+<p>q: nach links drehen</p>
+<p>e: nach rechts drehen</p>
+<p>o: nach oben fliegen</p>
+<p>l: nach unten fliegen</p>
+<p>u: um 10% schneller werden</p>
+<p>j: um 10% langsamer werden </p>
 
 <p><div class="dynheader">
 Hier ist ein Graph der zeigt, was diese Funktion aufruft:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespace_keyboard_abfb3168172d115a6516147c6d42f58db_cgraph.png" border="0" usemap="#namespace_keyboard_abfb3168172d115a6516147c6d42f58db_cgraph" alt=""/></div>
 <map name="namespace_keyboard_abfb3168172d115a6516147c6d42f58db_cgraph" id="namespace_keyboard_abfb3168172d115a6516147c6d42f58db_cgraph">
-<area shape="rect" id="node3" href="namespace_keyboard.html#a433fc58fb356fe62305e8419dd7b33d6" title="Keyboard::getch" alt="" coords="237,5,355,35"/><area shape="rect" id="node5" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="235,59,357,88"/><area shape="rect" id="node9" href="namespace_keyboard.html#a8c142c603571175e17a83a9b99d00d63" title="Keyboard::kbhit" alt="" coords="240,112,352,141"/><area shape="rect" id="node11" href="namespace_keyboard.html#aef945e5d33422ac6abbb326b5203eb5b" title="Keyboard::reset_terminal_mode" alt="" coords="463,189,668,219"/><area shape="rect" id="node13" href="namespace_keyboard.html#a6cc4fc3f7daf5630d0570f9d9d21d19c" title="Keyboard::set_conio_terminal_mode" alt="" coords="180,216,412,245"/><area shape="rect" id="node7" href="class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="507,59,624,88"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
-<div class="dyncontent">
-<div class="center"><img src="namespace_keyboard_abfb3168172d115a6516147c6d42f58db_icgraph.png" border="0" usemap="#namespace_keyboard_abfb3168172d115a6516147c6d42f58db_icgraph" alt=""/></div>
-<map name="namespace_keyboard_abfb3168172d115a6516147c6d42f58db_icgraph" id="namespace_keyboard_abfb3168172d115a6516147c6d42f58db_icgraph">
-<area shape="rect" id="node3" href="bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="subscriber handler für die Nachricht tags" alt="" coords="179,5,261,35"/><area shape="rect" id="node5" href="bottom__follow__tag_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="309,5,360,35"/></map>
+<area shape="rect" id="node3" href="namespace_keyboard.html#a433fc58fb356fe62305e8419dd7b33d6" title="gibt zurück, welche Taste gedrückt wurde" alt="" coords="237,5,355,35"/><area shape="rect" id="node5" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="235,59,357,88"/><area shape="rect" id="node9" href="namespace_keyboard.html#a8c142c603571175e17a83a9b99d00d63" title="gibt zurück, ob eine Taste gedrückt wurde" alt="" coords="240,112,352,141"/><area shape="rect" id="node11" href="namespace_keyboard.html#aef945e5d33422ac6abbb326b5203eb5b" title="Keyboard::reset_terminal_mode" alt="" coords="463,189,668,219"/><area shape="rect" id="node13" href="namespace_keyboard.html#a6cc4fc3f7daf5630d0570f9d9d21d19c" title="Keyboard::set_conio_terminal_mode" alt="" coords="180,216,412,245"/><area shape="rect" id="node7" href="class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="507,59,624,88"/></map>
 </div>
 </p>
 
@@ -131,12 +135,14 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
 </div>
 <div class="memdoc">
 
+<p>gibt zurück, welche Taste gedrückt wurde </p>
+
 <p><div class="dynheader">
 Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespace_keyboard_a433fc58fb356fe62305e8419dd7b33d6_icgraph.png" border="0" usemap="#namespace_keyboard_a433fc58fb356fe62305e8419dd7b33d6_icgraph" alt=""/></div>
 <map name="namespace_keyboard_a433fc58fb356fe62305e8419dd7b33d6_icgraph" id="namespace_keyboard_a433fc58fb356fe62305e8419dd7b33d6_icgraph">
-<area shape="rect" id="node3" href="namespace_keyboard.html#abfb3168172d115a6516147c6d42f58db" title="zum Steuern der Drone mit der Tastatur" alt="" coords="172,5,295,35"/><area shape="rect" id="node5" href="bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="subscriber handler für die Nachricht tags" alt="" coords="344,5,427,35"/><area shape="rect" id="node7" href="bottom__follow__tag_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="475,5,525,35"/></map>
+<area shape="rect" id="node3" href="namespace_keyboard.html#abfb3168172d115a6516147c6d42f58db" title="zum Steuern der Drone mit der Tastatur" alt="" coords="172,5,295,35"/></map>
 </div>
 </p>
 
@@ -156,12 +162,14 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
 </div>
 <div class="memdoc">
 
+<p>gibt zurück, ob eine Taste gedrückt wurde </p>
+
 <p><div class="dynheader">
 Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespace_keyboard_a8c142c603571175e17a83a9b99d00d63_icgraph.png" border="0" usemap="#namespace_keyboard_a8c142c603571175e17a83a9b99d00d63_icgraph" alt=""/></div>
 <map name="namespace_keyboard_a8c142c603571175e17a83a9b99d00d63_icgraph" id="namespace_keyboard_a8c142c603571175e17a83a9b99d00d63_icgraph">
-<area shape="rect" id="node3" href="namespace_keyboard.html#abfb3168172d115a6516147c6d42f58db" title="zum Steuern der Drone mit der Tastatur" alt="" coords="169,5,292,35"/><area shape="rect" id="node5" href="bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="subscriber handler für die Nachricht tags" alt="" coords="341,5,424,35"/><area shape="rect" id="node7" href="bottom__follow__tag_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="472,5,523,35"/></map>
+<area shape="rect" id="node3" href="namespace_keyboard.html#abfb3168172d115a6516147c6d42f58db" title="zum Steuern der Drone mit der Tastatur" alt="" coords="169,5,292,35"/></map>
 </div>
 </p>
 
@@ -186,7 +194,7 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespace_keyboard_aef945e5d33422ac6abbb326b5203eb5b_icgraph.png" border="0" usemap="#namespace_keyboard_aef945e5d33422ac6abbb326b5203eb5b_icgraph" alt=""/></div>
 <map name="namespace_keyboard_aef945e5d33422ac6abbb326b5203eb5b_icgraph" id="namespace_keyboard_aef945e5d33422ac6abbb326b5203eb5b_icgraph">
-<area shape="rect" id="node3" href="namespace_keyboard.html#abfb3168172d115a6516147c6d42f58db" title="zum Steuern der Drone mit der Tastatur" alt="" coords="545,5,668,35"/><area shape="rect" id="node9" href="namespace_keyboard.html#a6cc4fc3f7daf5630d0570f9d9d21d19c" title="Keyboard::set_conio_terminal_mode" alt="" coords="263,31,495,60"/><area shape="rect" id="node5" href="bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="subscriber handler für die Nachricht tags" alt="" coords="717,5,800,35"/><area shape="rect" id="node7" href="bottom__follow__tag_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="848,5,899,35"/></map>
+<area shape="rect" id="node3" href="namespace_keyboard.html#abfb3168172d115a6516147c6d42f58db" title="zum Steuern der Drone mit der Tastatur" alt="" coords="545,5,668,35"/><area shape="rect" id="node5" href="namespace_keyboard.html#a6cc4fc3f7daf5630d0570f9d9d21d19c" title="Keyboard::set_conio_terminal_mode" alt="" coords="263,31,495,60"/></map>
 </div>
 </p>
 
@@ -220,7 +228,7 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespace_keyboard_a6cc4fc3f7daf5630d0570f9d9d21d19c_icgraph.png" border="0" usemap="#namespace_keyboard_a6cc4fc3f7daf5630d0570f9d9d21d19c_icgraph" alt=""/></div>
 <map name="namespace_keyboard_a6cc4fc3f7daf5630d0570f9d9d21d19c_icgraph" id="namespace_keyboard_a6cc4fc3f7daf5630d0570f9d9d21d19c_icgraph">
-<area shape="rect" id="node3" href="namespace_keyboard.html#abfb3168172d115a6516147c6d42f58db" title="zum Steuern der Drone mit der Tastatur" alt="" coords="289,5,412,35"/><area shape="rect" id="node5" href="bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="subscriber handler für die Nachricht tags" alt="" coords="461,5,544,35"/><area shape="rect" id="node7" href="bottom__follow__tag_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="592,5,643,35"/></map>
+<area shape="rect" id="node3" href="namespace_keyboard.html#abfb3168172d115a6516147c6d42f58db" title="zum Steuern der Drone mit der Tastatur" alt="" coords="289,5,412,35"/></map>
 </div>
 </p>
 
@@ -255,7 +263,7 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Erzeugt am Wed Jul 4 2012 15:25:31 für ardrone_swp von&#160;
+<hr class="footer"/><address class="footer"><small>Erzeugt am Fri Aug 31 2012 15:45:20 für ardrone_swp von&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

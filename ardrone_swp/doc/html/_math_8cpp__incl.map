@@ -1,5 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$_math_8h.html" title="Math.h" alt="" coords="159,83,220,112"/>
-<area shape="rect" id="node9" href="$_global_8h.html" title="Global.h" alt="" coords="584,83,653,112"/>
-<area shape="rect" id="node17" href="$_delta_8h.html" title="Delta.h" alt="" coords="845,160,909,189"/>
+<area shape="rect" id="node3" href="$_math_8h.html" title="enthält Funktionen für das Berechen wo sich ein Tag bezüglich des Bildes befindet und die Regelung..." alt="" coords="1528,237,1589,267"/>
+<area shape="rect" id="node9" href="$_global_8h.html" title="Singleton: enthält alle Globalen Variablen." alt="" coords="934,83,1004,112"/>
+<area shape="rect" id="node11" href="$std__includes_8h.html" title="included die Header, die standartmäßig benötigt werden" alt="" coords="916,160,1022,189"/>
+<area shape="rect" id="node39" href="$_keyboard_8h.html" title="enthält Keyboard::control() zum steuern der Drone mit der Tastatur" alt="" coords="1050,237,1138,267"/>
 </map>

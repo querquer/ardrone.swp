@@ -13,9 +13,7 @@ namespace
 namespace Math
 {
 
-/** @brief Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben wurde
- *
- * Problem: Sichtfeld ist noch nicht korrekt berechnet(derzeit für x und y Richtung gleich)
+/** @brief Berechnung der Anzahl der Pixel für die Bodenkamera, um die das Tag aufgrund der Rotation verschoben wurde
  *
  *
  * @param	x	Verschiebung in x Richung
@@ -26,48 +24,23 @@ namespace Math
  */
 void pixelDiffBottom(float& x, float& y)
 {
-
-	  /*float ds = altd * tan( roty );  //Entfernung eingentliche position vom Tag (y) zur ermittelten
-	  float c = (2 * altd) / tan(58); //Sichtfeldgröße
-	  y = (ds * height) / c;      //Punkte des Tags werden um diese anzahl von Pixeln verschoben
-
-	  float dsx = altd * tan( rotx );
-	  x = (dsx * width) / c;
-
-	  x /= 3;
-	  y *= 0.5;
-
-	  	  ostr << "roty     " << roty << endl;
-	  ostr << "Delta s: " << ds << endl;
-	  ostr << "c        " << c << endl;
-	  ostr << "dy       " << dy << endl;
-	  ostr << "delt s:  " << dsx << endl;
-	  ostr << "dx       " << dx << endl;
-	  */
-
-
-
-
-	/*float r = ((tan(0.558496f + Cglobal::instance().roty) + tan(0.558496f - Cglobal::instance().roty)) * Cglobal::instance().altd) / 2;
-	float width = 2 * r * sin(arctan(1.33333f));
-	float height = 0.75f * w;
-
-	y = 0.5 * tan(Cglobal::instance().roty) * 1.6 * height;  //tan(58)~= 1.6
-	x = 0.5 * tan(Cglobal::instance().rotx) * 1.6 * width;*/
-
 	y = (200.0f * tan(Cglobal::instance().roty)) / ((tan(0.558496f + Cglobal::instance().roty) + tan(0.558496f - Cglobal::instance().roty)));
 	x = (200.0f * tan(Cglobal::instance().rotx)) / ((tan(0.558496f + Cglobal::instance().rotx) + tan(0.558496f - Cglobal::instance().rotx)));
 
 	y *= 1.333f;
 	x *= 1.333f;
-
-	//x = 100.0f * tan(Cglobal::instance().roty) * 1.6f;
-	//y = 100.0f * tan(Cglobal::instance().rotx) * 1.6f;
 }
 
 
-
-void pixelDiffFront(const ar_recog::Tag& tag, float& x, float& y)
+/** @brief Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben wurde
+ *
+ * @param	x	Verschiebung in x Richung
+ * @param	y	Verschiebung in y Richung
+ *
+ *
+ * <img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/betta.jpg" alt="Schema">
+ */
+void pixelDiffFront(float& x, float& y)
 {
 
 	y = 0.5 * tan(Cglobal::instance().roty) * 0.948965 * Cglobal::instance().heightF;  //tan(43.5)~= 0.948965
@@ -76,10 +49,23 @@ void pixelDiffFront(const ar_recog::Tag& tag, float& x, float& y)
 	x = 0;
 }
 
-/** @brief Berechnung aus den Eckpunkten wo sich das Tag bezüglich des Bildes befindet
+/** @brief Berechnung für die Bodenkamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet
 
-	cy: 0 Tag ist am oberen Bildrand, 0.5 Tag ist in der Mitte(Höhe), 1 Tag ist am unteren Bildrand
-	cx: 0 Tag ist am linken Bildrand, 0.5 Tag ist in der Mitte(Breite), 1 Tag ist am rechten Bildrend
+	cy:
+
+	 0:     Tag ist am oberen Bildrand,
+
+	 0.5:   Tag ist in der Mitte(Höhe),
+
+	 1:     Tag ist am unteren Bildrand
+
+	cx:
+
+	 0:	 	Tag ist am linken Bildrand,
+
+	 0.5:	Tag ist in der Mitte(Breite),
+
+	 1:		Tag ist am rechten Bildrend
 */
 void centerBottom(const ar_recog::Tag& tag, float& cx, float& cy)
 {
@@ -88,11 +74,28 @@ void centerBottom(const ar_recog::Tag& tag, float& cx, float& cy)
 	center(tag, cx, cy, dx, dy, Cglobal::instance().widthB, Cglobal::instance().heightB);
 	cx -= 0.05f;
 }
+/** @brief Berechnung für die Front	kamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet
 
+	cy:
+
+	 0:     Tag ist am oberen Bildrand,
+
+	 0.5:   Tag ist in der Mitte(Höhe),
+
+	 1:     Tag ist am unteren Bildrand
+
+	cx:
+
+	 0:	 	Tag ist am linken Bildrand,
+
+	 0.5:	Tag ist in der Mitte(Breite),
+
+	 1:		Tag ist am rechten Bildrend
+*/
 void centerFront(const ar_recog::Tag& tag, float& cx, float& cy)
 {
 	float dx, dy;
-	pixelDiffFront(tag, dx,dy);
+	pixelDiffFront(dx,dy);
 	center(tag, cx, cy, dx, dy, Cglobal::instance().widthF, Cglobal::instance().heightF);
 }
 
@@ -114,6 +117,8 @@ void navdataUpdate(const ardrone_brown::Navdata::ConstPtr& navdata)
 	gettimeofday(&Cglobal::instance().sinceNoNavdataUpdate, NULL);
 }
 
+/** @brief PD-Regelung für bottom_follow_tag
+ */
 void bottom_regulation()
 {
 	// P-Anteil:
@@ -132,6 +137,8 @@ void bottom_regulation()
 	Cglobal::instance().exold = ex;
 	Cglobal::instance().eyold = ey;
 }
+/** @brief PD-Regelung für front_follow_tag
+ */
 void front_regulation()
 {
 	float ex = Cglobal::instance().twist.linear.x - Cglobal::instance().f_mmPs2twistx * Cglobal::instance().vx; //Fehler in x Richtung
@@ -148,6 +155,8 @@ void front_regulation()
 	Cglobal::instance().exold = ex;
 	Cglobal::instance().eyold = ey;
 }
+/** @brief P-Regelung für follow_tag
+ */
 void line_regulation()
 {
 	// P-Anteil:
@@ -182,12 +191,11 @@ namespace
 
 		cx = cx / 4.0;
 		cx -= dx;
-		//cx += dx; falsch!!!
 		cx = cx / width;
 	}
 	float grad2rad(float a)
 	{
-		return a *= 0.017453f;
+		return a *= 0.017453f;  // pi/180°
 	}
 }
 

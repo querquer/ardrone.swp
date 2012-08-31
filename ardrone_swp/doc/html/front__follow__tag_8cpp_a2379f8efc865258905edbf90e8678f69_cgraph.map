@@ -1,13 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$namespace_math.html#a43f025fac1ade5dbf88f7c393ca85644" title="Math::centerFront" alt="" coords="139,84,264,113"/>
-<area shape="rect" id="node7" href="$class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="680,136,803,165"/>
-<area shape="rect" id="node14" href="$namespace_keyboard.html#abfb3168172d115a6516147c6d42f58db" title="zum Steuern der Drone mit der Tastatur" alt="" coords="140,264,263,293"/>
-<area shape="rect" id="node26" href="$class_delta.html#a16d1cf25743928796d7cf1e5c7882c17" title="Delta::get_velocity" alt="" coords="136,317,267,347"/>
-<area shape="rect" id="node5" href="$namespaceanonymous__namespace_02_math_8cpp_03.html#af32b12f59241277b0b94ca38ca1d5a4b" title="anonymous_namespace\{Math::cpp\}::center" alt="" coords="316,5,588,35"/>
-<area shape="rect" id="node11" href="$namespace_math.html#a3fbe7036db847d74ed5f2c21635d02d9" title="Math::pixelDiffFront" alt="" coords="384,109,520,139"/>
-<area shape="rect" id="node9" href="$class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="895,136,1012,165"/>
-<area shape="rect" id="node16" href="$namespace_keyboard.html#a433fc58fb356fe62305e8419dd7b33d6" title="Keyboard::getch" alt="" coords="393,264,511,293"/>
-<area shape="rect" id="node19" href="$namespace_keyboard.html#a8c142c603571175e17a83a9b99d00d63" title="Keyboard::kbhit" alt="" coords="396,317,508,347"/>
-<area shape="rect" id="node21" href="$namespace_keyboard.html#aef945e5d33422ac6abbb326b5203eb5b" title="Keyboard::reset_terminal_mode" alt="" coords="639,395,844,424"/>
-<area shape="rect" id="node23" href="$namespace_keyboard.html#a6cc4fc3f7daf5630d0570f9d9d21d19c" title="Keyboard::set_conio_terminal_mode" alt="" coords="336,421,568,451"/>
+<area shape="rect" id="node3" href="$namespace_math.html#a43f025fac1ade5dbf88f7c393ca85644" title="Berechnung für die Front kamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet..." alt="" coords="148,84,273,113"/>
+<area shape="rect" id="node7" href="$class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="656,136,779,165"/>
+<area shape="rect" id="node14" href="$namespace_math.html#a7be3473d626056767311b94db1860cb0" title="PD&#45;Regelung für front_follow_tag." alt="" coords="137,213,284,243"/>
+<area shape="rect" id="node5" href="$namespaceanonymous__namespace_02_math_8cpp_03.html#af32b12f59241277b0b94ca38ca1d5a4b" title="anonymous_namespace\{Math::cpp\}::center" alt="" coords="335,5,607,35"/>
+<area shape="rect" id="node11" href="$namespace_math.html#a3fbe7036db847d74ed5f2c21635d02d9" title="Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben ..." alt="" coords="403,109,539,139"/>
+<area shape="rect" id="node9" href="$class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="828,136,945,165"/>
 </map>

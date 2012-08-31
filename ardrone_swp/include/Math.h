@@ -1,11 +1,14 @@
+/** @file Math.h
+ *  @brief enthält Funktionen für das Berechen wo sich ein Tag bezüglich des Bildes befindet und die Regelung
+ */
 #ifndef MATH_H
 #define MATH_H
 
 #include "ar_recog/Tag.h"
 #include "ardrone_brown/Navdata.h"
 
-/* @brief Funktionen für z.B. berechen wo sich ein Tag bezüglich des Bildes befindet
- *
+/** @namespace Math
+ *  @brief enthält Funktionen für das Berechen wo sich ein Tag bezüglich des Bildes befindet und die Regelung
  */
 namespace Math
 {

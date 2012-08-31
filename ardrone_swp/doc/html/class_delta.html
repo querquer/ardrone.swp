@@ -67,6 +67,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
 </div>
 <div class="contents">
 <!-- doxytag: class="Delta" -->
+<p>Klasse, zur Berechnung der Geschwindigkeit (wird nicht mehr verwendet)  
+ <a href="class_delta.html#details">Mehr ...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_delta_8h_source.html">Delta.h</a>&gt;</code></p>
 
 <p><a href="class_delta-members.html">Aufstellung aller Elemente</a></p>
@@ -78,10 +81,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attribute</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_delta.html#a1724264763801016d7d1c0d5f4817a96">old_value</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">enthält den letzen übergebenen Wert  <a href="#a1724264763801016d7d1c0d5f4817a96"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_delta.html#aec1a12c9785ec159f541663926eda55d">old_time</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">enthält die Zeit, seitdem letzten Aufruf von float <a class="el" href="class_delta.html#a16d1cf25743928796d7cf1e5c7882c17">Delta::get_velocity(float new_value)</a>  <a href="#aec1a12c9785ec159f541663926eda55d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_delta.html#a479029e6db0f2738547961f0d72bec78">old_vel</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">enthält den letzten zurückgegebenen Wert  <a href="#a479029e6db0f2738547961f0d72bec78"></a><br/></td></tr>
 </table>
-<hr/><h2>Beschreibung der Konstruktoren und Destruktoren</h2>
+<hr/><a name="details" id="details"></a><h2>Ausführliche Beschreibung</h2>
+<div class="textblock"><p>Klasse, zur Berechnung der Geschwindigkeit (wird nicht mehr verwendet) </p>
+<p>Übergeben wird der Weg(bzw. Distanzwert), Berechnung erfolgt nach Weg/Zeit </p>
+</div><hr/><h2>Beschreibung der Konstruktoren und Destruktoren</h2>
 <a class="anchor" id="a20c7bcc600ccfdf7a678872fa4d1a7a7"></a><!-- doxytag: member="Delta::Delta" ref="a20c7bcc600ccfdf7a678872fa4d1a7a7" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -114,15 +123,6 @@ Private Attribute</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p><div class="dynheader">
-Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_delta_a16d1cf25743928796d7cf1e5c7882c17_icgraph.png" border="0" usemap="#class_delta_a16d1cf25743928796d7cf1e5c7882c17_icgraph" alt=""/></div>
-<map name="class_delta_a16d1cf25743928796d7cf1e5c7882c17_icgraph" id="class_delta_a16d1cf25743928796d7cf1e5c7882c17_icgraph">
-<area shape="rect" id="node3" href="follow__line_8cpp.html#a35a859d19785b808898bf535d4997d2f" title="handleLine" alt="" coords="185,5,268,35"/><area shape="rect" id="node7" href="bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="subscriber handler für die Nachricht tags" alt="" coords="185,59,268,88"/><area shape="rect" id="node5" href="follow__line_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="317,5,368,35"/><area shape="rect" id="node9" href="bottom__follow__tag_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="317,59,368,88"/></map>
-</div>
-</p>
-
 </div>
 </div>
 <hr/><h2>Dokumentation der Datenelemente</h2>
@@ -137,6 +137,8 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
 </div>
 <div class="memdoc">
 
+<p>enthält die Zeit, seitdem letzten Aufruf von float <a class="el" href="class_delta.html#a16d1cf25743928796d7cf1e5c7882c17">Delta::get_velocity(float new_value)</a> </p>
+
 </div>
 </div>
 <a class="anchor" id="a1724264763801016d7d1c0d5f4817a96"></a><!-- doxytag: member="Delta::old_value" ref="a1724264763801016d7d1c0d5f4817a96" args="" -->
@@ -150,6 +152,8 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
 </div>
 <div class="memdoc">
 
+<p>enthält den letzen übergebenen Wert </p>
+
 </div>
 </div>
 <a class="anchor" id="a479029e6db0f2738547961f0d72bec78"></a><!-- doxytag: member="Delta::old_vel" ref="a479029e6db0f2738547961f0d72bec78" args="" -->
@@ -162,6 +166,8 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
       </table>
 </div>
 <div class="memdoc">
+
+<p>enthält den letzten zurückgegebenen Wert </p>
 
 </div>
 </div>
@@ -184,7 +190,7 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Erzeugt am Wed Jul 4 2012 15:25:31 für ardrone_swp von&#160;
+<hr class="footer"/><address class="footer"><small>Erzeugt am Fri Aug 31 2012 15:45:20 für ardrone_swp von&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

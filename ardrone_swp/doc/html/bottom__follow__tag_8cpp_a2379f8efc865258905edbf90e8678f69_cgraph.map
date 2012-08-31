@@ -1,13 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$namespace_math.html#ab4c584467f0cc5d8af22a69482630866" title="Berechnung aus den Eckpunkten wo sich das Tag bezüglich des Bildes befindet." alt="" coords="137,84,273,113"/>
-<area shape="rect" id="node7" href="$class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="688,136,811,165"/>
-<area shape="rect" id="node14" href="$namespace_keyboard.html#abfb3168172d115a6516147c6d42f58db" title="zum Steuern der Drone mit der Tastatur" alt="" coords="144,264,267,293"/>
-<area shape="rect" id="node26" href="$class_delta.html#a16d1cf25743928796d7cf1e5c7882c17" title="Delta::get_velocity" alt="" coords="140,317,271,347"/>
-<area shape="rect" id="node5" href="$namespaceanonymous__namespace_02_math_8cpp_03.html#af32b12f59241277b0b94ca38ca1d5a4b" title="anonymous_namespace\{Math::cpp\}::center" alt="" coords="324,5,596,35"/>
-<area shape="rect" id="node11" href="$namespace_math.html#a25b9284eb485b732c952786b63343aaa" title="Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben ..." alt="" coords="385,109,535,139"/>
-<area shape="rect" id="node9" href="$class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="903,136,1020,165"/>
-<area shape="rect" id="node16" href="$namespace_keyboard.html#a433fc58fb356fe62305e8419dd7b33d6" title="Keyboard::getch" alt="" coords="401,264,519,293"/>
-<area shape="rect" id="node19" href="$namespace_keyboard.html#a8c142c603571175e17a83a9b99d00d63" title="Keyboard::kbhit" alt="" coords="404,317,516,347"/>
-<area shape="rect" id="node21" href="$namespace_keyboard.html#aef945e5d33422ac6abbb326b5203eb5b" title="Keyboard::reset_terminal_mode" alt="" coords="647,395,852,424"/>
-<area shape="rect" id="node23" href="$namespace_keyboard.html#a6cc4fc3f7daf5630d0570f9d9d21d19c" title="Keyboard::set_conio_terminal_mode" alt="" coords="344,421,576,451"/>
+<area shape="rect" id="node3" href="$namespace_math.html#a688eccf4d1e0776ee10e6293254e2e13" title="PD&#45;Regelung für bottom_follow_tag." alt="" coords="136,5,299,35"/>
+<area shape="rect" id="node5" href="$class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="669,83,792,112"/>
+<area shape="rect" id="node9" href="$namespace_math.html#ab4c584467f0cc5d8af22a69482630866" title="Berechnung für die Bodenkamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet..." alt="" coords="149,135,285,164"/>
+<area shape="rect" id="node7" href="$class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="841,83,959,112"/>
+<area shape="rect" id="node11" href="$namespaceanonymous__namespace_02_math_8cpp_03.html#af32b12f59241277b0b94ca38ca1d5a4b" title="anonymous_namespace\{Math::cpp\}::center" alt="" coords="348,160,620,189"/>
+<area shape="rect" id="node14" href="$namespace_math.html#a25b9284eb485b732c952786b63343aaa" title="Berechnung der Anzahl der Pixel für die Bodenkamera, um die das Tag aufgrund der Rotation verschoben ..." alt="" coords="409,213,559,243"/>
 </map>
