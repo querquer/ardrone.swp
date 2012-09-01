@@ -19,25 +19,13 @@ void handleLine(const ardrone_swp::LinePos::ConstPtr& msg)
 	ostringstream ostr;
 	if (msg->x == 80 && msg->y == 60)
 	{
-		if (Cglobal::instance().seen) //Falls beim letzen Aufruf ein Tag gesehen wurde, speichere die Zeit
-			Cglobal::instance().sinceNotSeen = time(NULL);
-		//Falls ein Tag in den letzen  2 Sekunde gesehen wurde, versuche in die letzte gesehene Richtung zu fliegen
-		if (time(NULL) - Cglobal::instance().sinceNotSeen < 2)
-		{
-			Cglobal::instance().twist = Cglobal::instance().twist_old;
-		}
-		else //Versuche ruhig in Luft zu stehen
-		{
-			Cglobal::instance().twist.linear.x = 0;
-			Cglobal::instance().twist.linear.z = 0;
-			Cglobal::instance().twist.linear.y = 0;
-			Cglobal::instance().twist.angular.z = 0;
-		}
-		Cglobal::instance().seen = false;
+		Cglobal::instance().twist.linear.x = 0;
+		Cglobal::instance().twist.linear.z = 0;
+		Cglobal::instance().twist.linear.y = 0;
+		Cglobal::instance().twist.angular.z = 0;
 	}
 	else
 	{
-		Cglobal::instance().seen = true;
 
 		float angle = 900.0f;  //ab diesem Winkel nur drehen
 
@@ -88,8 +76,6 @@ void handleLine(const ardrone_swp::LinePos::ConstPtr& msg)
 			|| (Cglobal::instance().altd < 300 && Cglobal::instance().twist.linear.z < 0))
 		Cglobal::instance().twist.linear.z = 0;
 
-
-	Cglobal::instance().twist_old = Cglobal::instance().twist; //Speichere die Bewegungsdaten, falls beim nächsten Mal kein Tag erkannt wird
 
 	Math::line_regulation(); //Regelung
 
