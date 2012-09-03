@@ -2,7 +2,7 @@
 <area shape="rect" id="node3" href="$class_cglobal.html#aa1d07161425d12bc42dd100140407e59" title="Cglobal::destroy" alt="" coords="119,5,236,35"/>
 <area shape="rect" id="node5" href="$follow__line_8cpp.html#a35a859d19785b808898bf535d4997d2f" title="handler für die Nachricht LinePos hier werden die Bewegungsdaten gesetzt und gepublished" alt="" coords="136,59,219,88"/>
 <area shape="rect" id="node7" href="$class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="635,85,757,115"/>
-<area shape="rect" id="node15" href="$namespace_math.html#ad3b65f0aedda56076f681f2b987d0e5c" title="subscriber handler für die Nachricht /ardrone/navdata" alt="" coords="104,163,251,192"/>
+<area shape="rect" id="node15" href="$namespace_math.html#ad3b65f0aedda56076f681f2b987d0e5c" title="handler für die Nachricht /ardrone/navdata" alt="" coords="104,163,251,192"/>
 <area shape="rect" id="node11" href="$namespace_math.html#aa47b7ddd3093cb42132bd80ccb309dea" title="P&#45;Regelung für follow_tag." alt="" coords="372,59,513,88"/>
 <area shape="rect" id="node9" href="$class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="807,85,924,115"/>
 <area shape="rect" id="node17" href="$namespaceanonymous__namespace_02_math_8cpp_03.html#a074767790950ebb401fc652e576442f1" title="anonymous_namespace\{Math::cpp\}::grad2rad" alt="" coords="300,213,585,243"/>

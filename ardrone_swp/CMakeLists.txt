@@ -24,12 +24,12 @@ rosbuild_genmsg()
 #common commands for building c++ executables and libraries
 #rosbuild_add_library(${PROJECT_NAME} src/example.cpp)
 #target_link_libraries(${PROJECT_NAME} another_library)
-rosbuild_add_boost_directories()
+
 
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
 
-
+rosbuild_add_boost_directories()
 
 rosbuild_add_executable(bottom_follow_tag src/bottom_follow_tag.cpp src/Math.cpp src/Global.cpp src/Keyboard.cpp)
 
@@ -39,7 +39,6 @@ rosbuild_add_executable(follow_line src/follow_line.cpp src/Math.cpp src/Global.
 
 rosbuild_add_executable(Log src/Log.cpp)
 
-#target_link_libraries(Log $(-lboost_filesystem) $(-lboost_system) )
 rosbuild_link_boost(Log filesystem system)
 
 #rosbuild_add_executable(start src/start.cpp src/Math.cpp src/Global.cpp src/Keyboard.cpp src/Delta.cpp)

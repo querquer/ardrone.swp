@@ -9,7 +9,7 @@
 <area shape="rect" id="node20" href="$namespace_math.html#a7be3473d626056767311b94db1860cb0" title="PD&#45;Regelung für front_follow_tag." alt="" coords="549,127,696,156"/>
 <area shape="rect" id="node23" href="$follow__line_8cpp.html#a35a859d19785b808898bf535d4997d2f" title="handler für die Nachricht LinePos hier werden die Bewegungsdaten gesetzt und gepublished" alt="" coords="581,359,664,388"/>
 <area shape="rect" id="node28" href="$namespace_math.html#aa47b7ddd3093cb42132bd80ccb309dea" title="P&#45;Regelung für follow_tag." alt="" coords="348,335,489,364"/>
-<area shape="rect" id="node32" href="$namespace_math.html#ad3b65f0aedda56076f681f2b987d0e5c" title="subscriber handler für die Nachricht /ardrone/navdata" alt="" coords="752,76,899,106"/>
+<area shape="rect" id="node32" href="$namespace_math.html#ad3b65f0aedda56076f681f2b987d0e5c" title="handler für die Nachricht /ardrone/navdata" alt="" coords="752,76,899,106"/>
 <area shape="rect" id="node35" href="$namespace_math.html#a25b9284eb485b732c952786b63343aaa" title="Berechnung der Anzahl der Pixel für die Bodenkamera, um die das Tag aufgrund der Rotation verschoben ..." alt="" coords="344,591,493,620"/>
 <area shape="rect" id="node38" href="$namespace_math.html#a3fbe7036db847d74ed5f2c21635d02d9" title="Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben ..." alt="" coords="351,228,487,258"/>
 <area shape="rect" id="node16" href="$front__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handler für die Nachricht tags hier werden die Bewegungsdaten gesetzt und gepublished" alt="" coords="784,155,867,184"/>

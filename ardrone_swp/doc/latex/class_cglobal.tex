@@ -11,15 +11,6 @@ Klasse, die in Form eines Singletons alle globalen Variablen enthält.
 
 {\ttfamily \#include $<$Global.h$>$}
 
-
-
-Zusammengehörigkeiten von Cglobal:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=600pt]{class_cglobal__coll__graph}
-\end{center}
-\end{figure}
 \subsection*{Öffentliche, statische Methoden}
 \begin{DoxyCompactItemize}
 \item 
@@ -31,7 +22,16 @@ static void \hyperlink{class_cglobal_aa1d07161425d12bc42dd100140407e59}{destroy}
 \begin{DoxyCompactItemize}
 \item 
 geometry\_\-msgs::Twist \hyperlink{class_cglobal_acdd49b2fad30faf04785664c422f5ef7}{twist}
-\begin{DoxyCompactList}\small\item\em Twist-\/Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Twist-\/Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält \par
+ + linear.x: move forward \par
+ -\/ linear.x: move backward \par
+ + linear.y: move left \par
+ -\/ linear.y: move right \par
+ + linear.z: move up \par
+ -\/ linear.z: move down \par
+ + angular.z: turn left \par
+ -\/ angular.z: turn right \par
+. \end{DoxyCompactList}\item 
 geometry\_\-msgs::Twist \hyperlink{class_cglobal_ae99f21083838b00781e4461e3e7accb9}{twist\_\-old}
 \begin{DoxyCompactList}\small\item\em enthält den Twist-\/Wert(ohne Regelung), der gesetzt wurde, als das Tag bzw. die Linie zuletzt gesehen wurde \end{DoxyCompactList}\item 
 ros::Publisher \hyperlink{class_cglobal_af3a06302b3bd19de728064359241c1a1}{pub}
@@ -130,6 +130,10 @@ static \hyperlink{class_cglobal}{Cglobal} $\ast$ \hyperlink{class_cglobal_afb7ab
 \subsection{Ausführliche Beschreibung}
 Klasse, die in Form eines Singletons alle globalen Variablen enthält. 
 
+Definiert in Zeile 15 der Datei Global.h.
+
+
+
 \subsection{Beschreibung der Konstruktoren und Destruktoren}
 \hypertarget{class_cglobal_a9847b00476a6f18dbd936472e1a9efbf}{
 \index{Cglobal@{Cglobal}!Cglobal@{Cglobal}}
@@ -142,14 +146,7 @@ Klasse, die in Form eines Singletons alle globalen Variablen enthält.
 \label{class_cglobal_a9847b00476a6f18dbd936472e1a9efbf}
 
 
-Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=400pt]{class_cglobal_a9847b00476a6f18dbd936472e1a9efbf_icgraph}
-\end{center}
-\end{figure}
-
+Definiert in Zeile 7 der Datei Global.cpp.
 
 \hypertarget{class_cglobal_a16a55c21346fe1cd9b9511ee05fd485e}{
 \index{Cglobal@{Cglobal}!$\sim$Cglobal@{$\sim$Cglobal}}
@@ -160,6 +157,10 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}inline, private\mbox{]}}}}
 \label{class_cglobal_a16a55c21346fe1cd9b9511ee05fd485e}
+
+
+Definiert in Zeile 21 der Datei Global.h.
+
 \hypertarget{class_cglobal_a5a91823b196c10cba84cc6526308e76f}{
 \index{Cglobal@{Cglobal}!Cglobal@{Cglobal}}
 \index{Cglobal@{Cglobal}!Cglobal@{Cglobal}}
@@ -169,6 +170,10 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}inline, private\mbox{]}}}}
 \label{class_cglobal_a5a91823b196c10cba84cc6526308e76f}
+
+
+Definiert in Zeile 22 der Datei Global.h.
+
 
 
 \subsection{Dokumentation der Elementfunktionen}
@@ -183,14 +188,7 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
 \label{class_cglobal_aa1d07161425d12bc42dd100140407e59}
 
 
-Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=242pt]{class_cglobal_aa1d07161425d12bc42dd100140407e59_icgraph}
-\end{center}
-\end{figure}
-
+Definiert in Zeile 32 der Datei Global.cpp.
 
 \hypertarget{class_cglobal_a0e96a5f7f00ef5a151da708a17340f08}{
 \index{Cglobal@{Cglobal}!instance@{instance}}
@@ -203,25 +201,7 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
 \label{class_cglobal_a0e96a5f7f00ef5a151da708a17340f08}
 
 
-Hier ist ein Graph der zeigt, was diese Funktion aufruft:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=298pt]{class_cglobal_a0e96a5f7f00ef5a151da708a17340f08_cgraph}
-\end{center}
-\end{figure}
-
-
-
-
-Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=400pt]{class_cglobal_a0e96a5f7f00ef5a151da708a17340f08_icgraph}
-\end{center}
-\end{figure}
-
+Definiert in Zeile 25 der Datei Global.cpp.
 
 \hypertarget{class_cglobal_acc7503a161a449d009877f1d14ba71c4}{
 \index{Cglobal@{Cglobal}!operator=@{operator=}}
@@ -234,6 +214,10 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
 \label{class_cglobal_acc7503a161a449d009877f1d14ba71c4}
 
 
+Definiert in Zeile 23 der Datei Global.h.
+
+
+
 \subsection{Dokumentation der Datenelemente}
 \hypertarget{class_cglobal_a0e2d4712edf675715bd4bcc554dbcf42}{
 \index{Cglobal@{Cglobal}!altd@{altd}}
@@ -244,6 +228,10 @@ Hier ist ein Graph der zeigt, wo diese Funktion aufgerufen wird:\nopagebreak
 
 aktuelle Höhe 
 
+
+
+Definiert in Zeile 36 der Datei Global.h.
+
 \hypertarget{class_cglobal_a78bc2eecbfcfe436e141e9e06b7d6f10}{
 \index{Cglobal@{Cglobal}!b\_\-Kdx@{b\_\-Kdx}}
 \index{b\_\-Kdx@{b\_\-Kdx}!Cglobal@{Cglobal}}
@@ -252,6 +240,10 @@ aktuelle Höhe
 
 
 Faktor für den Differentialanteil in x-\/Richtung (bei bottom\_\-follow\_\-tag) 
+
+
+
+Definiert in Zeile 84 der Datei Global.h.
 
 \hypertarget{class_cglobal_a96f46cc71bfa56cf87b9a0e974b8271c}{
 \index{Cglobal@{Cglobal}!b\_\-Kdy@{b\_\-Kdy}}
@@ -262,6 +254,10 @@ Faktor für den Differentialanteil in x-\/Richtung (bei bottom\_\-follow\_\-tag)
 
 Faktor für den Differentialanteil in y-\/Richtung (bei bottom\_\-follow\_\-tag) 
 
+
+
+Definiert in Zeile 85 der Datei Global.h.
+
 \hypertarget{class_cglobal_ac4453024370993d15408d4a3235e95e8}{
 \index{Cglobal@{Cglobal}!b\_\-Kpx@{b\_\-Kpx}}
 \index{b\_\-Kpx@{b\_\-Kpx}!Cglobal@{Cglobal}}
@@ -270,6 +266,10 @@ Faktor für den Differentialanteil in y-\/Richtung (bei bottom\_\-follow\_\-tag)
 
 
 Faktor für den Proportionalanteil in x-\/Richtung (bei bottom\_\-follow\_\-tag) 
+
+
+
+Definiert in Zeile 73 der Datei Global.h.
 
 \hypertarget{class_cglobal_aecfc05f716f9c1445fd10ad436972a9d}{
 \index{Cglobal@{Cglobal}!b\_\-Kpy@{b\_\-Kpy}}
@@ -280,6 +280,10 @@ Faktor für den Proportionalanteil in x-\/Richtung (bei bottom\_\-follow\_\-tag)
 
 Faktor für den Proportionalanteil in y-\/Richtung (bei bottom\_\-follow\_\-tag) 
 
+
+
+Definiert in Zeile 74 der Datei Global.h.
+
 \hypertarget{class_cglobal_ab0b5362dfd6addba8455bd753aa18e37}{
 \index{Cglobal@{Cglobal}!b\_\-mmPs2twistx@{b\_\-mmPs2twistx}}
 \index{b\_\-mmPs2twistx@{b\_\-mmPs2twistx}!Cglobal@{Cglobal}}
@@ -288,6 +292,10 @@ Faktor für den Proportionalanteil in y-\/Richtung (bei bottom\_\-follow\_\-tag)
 
 
 Umrechnungsfaktor von mm/s in twist.linear.x (bei bottom\_\-follow\_\-tag): 0.0002, weil Drone in x Richtung max 5m/s fliegt und der twist-\/Wert zwischen 0 und 1 liegt. 
+
+
+
+Definiert in Zeile 64 der Datei Global.h.
 
 \hypertarget{class_cglobal_aa70b2a6e29e8c452aab53cefaf77a01e}{
 \index{Cglobal@{Cglobal}!b\_\-mmPs2twisty@{b\_\-mmPs2twisty}}
@@ -298,6 +306,10 @@ Umrechnungsfaktor von mm/s in twist.linear.x (bei bottom\_\-follow\_\-tag): 0.00
 
 Umrechnungsfaktor von mm/s in twist.linear.y (bei bottom\_\-follow\_\-tag) 
 
+
+
+Definiert in Zeile 65 der Datei Global.h.
+
 \hypertarget{class_cglobal_a2b9c1321be7adaacc3bed175e49fb02b}{
 \index{Cglobal@{Cglobal}!begin@{begin}}
 \index{begin@{begin}!Cglobal@{Cglobal}}
@@ -306,6 +318,10 @@ Umrechnungsfaktor von mm/s in twist.linear.y (bei bottom\_\-follow\_\-tag)
 
 
 in follow\_\-line wird, bevor der Linie gefolgt wird, nach oben geflogen, bis 0,9m erreicht wurden. begin gibt an ob die Drohne dabei noch am hochfliegen ist 
+
+
+
+Definiert in Zeile 44 der Datei Global.h.
 
 \hypertarget{class_cglobal_a24fbb5c4b0ddab650375d08ba677b3f1}{
 \index{Cglobal@{Cglobal}!end@{end}}
@@ -316,6 +332,10 @@ in follow\_\-line wird, bevor der Linie gefolgt wird, nach oben geflogen, bis 0,
 
 Gibt an ob in \hyperlink{namespace_keyboard_abfb3168172d115a6516147c6d42f58db}{Keyboard::control()} ctrl+c gedrückt wurde, falls true wird das Programm beendet. 
 
+
+
+Definiert in Zeile 54 der Datei Global.h.
+
 \hypertarget{class_cglobal_ae7af3539af53f18897359057206803d3}{
 \index{Cglobal@{Cglobal}!exold@{exold}}
 \index{exold@{exold}!Cglobal@{Cglobal}}
@@ -324,6 +344,10 @@ Gibt an ob in \hyperlink{namespace_keyboard_abfb3168172d115a6516147c6d42f58db}{K
 
 
 Fehler beim letzten Aufruf in x-\/Richtung. 
+
+
+
+Definiert in Zeile 90 der Datei Global.h.
 
 \hypertarget{class_cglobal_a5ea9466dbc474b2f9b469395ae8d688c}{
 \index{Cglobal@{Cglobal}!eyold@{eyold}}
@@ -334,6 +358,10 @@ Fehler beim letzten Aufruf in x-\/Richtung.
 
 Fehler beim letzten Aufruf in y-\/Richtung. 
 
+
+
+Definiert in Zeile 91 der Datei Global.h.
+
 \hypertarget{class_cglobal_a898e02a3650a5e6445aca8411ed79194}{
 \index{Cglobal@{Cglobal}!f\_\-Kdx@{f\_\-Kdx}}
 \index{f\_\-Kdx@{f\_\-Kdx}!Cglobal@{Cglobal}}
@@ -342,6 +370,10 @@ Fehler beim letzten Aufruf in y-\/Richtung.
 
 
 Faktor für den Differentialanteil in x-\/Richtung (bei front\_\-follow\_\-tag) 
+
+
+
+Definiert in Zeile 87 der Datei Global.h.
 
 \hypertarget{class_cglobal_a8ff8f3e1711db988e5a936af1d5f2d42}{
 \index{Cglobal@{Cglobal}!f\_\-Kdy@{f\_\-Kdy}}
@@ -352,6 +384,10 @@ Faktor für den Differentialanteil in x-\/Richtung (bei front\_\-follow\_\-tag)
 
 Faktor für den Differentialanteil in y-\/Richtung (bei front\_\-follow\_\-tag) 
 
+
+
+Definiert in Zeile 88 der Datei Global.h.
+
 \hypertarget{class_cglobal_ae94b927d5fee8ac20eb04add78006959}{
 \index{Cglobal@{Cglobal}!f\_\-Kpx@{f\_\-Kpx}}
 \index{f\_\-Kpx@{f\_\-Kpx}!Cglobal@{Cglobal}}
@@ -360,6 +396,10 @@ Faktor für den Differentialanteil in y-\/Richtung (bei front\_\-follow\_\-tag)
 
 
 Faktor für den Proportionalanteil in x-\/Richtung (bei front\_\-follow\_\-tag) 
+
+
+
+Definiert in Zeile 76 der Datei Global.h.
 
 \hypertarget{class_cglobal_a06a9f451633a82b68760360037b53f64}{
 \index{Cglobal@{Cglobal}!f\_\-Kpy@{f\_\-Kpy}}
@@ -370,6 +410,10 @@ Faktor für den Proportionalanteil in x-\/Richtung (bei front\_\-follow\_\-tag)
 
 Faktor für den Proportionalanteil in y-\/Richtung (bei front\_\-follow\_\-tag) 
 
+
+
+Definiert in Zeile 77 der Datei Global.h.
+
 \hypertarget{class_cglobal_a4f723543ed33fd4a3130199a6a49f8de}{
 \index{Cglobal@{Cglobal}!f\_\-mmPs2twistx@{f\_\-mmPs2twistx}}
 \index{f\_\-mmPs2twistx@{f\_\-mmPs2twistx}!Cglobal@{Cglobal}}
@@ -378,6 +422,10 @@ Faktor für den Proportionalanteil in y-\/Richtung (bei front\_\-follow\_\-tag)
 
 
 Umrechnungsfaktor von mm/s in twist.linear.x (bei front\_\-follow\_\-tag) 
+
+
+
+Definiert in Zeile 67 der Datei Global.h.
 
 \hypertarget{class_cglobal_abeca26e674667f54df37cec645067854}{
 \index{Cglobal@{Cglobal}!f\_\-mmPs2twisty@{f\_\-mmPs2twisty}}
@@ -388,6 +436,10 @@ Umrechnungsfaktor von mm/s in twist.linear.x (bei front\_\-follow\_\-tag)
 
 Umrechnungsfaktor von mm/s in twist.linear.y (bei front\_\-follow\_\-tag) 
 
+
+
+Definiert in Zeile 68 der Datei Global.h.
+
 \hypertarget{class_cglobal_a478c0d94a8f8a7675d3e88e85742c81a}{
 \index{Cglobal@{Cglobal}!ges@{ges}}
 \index{ges@{ges}!Cglobal@{Cglobal}}
@@ -396,6 +448,10 @@ Umrechnungsfaktor von mm/s in twist.linear.y (bei front\_\-follow\_\-tag)
 
 
 enthält wie stark auf Tastendrücke in \hyperlink{namespace_keyboard_abfb3168172d115a6516147c6d42f58db}{Keyboard::control()} eragiert werden soll 
+
+
+
+Definiert in Zeile 52 der Datei Global.h.
 
 \hypertarget{class_cglobal_ade7cccb8bca50ca0e4740a4cecfb7498}{
 \index{Cglobal@{Cglobal}!heightB@{heightB}}
@@ -406,6 +462,10 @@ enthält wie stark auf Tastendrücke in \hyperlink{namespace_keyboard_abfb316817
 
 Bildhöhe der unteren Kamera. 
 
+
+
+Definiert in Zeile 58 der Datei Global.h.
+
 \hypertarget{class_cglobal_a601f81a0ed28e4e0ca387134ba76738e}{
 \index{Cglobal@{Cglobal}!heightF@{heightF}}
 \index{heightF@{heightF}!Cglobal@{Cglobal}}
@@ -414,6 +474,10 @@ Bildhöhe der unteren Kamera.
 
 
 Bildhöhe der Front-\/Kamera. 
+
+
+
+Definiert in Zeile 60 der Datei Global.h.
 
 \hypertarget{class_cglobal_a6c5a5a9fb3c2da5264622c738b326245}{
 \index{Cglobal@{Cglobal}!l\_\-Kpx@{l\_\-Kpx}}
@@ -424,6 +488,10 @@ Bildhöhe der Front-\/Kamera.
 
 Faktor für den Proportionalanteil in x-\/Richtung (bei follow\_\-line) 
 
+
+
+Definiert in Zeile 79 der Datei Global.h.
+
 \hypertarget{class_cglobal_a458383235afe73b333a22a5edcc3eed6}{
 \index{Cglobal@{Cglobal}!l\_\-Kpy@{l\_\-Kpy}}
 \index{l\_\-Kpy@{l\_\-Kpy}!Cglobal@{Cglobal}}
@@ -432,6 +500,10 @@ Faktor für den Proportionalanteil in x-\/Richtung (bei follow\_\-line)
 
 
 Faktor für den Proportionalanteil in y-\/Richtung (bei follow\_\-line) 
+
+
+
+Definiert in Zeile 80 der Datei Global.h.
 
 \hypertarget{class_cglobal_a7440e55e4a63e1c926c582a36a4d6bd7}{
 \index{Cglobal@{Cglobal}!l\_\-mmPs2twistx@{l\_\-mmPs2twistx}}
@@ -442,6 +514,10 @@ Faktor für den Proportionalanteil in y-\/Richtung (bei follow\_\-line)
 
 Umrechnungsfaktor von mm/s in twist.linear.x (bei follow\_\-line): geringer als bei den anderen beiden Applikationen, damit die Regelung nicht so empfindlich reagiert(bei einem höheren Wert ist die Drone beim Versuch still zu stehen teilweise nach hinten geflogen) 
 
+
+
+Definiert in Zeile 70 der Datei Global.h.
+
 \hypertarget{class_cglobal_af8f19427d5da8e6c88098b61e8676786}{
 \index{Cglobal@{Cglobal}!l\_\-mmPs2twisty@{l\_\-mmPs2twisty}}
 \index{l\_\-mmPs2twisty@{l\_\-mmPs2twisty}!Cglobal@{Cglobal}}
@@ -451,11 +527,19 @@ Umrechnungsfaktor von mm/s in twist.linear.x (bei follow\_\-line): geringer als 
 
 Umrechnungsfaktor von mm/s in twist.linear.y (bei follow\_\-line): höher als bei den anderen beiden Applikationen, damit die Regelung früher reagiert. 
 
+
+
+Definiert in Zeile 71 der Datei Global.h.
+
 \hypertarget{class_cglobal_afb7ab45601acda975c029de5db73b3ea}{
 \index{Cglobal@{Cglobal}!m\_\-instance@{m\_\-instance}}
 \index{m\_\-instance@{m\_\-instance}!Cglobal@{Cglobal}}
 \subsubsection[{m\_\-instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cglobal} $\ast$ {\bf Cglobal::m\_\-instance} = 0\hspace{0.3cm}{\ttfamily  \mbox{[}static, private\mbox{]}}}}
 \label{class_cglobal_afb7ab45601acda975c029de5db73b3ea}
+
+
+Definiert in Zeile 18 der Datei Global.h.
+
 \hypertarget{class_cglobal_af3a06302b3bd19de728064359241c1a1}{
 \index{Cglobal@{Cglobal}!pub@{pub}}
 \index{pub@{pub}!Cglobal@{Cglobal}}
@@ -464,6 +548,10 @@ Umrechnungsfaktor von mm/s in twist.linear.y (bei follow\_\-line): höher als be
 
 
 Publisher zum publishen des Twist Objekts. 
+
+
+
+Definiert in Zeile 34 der Datei Global.h.
 
 \hypertarget{class_cglobal_ad295728f5113d9a47527cf14262dea0e}{
 \index{Cglobal@{Cglobal}!rotx@{rotx}}
@@ -474,6 +562,10 @@ Publisher zum publishen des Twist Objekts.
 
 aktuelle aktuelle Rotation um die x-\/Achse 
 
+
+
+Definiert in Zeile 50 der Datei Global.h.
+
 \hypertarget{class_cglobal_a5c1fac565d3813e798bd6aeb1c6fc8aa}{
 \index{Cglobal@{Cglobal}!roty@{roty}}
 \index{roty@{roty}!Cglobal@{Cglobal}}
@@ -482,6 +574,10 @@ aktuelle aktuelle Rotation um die x-\/Achse
 
 
 aktuelle aktuelle Rotation um die y-\/Achse 
+
+
+
+Definiert in Zeile 49 der Datei Global.h.
 
 \hypertarget{class_cglobal_afe6f01a7ff64a3de6d0c8612f36511fd}{
 \index{Cglobal@{Cglobal}!seen@{seen}}
@@ -492,6 +588,10 @@ aktuelle aktuelle Rotation um die y-\/Achse
 
 enthält ob das Tag bzw. die Linie beim letzten Aufruf des Handlers gesehen wurde 
 
+
+
+Definiert in Zeile 42 der Datei Global.h.
+
 \hypertarget{class_cglobal_a9a9df79aad0bb5db8880a83d2fb407e2}{
 \index{Cglobal@{Cglobal}!sinceNoNavdataUpdate@{sinceNoNavdataUpdate}}
 \index{sinceNoNavdataUpdate@{sinceNoNavdataUpdate}!Cglobal@{Cglobal}}
@@ -500,6 +600,10 @@ enthält ob das Tag bzw. die Linie beim letzten Aufruf des Handlers gesehen wurd
 
 
 Zeit seit der das letzte Mal neue Navigationsdaten gesendet wurden. 
+
+
+
+Definiert in Zeile 40 der Datei Global.h.
 
 \hypertarget{class_cglobal_abb1e0f2a241a8d9131098cf823b45f64}{
 \index{Cglobal@{Cglobal}!sinceNotSeen@{sinceNotSeen}}
@@ -510,6 +614,10 @@ Zeit seit der das letzte Mal neue Navigationsdaten gesendet wurden.
 
 Zeit seit der das Tag das letzte mal gesehen wurde. 
 
+
+
+Definiert in Zeile 38 der Datei Global.h.
+
 \hypertarget{class_cglobal_a7a599bd2c2f4400e3b7f8f98e1f293fe}{
 \index{Cglobal@{Cglobal}!Ta@{Ta}}
 \index{Ta@{Ta}!Cglobal@{Cglobal}}
@@ -519,6 +627,10 @@ Zeit seit der das Tag das letzte mal gesehen wurde.
 
 1/18 = 0.0555... , wegen 18 Aufrufen pro Sekunde(ar\_\-recog published 18 mal pro Sekunde) 
 
+
+
+Definiert in Zeile 82 der Datei Global.h.
+
 \hypertarget{class_cglobal_acdd49b2fad30faf04785664c422f5ef7}{
 \index{Cglobal@{Cglobal}!twist@{twist}}
 \index{twist@{twist}!Cglobal@{Cglobal}}
@@ -526,7 +638,20 @@ Zeit seit der das Tag das letzte mal gesehen wurde.
 \label{class_cglobal_acdd49b2fad30faf04785664c422f5ef7}
 
 
-Twist-\/Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält. 
+Twist-\/Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält \par
+ + linear.x: move forward \par
+ -\/ linear.x: move backward \par
+ + linear.y: move left \par
+ -\/ linear.y: move right \par
+ + linear.z: move up \par
+ -\/ linear.z: move down \par
+ + angular.z: turn left \par
+ -\/ angular.z: turn right \par
+. 
+
+
+
+Definiert in Zeile 29 der Datei Global.h.
 
 \hypertarget{class_cglobal_ae99f21083838b00781e4461e3e7accb9}{
 \index{Cglobal@{Cglobal}!twist\_\-old@{twist\_\-old}}
@@ -537,6 +662,10 @@ Twist-\/Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält.
 
 enthält den Twist-\/Wert(ohne Regelung), der gesetzt wurde, als das Tag bzw. die Linie zuletzt gesehen wurde 
 
+
+
+Definiert in Zeile 32 der Datei Global.h.
+
 \hypertarget{class_cglobal_abafbed62176301706747c04ef3046aae}{
 \index{Cglobal@{Cglobal}!vx@{vx}}
 \index{vx@{vx}!Cglobal@{Cglobal}}
@@ -545,6 +674,10 @@ enthält den Twist-\/Wert(ohne Regelung), der gesetzt wurde, als das Tag bzw. di
 
 
 aktuelle Geschwindigkeit in x-\/Richtung 
+
+
+
+Definiert in Zeile 46 der Datei Global.h.
 
 \hypertarget{class_cglobal_a0967372a0ede7b8b9a24957df663b7b3}{
 \index{Cglobal@{Cglobal}!vy@{vy}}
@@ -555,6 +688,10 @@ aktuelle Geschwindigkeit in x-\/Richtung
 
 aktuelle Geschwindigkeit in y-\/Richtung 
 
+
+
+Definiert in Zeile 47 der Datei Global.h.
+
 \hypertarget{class_cglobal_af9ef9759f83ae67b7e220570a7738ef5}{
 \index{Cglobal@{Cglobal}!vz@{vz}}
 \index{vz@{vz}!Cglobal@{Cglobal}}
@@ -563,6 +700,10 @@ aktuelle Geschwindigkeit in y-\/Richtung
 
 
 aktuelle Geschwindigkeit in z-\/Richtung 
+
+
+
+Definiert in Zeile 48 der Datei Global.h.
 
 \hypertarget{class_cglobal_a931ff0dc06e16b267d22dd21570d686b}{
 \index{Cglobal@{Cglobal}!widthB@{widthB}}
@@ -573,6 +714,10 @@ aktuelle Geschwindigkeit in z-\/Richtung
 
 Bildbreite der unteren Kamera. 
 
+
+
+Definiert in Zeile 57 der Datei Global.h.
+
 \hypertarget{class_cglobal_a95cebf066839488c61b4bc2f7fbf61c1}{
 \index{Cglobal@{Cglobal}!widthF@{widthF}}
 \index{widthF@{widthF}!Cglobal@{Cglobal}}
@@ -581,6 +726,10 @@ Bildbreite der unteren Kamera.
 
 
 Bildbreite der Front-\/Kamera. 
+
+
+
+Definiert in Zeile 59 der Datei Global.h.
 
 
 

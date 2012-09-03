@@ -16,17 +16,25 @@ namespace Math
 /** @brief Berechnung der Anzahl der Pixel für die Bodenkamera, um die das Tag aufgrund der Rotation verschoben wurde
  *
  *
+ *
  * @param	x	Verschiebung in x Richung
  * @param	y	Verschiebung in y Richung
  *
  *
- * <img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/betta.jpg" alt="Schema">
+ * <img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/Formel1.jpg" alt="Schema">
+ * <img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/bottom_diff.jpg" alt="Schema">
+ * <img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/Formel2.jpg" alt="Schema">
+ * <img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/Kreis.jpg" alt="Schema">
+ * <img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/Formel3.jpg" alt="Schema">
  */
 void pixelDiffBottom(float& x, float& y)
 {
-	y = (200.0f * tan(Cglobal::instance().roty)) / ((tan(0.558496f + Cglobal::instance().roty) + tan(0.558496f - Cglobal::instance().roty)));
-	x = (200.0f * tan(Cglobal::instance().rotx)) / ((tan(0.558496f + Cglobal::instance().rotx) + tan(0.558496f - Cglobal::instance().rotx)));
+	//Formel: siehe Dokumentation
+	//0.5585 (in rad) = 32° (in grad)
+	y = (200.0f * tan(Cglobal::instance().roty)) / ((tan(0.5585f + Cglobal::instance().roty) + tan(0.5585f - Cglobal::instance().roty)));
+	x = (200.0f * tan(Cglobal::instance().rotx)) / ((tan(0.5585f + Cglobal::instance().rotx) + tan(0.5585f - Cglobal::instance().rotx)));
 
+	//Der berechnete Wert ist zu klein, wird er mit 1,333 multipliziert stimmt es in etwa
 	y *= 1.333f;
 	x *= 1.333f;
 }
@@ -99,9 +107,9 @@ void centerFront(const ar_recog::Tag& tag, float& cx, float& cy)
 	center(tag, cx, cy, dx, dy, Cglobal::instance().widthF, Cglobal::instance().heightF);
 }
 
-/** @brief subscriber handler für die Nachricht /ardrone/navdata
+/** @brief handler für die Nachricht /ardrone/navdata
  *
- * speichert die Navdata-Informationen
+ * speichert die Navdata-Informationen in den Variablen von Cglobal
  */
 void navdataUpdate(const ardrone_brown::Navdata::ConstPtr& navdata)
 {
@@ -141,6 +149,7 @@ void bottom_regulation()
  */
 void front_regulation()
 {
+	// P-Anteil:
 	float ex = Cglobal::instance().twist.linear.x - Cglobal::instance().f_mmPs2twistx * Cglobal::instance().vx; //Fehler in x Richtung
 
 	Cglobal::instance().twist.linear.x += Cglobal::instance().f_Kpx * ex;

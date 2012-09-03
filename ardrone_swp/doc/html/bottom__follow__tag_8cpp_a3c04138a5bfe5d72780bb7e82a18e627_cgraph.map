@@ -2,7 +2,7 @@
 <area shape="rect" id="node3" href="$class_cglobal.html#aa1d07161425d12bc42dd100140407e59" title="Cglobal::destroy" alt="" coords="119,122,236,151"/>
 <area shape="rect" id="node5" href="$bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handler für die Nachricht tags hier werden die Bewegungsdaten gesetzt und gepublished" alt="" coords="136,175,219,204"/>
 <area shape="rect" id="node9" href="$class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08" title="Cglobal::instance" alt="" coords="957,176,1080,206"/>
-<area shape="rect" id="node23" href="$namespace_math.html#ad3b65f0aedda56076f681f2b987d0e5c" title="subscriber handler für die Nachricht /ardrone/navdata" alt="" coords="104,332,251,362"/>
+<area shape="rect" id="node23" href="$namespace_math.html#ad3b65f0aedda56076f681f2b987d0e5c" title="handler für die Nachricht /ardrone/navdata" alt="" coords="104,332,251,362"/>
 <area shape="rect" id="node7" href="$namespace_math.html#a688eccf4d1e0776ee10e6293254e2e13" title="PD&#45;Regelung für bottom_follow_tag." alt="" coords="691,20,853,50"/>
 <area shape="rect" id="node13" href="$namespace_math.html#ab4c584467f0cc5d8af22a69482630866" title="Berechnung für die Bodenkamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet..." alt="" coords="375,175,511,204"/>
 <area shape="rect" id="node11" href="$class_cglobal.html#a9847b00476a6f18dbd936472e1a9efbf" title="Cglobal::Cglobal" alt="" coords="1129,176,1247,206"/>

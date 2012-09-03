@@ -26,7 +26,8 @@ private:
       static void destroy();
 
    public:
-      geometry_msgs::Twist twist; ///< Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält
+      geometry_msgs::Twist twist; //!<@brief Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält \n
+                                  //!< + linear.x: move forward \n - linear.x: move backward \n + linear.y: move left \n - linear.y: move right \n + linear.z: move up \n - linear.z: move down	 \n + angular.z: turn left \n - angular.z: turn right \n
 
       geometry_msgs::Twist twist_old;  ///< enthält den Twist-Wert(ohne Regelung), der gesetzt wurde, als das Tag bzw. die Linie zuletzt gesehen wurde
 

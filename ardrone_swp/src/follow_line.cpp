@@ -17,7 +17,7 @@ using namespace std;
 void handleLine(const ardrone_swp::LinePos::ConstPtr& msg)
 {
 	ostringstream ostr;
-	if (msg->x == 80 && msg->y == 60)
+	if (msg->x == 80 && msg->y == 60)  //Falls keine Linie erkannt wird, versuche auf der Stelle zu bleiben
 	{
 		Cglobal::instance().twist.linear.x = 0;
 		Cglobal::instance().twist.linear.z = 0;
