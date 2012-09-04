@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>ardrone_swp: src/bottom_follow_tag.cpp Quellcode</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- Erzeugt von Doxygen 1.7.4 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
+--></script>
+<div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">ardrone_swp</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Hauptseite</span></a></li>
+      <li><a href="namespaces.html"><span>Namensbereiche</span></a></li>
+      <li><a href="annotated.html"><span>Klassen</span></a></li>
+      <li class="current"><a href="files.html"><span>Dateien</span></a></li>
+      <li><a href="dirs.html"><span>Verzeichnisse</span></a></li>
+      <li id="searchli">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Suchen" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Auflistung&#160;der&#160;Dateien</span></a></li>
+      <li><a href="globals.html"><span>Datei-Elemente</span></a></li>
+    </ul>
+  </div>
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="dir_8825dd29552366a97c79ae3282986fe7.html">src</a>      </li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="headertitle">
+<div class="title">bottom_follow_tag.cpp</div>  </div>
+</div>
+<div class="contents">
+<a href="bottom__follow__tag_8cpp.html">gehe zur Dokumentation dieser Datei</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00018"></a>00018 <span class="preprocessor">#include &quot;<a class="code" href="std__includes_8h.html" title="included die Header, die standartmäßig benötigt werden">std_includes.h</a>&quot;</span>
+<a name="l00019"></a>00019 
+<a name="l00020"></a>00020 <span class="keyword">using namespace </span>std;
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 
+<a name="l00027"></a><a class="code" href="bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69">00027</a> <span class="keywordtype">void</span> <a class="code" href="bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handler für die Nachricht tags: hier werden die Bewegungsdaten gesetzt und gepublished">handleTag</a>(<span class="keyword">const</span> ar_recog::Tags::ConstPtr&amp; msg)
+<a name="l00028"></a>00028 {
+<a name="l00029"></a>00029    <span class="keywordflow">if</span> (msg-&gt;tag_count == 0) <span class="comment">//Falls kein Tag erkannt wurde</span>
+<a name="l00030"></a>00030    {
+<a name="l00031"></a>00031       <span class="keywordflow">if</span> (<a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().seen) <span class="comment">//Falls beim letzen Aufruf ein Tag gesehen wurde, speichere die Zeit</span>
+<a name="l00032"></a>00032          <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#abb1e0f2a241a8d9131098cf823b45f64" title="Zeit seit der das Tag das letzte mal gesehen wurde.">sinceNotSeen</a> = time(NULL);
+<a name="l00033"></a>00033       <span class="comment">//Falls ein Tag in den letzen 3 Sekunde gesehen wurde, versuche in die letzte gesehene Richtung zu fliegen</span>
+<a name="l00034"></a>00034       <span class="keywordflow">if</span> (time(NULL) - <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().sinceNotSeen &lt; 3)
+<a name="l00035"></a>00035       {
+<a name="l00036"></a>00036          <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält   + linear.x: move forward   - linear.x: move backward   + linear.y: move left   - linear.y: move right   + linear.z: move up   - linear.z: move down   + angular.z: turn left   - angular.z: turn right  .">twist</a> = <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#ae99f21083838b00781e4461e3e7accb9" title="enthält den Twist-Wert(ohne Regelung), der gesetzt wurde, als das Tag bzw. die Linie zuletzt gesehen ...">twist_old</a>;
+<a name="l00037"></a>00037       }
+<a name="l00038"></a>00038       <span class="keywordflow">else</span> <span class="comment">//Versuche ruhig in Luft zu stehen</span>
+<a name="l00039"></a>00039       {
+<a name="l00040"></a>00040          <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält   + linear.x: move forward   - linear.x: move backward   + linear.y: move left   - linear.y: move right   + linear.z: move up   - linear.z: move down   + angular.z: turn left   - angular.z: turn right  .">twist</a>.linear.x = 0;
+<a name="l00041"></a>00041          <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält   + linear.x: move forward   - linear.x: move backward   + linear.y: move left   - linear.y: move right   + linear.z: move up   - linear.z: move down   + angular.z: turn left   - angular.z: turn right  .">twist</a>.linear.z = 0;
+<a name="l00042"></a>00042          <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält   + linear.x: move forward   - linear.x: move backward   + linear.y: move left   - linear.y: move right   + linear.z: move up   - linear.z: move down   + angular.z: turn left   - angular.z: turn right  .">twist</a>.linear.y = 0;
+<a name="l00043"></a>00043          <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält   + linear.x: move forward   - linear.x: move backward   + linear.y: move left   - linear.y: move right   + linear.z: move up   - linear.z: move down   + angular.z: turn left   - angular.z: turn right  .">twist</a>.angular.z = 0;
+<a name="l00044"></a>00044       }
+<a name="l00045"></a>00045       <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#afe6f01a7ff64a3de6d0c8612f36511fd" title="enthält ob das Tag bzw. die Linie beim letzten Aufruf des Handlers gesehen wurde">seen</a> = <span class="keyword">false</span>;
+<a name="l00046"></a>00046    }
+<a name="l00047"></a>00047    <span class="keywordflow">else</span> <span class="comment">//Falls mindestens ein Tag gesehen wurde</span>
+<a name="l00048"></a>00048    {
+<a name="l00049"></a>00049       <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#afe6f01a7ff64a3de6d0c8612f36511fd" title="enthält ob das Tag bzw. die Linie beim letzten Aufruf des Handlers gesehen wurde">seen</a> = <span class="keyword">true</span>;
+<a name="l00050"></a>00050       ar_recog::Tag biggest = msg-&gt;tags[0];
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052       <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; msg-&gt;tag_count; ++i) <span class="comment">//Suche das größte Tag</span>
+<a name="l00053"></a>00053          <span class="keywordflow">if</span> (msg-&gt;tags[i].diameter &gt; biggest.diameter)
+<a name="l00054"></a>00054             biggest = msg-&gt;tags[i];
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056       <span class="keywordtype">float</span> cx = 0;
+<a name="l00057"></a>00057       <span class="keywordtype">float</span> cy = 0;
+<a name="l00058"></a>00058       <a class="code" href="namespace_math.html#ab4c584467f0cc5d8af22a69482630866" title="Berechnung für die Bodenkamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet...">Math::centerBottom</a>(biggest, cx, cy); <span class="comment">//Bestimme die Mittelpunkte</span>
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060       <span class="comment">// etwa bei einer Höhe von 1,3 m schweben</span>
+<a name="l00061"></a>00061       <span class="keywordflow">if</span> (biggest.distance &gt; 1350.0f)
+<a name="l00062"></a>00062       {
+<a name="l00063"></a>00063          <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält   + linear.x: move forward   - linear.x: move backward   + linear.y: move left   - linear.y: move right   + linear.z: move up   - linear.z: move down   + angular.z: turn left   - angular.z: turn right  .">twist</a>.linear.z = -0.1;
+<a name="l00064"></a>00064       }
+<a name="l00065"></a>00065       <span class="keywordflow">else</span> <span class="keywordflow">if</span> (biggest.distance &lt; 1200.0f)
+<a name="l00066"></a>00066          <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält   + linear.x: move forward   - linear.x: move backward   + linear.y: move left   - linear.y: move right   + linear.z: move up   - linear.z: move down   + angular.z: turn left   - angular.z: turn right  .">twist</a>.linear.z = 0.3;
+<a name="l00067"></a>00067       <span class="keywordflow">else</span>
+<a name="l00068"></a>00068          <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält   + linear.x: move forward   - linear.x: move backward   + linear.y: move left   - linear.y: move right   + linear.z: move up   - linear.z: move down   + angular.z: turn left   - angular.z: turn right  .">twist</a>.linear.z = 0;
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070       <span class="comment">/* Geschwindigkeit in x und y Richtung steigt linear mit der Entfernung zum Mittelpunkt</span>
+<a name="l00071"></a>00071 <span class="comment">       * 0.08 ist das Maximum</span>
+<a name="l00072"></a>00072 <span class="comment">       * (cx - 0.5), weil 0.5 die Mitte ist</span>
+<a name="l00073"></a>00073 <span class="comment">       * durch 4 wird geteilt, um die Bewegung langsamer zu machen(dieser Wert wurde ausprobiert, mit 4 wurden die besten Ergebnisse erziehlt)</span>
+<a name="l00074"></a>00074 <span class="comment">       */</span>
+<a name="l00075"></a>00075       <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält   + linear.x: move forward   - linear.x: move backward   + linear.y: move left   - linear.y: move right   + linear.z: move up   - linear.z: move down   + angular.z: turn left   - angular.z: turn right  .">twist</a>.linear.y = max(-0.08, min(0.08, -(cx - 0.5) / 4));
+<a name="l00076"></a>00076       <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält   + linear.x: move forward   - linear.x: move backward   + linear.y: move left   - linear.y: move right   + linear.z: move up   - linear.z: move down   + angular.z: turn left   - angular.z: turn right  .">twist</a>.linear.x = max(-0.08, min(0.08, -(cy - 0.5) / 4));
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078       <span class="comment">/* Drehe dich in Abhängigkeit von der z Rotation des Tags</span>
+<a name="l00079"></a>00079 <span class="comment">       * ab 90°(zRot = 1.5): maximale Drehgeschwindigkeit</span>
+<a name="l00080"></a>00080 <span class="comment">       */</span>
+<a name="l00081"></a>00081       <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält   + linear.x: move forward   - linear.x: move backward   + linear.y: move left   - linear.y: move right   + linear.z: move up   - linear.z: move down   + angular.z: turn left   - angular.z: turn right  .">twist</a>.angular.z = -(max(-1.5, min(1.5, biggest.zRot)) * (0.666667));
+<a name="l00082"></a>00082    }
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084    <span class="keyword">struct </span>timeval timenow;
+<a name="l00085"></a>00085    gettimeofday(&amp;timenow, NULL);
+<a name="l00086"></a>00086    <span class="keywordflow">if</span> (timenow.tv_sec - <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#a9a9df79aad0bb5db8880a83d2fb407e2" title="Zeit seit der das letzte Mal neue Navigationsdaten gesendet wurden.">sinceNoNavdataUpdate</a>.tv_sec &gt; 1
+<a name="l00087"></a>00087          || (timenow.tv_sec - <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#a9a9df79aad0bb5db8880a83d2fb407e2" title="Zeit seit der das letzte Mal neue Navigationsdaten gesendet wurden.">sinceNoNavdataUpdate</a>.tv_sec == 0 &amp;&amp; timenow.tv_usec - <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#a9a9df79aad0bb5db8880a83d2fb407e2" title="Zeit seit der das letzte Mal neue Navigationsdaten gesendet wurden.">sinceNoNavdataUpdate</a>.tv_usec &gt; 500000))
+<a name="l00088"></a>00088    {
+<a name="l00089"></a>00089       <span class="comment">//Falls eine halbe Sekunde oder länger keine neuen Navigationsdaten gesendet wurden, versuche ruhig zu stehen</span>
+<a name="l00090"></a>00090       <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält   + linear.x: move forward   - linear.x: move backward   + linear.y: move left   - linear.y: move right   + linear.z: move up   - linear.z: move down   + angular.z: turn left   - angular.z: turn right  .">twist</a>.linear.x = 0;
+<a name="l00091"></a>00091       <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält   + linear.x: move forward   - linear.x: move backward   + linear.y: move left   - linear.y: move right   + linear.z: move up   - linear.z: move down   + angular.z: turn left   - angular.z: turn right  .">twist</a>.linear.z = 0;
+<a name="l00092"></a>00092       <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält   + linear.x: move forward   - linear.x: move backward   + linear.y: move left   - linear.y: move right   + linear.z: move up   - linear.z: move down   + angular.z: turn left   - angular.z: turn right  .">twist</a>.linear.y = 0;
+<a name="l00093"></a>00093       <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält   + linear.x: move forward   - linear.x: move backward   + linear.y: move left   - linear.y: move right   + linear.z: move up   - linear.z: move down   + angular.z: turn left   - angular.z: turn right  .">twist</a>.angular.z = 0;
+<a name="l00094"></a>00094       <span class="comment">//Speichere die Bewegungsdaten, falls beim nächsten Mal kein Tag erkannt wird</span>
+<a name="l00095"></a>00095       <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#ae99f21083838b00781e4461e3e7accb9" title="enthält den Twist-Wert(ohne Regelung), der gesetzt wurde, als das Tag bzw. die Linie zuletzt gesehen ...">twist_old</a> = <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält   + linear.x: move forward   - linear.x: move backward   + linear.y: move left   - linear.y: move right   + linear.z: move up   - linear.z: move down   + angular.z: turn left   - angular.z: turn right  .">twist</a>;
+<a name="l00096"></a>00096       <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#af3a06302b3bd19de728064359241c1a1" title="Publisher zum publishen des Twist Objekts.">pub</a>.publish(<a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().twist);  <span class="comment">//Bewegungsdaten publishen</span>
+<a name="l00097"></a>00097       <span class="keywordflow">return</span>;
+<a name="l00098"></a>00098    }
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100    <span class="comment">//Fliege nicht höher als 1,7m und nicht niedriger als 0,3m</span>
+<a name="l00101"></a>00101    <span class="keywordflow">if</span> ((<a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().altd &gt; 1700 &amp;&amp; <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().twist.linear.z &gt; 0)
+<a name="l00102"></a>00102          || (<a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#a0e2d4712edf675715bd4bcc554dbcf42" title="aktuelle Höhe">altd</a> &lt; 300 &amp;&amp; <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält   + linear.x: move forward   - linear.x: move backward   + linear.y: move left   - linear.y: move right   + linear.z: move up   - linear.z: move down   + angular.z: turn left   - angular.z: turn right  .">twist</a>.linear.z &lt; 0))
+<a name="l00103"></a>00103       <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält   + linear.x: move forward   - linear.x: move backward   + linear.y: move left   - linear.y: move right   + linear.z: move up   - linear.z: move down   + angular.z: turn left   - angular.z: turn right  .">twist</a>.linear.z = 0;
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105    <span class="comment">//Speichere die Bewegungsdaten, falls beim nächsten Mal kein Tag erkannt wird</span>
+<a name="l00106"></a>00106    <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#ae99f21083838b00781e4461e3e7accb9" title="enthält den Twist-Wert(ohne Regelung), der gesetzt wurde, als das Tag bzw. die Linie zuletzt gesehen ...">twist_old</a> = <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#acdd49b2fad30faf04785664c422f5ef7" title="Twist-Objekt, das die Bewegungsdaten zur Ansteuerung der Drone enthält   + linear.x: move forward   - linear.x: move backward   + linear.y: move left   - linear.y: move right   + linear.z: move up   - linear.z: move down   + angular.z: turn left   - angular.z: turn right  .">twist</a>;
+<a name="l00107"></a>00107 
+<a name="l00108"></a>00108    <a class="code" href="namespace_math.html#a688eccf4d1e0776ee10e6293254e2e13" title="PD-Regelung für bottom_follow_tag.">Math::bottom_regulation</a>(); <span class="comment">//Regelung</span>
+<a name="l00109"></a>00109 
+<a name="l00110"></a>00110    <span class="comment">//Keyboard::control(); Falls es möglich sein soll mit der Tastatur zu steuern, Kommentar wegnehmen</span>
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112    <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#af3a06302b3bd19de728064359241c1a1" title="Publisher zum publishen des Twist Objekts.">pub</a>.publish(<a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().twist);  <span class="comment">//Bewegungsdaten publishen</span>
+<a name="l00113"></a>00113 }
+<a name="l00114"></a>00114 
+<a name="l00115"></a><a class="code" href="bottom__follow__tag_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">00115</a> <span class="keywordtype">int</span> <a class="code" href="bottom__follow__tag_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv)
+<a name="l00116"></a>00116 {
+<a name="l00117"></a>00117    ros::init(argc, argv, <span class="stringliteral">&quot;follow_tag_bottom&quot;</span>);
+<a name="l00118"></a>00118 
+<a name="l00119"></a>00119    ros::NodeHandle node_handle;
+<a name="l00120"></a>00120    <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#af3a06302b3bd19de728064359241c1a1" title="Publisher zum publishen des Twist Objekts.">pub</a> = node_handle.advertise &lt; geometry_msgs::Twist &gt; (<span class="stringliteral">&quot;cmd_vel&quot;</span>, 1000);
+<a name="l00121"></a>00121    ros::Subscriber sub = node_handle.subscribe(<span class="stringliteral">&quot;tags&quot;</span>, 1000, <a class="code" href="bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handler für die Nachricht tags: hier werden die Bewegungsdaten gesetzt und gepublished">handleTag</a>);
+<a name="l00122"></a>00122 
+<a name="l00123"></a>00123    ros::Subscriber navdata = node_handle.subscribe(<span class="stringliteral">&quot;/ardrone/navdata&quot;</span>, 1000, <a class="code" href="namespace_math.html#ad3b65f0aedda56076f681f2b987d0e5c" title="handler für die Nachricht /ardrone/navdata">Math::navdataUpdate</a>);
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125    <span class="keywordflow">while</span> (!<a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().end &amp;&amp; ros::ok())
+<a name="l00126"></a>00126    {
+<a name="l00127"></a>00127       ros::spinOnce();
+<a name="l00128"></a>00128    }
+<a name="l00129"></a>00129    <a class="code" href="class_cglobal.html#aa1d07161425d12bc42dd100140407e59">Cglobal::destroy</a>();
+<a name="l00130"></a>00130 }
+</pre></div></div>
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Alle</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Klassen</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namensbereiche</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Dateien</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Funktionen</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variablen</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr class="footer"/><address class="footer"><small>Erzeugt am Tue Sep 4 2012 16:08:00 für ardrone_swp von&#160;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
+</body>
+</html>

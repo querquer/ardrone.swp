@@ -2,7 +2,17 @@
  * @file bottom_follow_tag.cpp
  * @brief Applikation zur Tagvervolgung mit der unteren Kamera
  *
- * TODO : Ausführliche Beschreibung
+ * Die Applikation published eine Message vom Typ cmd_vel(Twist-Objekt) zum steuern der Drone immer dann,\n
+ * wenn eine neue Message vom Typ tags von der Applikation ar_recog gesendet wurde. Dies geschieht etwa 18 mal pro Sekunde.
+ * \n\n
+ * Wurde ein Tag erkannt, soll die Drone darauf zu fliegen, sodass das Tag in den Mittelpunkt des Bildes kommt. \n
+ * Dabei fliegt die Drone bei einer Höhe von etwa 1,3m über dem Tag.\n
+ * Wurde kein Tag erkannt, fliegt die Drone drei Sekunden in die Richtung, in der sie das Tag zuletzt gesehen hat.\n
+ * Hat die Drone das Tag nach 3 Sekunden noch nicht wiedergefunden, fliegt sie auf der Stelle.\n
+ * \n
+ * Die Regelung erfolgt in Math::bottom_regulation() mit Hilfe eines PD-Reglers.\n
+ * Sind über eine halbe Sekunde lang keine neuen Navigationsdaten(Message ardrone/navdata) von der Drone angekommen(passiert teilweise bei gestörter WLAN-Verbindung), \n
+ * bleibt die Drohne stehen. Sonst würde die Drone aufgrund der Regelung mit den alten Geschwindigkeitswerten nicht das gewünschte Verhalten zeigen.
  */
 
 #include "std_includes.h"
@@ -10,10 +20,9 @@
 using namespace std;
 
 
-/** @brief handler für die Nachricht tags
- * hier werden die Bewegungsdaten gesetzt und gepublished
+/** @brief handler für die Nachricht tags: hier werden die Bewegungsdaten gesetzt und gepublished
  *
- * TODO : Ausführliche Beschreibung
+
  */
 void handleTag(const ar_recog::Tags::ConstPtr& msg)
 {
@@ -67,7 +76,7 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
 		Cglobal::instance().twist.linear.x = max(-0.08, min(0.08, -(cy - 0.5) / 4));
 
 		/* Drehe dich in Abhängigkeit von der z Rotation des Tags
-		 * ab 45°(zRot = 1.5): maximale Drehgeschwindigkeit
+		 * ab 90°(zRot = 1.5): maximale Drehgeschwindigkeit
 		 */
 		Cglobal::instance().twist.angular.z = -(max(-1.5, min(1.5, biggest.zRot)) * (0.666667));
 	}

@@ -4,9 +4,9 @@
 
 \b ardrone_swp enthält Applikationen zur 
 * <ul>
-* <li>Linienvervolgung: follow_line</li>
-* <li>Tagverfolgung mittels vorderer Kamera</li>
-* <li>Tagverfolgung mittels unterer Kamera</li>
+* <li>Linienvervolgung: follow_line.cpp</li>
+* <li>Tagverfolgung mittels vorderer Kamera: bottom_follow_tag.cpp</li>
+* <li>Tagverfolgung mittels unterer Kamera: front_follow_tag.cpp</li>
 * </ul> 
 
 */

@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>ardrone_swp: /home/ulrich/ros_workspace/brown-ros-pkg/experimental/ardrone_brown/src/ardrone_driver.h Quellcode</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- Erzeugt von Doxygen 1.7.4 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
+--></script>
+<div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">ardrone_swp</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Hauptseite</span></a></li>
+      <li><a href="pages.html"><span>Zusätzliche&#160;Informationen</span></a></li>
+      <li><a href="namespaces.html"><span>Namensbereiche</span></a></li>
+      <li><a href="annotated.html"><span>Klassen</span></a></li>
+      <li class="current"><a href="files.html"><span>Dateien</span></a></li>
+      <li><a href="dirs.html"><span>Verzeichnisse</span></a></li>
+      <li id="searchli">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Suchen" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Auflistung&#160;der&#160;Dateien</span></a></li>
+      <li><a href="globals.html"><span>Datei-Elemente</span></a></li>
+    </ul>
+  </div>
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="dir_db1f2967d25d7733fdf8af70c9292fdf.html">brown-ros-pkg</a>      </li>
+      <li class="navelem"><a class="el" href="dir_9af0f9f7f9f9c46be4c0a460fda7265e.html">experimental</a>      </li>
+      <li class="navelem"><a class="el" href="dir_57ced2b52d73e568f24a05f658aba32e.html">ardrone_brown</a>      </li>
+      <li class="navelem"><a class="el" href="dir_dc28685e41c9557ccccf89743cccecaf.html">src</a>      </li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="headertitle">
+<div class="title">ardrone_driver.h</div>  </div>
+</div>
+<div class="contents">
+<a href="ardrone__driver_8h.html">gehe zur Dokumentation dieser Datei</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef _ARDRONE_DRIVER_H_</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define _ARDRONE_DRIVER_H_</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include &lt;ros/ros.h&gt;</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;image_transport/image_transport.h&gt;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;sensor_msgs/Image.h&gt;</span>
+<a name="l00007"></a>00007 <span class="preprocessor">#include &lt;ardrone_brown/Navdata.h&gt;</span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;<a class="code" href="ardrone__sdk_8h.html">ardrone_sdk.h</a>&quot;</span>
+<a name="l00009"></a>00009 
+<a name="l00010"></a><a class="code" href="class_a_r_drone_driver.html">00010</a> <span class="keyword">class </span><a class="code" href="class_a_r_drone_driver.html">ARDroneDriver</a>
+<a name="l00011"></a>00011 {
+<a name="l00012"></a>00012 <span class="keyword">public</span>:
+<a name="l00013"></a>00013    <a class="code" href="class_a_r_drone_driver.html#adf44a650ba2cd60c16b837f4cd195fc7">ARDroneDriver</a>();
+<a name="l00014"></a>00014    <a class="code" href="class_a_r_drone_driver.html#aafdd26db65df3294e9497cf2c34e9dd4">~ARDroneDriver</a>();
+<a name="l00015"></a>00015 
+<a name="l00016"></a>00016    <span class="keywordtype">void</span> <a class="code" href="class_a_r_drone_driver.html#a5e2c583dc891a5e99cd1ba20f4669205">run</a>();
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 <span class="keyword">private</span>:
+<a name="l00019"></a>00019    <span class="keywordtype">void</span> <a class="code" href="class_a_r_drone_driver.html#a9869da1a0ffb3ba589c7e2f81e6fed2d">publish_video</a>();
+<a name="l00020"></a>00020    <span class="keywordtype">void</span> <a class="code" href="class_a_r_drone_driver.html#af35ae930393813304d87699b78ea0ef6">publish_navdata</a>();
+<a name="l00021"></a>00021 
+<a name="l00022"></a><a class="code" href="class_a_r_drone_driver.html#a654d5963bd1298626078640f32ba4ffd">00022</a>    ros::NodeHandle <a class="code" href="class_a_r_drone_driver.html#a654d5963bd1298626078640f32ba4ffd">node_handle</a>;
+<a name="l00023"></a><a class="code" href="class_a_r_drone_driver.html#a58816762fc15b0d45db6599c09a4ac58">00023</a>    ros::Subscriber <a class="code" href="class_a_r_drone_driver.html#a58816762fc15b0d45db6599c09a4ac58">cmd_vel_sub</a>;
+<a name="l00024"></a><a class="code" href="class_a_r_drone_driver.html#a6a86e2d96a20f7d6d2251cec31efd3dc">00024</a>    ros::Subscriber <a class="code" href="class_a_r_drone_driver.html#a6a86e2d96a20f7d6d2251cec31efd3dc">takeoff_sub</a>;
+<a name="l00025"></a><a class="code" href="class_a_r_drone_driver.html#aaa19283ffb8103c7868827cf41a3f88b">00025</a>    ros::Subscriber <a class="code" href="class_a_r_drone_driver.html#aaa19283ffb8103c7868827cf41a3f88b">reset_sub</a>;
+<a name="l00026"></a><a class="code" href="class_a_r_drone_driver.html#acff0fd1b746f6fdb99cd33ad34cf837b">00026</a>    ros::Subscriber <a class="code" href="class_a_r_drone_driver.html#acff0fd1b746f6fdb99cd33ad34cf837b">land_sub</a>;
+<a name="l00027"></a><a class="code" href="class_a_r_drone_driver.html#acce84b668e71f223260ff085ab75261a">00027</a>    image_transport::ImageTransport <a class="code" href="class_a_r_drone_driver.html#acce84b668e71f223260ff085ab75261a">image_transport</a>;
+<a name="l00028"></a><a class="code" href="class_a_r_drone_driver.html#a945d2b72b3b44cdf21719d4e151d1d6d">00028</a>    image_transport::CameraPublisher <a class="code" href="class_a_r_drone_driver.html#a945d2b72b3b44cdf21719d4e151d1d6d">image_pub</a>;
+<a name="l00029"></a><a class="code" href="class_a_r_drone_driver.html#aed432dfdfb8879107c41a2519b571dff">00029</a>    ros::Publisher <a class="code" href="class_a_r_drone_driver.html#aed432dfdfb8879107c41a2519b571dff">navdata_pub</a>;
+<a name="l00030"></a>00030 
+<a name="l00031"></a>00031    <span class="comment">//ros::Subscriber toggleCam_sub;</span>
+<a name="l00032"></a><a class="code" href="class_a_r_drone_driver.html#a15698e71e2298d7b681135d0c994874a">00032</a>    ros::ServiceServer <a class="code" href="class_a_r_drone_driver.html#a15698e71e2298d7b681135d0c994874a">toggleCam_service</a>;
+<a name="l00033"></a><a class="code" href="class_a_r_drone_driver.html#a10526187c957ba5d2f43419dcd59c136">00033</a>         ros::ServiceServer <a class="code" href="class_a_r_drone_driver.html#a10526187c957ba5d2f43419dcd59c136">set_camera_info</a>;
+<a name="l00034"></a>00034 
+<a name="l00035"></a><a class="code" href="class_a_r_drone_driver.html#a1d243a40bb539d91ca5954f45102fa13">00035</a>         sensor_msgs::CameraInfo <a class="code" href="class_a_r_drone_driver.html#a1d243a40bb539d91ca5954f45102fa13">camera_info</a>;
+<a name="l00036"></a>00036 
+<a name="l00037"></a><a class="code" href="class_a_r_drone_driver.html#a8348fc0dd2ce0501c1b4d1e49677a7aa">00037</a>    <span class="keywordtype">int</span> <a class="code" href="class_a_r_drone_driver.html#a8348fc0dd2ce0501c1b4d1e49677a7aa">last_frame_id</a>;
+<a name="l00038"></a><a class="code" href="class_a_r_drone_driver.html#a5bf0cb667d49c37f58734702adca75e6">00038</a>    <span class="keywordtype">int</span> <a class="code" href="class_a_r_drone_driver.html#a5bf0cb667d49c37f58734702adca75e6">flying_state</a>;
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040 };
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042 <span class="preprocessor">#endif</span>
+</pre></div></div>
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Alle</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Klassen</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namensbereiche</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Dateien</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Funktionen</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variablen</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Makrodefinitionen</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr class="footer"/><address class="footer"><small>Erzeugt am Wed Jul 4 2012 15:23:49 für ardrone_swp von&#160;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
+</body>
+</html>

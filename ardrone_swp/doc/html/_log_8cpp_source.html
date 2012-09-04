@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>ardrone_swp: src/Log.cpp Quellcode</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- Erzeugt von Doxygen 1.7.4 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
+--></script>
+<div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">ardrone_swp</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Hauptseite</span></a></li>
+      <li><a href="namespaces.html"><span>Namensbereiche</span></a></li>
+      <li><a href="annotated.html"><span>Klassen</span></a></li>
+      <li class="current"><a href="files.html"><span>Dateien</span></a></li>
+      <li><a href="dirs.html"><span>Verzeichnisse</span></a></li>
+      <li id="searchli">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Suchen" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Auflistung&#160;der&#160;Dateien</span></a></li>
+      <li><a href="globals.html"><span>Datei-Elemente</span></a></li>
+    </ul>
+  </div>
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="dir_8825dd29552366a97c79ae3282986fe7.html">src</a>      </li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="headertitle">
+<div class="title">Log.cpp</div>  </div>
+</div>
+<div class="contents">
+<a href="_log_8cpp.html">gehe zur Dokumentation dieser Datei</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00022"></a>00022 <span class="preprocessor">#include &quot;ardrone_brown/Navdata.h&quot;</span>
+<a name="l00023"></a>00023 <span class="preprocessor">#include &quot;ros/ros.h&quot;</span>
+<a name="l00024"></a>00024 <span class="preprocessor">#include &quot;ar_recog/Tags.h&quot;</span>
+<a name="l00025"></a>00025 <span class="preprocessor">#include &quot;ar_recog/Tag.h&quot;</span>
+<a name="l00026"></a>00026 <span class="preprocessor">#include &quot;geometry_msgs/Twist.h&quot;</span>
+<a name="l00027"></a>00027 
+<a name="l00028"></a>00028 <span class="preprocessor">#include &lt;time.h&gt;</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<a name="l00030"></a>00030 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00031"></a>00031 <span class="preprocessor">#include &lt;sstream&gt;</span>
+<a name="l00032"></a>00032 <span class="preprocessor">#include &lt;fstream&gt;</span>
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034 <span class="preprocessor">#include &lt;sys/time.h&gt;</span>
+<a name="l00035"></a>00035 
+<a name="l00036"></a>00036 <span class="preprocessor">#include &lt;boost/filesystem.hpp&gt;</span>
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039 <span class="keyword">using namespace </span>std;
+<a name="l00040"></a>00040 
+<a name="l00041"></a><a class="code" href="_log_8cpp.html#a23aa93e4ff6c46053ab418dc360e4f1a">00041</a> ofstream <a class="code" href="_log_8cpp.html#a23aa93e4ff6c46053ab418dc360e4f1a">logNavdata</a>;
+<a name="l00042"></a><a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">00042</a> ofstream <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a>;
+<a name="l00043"></a><a class="code" href="_log_8cpp.html#a10bb79822b487dbc4db2b1b64a8ea80a">00043</a> ofstream <a class="code" href="_log_8cpp.html#a10bb79822b487dbc4db2b1b64a8ea80a">logTwist</a>;
+<a name="l00044"></a>00044 
+<a name="l00048"></a><a class="code" href="_log_8cpp.html#a2379f8efc865258905edbf90e8678f69">00048</a> <span class="keywordtype">void</span> <a class="code" href="bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handler für die Nachricht tags: hier werden die Bewegungsdaten gesetzt und gepublished">handleTag</a>(<span class="keyword">const</span> ar_recog::Tags::ConstPtr&amp; msg)
+<a name="l00049"></a>00049 {
+<a name="l00050"></a>00050   time_t t;
+<a name="l00051"></a>00051   time(&amp;t);
+<a name="l00052"></a>00052   <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a> &lt;&lt; ctime(&amp;t) &lt;&lt; endl;
+<a name="l00053"></a>00053   <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a> &lt;&lt; <span class="stringliteral">&quot;Anzahl der Tags: &quot;</span> &lt;&lt; msg-&gt;tag_count &lt;&lt; endl;
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055   <span class="keywordflow">if</span>(msg-&gt;tag_count &gt; 0)
+<a name="l00056"></a>00056   {
+<a name="l00057"></a>00057     <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a>  &lt;&lt; <span class="stringliteral">&quot;image_width: &quot;</span> &lt;&lt; msg-&gt;image_width &lt;&lt; endl;
+<a name="l00058"></a>00058     <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a>  &lt;&lt; <span class="stringliteral">&quot;image_height: &quot;</span> &lt;&lt; msg-&gt;image_height &lt;&lt; endl;
+<a name="l00059"></a>00059     <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a>  &lt;&lt; <span class="stringliteral">&quot;angle_of_view: &quot;</span> &lt;&lt; msg-&gt;angle_of_view &lt;&lt; endl;
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061     <span class="keywordflow">for</span>(<span class="keywordtype">size_t</span> i = 0; i &lt; msg-&gt;tag_count; ++i)
+<a name="l00062"></a>00062     {
+<a name="l00063"></a>00063       <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a> &lt;&lt; <span class="stringliteral">&quot;ID: &quot;</span> &lt;&lt; msg-&gt;tags[i].id &lt;&lt; endl;
+<a name="l00064"></a>00064       <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a> &lt;&lt; <span class="stringliteral">&quot;cf: &quot;</span> &lt;&lt; msg-&gt;tags[i].cf &lt;&lt; endl;
+<a name="l00065"></a>00065       <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a> &lt;&lt; <span class="stringliteral">&quot;cf: &quot;</span> &lt;&lt; msg-&gt;tags[i].cf &lt;&lt; endl;
+<a name="l00066"></a>00066       <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a> &lt;&lt; <span class="stringliteral">&quot;x: &quot;</span> &lt;&lt; msg-&gt;tags[i].x &lt;&lt; endl;
+<a name="l00067"></a>00067       <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a> &lt;&lt; <span class="stringliteral">&quot;y: &quot;</span> &lt;&lt; msg-&gt;tags[i].y &lt;&lt; endl;
+<a name="l00068"></a>00068       <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a> &lt;&lt; <span class="stringliteral">&quot;distance: &quot;</span> &lt;&lt; msg-&gt;tags[i].distance &lt;&lt; endl;
+<a name="l00069"></a>00069       <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a> &lt;&lt; <span class="stringliteral">&quot;diameter: &quot;</span> &lt;&lt; msg-&gt;tags[i].diameter &lt;&lt; endl;
+<a name="l00070"></a>00070       <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a> &lt;&lt; <span class="stringliteral">&quot;xRot: &quot;</span> &lt;&lt; msg-&gt;tags[i].xRot &lt;&lt; endl;
+<a name="l00071"></a>00071       <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a> &lt;&lt; <span class="stringliteral">&quot;yRot: &quot;</span> &lt;&lt; msg-&gt;tags[i].yRot &lt;&lt; endl;
+<a name="l00072"></a>00072       <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a> &lt;&lt; <span class="stringliteral">&quot;zRot: &quot;</span> &lt;&lt; msg-&gt;tags[i].zRot &lt;&lt; endl;
+<a name="l00073"></a>00073       <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a> &lt;&lt; <span class="stringliteral">&quot;xMetric: &quot;</span> &lt;&lt; msg-&gt;tags[i].xMetric &lt;&lt; endl;
+<a name="l00074"></a>00074       <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a> &lt;&lt; <span class="stringliteral">&quot;yMetric: &quot;</span> &lt;&lt; msg-&gt;tags[i].yMetric &lt;&lt; endl;
+<a name="l00075"></a>00075       <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a> &lt;&lt; <span class="stringliteral">&quot;zMetric: &quot;</span> &lt;&lt; msg-&gt;tags[i].zMetric &lt;&lt; endl;
+<a name="l00076"></a>00076     }
+<a name="l00077"></a>00077     <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a> &lt;&lt; endl;
+<a name="l00078"></a>00078   }
+<a name="l00079"></a>00079 }
+<a name="l00083"></a><a class="code" href="_log_8cpp.html#a39bd57f05a0879f1d9df4e82bfbfa30e">00083</a> <span class="keywordtype">void</span> <a class="code" href="_log_8cpp.html#a39bd57f05a0879f1d9df4e82bfbfa30e" title="schreibt die Navdata-Informationen in die entsprechende Datei">navdataUpdate</a>(<span class="keyword">const</span> ardrone_brown::Navdata::ConstPtr&amp; navdata)
+<a name="l00084"></a>00084 {
+<a name="l00085"></a>00085   time_t t;
+<a name="l00086"></a>00086   time(&amp;t);
+<a name="l00087"></a>00087   <a class="code" href="_log_8cpp.html#a23aa93e4ff6c46053ab418dc360e4f1a">logNavdata</a> &lt;&lt; ctime(&amp;t) &lt;&lt; endl;
+<a name="l00088"></a>00088   <a class="code" href="_log_8cpp.html#a23aa93e4ff6c46053ab418dc360e4f1a">logNavdata</a> &lt;&lt; <span class="stringliteral">&quot;Batterie: &quot;</span> &lt;&lt; navdata-&gt;batteryPercent &lt;&lt; endl;
+<a name="l00089"></a>00089   <a class="code" href="_log_8cpp.html#a23aa93e4ff6c46053ab418dc360e4f1a">logNavdata</a> &lt;&lt; <span class="stringliteral">&quot;RotX: &quot;</span> &lt;&lt; navdata-&gt;rotX &lt;&lt; endl;
+<a name="l00090"></a>00090   <a class="code" href="_log_8cpp.html#a23aa93e4ff6c46053ab418dc360e4f1a">logNavdata</a> &lt;&lt; <span class="stringliteral">&quot;RotY: &quot;</span> &lt;&lt; navdata-&gt;rotY &lt;&lt; endl;
+<a name="l00091"></a>00091   <a class="code" href="_log_8cpp.html#a23aa93e4ff6c46053ab418dc360e4f1a">logNavdata</a> &lt;&lt; <span class="stringliteral">&quot;RotZ: &quot;</span> &lt;&lt; navdata-&gt;rotZ &lt;&lt; endl;
+<a name="l00092"></a>00092   <a class="code" href="_log_8cpp.html#a23aa93e4ff6c46053ab418dc360e4f1a">logNavdata</a> &lt;&lt; <span class="stringliteral">&quot;Höhe: &quot;</span> &lt;&lt; navdata-&gt;altd &lt;&lt; endl;
+<a name="l00093"></a>00093   <a class="code" href="_log_8cpp.html#a23aa93e4ff6c46053ab418dc360e4f1a">logNavdata</a> &lt;&lt; <span class="stringliteral">&quot;vx: &quot;</span> &lt;&lt; navdata-&gt;vx &lt;&lt; endl;
+<a name="l00094"></a>00094   <a class="code" href="_log_8cpp.html#a23aa93e4ff6c46053ab418dc360e4f1a">logNavdata</a> &lt;&lt; <span class="stringliteral">&quot;vy: &quot;</span> &lt;&lt; navdata-&gt;vy &lt;&lt; endl;
+<a name="l00095"></a>00095   <a class="code" href="_log_8cpp.html#a23aa93e4ff6c46053ab418dc360e4f1a">logNavdata</a> &lt;&lt; <span class="stringliteral">&quot;vz: &quot;</span> &lt;&lt; navdata-&gt;vz &lt;&lt; endl;
+<a name="l00096"></a>00096   <a class="code" href="_log_8cpp.html#a23aa93e4ff6c46053ab418dc360e4f1a">logNavdata</a> &lt;&lt; <span class="stringliteral">&quot;Zeit seit Start: &quot;</span> &lt;&lt; navdata-&gt;tm &lt;&lt; endl &lt;&lt; endl;
+<a name="l00097"></a>00097 }
+<a name="l00101"></a><a class="code" href="_log_8cpp.html#a2fa433d675a4836a65893acd6d27f0f5">00101</a> <span class="keywordtype">void</span> <a class="code" href="_log_8cpp.html#a2fa433d675a4836a65893acd6d27f0f5" title="schreibt die Twist-Informationen in die entsprechende Datei">handleTwist</a>(<span class="keyword">const</span> geometry_msgs::TwistConstPtr &amp;msg)
+<a name="l00102"></a>00102 {
+<a name="l00103"></a>00103   time_t t;
+<a name="l00104"></a>00104   time(&amp;t);
+<a name="l00105"></a>00105   <a class="code" href="_log_8cpp.html#a10bb79822b487dbc4db2b1b64a8ea80a">logTwist</a> &lt;&lt; ctime(&amp;t) &lt;&lt; endl;
+<a name="l00106"></a>00106   <a class="code" href="_log_8cpp.html#a10bb79822b487dbc4db2b1b64a8ea80a">logTwist</a> &lt;&lt; <span class="stringliteral">&quot;linear.x: &quot;</span> &lt;&lt; msg-&gt;linear.x &lt;&lt; endl;
+<a name="l00107"></a>00107   <a class="code" href="_log_8cpp.html#a10bb79822b487dbc4db2b1b64a8ea80a">logTwist</a> &lt;&lt; <span class="stringliteral">&quot;linear.y: &quot;</span> &lt;&lt; msg-&gt;linear.y &lt;&lt; endl;
+<a name="l00108"></a>00108   <a class="code" href="_log_8cpp.html#a10bb79822b487dbc4db2b1b64a8ea80a">logTwist</a> &lt;&lt; <span class="stringliteral">&quot;linear.z: &quot;</span> &lt;&lt; msg-&gt;linear.z &lt;&lt; endl;
+<a name="l00109"></a>00109   <a class="code" href="_log_8cpp.html#a10bb79822b487dbc4db2b1b64a8ea80a">logTwist</a> &lt;&lt; <span class="stringliteral">&quot;angular.x: &quot;</span> &lt;&lt; msg-&gt;angular.x &lt;&lt; endl;
+<a name="l00110"></a>00110   <a class="code" href="_log_8cpp.html#a10bb79822b487dbc4db2b1b64a8ea80a">logTwist</a> &lt;&lt; <span class="stringliteral">&quot;angular.y: &quot;</span> &lt;&lt; msg-&gt;angular.y &lt;&lt; endl;
+<a name="l00111"></a>00111   <a class="code" href="_log_8cpp.html#a10bb79822b487dbc4db2b1b64a8ea80a">logTwist</a> &lt;&lt; <span class="stringliteral">&quot;angular.z: &quot;</span> &lt;&lt; msg-&gt;angular.z &lt;&lt; endl &lt;&lt; endl;
+<a name="l00112"></a>00112 }
+<a name="l00113"></a>00113 
+<a name="l00114"></a><a class="code" href="_log_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">00114</a> <span class="keywordtype">int</span> <a class="code" href="bottom__follow__tag_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv)
+<a name="l00115"></a>00115 {
+<a name="l00116"></a>00116   ros::init(argc, argv, <span class="stringliteral">&quot;LogNavdata&quot;</span>);
+<a name="l00117"></a>00117 
+<a name="l00118"></a>00118   ros::NodeHandle node_handle;
+<a name="l00119"></a>00119   <span class="keywordtype">bool</span> n = <span class="keyword">false</span>; <span class="comment">//navdata</span>
+<a name="l00120"></a>00120   <span class="keywordtype">bool</span> tag = <span class="keyword">false</span>; <span class="comment">//tags</span>
+<a name="l00121"></a>00121   <span class="keywordtype">bool</span> w = <span class="keyword">false</span>; <span class="comment">//twist</span>
+<a name="l00122"></a>00122   time_t t;
+<a name="l00123"></a>00123   time(&amp;t);
+<a name="l00124"></a>00124   ros::Subscriber navdataSub;
+<a name="l00125"></a>00125   ros::Subscriber tagsSub;
+<a name="l00126"></a>00126   ros::Subscriber twistSub;
+<a name="l00127"></a>00127 
+<a name="l00128"></a>00128   boost::filesystem::path p(argv[0]);
+<a name="l00129"></a>00129   <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; argc; ++i)
+<a name="l00130"></a>00130   {
+<a name="l00131"></a>00131     <span class="keywordflow">if</span>(!n &amp;&amp; argv[i][0] == <span class="charliteral">&#39;n&#39;</span>)
+<a name="l00132"></a>00132     {
+<a name="l00133"></a>00133       ostringstream ost;
+<a name="l00134"></a>00134       ost &lt;&lt; <span class="stringliteral">&quot;/Log/LogNavdata/&quot;</span>;
+<a name="l00135"></a>00135       ost &lt;&lt; ctime(&amp;t);
+<a name="l00136"></a>00136 
+<a name="l00137"></a>00137       boost::filesystem::path p2(p.parent_path().parent_path().string() + ost.str());
+<a name="l00138"></a>00138       <a class="code" href="_log_8cpp.html#a23aa93e4ff6c46053ab418dc360e4f1a">logNavdata</a>.open(p2.string().c_str());
+<a name="l00139"></a>00139       navdataSub = node_handle.subscribe(<span class="stringliteral">&quot;/ardrone/navdata&quot;</span>, 1000, <a class="code" href="_log_8cpp.html#a39bd57f05a0879f1d9df4e82bfbfa30e" title="schreibt die Navdata-Informationen in die entsprechende Datei">navdataUpdate</a>);
+<a name="l00140"></a>00140       n = <span class="keyword">true</span>;
+<a name="l00141"></a>00141     }
+<a name="l00142"></a>00142     <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!tag &amp;&amp; argv[i][0] == <span class="charliteral">&#39;t&#39;</span>)
+<a name="l00143"></a>00143     {
+<a name="l00144"></a>00144       ostringstream ost;
+<a name="l00145"></a>00145       ost &lt;&lt; <span class="stringliteral">&quot;/Log/LogTags/&quot;</span>;
+<a name="l00146"></a>00146       ost &lt;&lt; ctime(&amp;t);
+<a name="l00147"></a>00147 
+<a name="l00148"></a>00148       boost::filesystem::path p2(p.parent_path().parent_path().string() + ost.str());
+<a name="l00149"></a>00149       <a class="code" href="_log_8cpp.html#a3dac8915f5e71afcc09a40bae7c7d802">logTags</a>.open(p2.string().c_str());
+<a name="l00150"></a>00150       tagsSub = node_handle.subscribe(<span class="stringliteral">&quot;tags&quot;</span>,1000, <a class="code" href="bottom__follow__tag_8cpp.html#a2379f8efc865258905edbf90e8678f69" title="handler für die Nachricht tags: hier werden die Bewegungsdaten gesetzt und gepublished">handleTag</a>);
+<a name="l00151"></a>00151       tag = <span class="keyword">true</span>;
+<a name="l00152"></a>00152     }
+<a name="l00153"></a>00153     <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!w &amp;&amp; argv[i][0] == <span class="charliteral">&#39;w&#39;</span>)
+<a name="l00154"></a>00154     {
+<a name="l00155"></a>00155       ostringstream ost;
+<a name="l00156"></a>00156       ost &lt;&lt; <span class="stringliteral">&quot;/Log/LogTwist/&quot;</span>;
+<a name="l00157"></a>00157       ost &lt;&lt; ctime(&amp;t);
+<a name="l00158"></a>00158 
+<a name="l00159"></a>00159       boost::filesystem::path p2(p.parent_path().parent_path().string() + ost.str());
+<a name="l00160"></a>00160       <a class="code" href="_log_8cpp.html#a10bb79822b487dbc4db2b1b64a8ea80a">logTwist</a>.open(p2.string().c_str());
+<a name="l00161"></a>00161       twistSub = node_handle.subscribe(<span class="stringliteral">&quot;/cmd_vel&quot;</span>, 1, <a class="code" href="_log_8cpp.html#a2fa433d675a4836a65893acd6d27f0f5" title="schreibt die Twist-Informationen in die entsprechende Datei">handleTwist</a>);
+<a name="l00162"></a>00162       w = <span class="keyword">true</span>;
+<a name="l00163"></a>00163     }
+<a name="l00164"></a>00164   }  
+<a name="l00165"></a>00165   ros::spin();
+<a name="l00166"></a>00166 }
+<a name="l00167"></a>00167 
+</pre></div></div>
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Alle</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Klassen</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namensbereiche</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Dateien</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Funktionen</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variablen</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr class="footer"/><address class="footer"><small>Erzeugt am Tue Sep 4 2012 16:08:00 für ardrone_swp von&#160;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
+</body>
+</html>

@@ -9,24 +9,55 @@ Applikation zur Linienverfolgung mit der unteren Kamera.
 
 {\ttfamily \#include \char`\"{}std\_\-includes.h\char`\"{}}\par
 {\ttfamily \#include \char`\"{}ardrone\_\-swp/LinePos.h\char`\"{}}\par
-Include-\/Abhängigkeitsdiagramm für follow\_\-line.cpp:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=400pt]{follow__line_8cpp__incl}
-\end{center}
-\end{figure}
 \subsection*{Funktionen}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{follow__line_8cpp_a35a859d19785b808898bf535d4997d2f}{handleLine} (const ardrone\_\-swp::LinePos::ConstPtr \&msg)
-\begin{DoxyCompactList}\small\item\em handler für die Nachricht LinePos hier werden die Bewegungsdaten gesetzt und gepublished \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em handler für die Nachricht LinePos: hier werden die Bewegungsdaten gesetzt und gepublished \end{DoxyCompactList}\item 
 int \hyperlink{follow__line_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
 \end{DoxyCompactItemize}
 
 
 \subsection{Ausführliche Beschreibung}
-Applikation zur Linienverfolgung mit der unteren Kamera. TODO : Ausführliche Beschreibung 
+Applikation zur Linienverfolgung mit der unteren Kamera. Die Applikation published eine Message vom Typ cmd\_\-vel(Twist-\/Objekt) zum steuern der Drone immer dann,\par
+ wenn eine neue Message vom Typ LinePos von der Applikation TrackLine gesendet wurde. \par
+ Die Message LinePos enthält 3 float Werte:
+\begin{DoxyItemize}
+\item x: gibt an wo sich die Linie befindet(links, rechts). Mitte: 80
+\item y: bleibt immer bei 60(Mitte)
+\item angle: gibt den Winkel der Linie bezüglich der Drone im Bereich \mbox{[}-\/90°, 90°\mbox{]} an. Die Werte von angle liegen zwischen -\/9000 und 9000\par
+\par
+
+\end{DoxyItemize}
+
+Wenn das erste Mal eine Linie erkannt wird, fliegt die Drone auf eine Höhe von etwa 0,9m. Danach beginnt sie der Linie auf derselben Höhe zu folgen.\par
+\par
+
+
+Falls die Linie einen Winkel von weniger als 9° bezüglich der Drone hat, führt sie 3 Bewegungen aus:\par
+
+\begin{DoxyItemize}
+\item langsam drehen, sodass der Winkel 0° groß wird \par
+
+\item nach vorne fliegen \par
+
+\item nach links bzw. rechts fliegen, sodass die Linie in der Mitte des Bildes ist \par
+ \par
+
+\end{DoxyItemize}
+
+Falls der Winkel größer als 9° ist, versucht die Drone erst ruhig auf der Stelle zu fliegen.\par
+ Wenn sich die Drone kaum noch bewegt, dreht sie sich, sodass der Winkel kleiner wird.\par
+
+
+Die Drone soll sich nicht über einen längeren Zeitraum drehen und gleichzeitig in x-\/ oder y-\/Richtung fliegen, \par
+ da sie sonst sehr schnell und unkontrolliert fliegt.\par
+ Zudem weicht bei einem großen Winkel der x-\/Wert von TrackLine sehr weit von der Mitte ab, auch wenn die Drone weiterhin über der Linie steht.\par
+ Desshalb kann bei einem großen Winkel auch nicht in y-\/Richtung geflogen werden. \par
+\par
+
+
+Die Regelung erfolgt in \hyperlink{namespace_math_aa47b7ddd3093cb42132bd80ccb309dea}{Math::line\_\-regulation()} mit Hilfe eines P-\/Reglers. 
 
 Definiert in Datei \hyperlink{follow__line_8cpp_source}{follow\_\-line.cpp}.
 
@@ -44,11 +75,11 @@ Definiert in Datei \hyperlink{follow__line_8cpp_source}{follow\_\-line.cpp}.
 \label{follow__line_8cpp_a35a859d19785b808898bf535d4997d2f}
 
 
-handler für die Nachricht LinePos hier werden die Bewegungsdaten gesetzt und gepublished 
+handler für die Nachricht LinePos: hier werden die Bewegungsdaten gesetzt und gepublished 
 
-TODO : Ausführliche Beschreibung 
 
-Definiert in Zeile 17 der Datei follow\_\-line.cpp.
+
+Definiert in Zeile 38 der Datei follow\_\-line.cpp.
 
 \hypertarget{follow__line_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{
 \index{follow\_\-line.cpp@{follow\_\-line.cpp}!main@{main}}
@@ -62,5 +93,5 @@ Definiert in Zeile 17 der Datei follow\_\-line.cpp.
 \label{follow__line_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
 
 
-Definiert in Zeile 87 der Datei follow\_\-line.cpp.
+Definiert in Zeile 108 der Datei follow\_\-line.cpp.
 

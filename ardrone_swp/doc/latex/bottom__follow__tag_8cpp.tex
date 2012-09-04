@@ -8,24 +8,27 @@ Applikation zur Tagvervolgung mit der unteren Kamera.
 
 
 {\ttfamily \#include \char`\"{}std\_\-includes.h\char`\"{}}\par
-Include-\/Abhängigkeitsdiagramm für bottom\_\-follow\_\-tag.cpp:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=400pt]{bottom__follow__tag_8cpp__incl}
-\end{center}
-\end{figure}
 \subsection*{Funktionen}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{bottom__follow__tag_8cpp_a2379f8efc865258905edbf90e8678f69}{handleTag} (const ar\_\-recog::Tags::ConstPtr \&msg)
-\begin{DoxyCompactList}\small\item\em handler für die Nachricht tags hier werden die Bewegungsdaten gesetzt und gepublished \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em handler für die Nachricht tags: hier werden die Bewegungsdaten gesetzt und gepublished \end{DoxyCompactList}\item 
 int \hyperlink{bottom__follow__tag_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
 \end{DoxyCompactItemize}
 
 
 \subsection{Ausführliche Beschreibung}
-Applikation zur Tagvervolgung mit der unteren Kamera. TODO : Ausführliche Beschreibung 
+Applikation zur Tagvervolgung mit der unteren Kamera. Die Applikation published eine Message vom Typ cmd\_\-vel(Twist-\/Objekt) zum steuern der Drone immer dann,\par
+ wenn eine neue Message vom Typ tags von der Applikation ar\_\-recog gesendet wurde. Dies geschieht etwa 18 mal pro Sekunde. \par
+\par
+ Wurde ein Tag erkannt, soll die Drone darauf zu fliegen, sodass das Tag in den Mittelpunkt des Bildes kommt. \par
+ Dabei fliegt die Drone bei einer Höhe von etwa 1,3m über dem Tag.\par
+ Wurde kein Tag erkannt, fliegt die Drone drei Sekunden in die Richtung, in der sie das Tag zuletzt gesehen hat.\par
+ Hat die Drone das Tag nach 3 Sekunden noch nicht wiedergefunden, fliegt sie auf der Stelle.\par
+ \par
+ Die Regelung erfolgt in \hyperlink{namespace_math_a688eccf4d1e0776ee10e6293254e2e13}{Math::bottom\_\-regulation()} mit Hilfe eines PD-\/Reglers.\par
+ Sind über eine halbe Sekunde lang keine neuen Navigationsdaten(Message ardrone/navdata) von der Drone angekommen(passiert teilweise bei gestörter WLAN-\/Verbindung), \par
+ bleibt die Drohne stehen. Sonst würde die Drone aufgrund der Regelung mit den alten Geschwindigkeitswerten nicht das gewünschte Verhalten zeigen. 
 
 Definiert in Datei \hyperlink{bottom__follow__tag_8cpp_source}{bottom\_\-follow\_\-tag.cpp}.
 
@@ -43,11 +46,11 @@ Definiert in Datei \hyperlink{bottom__follow__tag_8cpp_source}{bottom\_\-follow\
 \label{bottom__follow__tag_8cpp_a2379f8efc865258905edbf90e8678f69}
 
 
-handler für die Nachricht tags hier werden die Bewegungsdaten gesetzt und gepublished 
+handler für die Nachricht tags: hier werden die Bewegungsdaten gesetzt und gepublished 
 
-TODO : Ausführliche Beschreibung 
 
-Definiert in Zeile 18 der Datei bottom\_\-follow\_\-tag.cpp.
+
+Definiert in Zeile 27 der Datei bottom\_\-follow\_\-tag.cpp.
 
 \hypertarget{bottom__follow__tag_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{
 \index{bottom\_\-follow\_\-tag.cpp@{bottom\_\-follow\_\-tag.cpp}!main@{main}}
@@ -61,5 +64,5 @@ Definiert in Zeile 18 der Datei bottom\_\-follow\_\-tag.cpp.
 \label{bottom__follow__tag_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
 
 
-Definiert in Zeile 106 der Datei bottom\_\-follow\_\-tag.cpp.
+Definiert in Zeile 115 der Datei bottom\_\-follow\_\-tag.cpp.
 

@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>ardrone_swp: /home/ulrich/ros_workspace/brown-ros-pkg/experimental/ardrone_brown/src/teleop_twist.h Quellcode</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- Erzeugt von Doxygen 1.7.4 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
+--></script>
+<div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">ardrone_swp</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Hauptseite</span></a></li>
+      <li><a href="pages.html"><span>Zusätzliche&#160;Informationen</span></a></li>
+      <li><a href="namespaces.html"><span>Namensbereiche</span></a></li>
+      <li><a href="annotated.html"><span>Klassen</span></a></li>
+      <li class="current"><a href="files.html"><span>Dateien</span></a></li>
+      <li><a href="dirs.html"><span>Verzeichnisse</span></a></li>
+      <li id="searchli">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Suchen" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Auflistung&#160;der&#160;Dateien</span></a></li>
+      <li><a href="globals.html"><span>Datei-Elemente</span></a></li>
+    </ul>
+  </div>
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="dir_db1f2967d25d7733fdf8af70c9292fdf.html">brown-ros-pkg</a>      </li>
+      <li class="navelem"><a class="el" href="dir_9af0f9f7f9f9c46be4c0a460fda7265e.html">experimental</a>      </li>
+      <li class="navelem"><a class="el" href="dir_57ced2b52d73e568f24a05f658aba32e.html">ardrone_brown</a>      </li>
+      <li class="navelem"><a class="el" href="dir_dc28685e41c9557ccccf89743cccecaf.html">src</a>      </li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="headertitle">
+<div class="title">teleop_twist.h</div>  </div>
+</div>
+<div class="contents">
+<a href="teleop__twist_8h.html">gehe zur Dokumentation dieser Datei</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef _TELEOP_TWIST_H_</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define _TELEOP_TWIST_H_</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include &quot;<a class="code" href="ardrone__sdk_8h.html">ardrone_sdk.h</a>&quot;</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;geometry_msgs/Twist.h&gt;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;std_msgs/Empty.h&gt;</span>
+<a name="l00007"></a>00007 <span class="preprocessor">#include &lt;std_srvs/Empty.h&gt;</span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;<a class="code" href="ardrone__driver_8h.html">ardrone_driver.h</a>&quot;</span>
+<a name="l00009"></a>00009 
+<a name="l00010"></a><a class="code" href="teleop__twist_8h.html#ae739264a96d1e7392c0d06531ae0f54f">00010</a> <span class="preprocessor">#define _USING_SDK_1_7_</span>
+<a name="l00011"></a>00011 <span class="preprocessor"></span>
+<a name="l00012"></a>00012 <span class="keyword">extern</span> input_device_t <a class="code" href="teleop__twist_8cpp.html#abd2559bd57d25512a1c031eefc92f10c">teleop</a>;
+<a name="l00013"></a>00013 <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="ardrone__driver_8cpp.html#a305ac3df729220f7bbdd89abb0402d9a">cam_state</a>;
+<a name="l00014"></a>00014 
+<a name="l00015"></a>00015 <span class="keywordtype">void</span> <a class="code" href="teleop__twist_8cpp.html#a8289f0a4dcbbeb57d9c7c72936bcf3cb">cmdVelCallback</a>(<span class="keyword">const</span> geometry_msgs::TwistConstPtr &amp;msg);
+<a name="l00016"></a>00016 <span class="keywordtype">void</span> <a class="code" href="teleop__twist_8cpp.html#a280ce0935c1be64ec0573da3053c518d">landCallback</a>(<span class="keyword">const</span> std_msgs::Empty &amp;msg);
+<a name="l00017"></a>00017 <span class="keywordtype">void</span> <a class="code" href="teleop__twist_8cpp.html#a68674757c1532cb0855a84f8c06da593">resetCallback</a>(<span class="keyword">const</span> std_msgs::Empty &amp;msg);
+<a name="l00018"></a>00018 <span class="keywordtype">void</span> <a class="code" href="teleop__twist_8cpp.html#ace5777e5d0da2ec50dad33d4a0f79dac">takeoffCallback</a>(<span class="keyword">const</span> std_msgs::Empty &amp;msg);
+<a name="l00019"></a>00019 
+<a name="l00020"></a>00020 <span class="comment">//void toggleCamCallback(const std_msgs::Empty &amp;msg);</span>
+<a name="l00021"></a>00021 <span class="keywordtype">bool</span> <a class="code" href="teleop__twist_8cpp.html#a848c3af6e00fe517a88841e0a17f4034">toggleCamCallback</a>(std_srvs::Empty::Request&amp; request, std_srvs::Empty::Response&amp; response);
+<a name="l00022"></a>00022 <span class="preprocessor">#endif</span>
+<a name="l00023"></a>00023 <span class="preprocessor"></span>
+</pre></div></div>
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Alle</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Klassen</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namensbereiche</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Dateien</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Funktionen</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variablen</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Makrodefinitionen</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr class="footer"/><address class="footer"><small>Erzeugt am Wed Jul 4 2012 15:23:49 für ardrone_swp von&#160;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
+</body>
+</html>

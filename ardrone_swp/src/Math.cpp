@@ -21,11 +21,8 @@ namespace Math
  * @param	y	Verschiebung in y Richung
  *
  *
- * <img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/Formel1.jpg" alt="Schema">
- * <img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/bottom_diff.jpg" alt="Schema">
- * <img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/Formel2.jpg" alt="Schema">
- * <img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/Kreis.jpg" alt="Schema">
- * <img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/Formel3.jpg" alt="Schema">
+ * <img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/bottom_pixeldiff Teil1.jpg" alt="Schema">
+ * <img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/bottom_pixeldiff Teil2.jpg" alt="Schema">
  */
 void pixelDiffBottom(float& x, float& y)
 {
@@ -46,7 +43,6 @@ void pixelDiffBottom(float& x, float& y)
  * @param	y	Verschiebung in y Richung
  *
  *
- * <img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/betta.jpg" alt="Schema">
  */
 void pixelDiffFront(float& x, float& y)
 {
@@ -58,6 +54,8 @@ void pixelDiffFront(float& x, float& y)
 }
 
 /** @brief Berechnung für die Bodenkamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet
+
+	cx und cy sind Werte zwischen 0 und 1
 
 	cy:
 
@@ -83,6 +81,8 @@ void centerBottom(const ar_recog::Tag& tag, float& cx, float& cy)
 	cx -= 0.05f;
 }
 /** @brief Berechnung für die Front	kamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet
+
+    cx und cy sind Werte zwischen 0 und 1
 
 	cy:
 

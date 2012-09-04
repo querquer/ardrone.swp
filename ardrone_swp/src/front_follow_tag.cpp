@@ -2,17 +2,25 @@
  * @file front_follow_tag.cpp
  * @brief Applikation zur Tagvervolgung mit der vorderen Kamera
  *
- * TODO : Ausführliche Beschreibung
+ * Die Applikation published eine Message vom Typ cmd_vel(Twist-Objekt) zum steuern der Drone immer dann,\n
+ * wenn eine neue Message vom Typ tags von der Applikation ar_recog gesendet wurde. Dies geschieht etwa 18 mal pro Sekunde.
+ * \n\n
+ * Die Drone hält zu einem Tag einen Abstand von etwa 1,5m. \n
+ * Falls das Tag am oberen oder unteren Bildrand gesehen wird, passt die Drone ihre Höhe an.\n
+ * In y-Richtung fliegt die Drone immer so, sodass das Tag in der Bildmitte ist.\n
+ * Ist das Tag mehr als 24° seitlich verdreht, dreht sich die Drone, sodass sie frontal zum Tag steht.\n
+ * Wurde kein Tag erkannt, fliegt die Drone drei Sekunden in die Richtung, in der sie das Tag zuletzt gesehen hat.\n
+ * Hat die Drone das Tag nach 3 Sekunden noch nicht wiedergefunden, fliegt sie auf der Stelle.\n
+ * \n
+ * Die Regelung erfolgt in Math::front_regulation() mit Hilfe eines PD-Reglers.\n
  */
 #include "std_includes.h"
 
 using namespace std;
 
 
-/** @brief handler für die Nachricht tags
- * hier werden die Bewegungsdaten gesetzt und gepublished
+/** @brief handler für die Nachricht tags: hier werden die Bewegungsdaten gesetzt und gepublished
  *
- * TODO : Ausführliche Beschreibung
  */
 void handleTag(const ar_recog::Tags::ConstPtr& msg) {
 	if (msg->tag_count == 0) //Falls kein Tag erkannt wurde

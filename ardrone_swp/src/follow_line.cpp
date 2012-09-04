@@ -2,17 +2,38 @@
  * @file follow_line.cpp
  * @brief Applikation zur Linienverfolgung mit der unteren Kamera
  *
- * TODO : Ausführliche Beschreibung
+ * Die Applikation published eine Message vom Typ cmd_vel(Twist-Objekt) zum steuern der Drone immer dann,\n
+ * wenn eine neue Message vom Typ LinePos von der Applikation TrackLine gesendet wurde. \n
+ * Die Message LinePos enthält 3 float Werte:
+ * - x: gibt an wo sich die Linie befindet(links, rechts). Mitte: 80
+ * - y: bleibt immer bei 60(Mitte)
+ * - angle: gibt den Winkel der Linie bezüglich der Drone im Bereich [-90°, 90°] an. Die Werte von angle liegen zwischen -9000 und 9000\n\n
+ *
+ * Wenn das erste Mal eine Linie erkannt wird, fliegt die Drone auf eine Höhe von etwa 0,9m. Danach beginnt sie der Linie auf derselben Höhe zu folgen.\n\n
+ *
+ * Falls die Linie einen Winkel von weniger als 9° bezüglich der Drone hat, führt sie 3 Bewegungen aus:\n
+ * - langsam drehen, sodass der Winkel 0° groß wird \n
+ * - nach vorne fliegen \n
+ * - nach links bzw. rechts fliegen, sodass die Linie in der Mitte des Bildes ist \n
+ * \n
+ *
+ * Falls der Winkel größer als 9° ist, versucht die Drone erst ruhig auf der Stelle zu fliegen.\n
+ * Wenn sich die Drone kaum noch bewegt, dreht sie sich, sodass der Winkel kleiner wird.\n
+ *
+ * Die Drone soll sich nicht über einen längeren Zeitraum drehen und gleichzeitig in x- oder y-Richtung fliegen, \n
+ * da sie sonst sehr schnell und unkontrolliert fliegt.\n
+ * Zudem weicht bei einem großen Winkel der x-Wert von TrackLine sehr weit von der Mitte ab, auch wenn die Drone weiterhin über der Linie steht.\n
+ * Desshalb kann bei einem großen Winkel auch nicht in y-Richtung geflogen werden. \n\n
+ *
+ * Die Regelung erfolgt in Math::line_regulation() mit Hilfe eines P-Reglers.
  */
 #include "std_includes.h"
 #include "ardrone_swp/LinePos.h"
 
 using namespace std;
 
-/** @brief handler für die Nachricht LinePos
- * hier werden die Bewegungsdaten gesetzt und gepublished
+/** @brief handler für die Nachricht LinePos: hier werden die Bewegungsdaten gesetzt und gepublished
  *
- * TODO : Ausführliche Beschreibung
  */
 void handleLine(const ardrone_swp::LinePos::ConstPtr& msg)
 {

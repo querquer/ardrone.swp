@@ -8,24 +8,28 @@ Applikation zur Tagvervolgung mit der vorderen Kamera.
 
 
 {\ttfamily \#include \char`\"{}std\_\-includes.h\char`\"{}}\par
-Include-\/Abhängigkeitsdiagramm für front\_\-follow\_\-tag.cpp:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=400pt]{front__follow__tag_8cpp__incl}
-\end{center}
-\end{figure}
 \subsection*{Funktionen}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{front__follow__tag_8cpp_a2379f8efc865258905edbf90e8678f69}{handleTag} (const ar\_\-recog::Tags::ConstPtr \&msg)
-\begin{DoxyCompactList}\small\item\em handler für die Nachricht tags hier werden die Bewegungsdaten gesetzt und gepublished \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em handler für die Nachricht tags: hier werden die Bewegungsdaten gesetzt und gepublished \end{DoxyCompactList}\item 
 int \hyperlink{front__follow__tag_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
 \end{DoxyCompactItemize}
 
 
 \subsection{Ausführliche Beschreibung}
-Applikation zur Tagvervolgung mit der vorderen Kamera. TODO : Ausführliche Beschreibung 
+Applikation zur Tagvervolgung mit der vorderen Kamera. Die Applikation published eine Message vom Typ cmd\_\-vel(Twist-\/Objekt) zum steuern der Drone immer dann,\par
+ wenn eine neue Message vom Typ tags von der Applikation ar\_\-recog gesendet wurde. Dies geschieht etwa 18 mal pro Sekunde. \par
+\par
+ Die Drone hält zu einem Tag einen Abstand von etwa 1,5m. \par
+ Falls das Tag am oberen oder unteren Bildrand gesehen wird, passt die Drone ihre Höhe an.\par
+ In y-\/Richtung fliegt die Drone immer so, sodass das Tag in der Bildmitte ist.\par
+ Ist das Tag mehr als 24° seitlich verdreht, dreht sich die Drone, sodass sie frontal zum Tag steht.\par
+ Wurde kein Tag erkannt, fliegt die Drone drei Sekunden in die Richtung, in der sie das Tag zuletzt gesehen hat.\par
+ Hat die Drone das Tag nach 3 Sekunden noch nicht wiedergefunden, fliegt sie auf der Stelle.\par
+ \par
+ Die Regelung erfolgt in \hyperlink{namespace_math_a7be3473d626056767311b94db1860cb0}{Math::front\_\-regulation()} mit Hilfe eines PD-\/Reglers.\par
+ 
 
 Definiert in Datei \hyperlink{front__follow__tag_8cpp_source}{front\_\-follow\_\-tag.cpp}.
 
@@ -43,11 +47,11 @@ Definiert in Datei \hyperlink{front__follow__tag_8cpp_source}{front\_\-follow\_\
 \label{front__follow__tag_8cpp_a2379f8efc865258905edbf90e8678f69}
 
 
-handler für die Nachricht tags hier werden die Bewegungsdaten gesetzt und gepublished 
+handler für die Nachricht tags: hier werden die Bewegungsdaten gesetzt und gepublished 
 
-TODO : Ausführliche Beschreibung 
 
-Definiert in Zeile 17 der Datei front\_\-follow\_\-tag.cpp.
+
+Definiert in Zeile 25 der Datei front\_\-follow\_\-tag.cpp.
 
 \hypertarget{front__follow__tag_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{
 \index{front\_\-follow\_\-tag.cpp@{front\_\-follow\_\-tag.cpp}!main@{main}}
@@ -61,5 +65,5 @@ Definiert in Zeile 17 der Datei front\_\-follow\_\-tag.cpp.
 \label{front__follow__tag_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
 
 
-Definiert in Zeile 104 der Datei front\_\-follow\_\-tag.cpp.
+Definiert in Zeile 112 der Datei front\_\-follow\_\-tag.cpp.
 
