@@ -24,7 +24,7 @@ using namespace std;
  */
 void handleTag(const ar_recog::Tags::ConstPtr& msg) {
 	if (msg->tag_count == 0) //Falls kein Tag erkannt wurde
-			{
+	{
 		if (Cglobal::instance().seen) //Falls beim letzen Aufruf ein Tag gesehen wurde, speichere die Zeit
 			Cglobal::instance().sinceNotSeen = time(NULL);
 		//Falls ein Tag in den letzen 3 Sekunde gesehen wurde, versuche in die letzte gesehene Richtung zu fliegen
@@ -67,9 +67,10 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg) {
 		if(abs(biggest.distance - stopping_dist) < 200)
 			Cglobal::instance().twist.linear.x = 0;
 
+		//Maximun von twist.linear.x: 0.08, Minimum: -0.08
 		Cglobal::instance().twist.linear.x = max(-0.08, min(0.08, Cglobal::instance().twist.linear.x));
 
-		//richte dich zum tag aus, aber nur wenn der winkel groß ist
+		//richte dich zum Tag aus, aber nur wenn der winkel groß ist
 		if(biggest.yRot < 0)
 			Cglobal::instance().twist.angular.z = 0.3;
 		else
@@ -78,7 +79,7 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg) {
 			Cglobal::instance().twist.angular.z = 0;
 
 		//bewege dich seitwätrs, sodass das Tag in der Mitte des Bildes ist
-		//Maximum: 0,08
+		//Maximum von twist.linear.y: 0,08, Minimum: -0.08
 		Cglobal::instance().twist.linear.y = max(-0.08, min(0.08, (-(cx - 0.5) / 0.5) * 0.5));
 		//falls du dich zusätzlich drehst, bewege dich um 50% schneller in y-Richtung
 		if(abs(biggest.yRot) > 0.4)

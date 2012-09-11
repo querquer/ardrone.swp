@@ -17,7 +17,7 @@ void \hyperlink{namespace_math_a3fbe7036db847d74ed5f2c21635d02d9}{pixelDiffFront
 void \hyperlink{namespace_math_ab4c584467f0cc5d8af22a69482630866}{centerBottom} (const ar\_\-recog::Tag \&tag, float \&cx, float \&cy)
 \begin{DoxyCompactList}\small\item\em Berechnung für die Bodenkamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet. \end{DoxyCompactList}\item 
 void \hyperlink{namespace_math_a43f025fac1ade5dbf88f7c393ca85644}{centerFront} (const ar\_\-recog::Tag \&tag, float \&cx, float \&cy)
-\begin{DoxyCompactList}\small\item\em Berechnung für die Front kamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Berechnung für die Frontkamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet. \end{DoxyCompactList}\item 
 void \hyperlink{namespace_math_ad3b65f0aedda56076f681f2b987d0e5c}{navdataUpdate} (const ardrone\_\-brown::Navdata::ConstPtr \&navdata)
 \begin{DoxyCompactList}\small\item\em handler für die Nachricht /ardrone/navdata \end{DoxyCompactList}\item 
 void \hyperlink{namespace_math_a688eccf4d1e0776ee10e6293254e2e13}{bottom\_\-regulation} ()
@@ -47,7 +47,7 @@ PD-\/Regelung für bottom\_\-follow\_\-tag.
 
 
 
-Definiert in Zeile 130 der Datei Math.cpp.
+Definiert in Zeile 136 der Datei Math.cpp.
 
 \hypertarget{namespace_math_ab4c584467f0cc5d8af22a69482630866}{
 \index{Math@{Math}!centerBottom@{centerBottom}}
@@ -82,7 +82,7 @@ cx:
 
 1: Tag ist am rechten Bildrend 
 
-Definiert in Zeile 76 der Datei Math.cpp.
+Definiert in Zeile 82 der Datei Math.cpp.
 
 \hypertarget{namespace_math_a43f025fac1ade5dbf88f7c393ca85644}{
 \index{Math@{Math}!centerFront@{centerFront}}
@@ -97,7 +97,7 @@ Definiert in Zeile 76 der Datei Math.cpp.
 \label{namespace_math_a43f025fac1ade5dbf88f7c393ca85644}
 
 
-Berechnung für die Front kamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet. 
+Berechnung für die Frontkamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet. 
 
 cx und cy sind Werte zwischen 0 und 1
 
@@ -117,7 +117,7 @@ cx:
 
 1: Tag ist am rechten Bildrend 
 
-Definiert in Zeile 103 der Datei Math.cpp.
+Definiert in Zeile 109 der Datei Math.cpp.
 
 \hypertarget{namespace_math_a7be3473d626056767311b94db1860cb0}{
 \index{Math@{Math}!front\_\-regulation@{front\_\-regulation}}
@@ -134,7 +134,7 @@ PD-\/Regelung für front\_\-follow\_\-tag.
 
 
 
-Definiert in Zeile 150 der Datei Math.cpp.
+Definiert in Zeile 156 der Datei Math.cpp.
 
 \hypertarget{namespace_math_aa47b7ddd3093cb42132bd80ccb309dea}{
 \index{Math@{Math}!line\_\-regulation@{line\_\-regulation}}
@@ -151,7 +151,7 @@ P-\/Regelung für follow\_\-tag.
 
 
 
-Definiert in Zeile 169 der Datei Math.cpp.
+Definiert in Zeile 175 der Datei Math.cpp.
 
 \hypertarget{namespace_math_ad3b65f0aedda56076f681f2b987d0e5c}{
 \index{Math@{Math}!navdataUpdate@{navdataUpdate}}
@@ -168,7 +168,7 @@ handler für die Nachricht /ardrone/navdata
 
 speichert die Navdata-\/Informationen in den Variablen von \hyperlink{class_cglobal}{Cglobal} 
 
-Definiert in Zeile 114 der Datei Math.cpp.
+Definiert in Zeile 120 der Datei Math.cpp.
 
 \hypertarget{namespace_math_a25b9284eb485b732c952786b63343aaa}{
 \index{Math@{Math}!pixelDiffBottom@{pixelDiffBottom}}
@@ -193,7 +193,7 @@ Berechnung der Anzahl der Pixel für die Bodenkamera, um die das Tag aufgrund de
 \end{DoxyParams}
   
 
-Definiert in Zeile 27 der Datei Math.cpp.
+Definiert in Zeile 28 der Datei Math.cpp.
 
 \hypertarget{namespace_math_a3fbe7036db847d74ed5f2c21635d02d9}{
 \index{Math@{Math}!pixelDiffFront@{pixelDiffFront}}
@@ -209,14 +209,20 @@ Definiert in Zeile 27 der Datei Math.cpp.
 
 Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben wurde. 
 
+Herleitung der Formel: siehe \hyperlink{namespace_math_a25b9284eb485b732c952786b63343aaa}{Math::pixelDiffBottom(float\& x, float\& y)} \par
+ Unterschied: Auflösung der vorderen Kamera ist 320 x 240
+
+Die Verschiebung in x-\/Richtung kann nicht berechnet werden, da die Rotation in z-\/Richtung(rotZ) nicht bezüglich des Tags gemessen wird.\par
+ Der Wert x wird auf 0 gesetzt.
+
 
 \begin{DoxyParams}{Parameter}
-{\em x} & Verschiebung in x Richung \\
+{\em x} & (Verschiebung in x Richung) konstant 0 \\
 \hline
 {\em y} & Verschiebung in y Richung \\
 \hline
 \end{DoxyParams}
 
 
-Definiert in Zeile 47 der Datei Math.cpp.
+Definiert in Zeile 54 der Datei Math.cpp.
 

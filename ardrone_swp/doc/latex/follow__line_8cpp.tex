@@ -20,7 +20,7 @@ int \hyperlink{follow__line_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int a
 
 \subsection{Ausführliche Beschreibung}
 Applikation zur Linienverfolgung mit der unteren Kamera. Die Applikation published eine Message vom Typ cmd\_\-vel(Twist-\/Objekt) zum steuern der Drone immer dann,\par
- wenn eine neue Message vom Typ LinePos von der Applikation TrackLine gesendet wurde. \par
+ wenn eine neue Message vom Typ LinePos von der Applikation \hyperlink{namespace_track_line}{TrackLine} gesendet wurde. \par
  Die Message LinePos enthält 3 float Werte:
 \begin{DoxyItemize}
 \item x: gibt an wo sich die Linie befindet(links, rechts). Mitte: 80
@@ -52,8 +52,13 @@ Falls der Winkel größer als 9° ist, versucht die Drone erst ruhig auf der Ste
 
 Die Drone soll sich nicht über einen längeren Zeitraum drehen und gleichzeitig in x-\/ oder y-\/Richtung fliegen, \par
  da sie sonst sehr schnell und unkontrolliert fliegt.\par
- Zudem weicht bei einem großen Winkel der x-\/Wert von TrackLine sehr weit von der Mitte ab, auch wenn die Drone weiterhin über der Linie steht.\par
- Desshalb kann bei einem großen Winkel auch nicht in y-\/Richtung geflogen werden. \par
+ Zudem weicht bei einem großen Winkel der x-\/Wert von \hyperlink{namespace_track_line}{TrackLine} sehr weit von der Mitte ab, auch wenn die Drone weiterhin über der Linie steht.\par
+ Deshalb kann bei einem großen Winkel auch nicht in y-\/Richtung geflogen werden. \par
+\par
+
+
+Die Applikation funktioniert nicht bei lang gestreckten Kurven, da eine gleichzeitige Dreh-\/Bewegung und x-\/oder y-\/Bewegung zu unkontrollierten, schnellen Bewegungen führt.\par
+ Statt Kurven sollte die Linie \char`\"{}Knicke\char`\"{} haben(siehe Video).\par
 \par
 
 
@@ -79,7 +84,7 @@ handler für die Nachricht LinePos: hier werden die Bewegungsdaten gesetzt und g
 
 
 
-Definiert in Zeile 38 der Datei follow\_\-line.cpp.
+Definiert in Zeile 52 der Datei follow\_\-line.cpp.
 
 \hypertarget{follow__line_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{
 \index{follow\_\-line.cpp@{follow\_\-line.cpp}!main@{main}}
@@ -93,5 +98,5 @@ Definiert in Zeile 38 der Datei follow\_\-line.cpp.
 \label{follow__line_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
 
 
-Definiert in Zeile 108 der Datei follow\_\-line.cpp.
+Definiert in Zeile 122 der Datei follow\_\-line.cpp.
 

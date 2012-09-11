@@ -34,6 +34,14 @@ ardrone_brown/Navdata.h
 ardrone_sdk.h
 /home/ulrich/ros_workspace/brown-ros-pkg/experimental/ardrone_brown/src/ardrone_sdk.h
 
+/home/ulrich/ros_workspace/brown-ros-pkg/experimental/ardrone_brown/src/ardrone_sdk.cpp
+ardrone_sdk.h
+/home/ulrich/ros_workspace/brown-ros-pkg/experimental/ardrone_brown/src/ardrone_sdk.h
+teleop_twist.h
+/home/ulrich/ros_workspace/brown-ros-pkg/experimental/ardrone_brown/src/teleop_twist.h
+video.h
+/home/ulrich/ros_workspace/brown-ros-pkg/experimental/ardrone_brown/src/video.h
+
 /home/ulrich/ros_workspace/brown-ros-pkg/experimental/ardrone_brown/src/ardrone_sdk.h
 VP_Api/vp_api.h
 -
@@ -80,10 +88,38 @@ ardrone_tool/Control/ardrone_control.h
 ardrone_tool/Navdata/ardrone_navdata_client.h
 -
 
+/home/ulrich/ros_workspace/brown-ros-pkg/experimental/ardrone_brown/src/parse_ini.cpp
+camera_calibration_parsers/parse_ini.h
+/home/ulrich/ros_workspace/brown-ros-pkg/experimental/ardrone_brown/src/camera_calibration_parsers/parse_ini.h
+sensor_msgs/distortion_models.h
+-
+ros/console.h
+-
+boost/spirit/include/classic_core.hpp
+-
+boost/spirit/include/classic_file_iterator.hpp
+-
+boost/spirit/include/classic_confix.hpp
+-
+boost/spirit/include/classic_loops.hpp
+-
+boost/typeof/typeof.hpp
+-
+iterator
+-
+fstream
+-
+
 /home/ulrich/ros_workspace/brown-ros-pkg/experimental/ardrone_brown/src/parse_ini.h
 string
 -
 sensor_msgs/CameraInfo.h
+-
+
+/home/ulrich/ros_workspace/brown-ros-pkg/experimental/ardrone_brown/src/teleop_twist.cpp
+teleop_twist.h
+/home/ulrich/ros_workspace/brown-ros-pkg/experimental/ardrone_brown/src/teleop_twist.h
+sstream
 -
 
 /home/ulrich/ros_workspace/brown-ros-pkg/experimental/ardrone_brown/src/teleop_twist.h
@@ -97,6 +133,10 @@ std_srvs/Empty.h
 -
 ardrone_driver.h
 /home/ulrich/ros_workspace/brown-ros-pkg/experimental/ardrone_brown/src/ardrone_driver.h
+
+/home/ulrich/ros_workspace/brown-ros-pkg/experimental/ardrone_brown/src/video.cpp
+video.h
+/home/ulrich/ros_workspace/brown-ros-pkg/experimental/ardrone_brown/src/video.h
 
 /home/ulrich/ros_workspace/brown-ros-pkg/experimental/ardrone_brown/src/video.h
 ardrone_sdk.h
@@ -149,6 +189,10 @@ ros/macros.h
 /opt/ros/electric/stacks/common_msgs/geometry_msgs/msg_gen/cpp/include/geometry_msgs/ros/macros.h
 ros/assert.h
 /opt/ros/electric/stacks/common_msgs/geometry_msgs/msg_gen/cpp/include/geometry_msgs/ros/assert.h
+
+/opt/ros/electric/stacks/common_msgs/sensor_msgs/include/sensor_msgs/distortion_models.h
+string
+-
 
 /opt/ros/electric/stacks/common_msgs/sensor_msgs/msg_gen/cpp/include/sensor_msgs/CameraInfo.h
 string
@@ -247,6 +291,12 @@ ros/service_traits.h
 /opt/ros/electric/stacks/common_msgs/sensor_msgs/srv_gen/cpp/include/sensor_msgs/ros/service_traits.h
 sensor_msgs/CameraInfo.h
 /opt/ros/electric/stacks/common_msgs/sensor_msgs/srv_gen/cpp/include/sensor_msgs/sensor_msgs/CameraInfo.h
+
+/opt/ros/electric/stacks/image_common/camera_calibration_parsers/include/camera_calibration_parsers/parse_ini.h
+string
+-
+sensor_msgs/CameraInfo.h
+-
 
 /opt/ros/electric/stacks/image_common/image_transport/include/image_transport/camera_publisher.h
 ros/ros.h

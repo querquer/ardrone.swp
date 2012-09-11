@@ -69,8 +69,6 @@ void handleTag(const ar_recog::Tags::ConstPtr& msg)
 
 		/* Geschwindigkeit in x und y Richtung steigt linear mit der Entfernung zum Mittelpunkt
 		 * 0.08 ist das Maximum
-		 * (cx - 0.5), weil 0.5 die Mitte ist
-		 * durch 4 wird geteilt, um die Bewegung langsamer zu machen(dieser Wert wurde ausprobiert, mit 4 wurden die besten Ergebnisse erziehlt)
 		 */
 		Cglobal::instance().twist.linear.y = max(-0.08, min(0.08, -(cx - 0.5) / 4));
 		Cglobal::instance().twist.linear.x = max(-0.08, min(0.08, -(cy - 0.5) / 4));

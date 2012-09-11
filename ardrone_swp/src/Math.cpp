@@ -2,6 +2,8 @@
 #include "Global.h"
 #include "ardrone_brown/Navdata.h"
 
+using namespace std;
+
 
 namespace
 {
@@ -14,7 +16,6 @@ namespace Math
 {
 
 /** @brief Berechnung der Anzahl der Pixel für die Bodenkamera, um die das Tag aufgrund der Rotation verschoben wurde
- *
  *
  *
  * @param	x	Verschiebung in x Richung
@@ -31,7 +32,7 @@ void pixelDiffBottom(float& x, float& y)
 	y = (200.0f * tan(Cglobal::instance().roty)) / ((tan(0.5585f + Cglobal::instance().roty) + tan(0.5585f - Cglobal::instance().roty)));
 	x = (200.0f * tan(Cglobal::instance().rotx)) / ((tan(0.5585f + Cglobal::instance().rotx) + tan(0.5585f - Cglobal::instance().rotx)));
 
-	//Der berechnete Wert ist zu klein, wird er mit 1,333 multipliziert stimmt es in etwa
+	//Der berechnete Wert ist zu klein. Der Faktor 1,333 ist durch austesten entstanden.
 	y *= 1.333f;
 	x *= 1.333f;
 }
@@ -39,7 +40,13 @@ void pixelDiffBottom(float& x, float& y)
 
 /** @brief Berechnung der Anzahl der Pixel für die Frontkamera, um die das Tag aufgrund der Rotation verschoben wurde
  *
- * @param	x	Verschiebung in x Richung
+ * Herleitung der Formel: siehe Math::pixelDiffBottom(float& x, float& y) \n
+ * Unterschied: Auflösung der vorderen Kamera ist 320 x 240
+ *
+ * Die Verschiebung in x-Richtung kann nicht berechnet werden, da die Rotation in z-Richtung(rotZ) nicht bezüglich des Tags gemessen wird.\n
+ * Der Wert x wird auf 0 gesetzt.
+ *
+ * @param	x	(Verschiebung in x Richung) konstant 0
  * @param	y	Verschiebung in y Richung
  *
  *
@@ -47,9 +54,8 @@ void pixelDiffBottom(float& x, float& y)
 void pixelDiffFront(float& x, float& y)
 {
 
-	y = 0.5 * tan(Cglobal::instance().roty) * 0.948965 * Cglobal::instance().heightF;  //tan(43.5)~= 0.948965
-	y *= 2.3f;
-	//x = 0.5 * tan(Cglobal::instance().rotx) * 0.948965 * Cglobal::instance().widthF;
+	y = (400.0f * tan(Cglobal::instance().roty)) / ((tan(0.8116f + Cglobal::instance().roty) + tan(0.8116f - Cglobal::instance().roty)));  //0.8116 in rad = 46.5 in grad
+	y *= 1.8f; // Der Faktor ist durch austesten entstanden.
 	x = 0;
 }
 
@@ -78,9 +84,9 @@ void centerBottom(const ar_recog::Tag& tag, float& cx, float& cy)
 	float dx, dy;
 	pixelDiffBottom(dx,dy);
 	center(tag, cx, cy, dx, dy, Cglobal::instance().widthB, Cglobal::instance().heightB);
-	cx -= 0.05f;
+	cx -= 0.05f; //beim Testen war der Wert cx um etwa 0.05 konstant zu groß. Somit ist die Drone immer etwas rechts über dem Tag geflogen
 }
-/** @brief Berechnung für die Front	kamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet
+/** @brief Berechnung für die Frontkamera aus den Eckpunkten, wo sich das Tag bezüglich des Bildes befindet
 
     cx und cy sind Werte zwischen 0 und 1
 
@@ -185,6 +191,9 @@ void line_regulation()
 
 namespace
 {
+/** @brief berechnet aus den Eckpunkten des Tags und den Verschiebungen aufgrund der Rotaion die x und y Position des Tags
+ *
+ */
 	void center(const ar_recog::Tag& tag, float& cx, float& cy, float dx, float dy, float width, float height)
 	{
 		cx = 0;
@@ -202,6 +211,9 @@ namespace
 		cx -= dx;
 		cx = cx / width;
 	}
+	/** @brief wandelt einen Wert von Grad in Rad um
+	 *
+	 */
 	float grad2rad(float a)
 	{
 		return a *= 0.017453f;  // pi/180°

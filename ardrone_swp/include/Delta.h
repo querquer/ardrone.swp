@@ -22,7 +22,7 @@ public:
 private:
 
 	float old_value; ///< enthält den letzen übergebenen Wert
-	time_t old_time; ///< enthält die Zeit, seitdem letzten Aufruf von float Delta::get_velocity(float new_value)
+	time_t old_time; ///< enthält die Zeit, seitdem letzten Aufruf von Delta::get_velocity(float new_value)
 	float old_vel; ///< enthält den letzten zurückgegebenen Wert
 };
 

@@ -41,7 +41,7 @@ void control()
 	set_conio_terminal_mode();
 	if(kbhit())
 	{
-	  char c = getch(); // Muss auf keine Eingabe warten, Taste ist bereits gedrückt
+	  char c = getch();
 	  switch(c)
 	  {
 	  case 'w':
@@ -74,7 +74,7 @@ void control()
 	  case 'j':
 		  Cglobal::instance().ges += -0.1*Cglobal::instance().ges;
 		  break;
-	  case 3:
+	  case 3: // ctrl + c
 		  Cglobal::instance().end = true;
 		  break;
 	  }

@@ -86,7 +86,7 @@ Funktionen</h2></td></tr>
 <hr/><a name="details" id="details"></a><h2>Ausführliche Beschreibung</h2>
 <div class="textblock"><p>Applikation zur Linienverfolgung mit der unteren Kamera. </p>
 <p>Die Applikation published eine Message vom Typ cmd_vel(Twist-Objekt) zum steuern der Drone immer dann,<br/>
- wenn eine neue Message vom Typ LinePos von der Applikation TrackLine gesendet wurde. <br/>
+ wenn eine neue Message vom Typ LinePos von der Applikation <a class="el" href="namespace_track_line.html">TrackLine</a> gesendet wurde. <br/>
  Die Message LinePos enthält 3 float Werte:</p>
 <ul>
 <li>x: gibt an wo sich die Linie befindet(links, rechts). Mitte: 80</li>
@@ -114,8 +114,12 @@ Funktionen</h2></td></tr>
 </p>
 <p>Die Drone soll sich nicht über einen längeren Zeitraum drehen und gleichzeitig in x- oder y-Richtung fliegen, <br/>
  da sie sonst sehr schnell und unkontrolliert fliegt.<br/>
- Zudem weicht bei einem großen Winkel der x-Wert von TrackLine sehr weit von der Mitte ab, auch wenn die Drone weiterhin über der Linie steht.<br/>
- Desshalb kann bei einem großen Winkel auch nicht in y-Richtung geflogen werden. <br/>
+ Zudem weicht bei einem großen Winkel der x-Wert von <a class="el" href="namespace_track_line.html">TrackLine</a> sehr weit von der Mitte ab, auch wenn die Drone weiterhin über der Linie steht.<br/>
+ Deshalb kann bei einem großen Winkel auch nicht in y-Richtung geflogen werden. <br/>
+<br/>
+</p>
+<p>Die Applikation funktioniert nicht bei lang gestreckten Kurven, da eine gleichzeitige Dreh-Bewegung und x-oder y-Bewegung zu unkontrollierten, schnellen Bewegungen führt.<br/>
+ Statt Kurven sollte die Linie "Knicke" haben(siehe Video).<br/>
 <br/>
 </p>
 <p>Die Regelung erfolgt in <a class="el" href="namespace_math.html#aa47b7ddd3093cb42132bd80ccb309dea" title="P-Regelung für follow_tag.">Math::line_regulation()</a> mit Hilfe eines P-Reglers. </p>
@@ -139,7 +143,7 @@ Funktionen</h2></td></tr>
 
 <p>handler für die Nachricht LinePos: hier werden die Bewegungsdaten gesetzt und gepublished </p>
 
-<p>Definiert in Zeile <a class="el" href="follow__line_8cpp_source.html#l00038">38</a> der Datei <a class="el" href="follow__line_8cpp_source.html">follow_line.cpp</a>.</p>
+<p>Definiert in Zeile <a class="el" href="follow__line_8cpp_source.html#l00052">52</a> der Datei <a class="el" href="follow__line_8cpp_source.html">follow_line.cpp</a>.</p>
 
 </div>
 </div>
@@ -168,7 +172,7 @@ Funktionen</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definiert in Zeile <a class="el" href="follow__line_8cpp_source.html#l00108">108</a> der Datei <a class="el" href="follow__line_8cpp_source.html">follow_line.cpp</a>.</p>
+<p>Definiert in Zeile <a class="el" href="follow__line_8cpp_source.html#l00122">122</a> der Datei <a class="el" href="follow__line_8cpp_source.html">follow_line.cpp</a>.</p>
 
 </div>
 </div>
@@ -187,7 +191,7 @@ Funktionen</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Erzeugt am Tue Sep 4 2012 16:08:00 für ardrone_swp von&#160;
+<hr class="footer"/><address class="footer"><small>Erzeugt am Tue Sep 11 2012 16:19:25 für ardrone_swp von&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

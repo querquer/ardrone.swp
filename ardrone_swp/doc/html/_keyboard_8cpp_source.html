@@ -89,7 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
 <a name="l00041"></a>00041    <a class="code" href="namespace_keyboard.html#a6cc4fc3f7daf5630d0570f9d9d21d19c">set_conio_terminal_mode</a>();
 <a name="l00042"></a>00042    <span class="keywordflow">if</span>(<a class="code" href="namespace_keyboard.html#a8c142c603571175e17a83a9b99d00d63" title="gibt zurück, ob eine Taste gedrückt wurde">kbhit</a>())
 <a name="l00043"></a>00043    {
-<a name="l00044"></a>00044      <span class="keywordtype">char</span> c = <a class="code" href="namespace_keyboard.html#a433fc58fb356fe62305e8419dd7b33d6" title="gibt zurück, welche Taste gedrückt wurde">getch</a>(); <span class="comment">// Muss auf keine Eingabe warten, Taste ist bereits gedrückt</span>
+<a name="l00044"></a>00044      <span class="keywordtype">char</span> c = <a class="code" href="namespace_keyboard.html#a433fc58fb356fe62305e8419dd7b33d6" title="gibt zurück, welche Taste gedrückt wurde">getch</a>();
 <a name="l00045"></a>00045      <span class="keywordflow">switch</span>(c)
 <a name="l00046"></a>00046      {
 <a name="l00047"></a>00047      <span class="keywordflow">case</span> <span class="charliteral">&#39;w&#39;</span>:
@@ -122,7 +122,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
 <a name="l00074"></a>00074      <span class="keywordflow">case</span> <span class="charliteral">&#39;j&#39;</span>:
 <a name="l00075"></a>00075         <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#a478c0d94a8f8a7675d3e88e85742c81a" title="enthält wie stark auf Tastendrücke in Keyboard::control() eragiert werden soll">ges</a> += -0.1*<a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#a478c0d94a8f8a7675d3e88e85742c81a" title="enthält wie stark auf Tastendrücke in Keyboard::control() eragiert werden soll">ges</a>;
 <a name="l00076"></a>00076         <span class="keywordflow">break</span>;
-<a name="l00077"></a>00077      <span class="keywordflow">case</span> 3:
+<a name="l00077"></a>00077      <span class="keywordflow">case</span> 3: <span class="comment">// ctrl + c</span>
 <a name="l00078"></a>00078         <a class="code" href="class_cglobal.html#a0e96a5f7f00ef5a151da708a17340f08">Cglobal::instance</a>().<a class="code" href="class_cglobal.html#a24fbb5c4b0ddab650375d08ba677b3f1" title="Gibt an ob in Keyboard::control() ctrl+c gedrückt wurde, falls true wird das Programm beendet...">end</a> = <span class="keyword">true</span>;
 <a name="l00079"></a>00079         <span class="keywordflow">break</span>;
 <a name="l00080"></a>00080      }
@@ -185,7 +185,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Erzeugt am Tue Sep 4 2012 16:08:00 für ardrone_swp von&#160;
+<hr class="footer"/><address class="footer"><small>Erzeugt am Tue Sep 11 2012 16:19:25 für ardrone_swp von&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

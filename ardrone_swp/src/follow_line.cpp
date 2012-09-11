@@ -23,9 +23,23 @@
  * Die Drone soll sich nicht über einen längeren Zeitraum drehen und gleichzeitig in x- oder y-Richtung fliegen, \n
  * da sie sonst sehr schnell und unkontrolliert fliegt.\n
  * Zudem weicht bei einem großen Winkel der x-Wert von TrackLine sehr weit von der Mitte ab, auch wenn die Drone weiterhin über der Linie steht.\n
- * Desshalb kann bei einem großen Winkel auch nicht in y-Richtung geflogen werden. \n\n
+ * Deshalb kann bei einem großen Winkel auch nicht in y-Richtung geflogen werden. \n\n
+ *
+ * Die Applikation funktioniert nicht bei lang gestreckten Kurven, da eine gleichzeitige Dreh-Bewegung und x-oder y-Bewegung zu unkontrollierten, schnellen Bewegungen führt.\n
+ * Statt Kurven sollte die Linie "Knicke" haben(siehe Video).\n\n
  *
  * Die Regelung erfolgt in Math::line_regulation() mit Hilfe eines P-Reglers.
+ */
+
+/**
+ * @file TrackLine.py
+ * @brief Applikation zur Liniendedektion
+ *
+ * published Messages vom Typ LinePos: \n
+ * Die Message LinePos enthält 3 float Werte:
+ * - x: gibt an wo sich die Linie befindet(links, rechts). Mitte: 80
+ * - y: bleibt immer bei 60(Mitte)
+ * - angle: gibt den Winkel der Linie bezüglich der Drone im Bereich [-90°, 90°] an. Die Werte von angle liegen zwischen -9000 und 9000\n\n
  */
 #include "std_includes.h"
 #include "ardrone_swp/LinePos.h"
