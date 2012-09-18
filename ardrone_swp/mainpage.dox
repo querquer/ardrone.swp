@@ -2,11 +2,206 @@
 \mainpage
 \htmlinclude manifest.html
 
-\b ardrone_swp enthält Applikationen zur 
-* <ul>
-* <li>Linienvervolgung: follow_line.cpp</li>
-* <li>Tagverfolgung mittels vorderer Kamera: bottom_follow_tag.cpp</li>
-* <li>Tagverfolgung mittels unterer Kamera: front_follow_tag.cpp</li>
-* </ul> 
+
+<h2> Was machen die Apps? </h2>
+
+<h3> bottom_follow_tag </h3>
+
+Diese Applikation wurde dazu entwickelt, dass die Drone einem Tag, welches auf einem Bodenroboter befestigt wurde, zu folgen.
+Dabei muss die Drone extern mittels Dronenbefehl gestartet werden und dann zum Bodenroboter bewegt werden,
+damit sie das Tag erfassen kann. Ab diesem Augenblick wird die Drone versuchen immer über dem Tag zu stehen und
+sich ausrichten. Der Bodenroboter kann sich von nun an bewegen wird wird über sich von der Drone verfolgt.
+
+
+<h3> front_follow_tag </h3>
+
+Diese Applikation dient dazu, dass die Drone einem Tag oder Marker folgt welches sie an ihrer forderen Kamera sieht.
+Dabei versucht die Drone ca. 1meter vor dem Tag zu stehen und senkrecht rauszuschauen. Sobald die Drone das Tag einmal erkannt hat,
+wird sie von nun an veruschen ihre Position gegenüber dem Tag zu halten, was einem folgen gleichkommt. 
+Dabei wird die Drone sich in alle Richtungen frei bewegen, außer in der Höhe haben wir eine Tiefst- und Höhstbegrenzung implementiert.
+
+Im Ordner Bilder sind die Marker zu finden.
+
+
+<h3> follow_line </h3>
+
+Diese Applikation wurde dazu entwickelt, dass die Drone einer schwarzen Linie auf hellem Untergrund folgt.
+Der Kontrast sollte möglichst hoch sein. Dabei ist zu beachten, dass die Kurven der Linie möglichst aus Ecken und Geraden besteht.
+Also extrapoliert würde ein zu fliegender Kreis wie ein Polygon mit mindestens 10 Ecken sein.
+
+    
+  
+<h2> Installation von ROS, dem Brown-Pkg und den Applikationen. </h2>
+
+Wir haben drei Applikationen gemacht für die AR Drone von Parrot.
+Dabei verwendeten wir ROS(Robotic Operation System) und den Ardrone Treiber der Brown Universität.
+Für die richtige Installation und  Anwendung der Applikatione ist dieser Guide da.
+Da wird den Browntreiber verändert haben sollte unbedingt unsere Version des Treibers verwendet werden.
+
+Die Apps wurden auf Ubuntu 11.10. und mit der ROS Version Electric erstellt und da den Apps kein Support untersteht kann es
+mit neueren Versionen gegebenfalls zu Problemen kommen. Eine aktuelle Instalationsanleitung finden sie unter dem folgenden Link.
+http://www.ros.org/wiki/ROS/Installation
+
+<h5> Ros </h5>
+
+> sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu electric main" > /etc/apt/sources.list.d/ros-latest.list'
+
+> wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
+
+> sudo apt-get update
+
+> sudo apt-get install ros-electric-desktop
+
+> echo "source /opt/ros/electric/setup.bash" >> ~/.bashrc
+
+> . ~/.bashrc
+
+<h5> Brown-Pkg </h5>
+
+> sudo apt-get install ros-electric-brown-drivers
+
+> sudo apt-get install ros-electric-brown-remotelab
+
+> sudo apt-get install ros-electric-joystick-drivers
+
+> sudo apt-get install guvcview
+
+> sudo apt-get install libsdl1.2-dev
+
+> cd ~
+
+> mkdir ros
+
+> cd ros
+
+> svn checkout https://svn-eos.cs.ovgu.de/repos/stud/riestock/ardrone_swp 
+
+> export ROS_PACKAGE_PATH=/home/maik/ros:$ROS_PACKAGE_PATH
+
+Bei der Pfadangabe bitte darauf achen euren Anmeldenamen zu verwenden.
+
+> cd /home/maik/ros/brown-ros-pkg/experimental/ardrone_brown
+
+> ./build_sdk.sh
+
+> cmake .
+
+> rosmake ardrone_brown
+
+<h5> Recog </h5>
+
+> cd /home/maik/ros/brown-ros-pkg/experimental
+
+> svn checkout https://brown-ros-pkg.googlecode.com/svn/trunk/experimental/ar_recog
+
+> cd ar_recog
+
+> cmake .
+
+> rosmake ar_recog
+
+<h5> Applikationen </h5>
+
+> cd ardrone_swp
+
+> rosmake ardrone_swp
+
+
+<h2> Wie startet man die Apps? </h2>
+
+Um die Apps zu verwenden brauch man eine Menge von Terminals. Ich hab die Arten der Terminals in 4 Bereiche untergliedert.
+Als Erstes die Befehle die nötig sind um den Roskern zu starten, welches immer am Anfang geschehen muss. 
+Danach die Terminalsequenze für die drei Apps. Am Ende sind noch einmal die Terminalbefehle zusammengefasst
+welche direkt die Drone steuern und zusätzliche Terminals.
+
+
+<h3> Roskern </h3>
+
+> rosrun roscore
+
+> rosrun ardrone_brown ardrone_driver
+
+Sollte hier der Text "Timeout when reading navdatas - resending a navdata request on port 5554"
+erscheinen so brauch man sich keine Sorgen zu machen. Der Fehler kommt daher, dass der Computer zwei 
+Netzwerkinterfaces welche beide eine IP Adresse der Form 192.168.1.XXX besitzen.
+	
+<h3> Applikationen </h3>
+
+<h5> bottom_follow_tag </h5>
+> rosservice call /ardrone/togglecam
+
+> roscd ar_recog/bin	
+
+> rosrun ar_recog ar_recog image:=/ardrone/image_raw
+
+> rostopic pub /ardrone/takeoff std_msg/Empty
+
+> rosrun ardrone_swp bottom_follow_tag 	
+	
+am Ende
+> rostopic pub /ardrone/land std_msg/Empty
+	
+<h5> front_follow_tag </h5>	
+> roscd ar_recog/bin	
+
+> rosrun ar_recog ar_recog image:=/ardrone/image_raw
+	
+> rostopic pub /ardrone/takeoff std_msg/Empty
+
+> rosrun ardrone_swp front_follow_tag
+
+am Ende
+> rostopic pub /ardrone/land std_msg/Empty
+
+<h5> follow_line </h5>
+> rosservice call /ardrone/togglecam	
+
+> rostopic pub /ardrone/takeoff std_msg/Empty
+
+> rosrun ardrone_swp follow_line
+
+am Ende
+> rostopic pub /ardrone/land std_msg/Empty
+
+
+<h3> Steuerung </h3>
+	
+> rostopic pub /ardrone/takeoff std_msg/Empty	
+Mit diesem Kommando wird die Drone jedes mal gestarten.
+	
+> rostopic pub /ardrone/land std_msg/Empty
+Mit diesem Kommando wird die Drone jedes mal gelandet.
+	
+> rostopic pub /ardrone/reset std_msg/Empty	
+Mit diesem Kommando kann die Drone reset werden sollte sie in den Notfallmodus gehen.
+	
+	
+
+<h3> zusätzliche Terminals </h3>
+
+Durch diesen Befehl wird das aktuelle Kamerabild ausgegeben.
+> rosrun image_view image_view image:=/ardrone/image_raw
+
+Durch diesen Befehl wird das aktuelle Kamerabild ausgegeben.
+ 
+> rostopic echo /tags
+
+> rostopic echo /ardrone/navdata
+
+Durch das folgende Kommando wird ein zusätzliches Programm gestartet,
+welche die Navigationsdaten, Tagdaten und/oder die Steuerungsbefehle aufzeichnet.
+> ardrone_swp Log <options>
+	-> 
+	<n> für die navdata, 
+	<t> für die Informationen der Tags, 
+	<w> für die gesendeten Steuerungsbefehle 
+	
+Als Beispiel:
+> ardrone_swp Log n w
+Jetzt protokolliert das Programm alle grad erzeugten navdata und gesendeten Steuerungsbefehle
+und speichert diese in ardrone_swp/Log.
+
+
+
 
 */
