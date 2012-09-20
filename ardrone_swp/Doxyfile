@@ -621,7 +621,8 @@ WARN_LOGFILE           =
 
 INPUT                  = /home/ulrich/ros_workspace/ardrone_swp/src \
                          /home/ulrich/ros_workspace/ardrone_swp/include \
-                         /home/ulrich/ros_workspace/ardrone_swp/mainpage.dox
+                         /home/ulrich/ros_workspace/ardrone_swp/mainpage.dox \
+                         /home/ulrich/ros_workspace/ardrone_swp/bin/TrackLine.py
 
 # This tag can be used to specify the character encoding of the source files 
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding, which is 

@@ -1,8 +1,165 @@
 
 
-{\bfseries ardrone\_\-swp} enthält Applikationen zur 
-\begin{DoxyItemize}
-\item Linienvervolgung: \hyperlink{follow__line_8cpp}{follow\_\-line.cpp} 
-\item Tagverfolgung mittels vorderer Kamera: \hyperlink{bottom__follow__tag_8cpp}{bottom\_\-follow\_\-tag.cpp} 
-\item Tagverfolgung mittels unterer Kamera: \hyperlink{front__follow__tag_8cpp}{front\_\-follow\_\-tag.cpp} 
-\end{DoxyItemize}
+\subsection*{Was machen die Apps? }
+
+\subsubsection*{\hyperlink{bottom__follow__tag_8cpp}{bottom\_\-follow\_\-tag.cpp} }
+
+Diese Applikation wurde dazu entwickelt, dass die Drone einem Tag, welches auf einem Bodenroboter befestigt wurde, zu folgen. Dabei muss die Drone extern mittels Dronenbefehl gestartet werden und dann zum Bodenroboter bewegt werden, damit sie das Tag erfassen kann. Ab diesem Augenblick wird die Drone versuchen immer über dem Tag zu stehen und sich ausrichten. Der Bodenroboter kann sich von nun an bewegen und wird über sich von der Drone verfolgt.
+
+\subsubsection*{\hyperlink{front__follow__tag_8cpp}{front\_\-follow\_\-tag.cpp} }
+
+Diese Applikation dient dazu, dass die Drone einem Tag oder Marker folgt welches sie an ihrer vorderen Kamera sieht. Dabei versucht die Drone ca. einen Meter vor dem Tag zu stehen und senkrecht auf das Tag zu schauen. Sobald die Drone das Tag einmal erkannt hat, wird sie von nun an versuchen ihre Position gegenüber dem Tag zu halten, was einem Folgen gleichkommt. Dabei wird die Drone sich in alle Richtungen frei bewegen, außer in der Höhe haben wir eine Tiefst-\/ und Höchstbegrenzung implementiert.
+
+Im Ordner Bilder sind die Marker zu finden.
+
+\subsubsection*{\hyperlink{follow__line_8cpp}{follow\_\-line.cpp} }
+
+Diese Applikation wurde dazu entwickelt, dass die Drone einer schwarzen Linie auf hellem Untergrund folgt. Der Kontrast sollte möglichst hoch sein. Dabei ist zu beachten, dass die Kurven der Linie möglichst aus Ecken und Geraden besteht. Also extrapoliert würde ein zu fliegender Kreis wie ein Polygon mit mindestens 10 Ecken sein.
+
+
+
+Dieses Bild verdeutlicht den Zusammenhang zwischen unseren Applikationen und der von uns verwendeten externen Software.
+
+\subsection*{Installation von ROS, dem Brown-\/Pkg und den Applikationen. }
+
+Für unsere drei Applikationen verwendeten wir ROS(Robotic Operation System) und den Ardrone Treiber der Brown Universität. Für die richtige Installation und Anwendung der Applikationen ist dieser Guide da. Da wird den Browntreiber verändert haben, sollte unbedingt unsere Version des Treibers verwendet werden.
+
+Die Apps wurden auf Ubuntu 11.10. und mit der ROS Version Electric erstellt und da den Apps kein Support untersteht, kann es mit neueren Versionen gegebenenfalls zu Problemen kommen. Eine aktuelle Installationsanleitung finden sie unter dem folgenden Link: \href{http://www.ros.org/wiki/ROS/Installation}{\tt http://www.ros.org/wiki/ROS/Installation}
+
+\subparagraph*{Ros }
+
+$>$ sudo sh -\/c 'echo \char`\"{}deb http://packages.ros.org/ros/ubuntu electric main\char`\"{} $>$ /etc/apt/sources.list.d/ros-\/latest.list'
+
+$>$ wget \href{http://packages.ros.org/ros.key}{\tt http://packages.ros.org/ros.key} -\/O -\/ $|$ sudo apt-\/key add -\/
+
+$>$ sudo apt-\/get update
+
+$>$ sudo apt-\/get install ros-\/electric-\/desktop
+
+$>$ echo \char`\"{}source /opt/ros/electric/setup.bash\char`\"{} $>$$>$ $\sim$/.bashrc
+
+$>$ . $\sim$/.bashrc
+
+\subparagraph*{Brown-\/Pkg }
+
+$>$ sudo apt-\/get install ros-\/electric-\/brown-\/drivers
+
+$>$ sudo apt-\/get install ros-\/electric-\/brown-\/remotelab
+
+$>$ sudo apt-\/get install ros-\/electric-\/joystick-\/drivers
+
+$>$ sudo apt-\/get install guvcview
+
+$>$ sudo apt-\/get install libsdl1.2-\/dev
+
+$>$ cd $\sim$
+
+$>$ mkdir ros
+
+$>$ cd ros
+
+$>$ svn checkout \href{https://svn-eos.cs.ovgu.de/repos/stud/riestock}{\tt https://svn-\/eos.cs.ovgu.de/repos/stud/riestock}
+
+$>$ export ROS\_\-PACKAGE\_\-PATH=/home/maik/ros:\$ROS\_\-PACKAGE\_\-PATH
+
+Bei der Pfadangabe bitte darauf achten euren Anmeldenamen zu verwenden.
+
+$>$ cd /home/maik/ros/brown-\/ros-\/pkg/experimental/ardrone\_\-brown
+
+$>$ ./build\_\-sdk.sh
+
+$>$ cmake .
+
+$>$ rosmake ardrone\_\-brown
+
+\subparagraph*{Recog }
+
+$>$ cd /home/maik/ros/brown-\/ros-\/pkg/experimental/ar\_\-recog
+
+$>$ cmake .
+
+$>$ rosmake ar\_\-recog
+
+\subparagraph*{Applikationen }
+
+$>$ rosmake ardrone\_\-swp
+
+\subsection*{Wie startet man die Apps? }
+
+Um die Apps zu verwenden brauch man eine Menge von Terminals. Wir haben die Arten der Befehle in 4 Bereiche untergliedert. Als Erstes die Befehle die nötig sind um den Roskern zu starten, welches immer am Anfang geschehen muss. Danach die Befehlsequenze für die drei Apps. Am Ende sind noch einmal die Terminalbefehle, welche direkt die Drone steuern, und zusätzliche Befehle.
+
+\subsubsection*{Roskern und Brown-\/Treiber }
+
+$>$ rosrun roscore
+
+$>$ rosrun ardrone\_\-brown ardrone\_\-driver
+
+\subsubsection*{Applikationen }
+
+\subparagraph*{bottom\_\-follow\_\-tag }
+
+$>$ rosservice call /ardrone/togglecam
+
+$>$ roscd ar\_\-recog/bin
+
+$>$ rosparam set aov 0.001
+
+$>$ rosrun ar\_\-recog ar\_\-recog image:=/ardrone/image\_\-raw
+
+$>$ rostopic pub /ardrone/takeoff std\_\-msgs/Empty
+
+$>$ rosrun ardrone\_\-swp bottom\_\-follow\_\-tag
+
+am Ende zum Landen $>$ rostopic pub /ardrone/land std\_\-msgs/Empty
+
+\subparagraph*{front\_\-follow\_\-tag }
+
+$>$ roscd ar\_\-recog/bin
+
+$>$ rosparam set aov 0.001
+
+$>$ rosrun ar\_\-recog ar\_\-recog image:=/ardrone/image\_\-raw
+
+$>$ rostopic pub /ardrone/takeoff std\_\-msgs/Empty
+
+$>$ rosrun ardrone\_\-swp front\_\-follow\_\-tag
+
+am Ende zum Landen $>$ rostopic pub /ardrone/land std\_\-msgs/Empty
+
+\subparagraph*{follow\_\-line }
+
+$>$ rosservice call /ardrone/togglecam
+
+$>$ rosrun ardrone\_\-swp \hyperlink{_track_line_8py}{TrackLine.py}
+
+$>$ rostopic pub /ardrone/takeoff std\_\-msgs/Empty
+
+$>$ rosrun ardrone\_\-swp follow\_\-line
+
+am Ende zum Landen $>$ rostopic pub /ardrone/land std\_\-msgs/Empty
+
+\subsubsection*{Steuerung }
+
+$>$ rostopic pub /ardrone/takeoff std\_\-msgs/Empty Mit diesem Kommando wird die Drone jedes mal gestartet.
+
+$>$ rostopic pub /ardrone/land std\_\-msgs/Empty Mit diesem Kommando wird die Drone jedes mal gelandet.
+
+$>$ rostopic pub /ardrone/reset std\_\-msgs/Empty Mit diesem Kommando kann die Drone resetet werden, falls die Drone in den Notfallmodus geht.
+
+\subsubsection*{zusätzliche Befehle }
+
+Durch diesen Befehl wird das aktuelle Kamerabild ausgegeben: $>$ rosrun image\_\-view image\_\-view image:=/ardrone/image\_\-raw
+
+Durch diese Befehle werden die reinkommenden Nachrichten des Typs /tags bzw. /ardrone/navdata auf die Konsole geschrieben:
+
+$>$ rostopic echo /tags
+
+$>$ rostopic echo /ardrone/navdata
+
+Durch das folgende Kommando wird ein zusätzliches Programm gestartet, welche die Navigationsdaten, Tagdaten und/oder die Steuerungsbefehle aufzeichnet:
+
+$>$ ardrone\_\-swp Log $<$options$>$ -\/$>$ $<$n$>$ für die navdata, $<$t$>$ für die Informationen der Tags, $<$w$>$ für die gesendeten Steuerungsbefehle
+
+Als Beispiel:
+
+$>$ ardrone\_\-swp Log n w Jetzt protokolliert das Programm alle grad erzeugten navdata und gesendeten Steuerungsbefehle und speichert diese in ardrone\_\-swp/Log. 

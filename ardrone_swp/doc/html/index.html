@@ -56,15 +56,90 @@ var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
 <div class="title">ardrone_swp Dokumentation</div>  </div>
 </div>
 <div class="contents">
-<div class="textblock"><p><b>ardrone_swp</b> enthält Applikationen zur </p>
-<ul>
-<li>
-Linienvervolgung: <a class="el" href="follow__line_8cpp.html" title="Applikation zur Linienverfolgung mit der unteren Kamera.">follow_line.cpp</a> </li>
-<li>
-Tagverfolgung mittels vorderer Kamera: <a class="el" href="bottom__follow__tag_8cpp.html" title="Applikation zur Tagvervolgung mit der unteren Kamera.">bottom_follow_tag.cpp</a> </li>
-<li>
-Tagverfolgung mittels unterer Kamera: <a class="el" href="front__follow__tag_8cpp.html" title="Applikation zur Tagvervolgung mit der vorderen Kamera.">front_follow_tag.cpp</a> </li>
-</ul>
+<div class="textblock"><h2>Was machen die Apps? </h2>
+<h3><a class="el" href="bottom__follow__tag_8cpp.html" title="Applikation zur Tagvervolgung mit der unteren Kamera.">bottom_follow_tag.cpp</a> </h3>
+<p>Diese Applikation wurde dazu entwickelt, dass die Drone einem Tag, welches auf einem Bodenroboter befestigt wurde, zu folgen. Dabei muss die Drone extern mittels Dronenbefehl gestartet werden und dann zum Bodenroboter bewegt werden, damit sie das Tag erfassen kann. Ab diesem Augenblick wird die Drone versuchen immer über dem Tag zu stehen und sich ausrichten. Der Bodenroboter kann sich von nun an bewegen und wird über sich von der Drone verfolgt.</p>
+<h3><a class="el" href="front__follow__tag_8cpp.html" title="Applikation zur Tagvervolgung mit der vorderen Kamera.">front_follow_tag.cpp</a> </h3>
+<p>Diese Applikation dient dazu, dass die Drone einem Tag oder Marker folgt welches sie an ihrer vorderen Kamera sieht. Dabei versucht die Drone ca. einen Meter vor dem Tag zu stehen und senkrecht auf das Tag zu schauen. Sobald die Drone das Tag einmal erkannt hat, wird sie von nun an versuchen ihre Position gegenüber dem Tag zu halten, was einem Folgen gleichkommt. Dabei wird die Drone sich in alle Richtungen frei bewegen, außer in der Höhe haben wir eine Tiefst- und Höchstbegrenzung implementiert.</p>
+<p>Im Ordner Bilder sind die Marker zu finden.</p>
+<h3><a class="el" href="follow__line_8cpp.html" title="Applikation zur Linienverfolgung mit der unteren Kamera.">follow_line.cpp</a> </h3>
+<p>Diese Applikation wurde dazu entwickelt, dass die Drone einer schwarzen Linie auf hellem Untergrund folgt. Der Kontrast sollte möglichst hoch sein. Dabei ist zu beachten, dass die Kurven der Linie möglichst aus Ecken und Geraden besteht. Also extrapoliert würde ein zu fliegender Kreis wie ein Polygon mit mindestens 10 Ecken sein.</p>
+<div class="image">
+<img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/schema_02.png" alt="schema_02.png" alt="Schema" width="526" height="372"/>
+</div>
+<p>Dieses Bild verdeutlicht den Zusammenhang zwischen unseren Applikationen und der von uns verwendeten externen Software.</p>
+<h2>Installation von ROS, dem Brown-Pkg und den Applikationen. </h2>
+<p>Für unsere drei Applikationen verwendeten wir ROS(Robotic Operation System) und den Ardrone Treiber der Brown Universität. Für die richtige Installation und Anwendung der Applikationen ist dieser Guide da. Da wird den Browntreiber verändert haben, sollte unbedingt unsere Version des Treibers verwendet werden.</p>
+<p>Die Apps wurden auf Ubuntu 11.10. und mit der ROS Version Electric erstellt und da den Apps kein Support untersteht, kann es mit neueren Versionen gegebenenfalls zu Problemen kommen. Eine aktuelle Installationsanleitung finden sie unter dem folgenden Link: <a href="http://www.ros.org/wiki/ROS/Installation">http://www.ros.org/wiki/ROS/Installation</a></p>
+<h5>Ros </h5>
+<p>&gt; sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu electric main" &gt; /etc/apt/sources.list.d/ros-latest.list'</p>
+<p>&gt; wget <a href="http://packages.ros.org/ros.key">http://packages.ros.org/ros.key</a> -O - | sudo apt-key add -</p>
+<p>&gt; sudo apt-get update</p>
+<p>&gt; sudo apt-get install ros-electric-desktop</p>
+<p>&gt; echo "source /opt/ros/electric/setup.bash" &gt;&gt; ~/.bashrc</p>
+<p>&gt; . ~/.bashrc</p>
+<h5>Brown-Pkg </h5>
+<p>&gt; sudo apt-get install ros-electric-brown-drivers</p>
+<p>&gt; sudo apt-get install ros-electric-brown-remotelab</p>
+<p>&gt; sudo apt-get install ros-electric-joystick-drivers</p>
+<p>&gt; sudo apt-get install guvcview</p>
+<p>&gt; sudo apt-get install libsdl1.2-dev</p>
+<p>&gt; cd ~</p>
+<p>&gt; mkdir ros</p>
+<p>&gt; cd ros</p>
+<p>&gt; svn checkout <a href="https://svn-eos.cs.ovgu.de/repos/stud/riestock">https://svn-eos.cs.ovgu.de/repos/stud/riestock</a></p>
+<p>&gt; export ROS_PACKAGE_PATH=/home/maik/ros:$ROS_PACKAGE_PATH</p>
+<p>Bei der Pfadangabe bitte darauf achten euren Anmeldenamen zu verwenden.</p>
+<p>&gt; cd /home/maik/ros/brown-ros-pkg/experimental/ardrone_brown</p>
+<p>&gt; ./build_sdk.sh</p>
+<p>&gt; cmake .</p>
+<p>&gt; rosmake ardrone_brown</p>
+<h5>Recog </h5>
+<p>&gt; cd /home/maik/ros/brown-ros-pkg/experimental/ar_recog</p>
+<p>&gt; cmake .</p>
+<p>&gt; rosmake ar_recog</p>
+<h5>Applikationen </h5>
+<p>&gt; rosmake ardrone_swp</p>
+<h2>Wie startet man die Apps? </h2>
+<p>Um die Apps zu verwenden brauch man eine Menge von Terminals. Wir haben die Arten der Befehle in 4 Bereiche untergliedert. Als Erstes die Befehle die nötig sind um den Roskern zu starten, welches immer am Anfang geschehen muss. Danach die Befehlsequenze für die drei Apps. Am Ende sind noch einmal die Terminalbefehle, welche direkt die Drone steuern, und zusätzliche Befehle.</p>
+<h3>Roskern und Brown-Treiber </h3>
+<p>&gt; rosrun roscore</p>
+<p>&gt; rosrun ardrone_brown ardrone_driver</p>
+<h3>Applikationen </h3>
+<h5>bottom_follow_tag </h5>
+<p>&gt; rosservice call /ardrone/togglecam</p>
+<p>&gt; roscd ar_recog/bin</p>
+<p>&gt; rosparam set aov 0.001</p>
+<p>&gt; rosrun ar_recog ar_recog image:=/ardrone/image_raw</p>
+<p>&gt; rostopic pub /ardrone/takeoff std_msgs/Empty</p>
+<p>&gt; rosrun ardrone_swp bottom_follow_tag</p>
+<p>am Ende zum Landen &gt; rostopic pub /ardrone/land std_msgs/Empty</p>
+<h5>front_follow_tag </h5>
+<p>&gt; roscd ar_recog/bin</p>
+<p>&gt; rosparam set aov 0.001</p>
+<p>&gt; rosrun ar_recog ar_recog image:=/ardrone/image_raw</p>
+<p>&gt; rostopic pub /ardrone/takeoff std_msgs/Empty</p>
+<p>&gt; rosrun ardrone_swp front_follow_tag</p>
+<p>am Ende zum Landen &gt; rostopic pub /ardrone/land std_msgs/Empty</p>
+<h5>follow_line </h5>
+<p>&gt; rosservice call /ardrone/togglecam</p>
+<p>&gt; rosrun ardrone_swp <a class="el" href="_track_line_8py.html" title="Applikation zur Liniendedektion.">TrackLine.py</a></p>
+<p>&gt; rostopic pub /ardrone/takeoff std_msgs/Empty</p>
+<p>&gt; rosrun ardrone_swp follow_line</p>
+<p>am Ende zum Landen &gt; rostopic pub /ardrone/land std_msgs/Empty</p>
+<h3>Steuerung </h3>
+<p>&gt; rostopic pub /ardrone/takeoff std_msgs/Empty Mit diesem Kommando wird die Drone jedes mal gestartet.</p>
+<p>&gt; rostopic pub /ardrone/land std_msgs/Empty Mit diesem Kommando wird die Drone jedes mal gelandet.</p>
+<p>&gt; rostopic pub /ardrone/reset std_msgs/Empty Mit diesem Kommando kann die Drone resetet werden, falls die Drone in den Notfallmodus geht.</p>
+<h3>zusätzliche Befehle </h3>
+<p>Durch diesen Befehl wird das aktuelle Kamerabild ausgegeben: &gt; rosrun image_view image_view image:=/ardrone/image_raw</p>
+<p>Durch diese Befehle werden die reinkommenden Nachrichten des Typs /tags bzw. /ardrone/navdata auf die Konsole geschrieben:</p>
+<p>&gt; rostopic echo /tags</p>
+<p>&gt; rostopic echo /ardrone/navdata</p>
+<p>Durch das folgende Kommando wird ein zusätzliches Programm gestartet, welche die Navigationsdaten, Tagdaten und/oder die Steuerungsbefehle aufzeichnet:</p>
+<p>&gt; ardrone_swp Log &lt;options&gt; -&gt; &lt;n&gt; für die navdata, &lt;t&gt; für die Informationen der Tags, &lt;w&gt; für die gesendeten Steuerungsbefehle</p>
+<p>Als Beispiel:</p>
+<p>&gt; ardrone_swp Log n w Jetzt protokolliert das Programm alle grad erzeugten navdata und gesendeten Steuerungsbefehle und speichert diese in ardrone_swp/Log. </p>
 </div></div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -80,7 +155,7 @@ Tagverfolgung mittels unterer Kamera: <a class="el" href="front__follow__tag_8cp
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Erzeugt am Tue Sep 11 2012 16:19:25 für ardrone_swp von&#160;
+<hr class="footer"/><address class="footer"><small>Erzeugt am Thu Sep 20 2012 11:21:06 für ardrone_swp von&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
