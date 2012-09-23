@@ -30,7 +30,7 @@ Der Kontrast sollte möglichst hoch sein. Dabei ist zu beachten, dass die Kurven
 Also extrapoliert würde ein zu fliegender Kreis wie ein Polygon mit mindestens 10 Ecken sein.
 
     
-<img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/schema_02.png" alt="Schema" width="526" height="372">
+<img src="../../Bilder/schema_02.png" alt="Schema" width="526" height="372">
 
 Dieses Bild verdeutlicht den Zusammenhang zwischen unseren Applikationen und der von uns verwendeten externen Software.
 

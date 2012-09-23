@@ -22,8 +22,8 @@ namespace Math
  * @param	y	Verschiebung in y Richung
  *
  *
- * <img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/bottom_pixeldiff Teil1.jpg" alt="Schema">
- * <img src="/home/ulrich/ros_workspace/ardrone_swp/Bilder/bottom_pixeldiff Teil2.jpg" alt="Schema">
+ * <img src="../../Bilder/bottom_pixeldiff Teil1.jpg" alt="Schema">
+ * <img src="../../Bilder/bottom_pixeldiff Teil2.jpg" alt="Schema">
  */
 void pixelDiffBottom(float& x, float& y)
 {
