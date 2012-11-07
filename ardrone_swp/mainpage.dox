@@ -34,6 +34,10 @@ Also extrapoliert würde ein zu fliegender Kreis wie ein Polygon mit mindestens 
 
 Dieses Bild verdeutlicht den Zusammenhang zwischen unseren Applikationen und der von uns verwendeten externen Software.
 
+Der Zusammenhang der Komponenten und die Regelung ist in \ref page1 beschrieben.
+
+Die einzelnen Applikationen und die aufgetretenen Probleme und Schwierigkeiten bei der Umsetztung sind in \ref page2 beschrieben.
+
 
 <h2> Installation von ROS, dem Brown-Pkg und den Applikationen. </h2>
 

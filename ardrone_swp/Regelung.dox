@@ -1,0 +1,24 @@
+/**
+\page page1 Regelung
+
+<img src="../../Bilder/schema_regler_final.png" alt="Schema" width="795" height="304">
+
+Die Kommunikation mit der Drohne geschieht über WLAN. Die Drohne sendet das Kamerabild und die Navigationsdaten,
+bestehend aus Geschwindigkeit und Rotation, an einen Rechner. Auf dem Rechner läuft der ardrone_driver, der das
+Kamerabild und die Navigationsdaten als Ros-Nachricht verschickt. Bei den Applikationen nutzen wir einen 
+verhaltensgesteuerten Ansatz. Immer wenn eine neue Nachricht von ar_recog bzw. trackline gesendet wird,
+wird von der jeweiligen Applikation eine Soll-Geschwindigkeit ausgegeben. Dabei nutzten die Applikationen zusätzlich
+die Rotationsdaten der Drohne, um die Position des Tags zu korrigieren, die ar_recog berechnet hat. Dies ist wichtig,
+da die Drohne beim Ausführen von Bewegungen rotiert. Dadurch kann es beispielsweise passieren, dass ar_recog durch
+die Rotation ein Tag am oberen Bildrand erkennt und die Drohne aber mittig zum Tag fliegt. Die genaue Umsetzung ist in
+Math::pixelDiffBottom(float& x, float& y) beschrieben.
+
+Der PD-Regler dient der Einbeziehung der aktuellen Geschwindigkeit der Drohne. Unter Verwendung der Soll-Geschwindigkeit
+und der aktuellen Geschwindigkeit gibt der PD-Regler eine angepasste Geschwindigkeit aus. Diese wird über den
+ardrone_driver an die Drohne gesendet.
+
+Für jede Applikation wurden unterschiedliche Regelungsparameter verwendet. Diese wurden für die jeweilige Aufgabe angepasst.
+Bei der Boden-Tag-Verfolgung reagiert die Drohne beispielsweise sehr empfindlich bei der Geschwindigkeitsanpassung in
+x-Richtung, da beim Bodenrobotter zu erwarten ist, dass er sich vor und zurück bewegt aber nicht seitlich fährt.
+Die Regelungsparameter sind in Cglobal definiert.
+*/

@@ -619,10 +619,10 @@ WARN_LOGFILE           =
 # directories like "/usr/src/myproject". Separate the files or directories 
 # with spaces.
 
-INPUT                  = /home/ulrich/ros_workspace/ardrone_swp/src \
-                         /home/ulrich/ros_workspace/ardrone_swp/include \
-                         /home/ulrich/ros_workspace/ardrone_swp/mainpage.dox \
-                         /home/ulrich/ros_workspace/ardrone_swp/bin/TrackLine.py
+INPUT                  = . \
+                         src \
+                         include \
+                         bin
 
 # This tag can be used to specify the character encoding of the source files 
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding, which is 
