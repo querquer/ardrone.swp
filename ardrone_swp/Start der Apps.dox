@@ -1,0 +1,102 @@
+/**
+\page page2 Start der Apps
+
+<h2> Wie startet man die Apps? </h2>
+
+Um die Apps zu verwenden brauch man eine Menge von Terminals. Wir haben die Arten der Befehle in 4 Bereiche untergliedert.
+Als Erstes die Befehle die nötig sind um den Roskern zu starten, welches immer am Anfang geschehen muss. 
+Danach die Befehlsequenze für die drei Apps. Am Ende sind noch einmal die Terminalbefehle,
+welche direkt die Drone steuern, und zusätzliche Befehle.
+
+
+<h3> Roskern und Brown-Treiber </h3>
+
+> rosrun roscore
+
+> rosrun ardrone_brown ardrone_driver
+	
+<h3> Applikationen </h3>
+
+<h5> bottom_follow_tag </h5>
+> rosservice call /ardrone/togglecam
+
+> roscd ar_recog/bin
+
+> rosparam set aov 0.001	
+
+> rosrun ar_recog ar_recog image:=/ardrone/image_raw
+
+> rostopic pub /ardrone/takeoff std_msgs/Empty
+
+> rosrun ardrone_swp bottom_follow_tag 	
+	
+am Ende zum Landen
+> rostopic pub /ardrone/land std_msgs/Empty
+	
+<h5> front_follow_tag </h5>	
+> roscd ar_recog/bin	
+
+> rosparam set aov 0.001
+
+> rosrun ar_recog ar_recog image:=/ardrone/image_raw
+	
+> rostopic pub /ardrone/takeoff std_msgs/Empty
+
+> rosrun ardrone_swp front_follow_tag
+
+am Ende zum Landen
+> rostopic pub /ardrone/land std_msgs/Empty
+
+<h5> follow_line </h5>
+> rosservice call /ardrone/togglecam	
+
+> rosrun ardrone_swp TrackLine.py
+
+> rostopic pub /ardrone/takeoff std_msgs/Empty
+
+> rosrun ardrone_swp follow_line
+
+am Ende zum Landen
+> rostopic pub /ardrone/land std_msgs/Empty
+
+
+<h3> Steuerung </h3>
+	
+> rostopic pub /ardrone/takeoff std_msgs/Empty	
+Mit diesem Kommando wird die Drone jedes mal gestartet.
+	
+> rostopic pub /ardrone/land std_msgs/Empty
+Mit diesem Kommando wird die Drone jedes mal gelandet.
+	
+> rostopic pub /ardrone/reset std_msgs/Empty	
+Mit diesem Kommando kann die Drone resetet werden, falls die Drone in den Notfallmodus geht.
+	
+	
+
+<h3> zusätzliche Befehle </h3>
+
+Durch diesen Befehl wird das aktuelle Kamerabild ausgegeben:
+> rosrun image_view image_view image:=/ardrone/image_raw
+
+Durch diese Befehle werden die reinkommenden Nachrichten des Typs /tags bzw. /ardrone/navdata auf die Konsole geschrieben:
+ 
+> rostopic echo /tags
+
+> rostopic echo /ardrone/navdata
+
+Durch das folgende Kommando wird ein zusätzliches Programm gestartet,
+welche die Navigationsdaten, Tagdaten und/oder die Steuerungsbefehle aufzeichnet:
+
+> ardrone_swp Log <options>
+	-> 
+	<n> für die navdata, 
+	<t> für die Informationen der Tags, 
+	<w> für die gesendeten Steuerungsbefehle 
+	
+Als Beispiel:
+
+> ardrone_swp Log n w
+Jetzt protokolliert das Programm alle grad erzeugten navdata und gesendeten Steuerungsbefehle
+und speichert diese in ardrone_swp/Log.
+
+*/

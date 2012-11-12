@@ -1,0 +1,64 @@
+/**
+\page page1 Installation
+
+Installationsguide
+In dem Absatz Softwareumgebung haben wir einen Einblick in der von verwendeter Software gegeben. Nun wollen wir erklären wie man unsere Applikation und Umgebung installiert. Dabei ist zu beachten, dass wir unsere Software auf Ubuntu 11.10 und ROS-Electric entwickelt haben und es bei der Verwendung von neueren Version zu Problemen und Fehler führen kann.
+
+<h5> Ros </h5>
+
+> sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu electric main" > /etc/apt/sources.list.d/ros-latest.list'
+
+> wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
+
+> sudo apt-get update
+
+> sudo apt-get install ros-electric-desktop
+
+> echo "source /opt/ros/electric/setup.bash" >> ~/.bashrc
+
+> . ~/.bashrc
+
+<h5> Brown-Pkg </h5>
+
+> sudo apt-get install ros-electric-brown-drivers
+
+> sudo apt-get install ros-electric-brown-remotelab
+
+> sudo apt-get install ros-electric-joystick-drivers
+
+> sudo apt-get install guvcview
+
+> sudo apt-get install libsdl1.2-dev
+
+> cd ~
+
+> mkdir ros
+
+> cd ros
+
+> svn checkout https://svn-eos.cs.ovgu.de/repos/stud/riestock
+
+> export ROS_PACKAGE_PATH=/home/maik/ros:$ROS_PACKAGE_PATH
+
+Bei der Pfadangabe bitte darauf achten euren Anmeldenamen zu verwenden.
+
+> cd /home/maik/ros/brown-ros-pkg/experimental/ardrone_brown
+
+> ./build_sdk.sh
+
+> cmake .
+
+> rosmake ardrone_brown
+
+<h5> Recog </h5>
+
+> cd /home/maik/ros/brown-ros-pkg/experimental/ar_recog
+
+> cmake .
+
+> rosmake ar_recog
+
+<h5> Applikationen </h5>
+
+> rosmake ardrone_swp
+*/

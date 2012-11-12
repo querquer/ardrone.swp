@@ -57,92 +57,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
 <div class="title">TraFo Drone Dokumentation</div>  </div>
 </div>
 <div class="contents">
-<div class="textblock"><h2>Was machen die Apps? </h2>
-<h3><a class="el" href="bottom__follow__tag_8cpp.html" title="Applikation zur Tagvervolgung mit der unteren Kamera.">bottom_follow_tag.cpp</a> </h3>
-<p>Diese Applikation wurde dazu entwickelt, dass die Drone einem Tag, welches auf einem Bodenroboter befestigt wurde, zu folgen. Dabei muss die Drone extern mittels Dronenbefehl gestartet werden und dann zum Bodenroboter bewegt werden, damit sie das Tag erfassen kann. Ab diesem Augenblick wird die Drone versuchen immer über dem Tag zu stehen und sich ausrichten. Der Bodenroboter kann sich von nun an bewegen und wird über sich von der Drone verfolgt.</p>
-<h3><a class="el" href="front__follow__tag_8cpp.html" title="Applikation zur Tagvervolgung mit der vorderen Kamera.">front_follow_tag.cpp</a> </h3>
-<p>Diese Applikation dient dazu, dass die Drone einem Tag oder Marker folgt welches sie an ihrer vorderen Kamera sieht. Dabei versucht die Drone ca. einen Meter vor dem Tag zu stehen und senkrecht auf das Tag zu schauen. Sobald die Drone das Tag einmal erkannt hat, wird sie von nun an versuchen ihre Position gegenüber dem Tag zu halten, was einem Folgen gleichkommt. Dabei wird die Drone sich in alle Richtungen frei bewegen, außer in der Höhe haben wir eine Tiefst- und Höchstbegrenzung implementiert.</p>
-<p>Im Ordner Bilder sind die Marker zu finden.</p>
-<h3><a class="el" href="follow__line_8cpp.html" title="Applikation zur Linienverfolgung mit der unteren Kamera.">follow_line.cpp</a> </h3>
-<p>Diese Applikation wurde dazu entwickelt, dass die Drone einer schwarzen Linie auf hellem Untergrund folgt. Der Kontrast sollte möglichst hoch sein. Dabei ist zu beachten, dass die Kurven der Linie möglichst aus Ecken und Geraden besteht. Also extrapoliert würde ein zu fliegender Kreis wie ein Polygon mit mindestens 10 Ecken sein.</p>
+<div class="textblock"><p>Einleitung Diese Software entstand im Rahmen der Lehrveranstaltung "Softwareprojekt" unter Anleitung der Arbeitsgruppe "Embedded Systems and Operating Systems" an der Otto von Guericke Universität Magdeburg im Sommersemester 2012. Bei diesem Softwareprojekt ging es darum die AR_Drone von Parrot drei verschiedene Szenarien bewältigen lassen zu können. Dabei diente als Richtlinie, dass die Aufgabe mittels ROS erarbeitet werden sollte. In dieser Dokumentation geht es darum den Verlauf des Softwareprojektes, die Software selbst sowie deren Anwendung dem Leser nahe zu bringen. Hierbei werden wir hauptsächlich die Funktionsweise der einzelnen Applikationen erklären, die Probleme und Schwierigkeiten die dieses Softwareprojekt begleiteten schildern sowie eine Anleitungen zur Inbetriebnahme der Software.</p>
+<p>Anforderungen an die Software Bei den Szenarien handelt sich um Aufgaben im Bereich "Tracking and Following", die die Drohne zu absolvieren hat. Dabei haben wir die Software in drei Applikationen unterteilt, jeweils eine Applikation für eine Ausgabe. In der ersten Aufgabe geht es darum, dass die Drohne mit ihrer nach unten gerichteten Kamera eine Linie detektiert und deren Verlauf folgt bis die Drohne keine Linie mehr detektiert. Bei den Anderen zwei Herausforderungen geht es darum ein Marker, des Weiteren auch als Tag bezeichnet, zu detektieren und zu folgen. Dabei handelt es sich um zwei Applikationen, da dies zum einen wieder mit ihrer unteren Kamera und des Weiteren mit ihrer vorderen Kamera geschehen soll.</p>
 <div class="image">
-<img src="../../Bilder/schema_02.png" alt="schema_02.png" alt="Schema" width="526" height="372"/>
+<img src="../../Bilder/schema_overview.png" alt="schema_overview.png" alt="Schema" width="525" height="369"/>
 </div>
-<p>Dieses Bild verdeutlicht den Zusammenhang zwischen unseren Applikationen und der von uns verwendeten externen Software.</p>
-<p>Der Zusammenhang der Komponenten und die Regelung ist in <a class="el" href="page1.html">Regelung</a> beschrieben.</p>
-<p>Die einzelnen Applikationen und die aufgetretenen Probleme und Schwierigkeiten bei der Umsetztung sind in <a class="el" href="page2.html">Verhaltensbeschreibungen und Probleme</a> beschrieben.</p>
-<h2>Installation von ROS, dem Brown-Pkg und den Applikationen. </h2>
-<p>Für unsere drei Applikationen verwendeten wir ROS(Robotic Operation System) und den Ardrone Treiber der Brown Universität. Für die richtige Installation und Anwendung der Applikationen ist dieser Guide da. Da wird den Browntreiber verändert haben, sollte unbedingt unsere Version des Treibers verwendet werden.</p>
-<p>Die Apps wurden auf Ubuntu 11.10. und mit der ROS Version Electric erstellt und da den Apps kein Support untersteht, kann es mit neueren Versionen gegebenenfalls zu Problemen kommen. Eine aktuelle Installationsanleitung finden sie unter dem folgenden Link: <a href="http://www.ros.org/wiki/ROS/Installation">http://www.ros.org/wiki/ROS/Installation</a></p>
-<h5>Ros </h5>
-<p>&gt; sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu electric main" &gt; /etc/apt/sources.list.d/ros-latest.list'</p>
-<p>&gt; wget <a href="http://packages.ros.org/ros.key">http://packages.ros.org/ros.key</a> -O - | sudo apt-key add -</p>
-<p>&gt; sudo apt-get update</p>
-<p>&gt; sudo apt-get install ros-electric-desktop</p>
-<p>&gt; echo "source /opt/ros/electric/setup.bash" &gt;&gt; ~/.bashrc</p>
-<p>&gt; . ~/.bashrc</p>
-<h5>Brown-Pkg </h5>
-<p>&gt; sudo apt-get install ros-electric-brown-drivers</p>
-<p>&gt; sudo apt-get install ros-electric-brown-remotelab</p>
-<p>&gt; sudo apt-get install ros-electric-joystick-drivers</p>
-<p>&gt; sudo apt-get install guvcview</p>
-<p>&gt; sudo apt-get install libsdl1.2-dev</p>
-<p>&gt; cd ~</p>
-<p>&gt; mkdir ros</p>
-<p>&gt; cd ros</p>
-<p>&gt; svn checkout <a href="https://svn-eos.cs.ovgu.de/repos/stud/riestock">https://svn-eos.cs.ovgu.de/repos/stud/riestock</a></p>
-<p>&gt; export ROS_PACKAGE_PATH=/home/maik/ros:$ROS_PACKAGE_PATH</p>
-<p>Bei der Pfadangabe bitte darauf achten euren Anmeldenamen zu verwenden.</p>
-<p>&gt; cd /home/maik/ros/brown-ros-pkg/experimental/ardrone_brown</p>
-<p>&gt; ./build_sdk.sh</p>
-<p>&gt; cmake .</p>
-<p>&gt; rosmake ardrone_brown</p>
-<h5>Recog </h5>
-<p>&gt; cd /home/maik/ros/brown-ros-pkg/experimental/ar_recog</p>
-<p>&gt; cmake .</p>
-<p>&gt; rosmake ar_recog</p>
-<h5>Applikationen </h5>
-<p>&gt; rosmake ardrone_swp</p>
-<h2>Wie startet man die Apps? </h2>
-<p>Um die Apps zu verwenden brauch man eine Menge von Terminals. Wir haben die Arten der Befehle in 4 Bereiche untergliedert. Als Erstes die Befehle die nötig sind um den Roskern zu starten, welches immer am Anfang geschehen muss. Danach die Befehlsequenze für die drei Apps. Am Ende sind noch einmal die Terminalbefehle, welche direkt die Drone steuern, und zusätzliche Befehle.</p>
-<h3>Roskern und Brown-Treiber </h3>
-<p>&gt; rosrun roscore</p>
-<p>&gt; rosrun ardrone_brown ardrone_driver</p>
-<h3>Applikationen </h3>
-<h5>bottom_follow_tag </h5>
-<p>&gt; rosservice call /ardrone/togglecam</p>
-<p>&gt; roscd ar_recog/bin</p>
-<p>&gt; rosparam set aov 0.001</p>
-<p>&gt; rosrun ar_recog ar_recog image:=/ardrone/image_raw</p>
-<p>&gt; rostopic pub /ardrone/takeoff std_msgs/Empty</p>
-<p>&gt; rosrun ardrone_swp bottom_follow_tag</p>
-<p>am Ende zum Landen &gt; rostopic pub /ardrone/land std_msgs/Empty</p>
-<h5>front_follow_tag </h5>
-<p>&gt; roscd ar_recog/bin</p>
-<p>&gt; rosparam set aov 0.001</p>
-<p>&gt; rosrun ar_recog ar_recog image:=/ardrone/image_raw</p>
-<p>&gt; rostopic pub /ardrone/takeoff std_msgs/Empty</p>
-<p>&gt; rosrun ardrone_swp front_follow_tag</p>
-<p>am Ende zum Landen &gt; rostopic pub /ardrone/land std_msgs/Empty</p>
-<h5>follow_line </h5>
-<p>&gt; rosservice call /ardrone/togglecam</p>
-<p>&gt; rosrun ardrone_swp <a class="el" href="_track_line_8py.html" title="Applikation zur Liniendedektion.">TrackLine.py</a></p>
-<p>&gt; rostopic pub /ardrone/takeoff std_msgs/Empty</p>
-<p>&gt; rosrun ardrone_swp follow_line</p>
-<p>am Ende zum Landen &gt; rostopic pub /ardrone/land std_msgs/Empty</p>
-<h3>Steuerung </h3>
-<p>&gt; rostopic pub /ardrone/takeoff std_msgs/Empty Mit diesem Kommando wird die Drone jedes mal gestartet.</p>
-<p>&gt; rostopic pub /ardrone/land std_msgs/Empty Mit diesem Kommando wird die Drone jedes mal gelandet.</p>
-<p>&gt; rostopic pub /ardrone/reset std_msgs/Empty Mit diesem Kommando kann die Drone resetet werden, falls die Drone in den Notfallmodus geht.</p>
-<h3>zusätzliche Befehle </h3>
-<p>Durch diesen Befehl wird das aktuelle Kamerabild ausgegeben: &gt; rosrun image_view image_view image:=/ardrone/image_raw</p>
-<p>Durch diese Befehle werden die reinkommenden Nachrichten des Typs /tags bzw. /ardrone/navdata auf die Konsole geschrieben:</p>
-<p>&gt; rostopic echo /tags</p>
-<p>&gt; rostopic echo /ardrone/navdata</p>
-<p>Durch das folgende Kommando wird ein zusätzliches Programm gestartet, welche die Navigationsdaten, Tagdaten und/oder die Steuerungsbefehle aufzeichnet:</p>
-<p>&gt; ardrone_swp Log &lt;options&gt; -&gt; &lt;n&gt; für die navdata, &lt;t&gt; für die Informationen der Tags, &lt;w&gt; für die gesendeten Steuerungsbefehle</p>
-<p>Als Beispiel:</p>
-<p>&gt; ardrone_swp Log n w Jetzt protokolliert das Programm alle grad erzeugten navdata und gesendeten Steuerungsbefehle und speichert diese in ardrone_swp/Log. </p>
+<p>Regelung</p>
+<div class="image">
+<img src="../../Bilder/schema_regler_final.png" alt="schema_regler_final.png" alt="Schema" width="795" height="304"/>
+</div>
+<p>Die Kommunikation mit der Drohne geschieht über WLAN. Die Drohne sendet das Kamerabild und die Navigationsdaten, bestehend aus Geschwindigkeit und Rotation, an einen Rechner. Auf dem Rechner läuft der ardrone_driver, der das Kamerabild und die Navigationsdaten als Ros-Nachricht verschickt. Bei den Applikationen nutzen wir einen verhaltensgesteuerten Ansatz. Immer wenn eine neue Nachricht von ar_recog bzw. trackline gesendet wird, wird von der jeweiligen Applikation eine Soll-Geschwindigkeit ausgegeben. Dabei nutzten die Applikationen zusätzlich die Rotationsdaten der Drohne, um die Position des Tags zu korrigieren, die ar_recog berechnet hat. Dies ist wichtig, da die Drohne beim Ausführen von Bewegungen rotiert. Dadurch kann es beispielsweise passieren, dass ar_recog durch die Rotation ein Tag am oberen Bildrand erkennt und die Drohne aber mittig zum Tag fliegt. Die genaue Umsetzung ist in <a class="el" href="namespace_math.html#a25b9284eb485b732c952786b63343aaa" title="Berechnung der Anzahl der Pixel für die Bodenkamera, um die das Tag aufgrund der Rotation verschoben ...">Math::pixelDiffBottom(float&amp; x, float&amp; y)</a> beschrieben.</p>
+<p>Der PD-Regler dient der Einbeziehung der aktuellen Geschwindigkeit der Drohne. Unter Verwendung der Soll-Geschwindigkeit und der aktuellen Geschwindigkeit gibt der PD-Regler eine angepasste Geschwindigkeit aus. Diese wird über den ardrone_driver an die Drohne gesendet.</p>
+<p>Für jede Applikation wurden unterschiedliche Regelungsparameter verwendet. Diese wurden für die jeweilige Aufgabe angepasst. Bei der Boden-Tag-Verfolgung reagiert die Drohne beispielsweise sehr empfindlich bei der Geschwindigkeitsanpassung in x-Richtung, da beim Bodenrobotter zu erwarten ist, dass er sich vor und zurück bewegt aber nicht seitlich fährt. Die Regelungsparameter sind in <a class="el" href="class_cglobal.html" title="Klasse, die in Form eines Singletons alle globalen Variablen enthält.">Cglobal</a> definiert.</p>
+<h2>Generelle Probleme und Schwierigkeiten</h2>
+<p>Die größten Probleme entstanden durch Übertragungsstörungen bei der Kommunikation mit der Drohne über WLAN. Dadurch wurden teilweise bis zu 5 Sekunden keine neuen Navigationsdaten erhalten. Dies ist besonders problematisch für die Regelung. Die Drohne kann sehr schnell ihre Geschwindigkeit ändern, sodass mit 5 Sekunden alten Geschwindigkeitswerten nicht mehr richtig geregelt werden kann. Des Weiteren werden die Rotationsdaten für die Anpassung der Position des Tags verwendet. Wenn dabei veraltete Werte verwendet werden, kommt es ebenfalls zu Fehlern. Ein weiteres Problem, welches durch die Übertragungsstörungen entsteht, ist, dass Steuer-Kommandos verspätet und nur teilweise aufgeführt werden. Dabei zeigt die Drohne bei gleichem Programm inkonsistentes Verhalten. Dies hat das Entwickeln der Applikationen erschwert, da bei Tests nicht genau gesagt werden konnte, ob ein unerwünschtes Verhalten der Drohne an einem Fehler im Programm oder durch Übertragungsstörungen entstanden ist. Die Übertragungsstörungen waren raumabhängig. Bei unseren Tests waren sie im Fin-Hörsaal am geringsten. Falls starke Übertragungsstörungen auftreten, sind die Applikationen nicht funktionsfähig. Ein weiteres Problem ist, dass die Drohne starken Aufwind erzeugt. Dies hat zur Folge, dass sie in der Nähe von Wänden und besonders im Flur ins Trudeln gerät und somit das Tag bzw. die Linie verliert. Vor allem für die Linienverfolgung ist es problematisch, dass die Drohne nicht gleichzeitig in x-Richtung fliegen(nicken) und sich drehen(gieren) kann. Die gewünschte Bewegung dabei wäre der Flug einer Kurve. Allerdings fliegt die Drohne dabei diagonal mit einer hohen Geschwindigkeit nach vorne und kürzt die Kurve damit ab. Dabei fliegt sie sehr schnell, auch wenn in x-Richtung nur eine geringe Geschwindigkeit angegeben wurde. Wie das Problem angegangen wurde wird in der Verhaltensbeschreibung der Linienverfolgung genauer erklärt. Außerdem gab es Bugs in der Firmware der Drohne. Zuerst bestand das Problem, dass die Drohne manchmal ohne ersichtlichen Grund nach oben geflogen ist. Das wurde nach einem Firmwareupdate behoben. Danach kam es dazu, dass, falls die Drohne in den Ermercency-Modus kam, sie die letzten Steuerkommandos nach dem nächsten Start sofort ausgeführt hat. Deshalb sollte man, nachdem die Drohne in den Ermercency-Modus kam, einen Reset der Drohne durchführen. Weiterhin ist die Dohne manchmal schon vom Start an sehr unstabil geflogen. Nach einem Neustart ist sie danach meistens wieder normal gefolgen. Durch schnelle oder ruckartige Bewegungen der Dohne ruckelt das Kamerabild, sodass die Linie oder das Tag kurzzeitig nicht erkannt werden. In dieser Zeit fliegt die Drohne in die zuletzt gesehene Richtung, sodass dies kein Problem darstellt.</p>
+<h2>Front-Tagverfolgung </h2>
+<p>Eine Applikation für die Tagverfolgung mit der vorderen Kamera ist bereits im Brown-package vorhanden und trägt den Namen nolan3d. Darin ist keine Höhenanpassung und keine Regelung implementiert. Durch die fehlende Regelung ist die Drohne bei unseren Tests oft abgedriftet und hat das Tag schnell verloren.</p>
+<h3>Verhaltensbeschreibung </h3>
+<p>Bei unserer Applikation soll die Drohne einen Abstand von 1,50.2 m zum Tag halten. Im dem Bereich vom 20cm um 1,5m soll sich die Drohne in x-Richtung nicht bewegen, damit sie nicht immer in Bewegung ist und besser in y-Richtung reagieren kann. Falls das Tag parallel zur Drohne bewegt wird, folgt die Drohne dem Tag parallel. Dafür ist es notwendig, dass sich die Drohne erst anfängt zu drehen, wenn sie einen Winkel von mehr als 24° zum Tag hat. In diesem Fall muss sie sich drehen und ihre y-Position anpassen. Dabei ist es problematisch, dass sich die Drohne sehr viel schneller dreht als sie in y-Richtung fliegt. Damit sie das Tag bei dieser Bewegung nicht verliert, hört sie auf sich zu drehen, falls das Tag am äußeren Bildrand zu sehen ist. Wenn das Tag durch die Bewegung in y-Richtung wieder mittiger im Bild ist, dreht sich die Drohe gegebenenfalls wieder. Weiterhin passt die Drohne ihre Höhe an, falls das Tag am oberen bzw. am unteren Bildrand zu sehen ist. Dabei ist eine Höhenbegrenzung definiert, sodass die Drohne im Bereich von 0,5m bis 1,7m fliegen kann. Falls die Drohne auf das Tag zu fliegt, kippt sie leicht nach vorne und das Tag ist im Kamerabild weiter oben zu sehen. Damit die Drohne dadurch nicht nach oben fliegt, wird mittels der Rotation um die y-Achse die Position das Tags korrigiert. Eine genauere Beschreibung ist in math::… zu finden. Wenn kein Tag zu sehen ist, fliegt die Drohne für 3 Sekunden in die zuletzt gesehene Richtung. Somit folgt die Drohne dem Tag auch in der Zeit, in der kein Tag aufgrund von Rucklern im Bild wegen schnellen Bewegungen zu sehen ist. Falls das Tag nach 3 Sekunden nicht wiedergefunden wurde, fliegt die Drohne auf der Stelle.</p>
+<h3>Testszenarien </h3>
+<p>Wir haben die Applikation im Raum 333 und im Hörsaal der FIN getestet. Bessere Ergebnisse erzielten wir im Hörsaal, da die WLAN-Probleme dort geringer waren. Dabei verlor die Drohne das Tag bei der Höhenanpassung und der parallelen Bewegung zum Tag nie. Bei der Bewegung, in der die Drohne sich dreht und gleichzeitig in y-Richtung bewegt, kann es in manchen Fällen vorkommen, dass sie das Tag verliert. In seltenen Fällen berechnet ar_recog einen Winkel mit einem falschen Vorzeichen, sodass sich die Drohne in die falsche Richtung dreht.</p>
+<h2>Linienverfolgung </h2>
+<p>Zur Erkennung der Linie dient das Programm <a class="el" href="namespace_track_line.html">TrackLine</a>, welches uns von Dr. Sebastian Zug zur Verfügung gestellt wurde. Dieses haben wir an ROS angebunden, sodass es eine Nachricht immer dann versendet, wenn ein neues Bild erhalten wurde. Darin ist die x-Position der Linie und der Winkel der Linie zur Drohne angegeben. Die y-Position der Linie ist immer in der Bildmitte.</p>
+<h3>Verhaltensbeschreibung </h3>
+<p>Wenn die Drohne nach dem Start eine Linie erkennt, steigt sie auf eine Höhe von 0,9 m. Danach beginnt sie der Linie zu folgen. Wie bereits bei den generellen Problemen erwähnt, kann eine Bewegung in x-Richtung und gleichzeitige Drehung nicht richtig ausgeführt werden. Deshalb darf die Drohne nur eine sehr geringe Geschwindigkeit in x-Richtung haben, wenn sie dreht. Oder sie darf sich nur kurz und langsam drehen. Dafür bewegt fliegt die Drohne nur in x-Richtung, falls sie einen Winkel von weniger als 9° zum Tag besitzt. Weiterhin wird dabei die Geschwindigkeit in y-Richtung angepasst, sodass die Linie in der Bildmitte ist. Damit die Drohne keine „Zick-Zack“ Bewegung ausführt, muss sie sich zur Linie ausrichten. Dabei dreht sie sich sehr langsam, damit der oben genannte Effekt nicht so stark auftritt. Bei einem Winkel 9° oder größer, versucht die Drohne abzubremsen, bis sie fast keine Geschwindigkeit in x- und y-Richtung mehr hat. Danach dreht sie sich bis der Winkel kleiner als 9° ist. Mit dieser Implementierung kann die Drohne keinen Kurven folgen. Stattdessen sollte die Linie Knicke haben. Dabei ist ein Grenzwinkel von 9° gewählt, weil sich die Drohne somit auf geraden Strecken nach vorne bewegt und erst bei Knicken in der Linie stoppt und sich dreht. Wurde ein kleinerer Winkel gewählt, stoppte und richtete sich die Drohne auch teilweise auf geraden Strecken aus, da die Detektion des Winkels nur auf etwa 3° genau ist. Ein größerer Grenzwinkel sollte auch nicht verwendet werden, weil sich sonst die Probleme mit der gleichzeitigen Drehung und Bewegung in x-Richtung verschärfen.</p>
+<h3>Testszenarien </h3>
+<p>Auch diese Applikation haben wir im Raum 333 und im FIN-Hörsaal getestet. Aufgrund der geringen Geschwindigkeiten der Drohne bei der Linienverfolgung, ist ein stabiler Flug der Drohne wichtig. Wie in den generellen Problemen beschrieben, fliegt die Drohne bei manchen Flügen schon ab dem Start nicht stabil. Sollte das der Fall sein muss die Drohne neugestartet werden bevor mit der Linienverfolgung begonnen wird. Bei einem stabilen Flug kann die Drohne der Linie gut folgen und verliert sie nur selten. In der Nähe von Wänden verliert sie dagegen das Tag schneller, da sie dort aufgrund des Windes ins Trudeln gerät.</p>
+<h3>Bottom - Verhaltensbeschreibung, spez. Prob, Testszenarien: </h3>
+<p>Diese Applikation hat die Aufgabe mit der unteren Kamera ein Tag zu verfolgen Sodass man auf einen mobilen Bodenroboter ein Tag auf der oberen Seite des Körpers befestigen kann und die Drohne dann den Bodenroboter folgt. Dabei möchte ich als erstes auf die implementierte Flugsequenz des Programmes eingehen und danach auf die bestehenden Probleme und Testszenarien.</p>
+<h3>Verhaltensbeschreibung </h3>
+<p>Nach dem Start der Applikation wird die Drohne als erstes auf ihre übliche Höhe fliegen und von da an versuchen unter sich ein Tag zu detektieren. Sobald sie ein Tag durch ihre untere Kamera entdeckt, wird sie aufsteigen umso auf einen Abstand von 1,3m zum Tag zu erreichen. Die eigentliche Flugsequenz setzt sich aus einer Rotations- und Translationsbewegung. Die Rotation wird dafür verwendet, dass die Vorderseite der Drohne immer über der Oberseite der des Tags ist. Die Translation hat die Aufgabe den Marker immer im Mittelpunkt des Bildes der unteren Kamera zu fixieren. Sobald die Drohne eine stabile Position über dem Tag besitzt, kann nun das Tag, bzw. der Bodenroboter, sich nun bewegen und die Drohne wird daraufhin versuchen ihm zu folgen. Unsere Tests basierten Anfangs nur auf einem Marker, den wir mittels Faden bewegen konnten. Als diese Tests erfolgreich absolviert wurden, sind wir auf den Bodenroboter ausgewichen, welch keinen signifikanten Unterschied des Verhaltens der Applikation zeigte.</p>
+<h3>Testszenarien </h3>
+<p>Bei dieser Applikationen gab es auch wieder einige Probleme die wir zu beheben nicht mehr im Stande waren. Zum einen klappte die Applikation ausschließlich im Hörsaal unserer Fakultät für Informatik. Dies lässt sich wohl darauf zurückführen, dass dort die geringste Wlan-Störung zu verzeichnet ist. Des Weiteren ist die Positionierung des Markers auf dem Bodenroboter entscheidend. Hier sollte dabei geachtet werden einen möglichst großen weißen Rand um den Marker zu haben umso visuelle Störungen zu unterdrücken. Als zweites sollte der Mittelpunkt des Markers möglichst nah an dem Drehpunkt des Bodenroboters sein. Ansonsten wird die Drohne dazu gezwungen eine starke translatiorische wie rotatorische Bewegung zu absolvieren welches häufig zu unkontrollierbaren Flugbewegungen führt.</p>
+<p>Softwareumgebung Unsere Software baut nicht nur auf ROS, sondern auch auf einem Softwarepaket der Brown Universität. In diesem Paket findet man einen Treiber der die Libary der AR_Drone an ROS anbindet und so die Drohne erst mittels ROS ansteuerbar macht. Zusätzlich enthält dieses Paket unter anderem ein Programm für Marker Erkennung, welches wir in unserer Software auch verwenden. Dem Weiteren wurde uns von der Arbeitsgruppe ein Programm zur Verfügung gestellt mit dem man Linien detektieren kann. Jedoch haben wir den Treiber wie auch beide Programme zur Detektion an unseren Ansprüchen angepasst. Das Schaubild im Folgenden soll den Datenfluss wie die Zusammensetzung unserer Software mit der externen Software veranschaulichen.</p>
+<p>Der Installationsguide kann man hier finden <a class="el" href="page1.html">Installation</a>. D+Wie man die Apps startet findet man in <a class="el" href="page2.html">Start der Apps</a>. </p>
 </div></div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -158,7 +106,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Erzeugt am Wed Nov 7 2012 22:27:17 für TraFo Drone von&#160;
+<hr class="footer"/><address class="footer"><small>Erzeugt am Mon Nov 12 2012 17:12:11 für TraFo Drone von&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
