@@ -1,8 +1,8 @@
 /**
 \page page1 Installation
 
-Installationsguide
-In dem Absatz Softwareumgebung haben wir einen Einblick in der von verwendeter Software gegeben. Nun wollen wir erklären wie man unsere Applikation und Umgebung installiert. Dabei ist zu beachten, dass wir unsere Software auf Ubuntu 11.10 und ROS-Electric entwickelt haben und es bei der Verwendung von neueren Version zu Problemen und Fehler führen kann.
+<h2>Installationsguide</h2>
+Hier wollen wir erklären wie man unsere Applikation und Umgebung installiert. Dabei ist zu beachten, dass wir unsere Software auf Ubuntu 11.10 und ROS-Electric entwickelt haben und es bei der Verwendung von neueren Version zu Problemen und Fehler führen kann.
 
 <h5> Ros </h5>
 
@@ -36,13 +36,13 @@ In dem Absatz Softwareumgebung haben wir einen Einblick in der von verwendeter S
 
 > cd ros
 
-> svn checkout https://svn-eos.cs.ovgu.de/repos/stud/riestock
+https://github.com/querquer/ardrone.swp/archive/master.zip downloaden, entpacken und in den aktuellen Ordner(/home/user/ros) kopieren
 
-> export ROS_PACKAGE_PATH=/home/maik/ros:$ROS_PACKAGE_PATH
+> export ROS_PACKAGE_PATH=/home/user/ros:$ROS_PACKAGE_PATH
 
-Bei der Pfadangabe bitte darauf achten euren Anmeldenamen zu verwenden.
+Bei der Pfadangabe bitte darauf achten den Anmeldenamen zu verwenden.
 
-> cd /home/maik/ros/brown-ros-pkg/experimental/ardrone_brown
+> cd /home/user/ros/brown-ros-pkg/experimental/ardrone_brown
 
 > ./build_sdk.sh
 
@@ -52,7 +52,7 @@ Bei der Pfadangabe bitte darauf achten euren Anmeldenamen zu verwenden.
 
 <h5> Recog </h5>
 
-> cd /home/maik/ros/brown-ros-pkg/experimental/ar_recog
+> cd /home/user/ros/brown-ros-pkg/experimental/ar_recog
 
 > cmake .
 

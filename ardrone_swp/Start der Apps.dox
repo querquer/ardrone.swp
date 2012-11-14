@@ -3,10 +3,9 @@
 
 <h2> Wie startet man die Apps? </h2>
 
-Um die Apps zu verwenden brauch man eine Menge von Terminals. Wir haben die Arten der Befehle in 4 Bereiche untergliedert.
-Als Erstes die Befehle die nötig sind um den Roskern zu starten, welches immer am Anfang geschehen muss. 
-Danach die Befehlsequenze für die drei Apps. Am Ende sind noch einmal die Terminalbefehle,
-welche direkt die Drone steuern, und zusätzliche Befehle.
+Hier sind zunächst die Befehle aufgelistet, die zum Starten der Apps benötigt werden.
+Am Ende stehen die Befehle, welche die Drone direkt steuern.
+Zusätzlich wird beschrieben wie unser Programm zum Loggen der Navidationsdaten, Taginformationen uns Steuerbefehle gestartet wird.
 
 
 <h3> Roskern und Brown-Treiber </h3>
@@ -63,26 +62,17 @@ am Ende zum Landen
 <h3> Steuerung </h3>
 	
 > rostopic pub /ardrone/takeoff std_msgs/Empty	
-Mit diesem Kommando wird die Drone jedes mal gestartet.
+Mit diesem Kommando wird die Drone gestartet.
 	
 > rostopic pub /ardrone/land std_msgs/Empty
-Mit diesem Kommando wird die Drone jedes mal gelandet.
+Mit diesem Kommando wird die Drone gelandet.
 	
 > rostopic pub /ardrone/reset std_msgs/Empty	
 Mit diesem Kommando kann die Drone resetet werden, falls die Drone in den Notfallmodus geht.
 	
 	
 
-<h3> zusätzliche Befehle </h3>
-
-Durch diesen Befehl wird das aktuelle Kamerabild ausgegeben:
-> rosrun image_view image_view image:=/ardrone/image_raw
-
-Durch diese Befehle werden die reinkommenden Nachrichten des Typs /tags bzw. /ardrone/navdata auf die Konsole geschrieben:
- 
-> rostopic echo /tags
-
-> rostopic echo /ardrone/navdata
+<h3> Loggen </h3>
 
 Durch das folgende Kommando wird ein zusätzliches Programm gestartet,
 welche die Navigationsdaten, Tagdaten und/oder die Steuerungsbefehle aufzeichnet:
@@ -96,7 +86,8 @@ welche die Navigationsdaten, Tagdaten und/oder die Steuerungsbefehle aufzeichnet
 Als Beispiel:
 
 > ardrone_swp Log n w
-Jetzt protokolliert das Programm alle grad erzeugten navdata und gesendeten Steuerungsbefehle
+
+Jetzt protokolliert das Programm alle erzeugten Nachrichten vom Typ navdata sowie die gesendeten Steuerungsbefehle
 und speichert diese in ardrone_swp/Log.
 
 */
